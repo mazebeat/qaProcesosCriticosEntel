@@ -50,11 +50,11 @@ final class PersistentToken implements PersistentTokenInterface
             throw new \InvalidArgumentException('$tokenValue must not be empty.');
         }
 
-        $this->class      = $class;
-        $this->username   = $username;
-        $this->series     = $series;
+        $this->class = $class;
+        $this->username = $username;
+        $this->series = $series;
         $this->tokenValue = $tokenValue;
-        $this->lastUsed   = $lastUsed;
+        $this->lastUsed = $lastUsed;
     }
 
     /**

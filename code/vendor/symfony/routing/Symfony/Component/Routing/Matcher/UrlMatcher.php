@@ -60,7 +60,7 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
      */
     public function __construct(RouteCollection $routes, RequestContext $context)
     {
-        $this->routes  = $routes;
+        $this->routes = $routes;
         $this->context = $context;
     }
 
@@ -91,7 +91,9 @@ class UrlMatcher implements UrlMatcherInterface, RequestMatcherInterface
             return $ret;
         }
 
-        throw 0 < count($this->allow) ? new MethodNotAllowedException(array_unique(array_map('strtoupper', $this->allow))) : new ResourceNotFoundException();
+        throw 0 < count($this->allow)
+            ? new MethodNotAllowedException(array_unique(array_map('strtoupper', $this->allow)))
+            : new ResourceNotFoundException();
     }
 
     /**

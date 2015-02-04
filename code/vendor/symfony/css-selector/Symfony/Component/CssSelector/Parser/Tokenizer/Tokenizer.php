@@ -39,7 +39,14 @@ class Tokenizer
         $patterns = new TokenizerPatterns();
         $escaping = new TokenizerEscaping($patterns);
 
-        $this->handlers = array(new Handler\WhitespaceHandler(), new Handler\IdentifierHandler($patterns, $escaping), new Handler\HashHandler($patterns, $escaping), new Handler\StringHandler($patterns, $escaping), new Handler\NumberHandler($patterns), new Handler\CommentHandler(),);
+        $this->handlers = array(
+            new Handler\WhitespaceHandler(),
+            new Handler\IdentifierHandler($patterns, $escaping),
+            new Handler\HashHandler($patterns, $escaping),
+            new Handler\StringHandler($patterns, $escaping),
+            new Handler\NumberHandler($patterns),
+            new Handler\CommentHandler(),
+        );
     }
 
     /**
@@ -64,6 +71,8 @@ class Tokenizer
             $reader->moveForward(1);
         }
 
-        return $stream->push(new Token(Token::TYPE_FILE_END, null, $reader->getPosition()))->freeze();
+        return $stream
+            ->push(new Token(Token::TYPE_FILE_END, null, $reader->getPosition()))
+            ->freeze();
     }
 }

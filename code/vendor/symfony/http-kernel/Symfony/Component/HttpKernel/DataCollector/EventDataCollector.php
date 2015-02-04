@@ -35,7 +35,10 @@ class EventDataCollector extends DataCollector implements LateDataCollectorInter
      */
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
-        $this->data = array('called_listeners' => array(), 'not_called_listeners' => array(),);
+        $this->data = array(
+            'called_listeners' => array(),
+            'not_called_listeners' => array(),
+        );
     }
 
     public function lateCollect()

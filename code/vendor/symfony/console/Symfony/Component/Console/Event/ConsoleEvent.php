@@ -31,8 +31,8 @@ class ConsoleEvent extends Event
     public function __construct(Command $command, InputInterface $input, OutputInterface $output)
     {
         $this->command = $command;
-        $this->input   = $input;
-        $this->output  = $output;
+        $this->input = $input;
+        $this->output = $output;
     }
 
     /**

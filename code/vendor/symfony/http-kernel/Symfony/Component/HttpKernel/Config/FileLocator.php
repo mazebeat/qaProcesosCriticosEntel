@@ -36,7 +36,7 @@ class FileLocator extends BaseFileLocator
         $this->kernel = $kernel;
         if (null !== $path) {
             $this->path = $path;
-            $paths[]    = $path;
+            $paths[] = $path;
         }
 
         parent::__construct($paths);

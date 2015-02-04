@@ -48,12 +48,14 @@ class MemcacheSessionHandler implements \SessionHandlerInterface
     public function __construct(\Memcache $memcache, array $options = array())
     {
         if ($diff = array_diff(array_keys($options), array('prefix', 'expiretime'))) {
-            throw new \InvalidArgumentException(sprintf('The following options are not supported "%s"', implode(', ', $diff)));
+            throw new \InvalidArgumentException(sprintf(
+                'The following options are not supported "%s"', implode(', ', $diff)
+            ));
         }
 
         $this->memcache = $memcache;
-        $this->ttl      = isset($options['expiretime']) ? (int)$options['expiretime'] : 86400;
-        $this->prefix   = isset($options['prefix']) ? $options['prefix'] : 'sf2s';
+        $this->ttl = isset($options['expiretime']) ? (int) $options['expiretime'] : 86400;
+        $this->prefix = isset($options['prefix']) ? $options['prefix'] : 'sf2s';
     }
 
     /**
@@ -77,7 +79,7 @@ class MemcacheSessionHandler implements \SessionHandlerInterface
      */
     public function read($sessionId)
     {
-        return $this->memcache->get($this->prefix . $sessionId) ?: '';
+        return $this->memcache->get($this->prefix.$sessionId) ?: '';
     }
 
     /**
@@ -85,7 +87,7 @@ class MemcacheSessionHandler implements \SessionHandlerInterface
      */
     public function write($sessionId, $data)
     {
-        return $this->memcache->set($this->prefix . $sessionId, $data, 0, time() + $this->ttl);
+        return $this->memcache->set($this->prefix.$sessionId, $data, 0, time() + $this->ttl);
     }
 
     /**
@@ -93,7 +95,7 @@ class MemcacheSessionHandler implements \SessionHandlerInterface
      */
     public function destroy($sessionId)
     {
-        return $this->memcache->delete($this->prefix . $sessionId);
+        return $this->memcache->delete($this->prefix.$sessionId);
     }
 
     /**

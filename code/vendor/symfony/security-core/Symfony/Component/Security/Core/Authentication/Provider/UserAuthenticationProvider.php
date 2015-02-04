@@ -47,8 +47,8 @@ abstract class UserAuthenticationProvider implements AuthenticationProviderInter
             throw new \InvalidArgumentException('$providerKey must not be empty.');
         }
 
-        $this->userChecker                = $userChecker;
-        $this->providerKey                = $providerKey;
+        $this->userChecker = $userChecker;
+        $this->providerKey = $providerKey;
         $this->hideUserNotFoundExceptions = $hideUserNotFoundExceptions;
     }
 

@@ -64,7 +64,7 @@ class InputOption
             }
             $shortcuts = preg_split('{(\|)-?}', ltrim($shortcut, '-'));
             $shortcuts = array_filter($shortcuts);
-            $shortcut  = implode('|', $shortcuts);
+            $shortcut = implode('|', $shortcuts);
 
             if (empty($shortcut)) {
                 throw new \InvalidArgumentException('An option shortcut cannot be empty.');
@@ -77,9 +77,9 @@ class InputOption
             throw new \InvalidArgumentException(sprintf('Option mode "%s" is not valid.', $mode));
         }
 
-        $this->name        = $name;
-        $this->shortcut    = $shortcut;
-        $this->mode        = $mode;
+        $this->name = $name;
+        $this->shortcut = $shortcut;
+        $this->mode = $mode;
         $this->description = $description;
 
         if ($this->isArray() && !$this->acceptValue()) {
@@ -202,6 +202,12 @@ class InputOption
      */
     public function equals(InputOption $option)
     {
-        return $option->getName() === $this->getName() && $option->getShortcut() === $this->getShortcut() && $option->getDefault() === $this->getDefault() && $option->isArray() === $this->isArray() && $option->isValueRequired() === $this->isValueRequired() && $option->isValueOptional() === $this->isValueOptional();
+        return $option->getName() === $this->getName()
+            && $option->getShortcut() === $this->getShortcut()
+            && $option->getDefault() === $this->getDefault()
+            && $option->isArray() === $this->isArray()
+            && $option->isValueRequired() === $this->isValueRequired()
+            && $option->isValueOptional() === $this->isValueOptional()
+        ;
     }
 }

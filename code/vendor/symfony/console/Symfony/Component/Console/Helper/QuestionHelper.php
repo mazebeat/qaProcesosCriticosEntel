@@ -115,7 +115,7 @@ class QuestionHelper extends Helper
         if ($question instanceof ChoiceQuestion) {
             $width = max(array_map('strlen', array_keys($question->getChoices())));
 
-            $messages = (array)$question->getQuestion();
+            $messages = (array) $question->getQuestion();
             foreach ($question->getChoices() as $key => $value) {
                 $messages[] = sprintf("  [<info>%-${width}s</info>] %s", $key, $value);
             }
@@ -171,11 +171,11 @@ class QuestionHelper extends Helper
     private function autocomplete(OutputInterface $output, Question $question, $inputStream)
     {
         $autocomplete = $question->getAutocompleterValues();
-        $ret          = '';
+        $ret = '';
 
-        $i          = 0;
-        $ofs        = -1;
-        $matches    = $autocomplete;
+        $i = 0;
+        $ofs = -1;
+        $matches = $autocomplete;
         $numMatches = count($matches);
 
         $sttyMode = shell_exec('stty -g');
@@ -199,8 +199,8 @@ class QuestionHelper extends Helper
                 }
 
                 if ($i === 0) {
-                    $ofs        = -1;
-                    $matches    = $autocomplete;
+                    $ofs = -1;
+                    $matches = $autocomplete;
                     $numMatches = count($matches);
                 } else {
                     $numMatches = 0;
@@ -249,7 +249,7 @@ class QuestionHelper extends Helper
                 $i++;
 
                 $numMatches = 0;
-                $ofs        = 0;
+                $ofs = 0;
 
                 foreach ($autocomplete as $value) {
                     // If typed characters match the beginning chunk of value (e.g. [AcmeDe]moBundle)
@@ -266,7 +266,7 @@ class QuestionHelper extends Helper
                 // Save cursor position
                 $output->write("\0337");
                 // Write highlighted text
-                $output->write('<hl>' . substr($matches[$ofs], $i) . '</hl>');
+                $output->write('<hl>'.substr($matches[$ofs], $i).'</hl>');
                 // Restore cursor position
                 $output->write("\0338");
             }
@@ -290,11 +290,11 @@ class QuestionHelper extends Helper
     private function getHiddenResponse(OutputInterface $output, $inputStream)
     {
         if ('\\' === DIRECTORY_SEPARATOR) {
-            $exe = __DIR__ . '/../Resources/bin/hiddeninput.exe';
+            $exe = __DIR__.'/../Resources/bin/hiddeninput.exe';
 
             // handle code running from a phar
             if ('phar:' === substr(__FILE__, 0, 5)) {
-                $tmpExe = sys_get_temp_dir() . '/hiddeninput.exe';
+                $tmpExe = sys_get_temp_dir().'/hiddeninput.exe';
                 copy($exe, $tmpExe);
                 $exe = $tmpExe;
             }
@@ -329,7 +329,7 @@ class QuestionHelper extends Helper
         if (false !== $shell = $this->getShell()) {
             $readCmd = $shell === 'csh' ? 'set mypassword = $<' : 'read -r mypassword';
             $command = sprintf("/usr/bin/env %s -c 'stty -echo; %s; stty echo; echo \$mypassword'", $shell, $readCmd);
-            $value   = rtrim(shell_exec($command));
+            $value = rtrim(shell_exec($command));
             $output->writeln('');
 
             return $value;
@@ -351,14 +351,14 @@ class QuestionHelper extends Helper
      */
     private function validateAttempts($interviewer, OutputInterface $output, Question $question)
     {
-        $error    = null;
+        $error = null;
         $attempts = $question->getMaxAttempts();
         while (null === $attempts || $attempts--) {
             if (null !== $error) {
                 if (null !== $this->getHelperSet() && $this->getHelperSet()->has('formatter')) {
                     $message = $this->getHelperSet()->get('formatter')->formatBlock($error->getMessage(), 'error');
                 } else {
-                    $message = '<error>' . $error->getMessage() . '</error>';
+                    $message = '<error>'.$error->getMessage().'</error>';
                 }
 
                 $output->writeln($message);

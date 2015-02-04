@@ -111,7 +111,7 @@ class ParameterBag implements \IteratorAggregate, \Countable
             return $default;
         }
 
-        $value      = $this->parameters[$root];
+        $value = $this->parameters[$root];
         $currentKey = null;
         for ($i = $pos, $c = strlen($path); $i < $c; $i++) {
             $char = $path[$i];
@@ -131,7 +131,7 @@ class ParameterBag implements \IteratorAggregate, \Countable
                     return $default;
                 }
 
-                $value      = $value[$currentKey];
+                $value = $value[$currentKey];
                 $currentKey = null;
             } else {
                 if (null === $currentKey) {
@@ -250,7 +250,7 @@ class ParameterBag implements \IteratorAggregate, \Countable
      */
     public function getInt($key, $default = 0, $deep = false)
     {
-        return (int)$this->get($key, $default, $deep);
+        return (int) $this->get($key, $default, $deep);
     }
 
     /**

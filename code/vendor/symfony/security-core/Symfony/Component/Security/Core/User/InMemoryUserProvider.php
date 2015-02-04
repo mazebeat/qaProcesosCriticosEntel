@@ -38,9 +38,9 @@ class InMemoryUserProvider implements UserProviderInterface
     {
         foreach ($users as $username => $attributes) {
             $password = isset($attributes['password']) ? $attributes['password'] : null;
-            $enabled  = isset($attributes['enabled']) ? $attributes['enabled'] : true;
-            $roles    = isset($attributes['roles']) ? $attributes['roles'] : array();
-            $user     = new User($username, $password, $roles, $enabled, true, true, true);
+            $enabled = isset($attributes['enabled']) ? $attributes['enabled'] : true;
+            $roles = isset($attributes['roles']) ? $attributes['roles'] : array();
+            $user = new User($username, $password, $roles, $enabled, true, true, true);
 
             $this->createUser($user);
         }
@@ -76,7 +76,8 @@ class InMemoryUserProvider implements UserProviderInterface
 
         $user = $this->users[strtolower($username)];
 
-        return new User($user->getUsername(), $user->getPassword(), $user->getRoles(), $user->isEnabled(), $user->isAccountNonExpired(), $user->isCredentialsNonExpired(), $user->isAccountNonLocked());
+        return new User($user->getUsername(), $user->getPassword(), $user->getRoles(), $user->isEnabled(), $user->isAccountNonExpired(),
+                $user->isCredentialsNonExpired(), $user->isAccountNonLocked());
     }
 
     /**

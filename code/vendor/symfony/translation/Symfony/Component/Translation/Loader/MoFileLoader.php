@@ -103,8 +103,8 @@ class MoFileLoader extends ArrayLoader implements LoaderInterface
 
         // formatRevision
         $this->readLong($stream, $isBigEndian);
-        $count            = $this->readLong($stream, $isBigEndian);
-        $offsetId         = $this->readLong($stream, $isBigEndian);
+        $count = $this->readLong($stream, $isBigEndian);
+        $offsetId = $this->readLong($stream, $isBigEndian);
         $offsetTranslated = $this->readLong($stream, $isBigEndian);
         // sizeHashes
         $this->readLong($stream, $isBigEndian);
@@ -144,7 +144,7 @@ class MoFileLoader extends ArrayLoader implements LoaderInterface
                 $translated = explode("\000", $translated);
             }
 
-            $ids  = array('singular' => $singularId, 'plural' => $pluralId);
+            $ids = array('singular' => $singularId, 'plural' => $pluralId);
             $item = compact('ids', 'translated');
 
             if (is_array($item['translated'])) {
@@ -179,6 +179,6 @@ class MoFileLoader extends ArrayLoader implements LoaderInterface
         $result = unpack($isBigEndian ? 'N1' : 'V1', fread($stream, 4));
         $result = current($result);
 
-        return (int)substr($result, -8);
+        return (int) substr($result, -8);
     }
 }

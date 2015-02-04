@@ -42,9 +42,9 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
     public function __construct(EventDispatcherInterface $dispatcher, Stopwatch $stopwatch, LoggerInterface $logger = null)
     {
         $this->dispatcher = $dispatcher;
-        $this->stopwatch  = $stopwatch;
-        $this->logger     = $logger;
-        $this->called     = array();
+        $this->stopwatch = $stopwatch;
+        $this->logger = $logger;
+        $this->called = array();
     }
 
     /**
@@ -129,8 +129,8 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
         $called = array();
         foreach ($this->called as $eventName => $listeners) {
             foreach ($listeners as $listener) {
-                $info                                       = $this->getListenerInfo($listener->getWrappedListener(), $eventName);
-                $called[$eventName . '.' . $info['pretty']] = $info;
+                $info = $this->getListenerInfo($listener->getWrappedListener(), $eventName);
+                $called[$eventName.'.'.$info['pretty']] = $info;
             }
         }
 
@@ -168,8 +168,8 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
                 }
 
                 if (!$called) {
-                    $info                                          = $this->getListenerInfo($listener, $eventName);
-                    $notCalled[$eventName . '.' . $info['pretty']] = $info;
+                    $info = $this->getListenerInfo($listener, $eventName);
+                    $notCalled[$eventName.'.'.$info['pretty']] = $info;
                 }
             }
         }
@@ -216,7 +216,7 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
             $this->dispatcher->removeListener($eventName, $listener);
             $info = $this->getListenerInfo($listener, $eventName);
             $name = isset($info['class']) ? $info['class'] : $info['type'];
-            $this->dispatcher->addListener($eventName, new WrappedListener($listener, $name, $this->stopwatch));
+            $this->dispatcher->addListener($eventName, new WrappedListener($listener, $name, $this->stopwatch, $this));
         }
     }
 
@@ -268,33 +268,51 @@ class TraceableEventDispatcher implements TraceableEventDispatcherInterface
      */
     private function getListenerInfo($listener, $eventName)
     {
-        $info = array('event' => $eventName,);
+        $info = array(
+            'event' => $eventName,
+        );
         if ($listener instanceof \Closure) {
-            $info += array('type' => 'Closure', 'pretty' => 'closure',);
+            $info += array(
+                'type' => 'Closure',
+                'pretty' => 'closure',
+            );
         } elseif (is_string($listener)) {
             try {
-                $r    = new \ReflectionFunction($listener);
+                $r = new \ReflectionFunction($listener);
                 $file = $r->getFileName();
                 $line = $r->getStartLine();
             } catch (\ReflectionException $e) {
                 $file = null;
                 $line = null;
             }
-            $info += array('type' => 'Function', 'function' => $listener, 'file' => $file, 'line' => $line, 'pretty' => $listener,);
+            $info += array(
+                'type' => 'Function',
+                'function' => $listener,
+                'file' => $file,
+                'line' => $line,
+                'pretty' => $listener,
+            );
         } elseif (is_array($listener) || (is_object($listener) && is_callable($listener))) {
             if (!is_array($listener)) {
                 $listener = array($listener, '__invoke');
             }
             $class = is_object($listener[0]) ? get_class($listener[0]) : $listener[0];
             try {
-                $r    = new \ReflectionMethod($class, $listener[1]);
+                $r = new \ReflectionMethod($class, $listener[1]);
                 $file = $r->getFileName();
                 $line = $r->getStartLine();
             } catch (\ReflectionException $e) {
                 $file = null;
                 $line = null;
             }
-            $info += array('type' => 'Method', 'class' => $class, 'method' => $listener[1], 'file' => $file, 'line' => $line, 'pretty' => $class . '::' . $listener[1],);
+            $info += array(
+                'type' => 'Method',
+                'class' => $class,
+                'method' => $listener[1],
+                'file' => $file,
+                'line' => $line,
+                'pretty' => $class.'::'.$listener[1],
+            );
         }
 
         return $info;

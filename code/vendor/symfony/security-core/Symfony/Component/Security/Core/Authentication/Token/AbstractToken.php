@@ -67,7 +67,7 @@ abstract class AbstractToken implements TokenInterface
             return $this->user->getUsername();
         }
 
-        return (string)$this->user;
+        return (string) $this->user;
     }
 
     /**
@@ -105,7 +105,7 @@ abstract class AbstractToken implements TokenInterface
         } elseif ($user instanceof UserInterface) {
             $changed = true;
         } else {
-            $changed = (string)$this->user !== (string)$user;
+            $changed = (string) $this->user !== (string) $user;
         }
 
         if ($changed) {
@@ -128,7 +128,7 @@ abstract class AbstractToken implements TokenInterface
      */
     public function setAuthenticated($authenticated)
     {
-        $this->authenticated = (bool)$authenticated;
+        $this->authenticated = (bool) $authenticated;
     }
 
     /**
@@ -146,7 +146,14 @@ abstract class AbstractToken implements TokenInterface
      */
     public function serialize()
     {
-        return serialize(array(is_object($this->user) ? clone $this->user : $this->user, $this->authenticated, $this->roles, $this->attributes,));
+        return serialize(
+            array(
+                is_object($this->user) ? clone $this->user : $this->user,
+                $this->authenticated,
+                $this->roles,
+                $this->attributes,
+            )
+        );
     }
 
     /**
@@ -224,7 +231,7 @@ abstract class AbstractToken implements TokenInterface
     public function __toString()
     {
         $class = get_class($this);
-        $class = substr($class, strrpos($class, '\\') + 1);
+        $class = substr($class, strrpos($class, '\\')+1);
 
         $roles = array();
         foreach ($this->roles as $role) {
@@ -241,7 +248,7 @@ abstract class AbstractToken implements TokenInterface
         }
 
         if ($this->user instanceof EquatableInterface) {
-            return !(bool)$this->user->isEqualTo($user);
+            return ! (bool) $this->user->isEqualTo($user);
         }
 
         if ($this->user->getPassword() !== $user->getPassword()) {

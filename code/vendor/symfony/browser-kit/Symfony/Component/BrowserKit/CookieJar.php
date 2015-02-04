@@ -57,8 +57,8 @@ class CookieJar
         if (!empty($domain)) {
             foreach ($this->cookieJar as $cookieDomain => $pathCookies) {
                 if ($cookieDomain) {
-                    $cookieDomain = '.' . ltrim($cookieDomain, '.');
-                    if ($cookieDomain != substr('.' . $domain, -strlen($cookieDomain))) {
+                    $cookieDomain = '.'.ltrim($cookieDomain, '.');
+                    if ($cookieDomain != substr('.'.$domain, -strlen($cookieDomain))) {
                         continue;
                     }
                 }
@@ -149,7 +149,7 @@ class CookieJar
                 if (0 === $i || preg_match('/^(?P<token>\s*[0-9A-Za-z!#\$%\&\'\*\+\-\.^_`\|~]+)=/', $part)) {
                     $cookies[] = ltrim($part);
                 } else {
-                    $cookies[count($cookies) - 1] .= ',' . $part;
+                    $cookies[count($cookies) - 1] .= ','.$part;
                 }
             }
         }
@@ -207,12 +207,12 @@ class CookieJar
     {
         $this->flushExpiredCookies();
 
-        $parts   = array_replace(array('path' => '/'), parse_url($uri));
+        $parts = array_replace(array('path' => '/'), parse_url($uri));
         $cookies = array();
         foreach ($this->cookieJar as $domain => $pathCookies) {
             if ($domain) {
-                $domain = '.' . ltrim($domain, '.');
-                if ($domain != substr('.' . $parts['host'], -strlen($domain))) {
+                $domain = '.'.ltrim($domain, '.');
+                if ($domain != substr('.'.$parts['host'], -strlen($domain))) {
                     continue;
                 }
             }

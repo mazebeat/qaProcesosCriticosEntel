@@ -79,14 +79,22 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      */
     public function __construct(HttpKernelInterface $kernel, StoreInterface $store, Esi $esi = null, array $options = array())
     {
-        $this->store  = $store;
+        $this->store = $store;
         $this->kernel = $kernel;
-        $this->esi    = $esi;
+        $this->esi = $esi;
 
         // needed in case there is a fatal error because the backend is too slow to respond
         register_shutdown_function(array($this->store, 'cleanup'));
 
-        $this->options = array_merge(array('debug' => false, 'default_ttl' => 0, 'private_headers' => array('Authorization', 'Cookie'), 'allow_reload' => false, 'allow_revalidate' => false, 'stale_while_revalidate' => 2, 'stale_if_error' => 60,), $options);
+        $this->options = array_merge(array(
+            'debug' => false,
+            'default_ttl' => 0,
+            'private_headers' => array('Authorization', 'Cookie'),
+            'allow_reload' => false,
+            'allow_revalidate' => false,
+            'stale_while_revalidate' => 2,
+            'stale_if_error' => 60,
+        ), $options);
     }
 
     /**
@@ -163,7 +171,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     {
         // FIXME: catch exceptions and implement a 500 error page here? -> in Varnish, there is a built-in error page mechanism
         if (HttpKernelInterface::MASTER_REQUEST === $type) {
-            $this->traces  = array();
+            $this->traces = array();
             $this->request = $request;
             if (null !== $this->esi) {
                 $this->esiCacheStrategy = $this->esi->createCacheStrategy();
@@ -172,9 +180,9 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
 
         $path = $request->getPathInfo();
         if ($qs = $request->getQueryString()) {
-            $path .= '?' . $qs;
+            $path .= '?'.$qs;
         }
-        $this->traces[$request->getMethod() . ' ' . $path] = array();
+        $this->traces[$request->getMethod().' '.$path] = array();
 
         if (!$request->isMethodSafe()) {
             $response = $this->invalidate($request, $catch);
@@ -358,7 +366,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
         // Add our cached etag validator to the environment.
         // We keep the etags from the client to handle the case when the client
         // has a different private valid entry which is not cached here.
-        $cachedEtags  = $entry->getEtag() ? array($entry->getEtag()) : array();
+        $cachedEtags = $entry->getEtag() ? array($entry->getEtag()) : array();
         $requestEtags = $request->getEtags();
         if ($etags = array_unique(array_merge($cachedEtags, $requestEtags))) {
             $subRequest->headers->set('if_none_match', implode(', ', $etags));
@@ -444,7 +452,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
         // modify the X-Forwarded-For header if needed
         $forwardedFor = $request->headers->get('X-Forwarded-For');
         if ($forwardedFor) {
-            $request->headers->set('X-Forwarded-For', $forwardedFor . ', ' . $request->server->get('REMOTE_ADDR'));
+            $request->headers->set('X-Forwarded-For', $forwardedFor.', '.$request->server->get('REMOTE_ADDR'));
         } else {
             $request->headers->set('X-Forwarded-For', $request->server->get('REMOTE_ADDR'));
         }
@@ -544,7 +552,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
 
             if ($wait < 2000000) {
                 // replace the current entry with the fresh one
-                $new            = $this->lookup($request);
+                $new = $this->lookup($request);
                 $entry->headers = $new->headers;
                 $entry->setContent($new->getContent());
                 $entry->setStatusCode($new->getStatusCode());
@@ -616,7 +624,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
             if ($response->headers->has('X-Body-File')) {
                 include $response->headers->get('X-Body-File');
             } else {
-                eval('; ?>' . $response->getContent() . '<?php ;');
+                eval('; ?>'.$response->getContent().'<?php ;');
             }
 
             $response->setContent(ob_get_clean());
@@ -675,8 +683,8 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
     {
         $path = $request->getPathInfo();
         if ($qs = $request->getQueryString()) {
-            $path .= '?' . $qs;
+            $path .= '?'.$qs;
         }
-        $this->traces[$request->getMethod() . ' ' . $path][] = $event;
+        $this->traces[$request->getMethod().' '.$path][] = $event;
     }
 }

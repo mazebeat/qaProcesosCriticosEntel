@@ -174,15 +174,16 @@ class Table
 
         $this->rows[] = array_values($row);
 
-        $keys   = array_keys($this->rows);
-        $rowKey = array_pop($keys);
+        end($this->rows);
+        $rowKey = key($this->rows);
+        reset($this->rows);
 
         foreach ($row as $key => $cellValue) {
             if (!strstr($cellValue, "\n")) {
                 continue;
             }
 
-            $lines                     = explode("\n", $cellValue);
+            $lines = explode("\n", $cellValue);
             $this->rows[$rowKey][$key] = $lines[0];
             unset($lines[0]);
 
@@ -257,7 +258,7 @@ class Table
 
         $markup = $this->style->getCrossingChar();
         for ($column = 0; $column < $count; $column++) {
-            $markup .= str_repeat($this->style->getHorizontalBorderChar(), $this->getColumnWidth($column)) . $this->style->getCrossingChar();
+            $markup .= str_repeat($this->style->getHorizontalBorderChar(), $this->getColumnWidth($column)).$this->style->getCrossingChar();
         }
 
         $this->output->writeln(sprintf($this->style->getBorderFormat(), $markup));
@@ -302,7 +303,7 @@ class Table
      */
     private function renderCell(array $row, $column, $cellFormat)
     {
-        $cell  = isset($row[$column]) ? $row[$column] : '';
+        $cell = isset($row[$column]) ? $row[$column] : '';
         $width = $this->getColumnWidth($column);
 
         // str_pad won't work properly with multi-byte strings, we need to fix the padding
@@ -379,18 +380,31 @@ class Table
      */
     private function cleanup()
     {
-        $this->columnWidths    = array();
+        $this->columnWidths = array();
         $this->numberOfColumns = null;
     }
 
     private static function initStyles()
     {
         $borderless = new TableStyle();
-        $borderless->setHorizontalBorderChar('=')->setVerticalBorderChar(' ')->setCrossingChar(' ');
+        $borderless
+            ->setHorizontalBorderChar('=')
+            ->setVerticalBorderChar(' ')
+            ->setCrossingChar(' ')
+        ;
 
         $compact = new TableStyle();
-        $compact->setHorizontalBorderChar('')->setVerticalBorderChar(' ')->setCrossingChar('')->setCellRowContentFormat('%s');
+        $compact
+            ->setHorizontalBorderChar('')
+            ->setVerticalBorderChar(' ')
+            ->setCrossingChar('')
+            ->setCellRowContentFormat('%s')
+        ;
 
-        return array('default' => new TableStyle(), 'borderless' => $borderless, 'compact' => $compact,);
+        return array(
+            'default' => new TableStyle(),
+            'borderless' => $borderless,
+            'compact' => $compact,
+        );
     }
 }

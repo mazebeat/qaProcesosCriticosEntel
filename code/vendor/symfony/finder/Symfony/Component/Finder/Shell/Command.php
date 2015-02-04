@@ -167,8 +167,8 @@ class Command
             throw new \RuntimeException(sprintf('Label "%s" already exists.', $label));
         }
 
-        $this->bits[]         = self::create($this);
-        $this->labels[$label] = count($this->bits) - 1;
+        $this->bits[] = self::create($this);
+        $this->labels[$label] = count($this->bits)-1;
 
         return $this->bits[$this->labels[$label]];
     }
@@ -250,7 +250,7 @@ class Command
             exec($this->join(), $output);
         } else {
             $process = proc_open($this->join(), array(0 => array('pipe', 'r'), 1 => array('pipe', 'w'), 2 => array('pipe', 'w')), $pipes);
-            $output  = preg_split('~(\r\n|\r|\n)~', stream_get_contents($pipes[1]), -1, PREG_SPLIT_NO_EMPTY);
+            $output = preg_split('~(\r\n|\r|\n)~', stream_get_contents($pipes[1]), -1, PREG_SPLIT_NO_EMPTY);
 
             if ($error = stream_get_contents($pipes[2])) {
                 $errorHandler($error);
@@ -269,11 +269,12 @@ class Command
      */
     public function join()
     {
-        return implode(' ', array_filter(array_map(function ($bit) {
-            return $bit instanceof Command ? $bit->join() : ($bit ?: null);
-        }, $this->bits), function ($bit) {
-            return null !== $bit;
-        }));
+        return implode(' ', array_filter(
+            array_map(function ($bit) {
+                return $bit instanceof Command ? $bit->join() : ($bit ?: null);
+            }, $this->bits),
+            function ($bit) { return null !== $bit; }
+        ));
     }
 
     /**

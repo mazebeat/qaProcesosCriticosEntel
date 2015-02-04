@@ -43,7 +43,13 @@ class InMemoryTokenProvider implements TokenProviderInterface
             throw new TokenNotFoundException('No token found.');
         }
 
-        $token                 = new PersistentToken($this->tokens[$series]->getClass(), $this->tokens[$series]->getUsername(), $series, $tokenValue, $lastUsed);
+        $token = new PersistentToken(
+            $this->tokens[$series]->getClass(),
+            $this->tokens[$series]->getUsername(),
+            $series,
+            $tokenValue,
+            $lastUsed
+        );
         $this->tokens[$series] = $token;
     }
 

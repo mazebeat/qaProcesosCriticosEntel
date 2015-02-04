@@ -53,7 +53,7 @@ abstract class AbstractFindAdapter extends AbstractAdapter
         }
 
         $command = Command::create();
-        $find    = $this->buildFindCommand($command, $dir);
+        $find = $this->buildFindCommand($command, $dir);
 
         if ($this->followLinks) {
             $find->add('-follow');
@@ -91,14 +91,14 @@ abstract class AbstractFindAdapter extends AbstractAdapter
             $this->buildSorting($command, $this->sort);
         }
 
-        $command->setErrorHandler($this->ignoreUnreadableDirs // If directory is unreadable and finder is set to ignore it, `stderr` is ignored.
-            ? function ($stderr) {
-                return;
-            } : function ($stderr) {
-                throw new AccessDeniedException($stderr);
-            });
+        $command->setErrorHandler(
+            $this->ignoreUnreadableDirs
+                // If directory is unreadable and finder is set to ignore it, `stderr` is ignored.
+                ? function ($stderr) { return; }
+                : function ($stderr) { throw new AccessDeniedException($stderr); }
+        );
 
-        $paths    = $this->shell->testCommand('uniq') ? $command->add('| uniq')->execute() : array_unique($command->execute());
+        $paths = $this->shell->testCommand('uniq') ? $command->add('| uniq')->execute() : array_unique($command->execute());
         $iterator = new Iterator\FilePathsIterator($paths, $dir);
 
         if ($this->exclude) {
@@ -115,7 +115,7 @@ abstract class AbstractFindAdapter extends AbstractAdapter
 
         if (!$useSort && $this->sort) {
             $iteratorAggregate = new Iterator\SortableIterator($iterator, $this->sort);
-            $iterator          = $iteratorAggregate->getIterator();
+            $iterator = $iteratorAggregate->getIterator();
         }
 
         return $iterator;
@@ -137,7 +137,11 @@ abstract class AbstractFindAdapter extends AbstractAdapter
      */
     protected function buildFindCommand(Command $command, $dir)
     {
-        return $command->ins('find')->add('find ')->arg($dir)->add('-noleaf'); // the -noleaf option is required for filesystems that don't follow the '.' and '..' conventions
+        return $command
+            ->ins('find')
+            ->add('find ')
+            ->arg($dir)
+            ->add('-noleaf'); // the -noleaf option is required for filesystems that don't follow the '.' and '..' conventions
     }
 
     /**
@@ -166,13 +170,22 @@ abstract class AbstractFindAdapter extends AbstractAdapter
             // - We add '[^/]*' before and after regex (if no ^|$ flags are present).
             if ($expr->isRegex()) {
                 $regex = $expr->getRegex();
-                $regex->prepend($regex->hasStartFlag() ? '/' : '/[^/]*')->setStartFlag(false)->setStartJoker(true)->replaceJokers('[^/]');
+                $regex->prepend($regex->hasStartFlag() ? '/' : '/[^/]*')
+                    ->setStartFlag(false)
+                    ->setStartJoker(true)
+                    ->replaceJokers('[^/]');
                 if (!$regex->hasEndFlag() || $regex->hasEndJoker()) {
                     $regex->setEndJoker(false)->append('[^/]*');
                 }
             }
 
-            $command->add($i > 0 ? '-or' : null)->add($expr->isRegex() ? ($expr->isCaseSensitive() ? '-regex' : '-iregex') : ($expr->isCaseSensitive() ? '-name' : '-iname'))->arg($expr->renderPattern());
+            $command
+                ->add($i > 0 ? '-or' : null)
+                ->add($expr->isRegex()
+                    ? ($expr->isCaseSensitive() ? '-regex' : '-iregex')
+                    : ($expr->isCaseSensitive() ? '-name' : '-iname')
+                )
+                ->arg($expr->renderPattern());
         }
 
         $command->cmd(')');
@@ -203,12 +216,18 @@ abstract class AbstractFindAdapter extends AbstractAdapter
             // Fixes 'not search' regex problems.
             if ($expr->isRegex()) {
                 $regex = $expr->getRegex();
-                $regex->prepend($regex->hasStartFlag() ? preg_quote($dir) . DIRECTORY_SEPARATOR : '.*')->setEndJoker(!$regex->hasEndFlag());
+                $regex->prepend($regex->hasStartFlag() ? preg_quote($dir).DIRECTORY_SEPARATOR : '.*')->setEndJoker(!$regex->hasEndFlag());
             } else {
                 $expr->prepend('*')->append('*');
             }
 
-            $command->add($i > 0 ? '-or' : null)->add($expr->isRegex() ? ($expr->isCaseSensitive() ? '-regex' : '-iregex') : ($expr->isCaseSensitive() ? '-path' : '-ipath'))->arg($expr->renderPattern());
+            $command
+                ->add($i > 0 ? '-or' : null)
+                ->add($expr->isRegex()
+                    ? ($expr->isCaseSensitive() ? '-regex' : '-iregex')
+                    : ($expr->isCaseSensitive() ? '-path' : '-ipath')
+                )
+                ->arg($expr->renderPattern());
         }
 
         $command->cmd(')');
@@ -225,21 +244,21 @@ abstract class AbstractFindAdapter extends AbstractAdapter
 
             switch ($size->getOperator()) {
                 case '<=':
-                    $command->add('-size -' . ($size->getTarget() + 1) . 'c');
+                    $command->add('-size -'.($size->getTarget() + 1).'c');
                     break;
                 case '>=':
-                    $command->add('-size +' . ($size->getTarget() - 1) . 'c');
+                    $command->add('-size +'.($size->getTarget() - 1).'c');
                     break;
                 case '>':
-                    $command->add('-size +' . $size->getTarget() . 'c');
+                    $command->add('-size +'.$size->getTarget().'c');
                     break;
                 case '!=':
-                    $command->add('-size -' . $size->getTarget() . 'c');
-                    $command->add('-size +' . $size->getTarget() . 'c');
+                    $command->add('-size -'.$size->getTarget().'c');
+                    $command->add('-size +'.$size->getTarget().'c');
                     break;
                 case '<':
                 default:
-                    $command->add('-size -' . $size->getTarget() . 'c');
+                    $command->add('-size -'.$size->getTarget().'c');
             }
         }
     }
@@ -253,32 +272,31 @@ abstract class AbstractFindAdapter extends AbstractAdapter
         foreach ($dates as $i => $date) {
             $command->add($i > 0 ? '-and' : null);
 
-            $mins = (int)round((time() - $date->getTarget()) / 60);
+            $mins = (int) round((time()-$date->getTarget()) / 60);
 
             if (0 > $mins) {
                 // mtime is in the future
                 $command->add(' -mmin -0');
-
                 // we will have no result so we don't need to continue
                 return;
             }
 
             switch ($date->getOperator()) {
                 case '<=':
-                    $command->add('-mmin +' . ($mins - 1));
+                    $command->add('-mmin +'.($mins - 1));
                     break;
                 case '>=':
-                    $command->add('-mmin -' . ($mins + 1));
+                    $command->add('-mmin -'.($mins + 1));
                     break;
                 case '>':
-                    $command->add('-mmin -' . $mins);
+                    $command->add('-mmin -'.$mins);
                     break;
                 case '!=':
-                    $command->add('-mmin +' . $mins . ' -or -mmin -' . $mins);
+                    $command->add('-mmin +'.$mins.' -or -mmin -'.$mins);
                     break;
                 case '<':
                 default:
-                    $command->add('-mmin +' . $mins);
+                    $command->add('-mmin +'.$mins);
             }
         }
     }

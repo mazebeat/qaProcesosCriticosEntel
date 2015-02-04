@@ -23,7 +23,11 @@ class MergeOperation extends AbstractOperation
      */
     protected function processDomain($domain)
     {
-        $this->messages[$domain] = array('all' => array(), 'new' => array(), 'obsolete' => array(),);
+        $this->messages[$domain] = array(
+            'all' => array(),
+            'new' => array(),
+            'obsolete' => array(),
+        );
 
         foreach ($this->source->all($domain) as $id => $message) {
             $this->messages[$domain]['all'][$id] = $message;

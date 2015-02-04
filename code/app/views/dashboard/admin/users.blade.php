@@ -1,109 +1,170 @@
 @extends('layouts.master')
 
 @section('title')
-	Inicio
+	Usuarios
 @endsection
 
 @section('content')
 	<div ng-controller="consolidadoController">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Cuadro de Mando
+				Administrador de Usuarios
                 <span class="tools pull-right">
                 <a class="fa fa-question" id="dashboardTour" href="javascript:"></a>
                 <a class="fa fa-chevron-down" href="javascript:"></a>
                 </span>
 			</div>
 			<div class="panel-body">
-				<div class="btn-toolbar">
-					<button class="btn btn-primary">New User</button>
-					<button class="btn">Import</button>
-					<button class="btn">Export</button>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="pull-right">
+							<form action="#" method="get" class="form-inline" role="form">
+								<div class="form-group">
+									<label class="" for="q"><i class="fa fa-filter fa-fw"></i>Filtrar: </label>
+
+									<div class="input-group">
+										<input class="form-control system-search" id="" name="q" required>
+									<span class="input-group-btn">
+										<button type="submit" class="btn btn-default">
+											<i class="glyphicon glyphicon-search"></i>
+										</button>
+									</span>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div class="btn-toolbar">
+							<button class="btn btn-primary btn-sm"><i class="fa fa-user-plus fa-fw"></i> Nuevo</button>
+							<button class="btn bt-default btn-sm">Import</button>
+							<button class="btn bt-default btn-sm">Export</button>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<table class="table table-hover table-condensed table-list-search">
+								<thead>
+								<tr>
+									<th>#</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Username</th>
+									<th style="width: 160px;"></th>
+								</tr>
+								</thead>
+								<tbody>
+								<tr>
+									<td>1</td>
+									<td>Mark</td>
+									<td>Tompson</td>
+									<td>the_mark7</td>
+									<td>
+										<div class="pull-right">
+											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
+											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
+											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
+											{{--{{ Form::close() }}--}}
+											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
+											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Ashley</td>
+									<td>Jacobs</td>
+									<td>ash11927</td>
+									<td>
+										<div class="pull-right">
+											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
+											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
+											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
+											{{--{{ Form::close() }}--}}
+											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
+											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>3</td>
+									<td>Audrey</td>
+									<td>Ann</td>
+									<td>audann84</td>
+									<td>
+										<div class="pull-right">
+											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
+											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
+											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
+											{{--{{ Form::close() }}--}}
+											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
+											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>4</td>
+									<td>John</td>
+									<td>Robinson</td>
+									<td>jr5527</td>
+									<td>
+										<div class="pull-right">
+											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
+											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
+											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
+											{{--{{ Form::close() }}--}}
+											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
+											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>5</td>
+									<td>Aaron</td>
+									<td>Butler</td>
+									<td>aaron_butler</td>
+									<td>
+										<div class="pull-right">
+											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
+											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
+											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
+											{{--{{ Form::close() }}--}}
+											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
+											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>6</td>
+									<td>Chris</td>
+									<td>Albert</td>
+									<td>cab79</td>
+									<td>
+										<div class="pull-right">
+											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
+											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
+											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
+											{{--{{ Form::close() }}--}}
+											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
+											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
+										</div>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
-				<div class="well">
-					<table class="table">
-						<thead>
-						<tr>
-							<th>#</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Username</th>
-							<th style="width: 36px;"></th>
-						</tr>
-						</thead>
-						<tbody>
-						<tr>
-							<td>1</td>
-							<td>Mark</td>
-							<td>Tompson</td>
-							<td>the_mark7</td>
-							<td>
-								<a href="user.html"><i class="icon-pencil"></i></a>
-								<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>2</td>
-							<td>Ashley</td>
-							<td>Jacobs</td>
-							<td>ash11927</td>
-							<td>
-								<a href="user.html"><i class="icon-pencil"></i></a>
-								<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Audrey</td>
-							<td>Ann</td>
-							<td>audann84</td>
-							<td>
-								<a href="user.html"><i class="icon-pencil"></i></a>
-								<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>4</td>
-							<td>John</td>
-							<td>Robinson</td>
-							<td>jr5527</td>
-							<td>
-								<a href="user.html"><i class="icon-pencil"></i></a>
-								<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>5</td>
-							<td>Aaron</td>
-							<td>Butler</td>
-							<td>aaron_butler</td>
-							<td>
-								<a href="user.html"><i class="icon-pencil"></i></a>
-								<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td>6</td>
-							<td>Chris</td>
-							<td>Albert</td>
-							<td>cab79</td>
-							<td>
-								<a href="user.html"><i class="icon-pencil"></i></a>
-								<a href="#myModal" role="button" data-toggle="modal"><i class="icon-remove"></i></a>
-							</td>
-						</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="pagination">
-					<ul>
-						<li><a href="#">Prev</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">Next</a></li>
-					</ul>
+				<div class="row">
+					<div class="col-md-12">
+						<ul class="pagination pull-right">
+							<li><a href="#">«</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li class="active"><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">»</a></li>
+						</ul>
+					</div>
 				</div>
 				<div class="modal small hide fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-header">
@@ -129,7 +190,12 @@
 @endsection
 
 @section('text-style')
-	<style></style>
+	<style>
+		.table tbody tr td {
+			vertical-align: middle;
+			padding: 5px;
+		}
+	</style>
 @endsection
 
 @section('file-script')

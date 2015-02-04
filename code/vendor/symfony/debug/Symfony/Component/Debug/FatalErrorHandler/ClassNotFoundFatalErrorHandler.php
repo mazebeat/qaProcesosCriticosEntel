@@ -30,8 +30,8 @@ class ClassNotFoundFatalErrorHandler implements FatalErrorHandlerInterface
      */
     public function handleError(array $error, FatalErrorException $exception)
     {
-        $messageLen        = strlen($error['message']);
-        $notFoundSuffix    = '\' not found';
+        $messageLen = strlen($error['message']);
+        $notFoundSuffix = '\' not found';
         $notFoundSuffixLen = strlen($notFoundSuffix);
         if ($notFoundSuffixLen > $messageLen) {
             return;
@@ -42,7 +42,7 @@ class ClassNotFoundFatalErrorHandler implements FatalErrorHandlerInterface
         }
 
         foreach (array('class', 'interface', 'trait') as $typeName) {
-            $prefix    = ucfirst($typeName) . ' \'';
+            $prefix = ucfirst($typeName).' \'';
             $prefixLen = strlen($prefix);
             if (0 !== strpos($error['message'], $prefix)) {
                 continue;
@@ -50,12 +50,26 @@ class ClassNotFoundFatalErrorHandler implements FatalErrorHandlerInterface
 
             $fullyQualifiedClassName = substr($error['message'], $prefixLen, -$notFoundSuffixLen);
             if (false !== $namespaceSeparatorIndex = strrpos($fullyQualifiedClassName, '\\')) {
-                $className       = substr($fullyQualifiedClassName, $namespaceSeparatorIndex + 1);
+                $className = substr($fullyQualifiedClassName, $namespaceSeparatorIndex + 1);
                 $namespacePrefix = substr($fullyQualifiedClassName, 0, $namespaceSeparatorIndex);
-                $message         = sprintf('Attempted to load %s "%s" from namespace "%s" in %s line %d. Do you need to "use" it from another namespace?', $typeName, $className, $namespacePrefix, $error['file'], $error['line']);
+                $message = sprintf(
+                    'Attempted to load %s "%s" from namespace "%s" in %s line %d. Do you need to "use" it from another namespace?',
+                    $typeName,
+                    $className,
+                    $namespacePrefix,
+                    $error['file'],
+                    $error['line']
+                );
             } else {
                 $className = $fullyQualifiedClassName;
-                $message   = sprintf('Attempted to load %s "%s" from the global namespace in %s line %d. Did you forget a use statement for this %s?', $typeName, $className, $error['file'], $error['line'], $typeName);
+                $message = sprintf(
+                    'Attempted to load %s "%s" from the global namespace in %s line %d. Did you forget a use statement for this %s?',
+                    $typeName,
+                    $className,
+                    $error['file'],
+                    $error['line'],
+                    $typeName
+                );
             }
 
             if ($classes = $this->getClassCandidates($className)) {
@@ -128,8 +142,8 @@ class ClassNotFoundFatalErrorHandler implements FatalErrorHandlerInterface
             return array();
         }
 
-        $classes  = array();
-        $filename = $class . '.php';
+        $classes = array();
+        $filename = $class.'.php';
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::LEAVES_ONLY) as $file) {
             if ($filename == $file->getFileName() && $class = $this->convertFileToClass($path, $file->getPathName(), $prefix)) {
                 $classes[] = $class;
@@ -148,11 +162,16 @@ class ClassNotFoundFatalErrorHandler implements FatalErrorHandlerInterface
      */
     private function convertFileToClass($path, $file, $prefix)
     {
-        $candidates = array(// namespaced class
-            $namespacedClass = str_replace(array($path . DIRECTORY_SEPARATOR, '.php', '/'), array('', '', '\\'), $file), // namespaced class (with target dir)
-            $namespacedClassTargetDir = $prefix . str_replace(array($path . DIRECTORY_SEPARATOR, '.php', '/'), array('', '', '\\'), $file), // PEAR class
-            str_replace('\\', '_', $namespacedClass), // PEAR class (with target dir)
-            str_replace('\\', '_', $namespacedClassTargetDir),);
+        $candidates = array(
+            // namespaced class
+            $namespacedClass = str_replace(array($path.DIRECTORY_SEPARATOR, '.php', '/'), array('', '', '\\'), $file),
+            // namespaced class (with target dir)
+            $namespacedClassTargetDir = $prefix.str_replace(array($path.DIRECTORY_SEPARATOR, '.php', '/'), array('', '', '\\'), $file),
+            // PEAR class
+            str_replace('\\', '_', $namespacedClass),
+            // PEAR class (with target dir)
+            str_replace('\\', '_', $namespacedClassTargetDir),
+        );
 
         // We cannot use the autoloader here as most of them use require; but if the class
         // is not found, the new autoloader call will require the file again leading to a

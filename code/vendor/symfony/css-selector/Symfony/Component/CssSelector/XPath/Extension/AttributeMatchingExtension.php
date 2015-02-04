@@ -29,7 +29,16 @@ class AttributeMatchingExtension extends AbstractExtension
      */
     public function getAttributeMatchingTranslators()
     {
-        return array('exists' => array($this, 'translateExists'), '=' => array($this, 'translateEquals'), '~=' => array($this, 'translateIncludes'), '|=' => array($this, 'translateDashMatch'), '^=' => array($this, 'translatePrefixMatch'), '$=' => array($this, 'translateSuffixMatch'), '*=' => array($this, 'translateSubstringMatch'), '!=' => array($this, 'translateDifferent'),);
+        return array(
+            'exists' => array($this, 'translateExists'),
+            '=' => array($this, 'translateEquals'),
+            '~=' => array($this, 'translateIncludes'),
+            '|=' => array($this, 'translateDashMatch'),
+            '^=' => array($this, 'translatePrefixMatch'),
+            '$=' => array($this, 'translateSuffixMatch'),
+            '*=' => array($this, 'translateSubstringMatch'),
+            '!=' => array($this, 'translateDifferent'),
+        );
     }
 
     /**
@@ -65,7 +74,11 @@ class AttributeMatchingExtension extends AbstractExtension
      */
     public function translateIncludes(XPathExpr $xpath, $attribute, $value)
     {
-        return $xpath->addCondition($value ? sprintf('%1$s and contains(concat(\' \', normalize-space(%1$s), \' \'), %2$s)', $attribute, Translator::getXpathLiteral(' ' . $value . ' ')) : '0');
+        return $xpath->addCondition($value ? sprintf(
+            '%1$s and contains(concat(\' \', normalize-space(%1$s), \' \'), %2$s)',
+            $attribute,
+            Translator::getXpathLiteral(' '.$value.' ')
+        ) : '0');
     }
 
     /**
@@ -77,7 +90,12 @@ class AttributeMatchingExtension extends AbstractExtension
      */
     public function translateDashMatch(XPathExpr $xpath, $attribute, $value)
     {
-        return $xpath->addCondition(sprintf('%1$s and (%1$s = %2$s or starts-with(%1$s, %3$s))', $attribute, Translator::getXpathLiteral($value), Translator::getXpathLiteral($value . '-')));
+        return $xpath->addCondition(sprintf(
+            '%1$s and (%1$s = %2$s or starts-with(%1$s, %3$s))',
+            $attribute,
+            Translator::getXpathLiteral($value),
+            Translator::getXpathLiteral($value.'-')
+        ));
     }
 
     /**
@@ -89,7 +107,11 @@ class AttributeMatchingExtension extends AbstractExtension
      */
     public function translatePrefixMatch(XPathExpr $xpath, $attribute, $value)
     {
-        return $xpath->addCondition($value ? sprintf('%1$s and starts-with(%1$s, %2$s)', $attribute, Translator::getXpathLiteral($value)) : '0');
+        return $xpath->addCondition($value ? sprintf(
+            '%1$s and starts-with(%1$s, %2$s)',
+            $attribute,
+            Translator::getXpathLiteral($value)
+        ) : '0');
     }
 
     /**
@@ -101,7 +123,12 @@ class AttributeMatchingExtension extends AbstractExtension
      */
     public function translateSuffixMatch(XPathExpr $xpath, $attribute, $value)
     {
-        return $xpath->addCondition($value ? sprintf('%1$s and substring(%1$s, string-length(%1$s)-%2$s) = %3$s', $attribute, strlen($value) - 1, Translator::getXpathLiteral($value)) : '0');
+        return $xpath->addCondition($value ? sprintf(
+            '%1$s and substring(%1$s, string-length(%1$s)-%2$s) = %3$s',
+            $attribute,
+            strlen($value) - 1,
+            Translator::getXpathLiteral($value)
+        ) : '0');
     }
 
     /**
@@ -113,7 +140,11 @@ class AttributeMatchingExtension extends AbstractExtension
      */
     public function translateSubstringMatch(XPathExpr $xpath, $attribute, $value)
     {
-        return $xpath->addCondition($value ? sprintf('%1$s and contains(%1$s, %2$s)', $attribute, Translator::getXpathLiteral($value)) : '0');
+        return $xpath->addCondition($value ? sprintf(
+            '%1$s and contains(%1$s, %2$s)',
+            $attribute,
+            Translator::getXpathLiteral($value)
+        ) : '0');
     }
 
     /**
@@ -125,7 +156,11 @@ class AttributeMatchingExtension extends AbstractExtension
      */
     public function translateDifferent(XPathExpr $xpath, $attribute, $value)
     {
-        return $xpath->addCondition(sprintf($value ? 'not(%1$s) or %1$s != %2$s' : '%s != %s', $attribute, Translator::getXpathLiteral($value)));
+        return $xpath->addCondition(sprintf(
+            $value ? 'not(%1$s) or %1$s != %2$s' : '%s != %s',
+            $attribute,
+            Translator::getXpathLiteral($value)
+        ));
     }
 
     /**

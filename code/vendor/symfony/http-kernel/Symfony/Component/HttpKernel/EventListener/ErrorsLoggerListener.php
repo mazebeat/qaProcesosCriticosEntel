@@ -31,7 +31,7 @@ class ErrorsLoggerListener implements EventSubscriberInterface
     public function __construct($channel, LoggerInterface $logger = null)
     {
         $this->channel = $channel;
-        $this->logger  = $logger;
+        $this->logger = $logger;
     }
 
     public function injectLogger()

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\View;
 /**
  * Class HomeController
  */
-class ConsultaController extends ApiController
+class InformeController extends ApiController
 {
 	/**
 	 *
@@ -18,8 +18,8 @@ class ConsultaController extends ApiController
 	/**
 	 * @return mixed
 	 */
-	public function individual()
+	public function index()
 	{
-		return View::make('dashboard.consulta.individual');
+		return View::make('dashboard.informe.index');
 	}
 }

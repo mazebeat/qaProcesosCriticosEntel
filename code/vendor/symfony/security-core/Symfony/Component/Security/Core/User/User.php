@@ -34,13 +34,13 @@ final class User implements AdvancedUserInterface
             throw new \InvalidArgumentException('The username cannot be empty.');
         }
 
-        $this->username              = $username;
-        $this->password              = $password;
-        $this->enabled               = $enabled;
-        $this->accountNonExpired     = $userNonExpired;
+        $this->username = $username;
+        $this->password = $password;
+        $this->enabled = $enabled;
+        $this->accountNonExpired = $userNonExpired;
         $this->credentialsNonExpired = $credentialsNonExpired;
-        $this->accountNonLocked      = $userNonLocked;
-        $this->roles                 = $roles;
+        $this->accountNonLocked = $userNonLocked;
+        $this->roles = $roles;
     }
 
     /**

@@ -38,7 +38,7 @@ class ElementNode extends AbstractNode
     public function __construct($namespace = null, $element = null)
     {
         $this->namespace = $namespace;
-        $this->element   = $element;
+        $this->element = $element;
     }
 
     /**
@@ -72,6 +72,6 @@ class ElementNode extends AbstractNode
     {
         $element = $this->element ?: '*';
 
-        return sprintf('%s[%s]', $this->getNodeName(), $this->namespace ? $this->namespace . '|' . $element : $element);
+        return sprintf('%s[%s]', $this->getNodeName(), $this->namespace ? $this->namespace.'|'.$element : $element);
     }
 }

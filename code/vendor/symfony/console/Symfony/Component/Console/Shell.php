@@ -45,8 +45,8 @@ class Shell
     {
         $this->hasReadline = function_exists('readline');
         $this->application = $application;
-        $this->history     = getenv('HOME') . '/.history_' . $application->getName();
-        $this->output      = new ConsoleOutput();
+        $this->history = getenv('HOME').'/.history_'.$application->getName();
+        $this->output = new ConsoleOutput();
     }
 
     /**
@@ -66,7 +66,7 @@ class Shell
         $php = null;
         if ($this->processIsolation) {
             $finder = new PhpExecutableFinder();
-            $php    = $finder->find();
+            $php = $finder->find();
             $this->output->writeln(<<<EOF
 <info>Running with process isolation, you should consider this:</info>
   * each command is executed as separate process,
@@ -94,7 +94,13 @@ EOF
             if ($this->processIsolation) {
                 $pb = new ProcessBuilder();
 
-                $process = $pb->add($php)->add($_SERVER['argv'][0])->add($command)->inheritEnvironmentVariables(true)->getProcess();
+                $process = $pb
+                    ->add($php)
+                    ->add($_SERVER['argv'][0])
+                    ->add($command)
+                    ->inheritEnvironmentVariables(true)
+                    ->getProcess()
+                ;
 
                 $output = $this->output;
                 $process->run(function ($type, $data) use ($output) {
@@ -139,7 +145,7 @@ EOF;
     protected function getPrompt()
     {
         // using the formatter here is required when using readline
-        return $this->output->getFormatter()->format($this->application->getName() . ' > ');
+        return $this->output->getFormatter()->format($this->application->getName().' > ');
     }
 
     protected function getOutput()
@@ -182,7 +188,7 @@ EOF;
 
         $list = array('--help');
         foreach ($command->getDefinition()->getOptions() as $option) {
-            $list[] = '--' . $option->getName();
+            $list[] = '--'.$option->getName();
         }
 
         return $list;
@@ -213,7 +219,7 @@ EOF;
 
     public function setProcessIsolation($processIsolation)
     {
-        $this->processIsolation = (bool)$processIsolation;
+        $this->processIsolation = (bool) $processIsolation;
 
         if ($this->processIsolation && !class_exists('Symfony\\Component\\Process\\Process')) {
             throw new \RuntimeException('Unable to isolate processes as the Symfony Process Component is not installed.');

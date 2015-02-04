@@ -168,15 +168,15 @@ class ArgvInput extends Input
 
         // if input is expecting another argument, add it
         if ($this->definition->hasArgument($c)) {
-            $arg                              = $this->definition->getArgument($c);
+            $arg = $this->definition->getArgument($c);
             $this->arguments[$arg->getName()] = $arg->isArray() ? array($token) : $token;
 
-            // if last argument isArray(), append token to last argument
+        // if last argument isArray(), append token to last argument
         } elseif ($this->definition->hasArgument($c - 1) && $this->definition->getArgument($c - 1)->isArray()) {
-            $arg                                = $this->definition->getArgument($c - 1);
+            $arg = $this->definition->getArgument($c - 1);
             $this->arguments[$arg->getName()][] = $token;
 
-            // unexpected argument
+        // unexpected argument
         } else {
             throw new \RuntimeException('Too many arguments.');
         }
@@ -282,11 +282,11 @@ class ArgvInput extends Input
      */
     public function hasParameterOption($values)
     {
-        $values = (array)$values;
+        $values = (array) $values;
 
         foreach ($this->tokens as $token) {
             foreach ($values as $value) {
-                if ($token === $value || 0 === strpos($token, $value . '=')) {
+                if ($token === $value || 0 === strpos($token, $value.'=')) {
                     return true;
                 }
             }
@@ -308,12 +308,14 @@ class ArgvInput extends Input
      */
     public function getParameterOption($values, $default = false)
     {
-        $values = (array)$values;
-
+        $values = (array) $values;
         $tokens = $this->tokens;
-        while ($token = array_shift($tokens)) {
+
+        while (0 < count($tokens)) {
+            $token = array_shift($tokens);
+
             foreach ($values as $value) {
-                if ($token === $value || 0 === strpos($token, $value . '=')) {
+                if ($token === $value || 0 === strpos($token, $value.'=')) {
                     if (false !== $pos = strpos($token, '=')) {
                         return substr($token, $pos + 1);
                     }
@@ -333,10 +335,10 @@ class ArgvInput extends Input
      */
     public function __toString()
     {
-        $self   = $this;
+        $self = $this;
         $tokens = array_map(function ($token) use ($self) {
             if (preg_match('{^(-[^=]+=)(.+)}', $token, $match)) {
-                return $match[1] . $self->escapeToken($match[2]);
+                return $match[1].$self->escapeToken($match[2]);
             }
 
             if ($token && $token[0] !== '-') {

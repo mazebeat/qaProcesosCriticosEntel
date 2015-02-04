@@ -26,7 +26,7 @@ class History
      */
     public function clear()
     {
-        $this->stack    = array();
+        $this->stack = array();
         $this->position = -1;
     }
 
@@ -37,8 +37,8 @@ class History
      */
     public function add(Request $request)
     {
-        $this->stack    = array_slice($this->stack, 0, $this->position + 1);
-        $this->stack[]  = clone $request;
+        $this->stack = array_slice($this->stack, 0, $this->position + 1);
+        $this->stack[] = clone $request;
         $this->position = count($this->stack) - 1;
     }
 

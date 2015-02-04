@@ -29,7 +29,14 @@ class MarkdownDescriptor extends Descriptor
      */
     protected function describeInputArgument(InputArgument $argument, array $options = array())
     {
-        $this->write('**' . $argument->getName() . ':**' . "\n\n" . '* Name: ' . ($argument->getName() ?: '<none>') . "\n" . '* Is required: ' . ($argument->isRequired() ? 'yes' : 'no') . "\n" . '* Is array: ' . ($argument->isArray() ? 'yes' : 'no') . "\n" . '* Description: ' . ($argument->getDescription() ?: '<none>') . "\n" . '* Default: `' . str_replace("\n", '', var_export($argument->getDefault(), true)) . '`');
+        $this->write(
+            '**'.$argument->getName().':**'."\n\n"
+            .'* Name: '.($argument->getName() ?: '<none>')."\n"
+            .'* Is required: '.($argument->isRequired() ? 'yes' : 'no')."\n"
+            .'* Is array: '.($argument->isArray() ? 'yes' : 'no')."\n"
+            .'* Description: '.($argument->getDescription() ?: '<none>')."\n"
+            .'* Default: `'.str_replace("\n", '', var_export($argument->getDefault(), true)).'`'
+        );
     }
 
     /**
@@ -37,7 +44,16 @@ class MarkdownDescriptor extends Descriptor
      */
     protected function describeInputOption(InputOption $option, array $options = array())
     {
-        $this->write('**' . $option->getName() . ':**' . "\n\n" . '* Name: `--' . $option->getName() . '`' . "\n" . '* Shortcut: ' . ($option->getShortcut() ? '`-' . implode('|-', explode('|', $option->getShortcut())) . '`' : '<none>') . "\n" . '* Accept value: ' . ($option->acceptValue() ? 'yes' : 'no') . "\n" . '* Is value required: ' . ($option->isValueRequired() ? 'yes' : 'no') . "\n" . '* Is multiple: ' . ($option->isArray() ? 'yes' : 'no') . "\n" . '* Description: ' . ($option->getDescription() ?: '<none>') . "\n" . '* Default: `' . str_replace("\n", '', var_export($option->getDefault(), true)) . '`');
+        $this->write(
+            '**'.$option->getName().':**'."\n\n"
+            .'* Name: `--'.$option->getName().'`'."\n"
+            .'* Shortcut: '.($option->getShortcut() ? '`-'.implode('|-', explode('|', $option->getShortcut())).'`' : '<none>')."\n"
+            .'* Accept value: '.($option->acceptValue() ? 'yes' : 'no')."\n"
+            .'* Is value required: '.($option->isValueRequired() ? 'yes' : 'no')."\n"
+            .'* Is multiple: '.($option->isArray() ? 'yes' : 'no')."\n"
+            .'* Description: '.($option->getDescription() ?: '<none>')."\n"
+            .'* Default: `'.str_replace("\n", '', var_export($option->getDefault(), true)).'`'
+        );
     }
 
     /**
@@ -74,7 +90,13 @@ class MarkdownDescriptor extends Descriptor
         $command->getSynopsis();
         $command->mergeApplicationDefinition(false);
 
-        $this->write($command->getName() . "\n" . str_repeat('-', strlen($command->getName())) . "\n\n" . '* Description: ' . ($command->getDescription() ?: '<none>') . "\n" . '* Usage: `' . $command->getSynopsis() . '`' . "\n" . '* Aliases: ' . (count($command->getAliases()) ? '`' . implode('`, `', $command->getAliases()) . '`' : '<none>'));
+        $this->write(
+            $command->getName()."\n"
+            .str_repeat('-', strlen($command->getName()))."\n\n"
+            .'* Description: '.($command->getDescription() ?: '<none>')."\n"
+            .'* Usage: `'.$command->getSynopsis().'`'."\n"
+            .'* Aliases: '.(count($command->getAliases()) ? '`'.implode('`, `', $command->getAliases()).'`' : '<none>')
+        );
 
         if ($help = $command->getProcessedHelp()) {
             $this->write("\n\n");
@@ -93,19 +115,19 @@ class MarkdownDescriptor extends Descriptor
     protected function describeApplication(Application $application, array $options = array())
     {
         $describedNamespace = isset($options['namespace']) ? $options['namespace'] : null;
-        $description        = new ApplicationDescription($application, $describedNamespace);
+        $description = new ApplicationDescription($application, $describedNamespace);
 
-        $this->write($application->getName() . "\n" . str_repeat('=', strlen($application->getName())));
+        $this->write($application->getName()."\n".str_repeat('=', strlen($application->getName())));
 
         foreach ($description->getNamespaces() as $namespace) {
             if (ApplicationDescription::GLOBAL_NAMESPACE !== $namespace['id']) {
                 $this->write("\n\n");
-                $this->write('**' . $namespace['id'] . ':**');
+                $this->write('**'.$namespace['id'].':**');
             }
 
             $this->write("\n\n");
             $this->write(implode("\n", array_map(function ($commandName) {
-                return '* ' . $commandName;
+                return '* '.$commandName;
             }, $namespace['commands'])));
         }
 

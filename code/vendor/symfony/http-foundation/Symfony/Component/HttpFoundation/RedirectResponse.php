@@ -85,7 +85,8 @@ class RedirectResponse extends Response
 
         $this->targetUrl = $url;
 
-        $this->setContent(sprintf('<!DOCTYPE html>
+        $this->setContent(
+            sprintf('<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />

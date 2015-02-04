@@ -1,10 +1,17 @@
 //minimal
+    "use strict";
 
 $(function(){
-    "use strict";
     $('.minimal input').iCheck({
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_minimal',
+        increaseArea: '20%' // optional
+    });
+});
+
+$(function(){
+    $('.square input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
         increaseArea: '20%' // optional
     });
 });

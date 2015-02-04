@@ -29,7 +29,16 @@ class PseudoClassExtension extends AbstractExtension
      */
     public function getPseudoClassTranslators()
     {
-        return array('root' => array($this, 'translateRoot'), 'first-child' => array($this, 'translateFirstChild'), 'last-child' => array($this, 'translateLastChild'), 'first-of-type' => array($this, 'translateFirstOfType'), 'last-of-type' => array($this, 'translateLastOfType'), 'only-child' => array($this, 'translateOnlyChild'), 'only-of-type' => array($this, 'translateOnlyOfType'), 'empty' => array($this, 'translateEmpty'),);
+        return array(
+            'root' => array($this, 'translateRoot'),
+            'first-child' => array($this, 'translateFirstChild'),
+            'last-child' => array($this, 'translateLastChild'),
+            'first-of-type' => array($this, 'translateFirstOfType'),
+            'last-of-type' => array($this, 'translateLastOfType'),
+            'only-child' => array($this, 'translateOnlyChild'),
+            'only-of-type' => array($this, 'translateOnlyOfType'),
+            'empty' => array($this, 'translateEmpty'),
+        );
     }
 
     /**
@@ -49,7 +58,10 @@ class PseudoClassExtension extends AbstractExtension
      */
     public function translateFirstChild(XPathExpr $xpath)
     {
-        return $xpath->addStarPrefix()->addNameTest()->addCondition('position() = 1');
+        return $xpath
+            ->addStarPrefix()
+            ->addNameTest()
+            ->addCondition('position() = 1');
     }
 
     /**
@@ -59,7 +71,10 @@ class PseudoClassExtension extends AbstractExtension
      */
     public function translateLastChild(XPathExpr $xpath)
     {
-        return $xpath->addStarPrefix()->addNameTest()->addCondition('position() = last()');
+        return $xpath
+            ->addStarPrefix()
+            ->addNameTest()
+            ->addCondition('position() = last()');
     }
 
     /**
@@ -75,7 +90,9 @@ class PseudoClassExtension extends AbstractExtension
             throw new ExpressionErrorException('"*:first-of-type" is not implemented.');
         }
 
-        return $xpath->addStarPrefix()->addCondition('position() = 1');
+        return $xpath
+            ->addStarPrefix()
+            ->addCondition('position() = 1');
     }
 
     /**
@@ -91,7 +108,9 @@ class PseudoClassExtension extends AbstractExtension
             throw new ExpressionErrorException('"*:last-of-type" is not implemented.');
         }
 
-        return $xpath->addStarPrefix()->addCondition('position() = last()');
+        return $xpath
+            ->addStarPrefix()
+            ->addCondition('position() = last()');
     }
 
     /**
@@ -101,7 +120,10 @@ class PseudoClassExtension extends AbstractExtension
      */
     public function translateOnlyChild(XPathExpr $xpath)
     {
-        return $xpath->addStarPrefix()->addNameTest()->addCondition('last() = 1');
+        return $xpath
+            ->addStarPrefix()
+            ->addNameTest()
+            ->addCondition('last() = 1');
     }
 
     /**

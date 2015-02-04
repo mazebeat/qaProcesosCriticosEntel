@@ -69,6 +69,6 @@ class ValueExporter
             return 'true';
         }
 
-        return (string)$value;
+        return (string) $value;
     }
 }

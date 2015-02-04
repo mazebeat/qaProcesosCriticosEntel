@@ -98,10 +98,13 @@ class PoFileLoader extends ArrayLoader implements LoaderInterface
     {
         $stream = fopen($resource, 'r');
 
-        $defaults = array('ids' => array(), 'translated' => null,);
+        $defaults = array(
+            'ids' => array(),
+            'translated' => null,
+        );
 
         $messages = array();
-        $item     = $defaults;
+        $item = $defaults;
 
         while ($line = fgets($stream)) {
             $line = trim($line);
@@ -114,7 +117,7 @@ class PoFileLoader extends ArrayLoader implements LoaderInterface
                 // We start a new msg so save previous
                 // TODO: this fails when comments or contexts are added
                 $this->addMessage($messages, $item);
-                $item                    = $defaults;
+                $item = $defaults;
                 $item['ids']['singular'] = substr($line, 7, -1);
             } elseif (substr($line, 0, 8) === 'msgstr "') {
                 $item['translated'] = substr($line, 8, -1);
@@ -130,8 +133,8 @@ class PoFileLoader extends ArrayLoader implements LoaderInterface
             } elseif (substr($line, 0, 14) === 'msgid_plural "') {
                 $item['ids']['plural'] = substr($line, 14, -1);
             } elseif (substr($line, 0, 7) === 'msgstr[') {
-                $size                                         = strpos($line, ']');
-                $item['translated'][(int)substr($line, 7, 1)] = substr($line, $size + 3, -1);
+                $size = strpos($line, ']');
+                $item['translated'][(int) substr($line, 7, 1)] = substr($line, $size + 3, -1);
             }
         }
         // save last item
@@ -162,7 +165,7 @@ class PoFileLoader extends ArrayLoader implements LoaderInterface
                 end($plurals);
                 $count = key($plurals);
                 // Fill missing spots with '-'.
-                $empties = array_fill(0, $count + 1, '-');
+                $empties = array_fill(0, $count+1, '-');
                 $plurals += $empties;
                 ksort($plurals);
                 $messages[stripcslashes($item['ids']['plural'])] = stripcslashes(implode('|', $plurals));

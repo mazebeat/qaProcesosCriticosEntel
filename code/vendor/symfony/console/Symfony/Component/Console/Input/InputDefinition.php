@@ -60,7 +60,7 @@ class InputDefinition
     public function setDefinition(array $definition)
     {
         $arguments = array();
-        $options   = array();
+        $options = array();
         foreach ($definition as $item) {
             if ($item instanceof InputOption) {
                 $options[] = $item;
@@ -82,9 +82,9 @@ class InputDefinition
      */
     public function setArguments($arguments = array())
     {
-        $this->arguments          = array();
-        $this->requiredCount      = 0;
-        $this->hasOptional        = false;
+        $this->arguments = array();
+        $this->requiredCount = 0;
+        $this->hasOptional = false;
         $this->hasAnArrayArgument = false;
         $this->addArguments($arguments);
     }
@@ -235,7 +235,7 @@ class InputDefinition
      */
     public function setOptions($options = array())
     {
-        $this->options   = array();
+        $this->options = array();
         $this->shortcuts = array();
         $this->addOptions($options);
     }
@@ -397,12 +397,12 @@ class InputDefinition
     {
         $elements = array();
         foreach ($this->getOptions() as $option) {
-            $shortcut   = $option->getShortcut() ? sprintf('-%s|', $option->getShortcut()) : '';
-            $elements[] = sprintf('[' . ($option->isValueRequired() ? '%s--%s="..."' : ($option->isValueOptional() ? '%s--%s[="..."]' : '%s--%s')) . ']', $shortcut, $option->getName());
+            $shortcut = $option->getShortcut() ? sprintf('-%s|', $option->getShortcut()) : '';
+            $elements[] = sprintf('['.($option->isValueRequired() ? '%s--%s="..."' : ($option->isValueOptional() ? '%s--%s[="..."]' : '%s--%s')).']', $shortcut, $option->getName());
         }
 
         foreach ($this->getArguments() as $argument) {
-            $elements[] = sprintf($argument->isRequired() ? '%s' : '[%s]', $argument->getName() . ($argument->isArray() ? '1' : ''));
+            $elements[] = sprintf($argument->isRequired() ? '%s' : '[%s]', $argument->getName().($argument->isArray() ? '1' : ''));
 
             if ($argument->isArray()) {
                 $elements[] = sprintf('... [%sN]', $argument->getName());
@@ -422,7 +422,7 @@ class InputDefinition
     public function asText()
     {
         $descriptor = new TextDescriptor();
-        $output     = new BufferedOutput(BufferedOutput::VERBOSITY_NORMAL, true);
+        $output = new BufferedOutput(BufferedOutput::VERBOSITY_NORMAL, true);
         $descriptor->describe($output, $this, array('raw_output' => true));
 
         return $output->fetch();

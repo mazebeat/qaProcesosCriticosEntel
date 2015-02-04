@@ -32,7 +32,21 @@ class ErrorHandler
 {
     const TYPE_DEPRECATION = -100;
 
-    private $levels = array(E_WARNING => 'Warning', E_NOTICE => 'Notice', E_USER_ERROR => 'User Error', E_USER_WARNING => 'User Warning', E_USER_NOTICE => 'User Notice', E_STRICT => 'Runtime Notice', E_RECOVERABLE_ERROR => 'Catchable Fatal Error', E_DEPRECATED => 'Deprecated', E_USER_DEPRECATED => 'User Deprecated', E_ERROR => 'Error', E_CORE_ERROR => 'Core Error', E_COMPILE_ERROR => 'Compile Error', E_PARSE => 'Parse Error',);
+    private $levels = array(
+        E_WARNING => 'Warning',
+        E_NOTICE => 'Notice',
+        E_USER_ERROR => 'User Error',
+        E_USER_WARNING => 'User Warning',
+        E_USER_NOTICE => 'User Notice',
+        E_STRICT => 'Runtime Notice',
+        E_RECOVERABLE_ERROR => 'Catchable Fatal Error',
+        E_DEPRECATED => 'Deprecated',
+        E_USER_DEPRECATED => 'User Deprecated',
+        E_ERROR => 'Error',
+        E_CORE_ERROR => 'Core Error',
+        E_COMPILE_ERROR => 'Compile Error',
+        E_PARSE => 'Parse Error',
+    );
 
     private $level;
 
@@ -113,11 +127,14 @@ class ErrorHandler
                     self::$stackedErrors[] = func_get_args();
                 } else {
                     if (PHP_VERSION_ID < 50400) {
-                        $stack = array_map(function ($row) {
-                            unset($row['args']);
+                        $stack = array_map(
+                            function ($row) {
+                                unset($row['args']);
 
-                            return $row;
-                        }, array_slice(debug_backtrace(false), 0, 10));
+                                return $row;
+                            },
+                            array_slice(debug_backtrace(false), 0, 10)
+                        );
                     } else {
                         $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 10);
                     }
@@ -173,7 +190,12 @@ class ErrorHandler
                         break;
                 }
 
-                self::$loggers['scream']->log($logLevel, $message, array('type' => $level, 'file' => $file, 'line' => $line, 'scream' => error_reporting(),));
+                self::$loggers['scream']->log($logLevel, $message, array(
+                    'type' => $level,
+                    'file' => $file,
+                    'line' => $line,
+                    'scream' => error_reporting(),
+                ));
             }
         }
 
@@ -212,7 +234,7 @@ class ErrorHandler
         }
 
         if (empty(self::$stackedErrorLevels)) {
-            $errors              = self::$stackedErrors;
+            $errors = self::$stackedErrors;
             self::$stackedErrors = array();
 
             $errorHandler = set_error_handler('var_dump');
@@ -259,7 +281,11 @@ class ErrorHandler
         }
 
         if (isset(self::$loggers['emergency'])) {
-            $fatal = array('type' => $error['type'], 'file' => $error['file'], 'line' => $error['line'],);
+            $fatal = array(
+                'type' => $error['type'],
+                'file' => $error['file'],
+                'line' => $error['line'],
+            );
 
             self::$loggers['emergency']->emergency($error['message'], $fatal);
         }
@@ -278,7 +304,11 @@ class ErrorHandler
      */
     protected function getFatalErrorHandlers()
     {
-        return array(new UndefinedFunctionFatalErrorHandler(), new UndefinedMethodFatalErrorHandler(), new ClassNotFoundFatalErrorHandler(),);
+        return array(
+            new UndefinedFunctionFatalErrorHandler(),
+            new UndefinedMethodFatalErrorHandler(),
+            new ClassNotFoundFatalErrorHandler(),
+        );
     }
 
     private function handleFatalError($exceptionHandler, array $error)
@@ -287,7 +317,7 @@ class ErrorHandler
         set_error_handler('var_dump', 0);
         ini_set('display_errors', 1);
 
-        $level   = isset($this->levels[$error['type']]) ? $this->levels[$error['type']] : $error['type'];
+        $level = isset($this->levels[$error['type']]) ? $this->levels[$error['type']] : $error['type'];
         $message = sprintf('%s: %s in %s line %d', $level, $error['message'], $error['file'], $error['line']);
         if (0 === strpos($error['message'], 'Allowed memory') || 0 === strpos($error['message'], 'Out of memory')) {
             $exception = new OutOfMemoryException($message, 0, $error['type'], $error['file'], $error['line'], 3, false);

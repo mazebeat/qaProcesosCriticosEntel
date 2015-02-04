@@ -122,25 +122,67 @@ class Response
      *
      * @var array
      */
-    public static $statusTexts = array(100 => 'Continue', 101 => 'Switching Protocols', 102 => 'Processing',            // RFC2518
-                                       200 => 'OK', 201 => 'Created', 202 => 'Accepted', 203 => 'Non-Authoritative Information', 204 => 'No Content', 205 => 'Reset Content', 206 => 'Partial Content', 207 => 'Multi-Status',          // RFC4918
-                                       208 => 'Already Reported',      // RFC5842
-                                       226 => 'IM Used',               // RFC3229
-                                       300 => 'Multiple Choices', 301 => 'Moved Permanently', 302 => 'Found', 303 => 'See Other', 304 => 'Not Modified', 305 => 'Use Proxy', 306 => 'Reserved', 307 => 'Temporary Redirect', 308 => 'Permanent Redirect',    // RFC7238
-                                       400 => 'Bad Request', 401 => 'Unauthorized', 402 => 'Payment Required', 403 => 'Forbidden', 404 => 'Not Found', 405 => 'Method Not Allowed', 406 => 'Not Acceptable', 407 => 'Proxy Authentication Required', 408 => 'Request Timeout', 409 => 'Conflict', 410 => 'Gone', 411 => 'Length Required', 412 => 'Precondition Failed', 413 => 'Request Entity Too Large', 414 => 'Request-URI Too Long', 415 => 'Unsupported Media Type', 416 => 'Requested Range Not Satisfiable', 417 => 'Expectation Failed', 418 => 'I\'m a teapot',                                               // RFC2324
-                                       422 => 'Unprocessable Entity',                                        // RFC4918
-                                       423 => 'Locked',                                                      // RFC4918
-                                       424 => 'Failed Dependency',                                           // RFC4918
-                                       425 => 'Reserved for WebDAV advanced collections expired proposal',   // RFC2817
-                                       426 => 'Upgrade Required',                                            // RFC2817
-                                       428 => 'Precondition Required',                                       // RFC6585
-                                       429 => 'Too Many Requests',                                           // RFC6585
-                                       431 => 'Request Header Fields Too Large',                             // RFC6585
-                                       500 => 'Internal Server Error', 501 => 'Not Implemented', 502 => 'Bad Gateway', 503 => 'Service Unavailable', 504 => 'Gateway Timeout', 505 => 'HTTP Version Not Supported', 506 => 'Variant Also Negotiates (Experimental)',                      // RFC2295
-                                       507 => 'Insufficient Storage',                                        // RFC4918
-                                       508 => 'Loop Detected',                                               // RFC5842
-                                       510 => 'Not Extended',                                                // RFC2774
-                                       511 => 'Network Authentication Required',                             // RFC6585
+    public static $statusTexts = array(
+        100 => 'Continue',
+        101 => 'Switching Protocols',
+        102 => 'Processing',            // RFC2518
+        200 => 'OK',
+        201 => 'Created',
+        202 => 'Accepted',
+        203 => 'Non-Authoritative Information',
+        204 => 'No Content',
+        205 => 'Reset Content',
+        206 => 'Partial Content',
+        207 => 'Multi-Status',          // RFC4918
+        208 => 'Already Reported',      // RFC5842
+        226 => 'IM Used',               // RFC3229
+        300 => 'Multiple Choices',
+        301 => 'Moved Permanently',
+        302 => 'Found',
+        303 => 'See Other',
+        304 => 'Not Modified',
+        305 => 'Use Proxy',
+        306 => 'Reserved',
+        307 => 'Temporary Redirect',
+        308 => 'Permanent Redirect',    // RFC7238
+        400 => 'Bad Request',
+        401 => 'Unauthorized',
+        402 => 'Payment Required',
+        403 => 'Forbidden',
+        404 => 'Not Found',
+        405 => 'Method Not Allowed',
+        406 => 'Not Acceptable',
+        407 => 'Proxy Authentication Required',
+        408 => 'Request Timeout',
+        409 => 'Conflict',
+        410 => 'Gone',
+        411 => 'Length Required',
+        412 => 'Precondition Failed',
+        413 => 'Request Entity Too Large',
+        414 => 'Request-URI Too Long',
+        415 => 'Unsupported Media Type',
+        416 => 'Requested Range Not Satisfiable',
+        417 => 'Expectation Failed',
+        418 => 'I\'m a teapot',                                               // RFC2324
+        422 => 'Unprocessable Entity',                                        // RFC4918
+        423 => 'Locked',                                                      // RFC4918
+        424 => 'Failed Dependency',                                           // RFC4918
+        425 => 'Reserved for WebDAV advanced collections expired proposal',   // RFC2817
+        426 => 'Upgrade Required',                                            // RFC2817
+        428 => 'Precondition Required',                                       // RFC6585
+        429 => 'Too Many Requests',                                           // RFC6585
+        431 => 'Request Header Fields Too Large',                             // RFC6585
+        500 => 'Internal Server Error',
+        501 => 'Not Implemented',
+        502 => 'Bad Gateway',
+        503 => 'Service Unavailable',
+        504 => 'Gateway Timeout',
+        505 => 'HTTP Version Not Supported',
+        506 => 'Variant Also Negotiates (Experimental)',                      // RFC2295
+        507 => 'Insufficient Storage',                                        // RFC4918
+        508 => 'Loop Detected',                                               // RFC5842
+        510 => 'Not Extended',                                                // RFC2774
+        511 => 'Network Authentication Required',                             // RFC6585
     );
 
     /**
@@ -197,7 +239,10 @@ class Response
      */
     public function __toString()
     {
-        return sprintf('HTTP/%s %s %s', $this->version, $this->statusCode, $this->statusText) . "\r\n" . $this->headers . "\r\n" . $this->getContent();
+        return
+            sprintf('HTTP/%s %s %s', $this->version, $this->statusCode, $this->statusText)."\r\n".
+            $this->headers."\r\n".
+            $this->getContent();
     }
 
     /**
@@ -223,7 +268,7 @@ class Response
     {
         $headers = $this->headers;
 
-        if ($this->isInformational() || in_array($this->statusCode, array(204, 304))) {
+        if ($this->isInformational() || $this->isEmpty()) {
             $this->setContent(null);
             $headers->remove('Content-Type');
             $headers->remove('Content-Length');
@@ -239,10 +284,10 @@ class Response
             // Fix Content-Type
             $charset = $this->charset ?: 'UTF-8';
             if (!$headers->has('Content-Type')) {
-                $headers->set('Content-Type', 'text/html; charset=' . $charset);
+                $headers->set('Content-Type', 'text/html; charset='.$charset);
             } elseif (0 === stripos($headers->get('Content-Type'), 'text/') && false === stripos($headers->get('Content-Type'), 'charset')) {
                 // add the charset
-                $headers->set('Content-Type', $headers->get('Content-Type') . '; charset=' . $charset);
+                $headers->set('Content-Type', $headers->get('Content-Type').'; charset='.$charset);
             }
 
             // Fix Content-Length
@@ -294,7 +339,7 @@ class Response
         // headers
         foreach ($this->headers->allPreserveCase() as $name => $values) {
             foreach ($values as $value) {
-                header($name . ': ' . $value, false, $this->statusCode);
+                header($name.': '.$value, false, $this->statusCode);
             }
         }
 
@@ -358,7 +403,7 @@ class Response
             throw new \UnexpectedValueException(sprintf('The Response content must be a string or object implementing __toString(), "%s" given.', gettype($content)));
         }
 
-        $this->content = (string)$content;
+        $this->content = (string) $content;
 
         return $this;
     }
@@ -420,7 +465,7 @@ class Response
      */
     public function setStatusCode($code, $text = null)
     {
-        $this->statusCode = $code = (int)$code;
+        $this->statusCode = $code = (int) $code;
         if ($this->isInvalid()) {
             throw new \InvalidArgumentException(sprintf('The HTTP status code "%s" is not valid.', $code));
         }
@@ -614,7 +659,7 @@ class Response
     public function setDate(\DateTime $date)
     {
         $date->setTimezone(new \DateTimeZone('UTC'));
-        $this->headers->set('Date', $date->format('D, d M Y H:i:s') . ' GMT');
+        $this->headers->set('Date', $date->format('D, d M Y H:i:s').' GMT');
 
         return $this;
     }
@@ -627,7 +672,7 @@ class Response
     public function getAge()
     {
         if (null !== $age = $this->headers->get('Age')) {
-            return (int)$age;
+            return (int) $age;
         }
 
         return max(time() - $this->getDate()->format('U'), 0);
@@ -684,7 +729,7 @@ class Response
         } else {
             $date = clone $date;
             $date->setTimezone(new \DateTimeZone('UTC'));
-            $this->headers->set('Expires', $date->format('D, d M Y H:i:s') . ' GMT');
+            $this->headers->set('Expires', $date->format('D, d M Y H:i:s').' GMT');
         }
 
         return $this;
@@ -704,11 +749,11 @@ class Response
     public function getMaxAge()
     {
         if ($this->headers->hasCacheControlDirective('s-maxage')) {
-            return (int)$this->headers->getCacheControlDirective('s-maxage');
+            return (int) $this->headers->getCacheControlDirective('s-maxage');
         }
 
         if ($this->headers->hasCacheControlDirective('max-age')) {
-            return (int)$this->headers->getCacheControlDirective('max-age');
+            return (int) $this->headers->getCacheControlDirective('max-age');
         }
 
         if (null !== $this->getExpires()) {
@@ -840,7 +885,7 @@ class Response
         } else {
             $date = clone $date;
             $date->setTimezone(new \DateTimeZone('UTC'));
-            $this->headers->set('Last-Modified', $date->format('D, d M Y H:i:s') . ' GMT');
+            $this->headers->set('Last-Modified', $date->format('D, d M Y H:i:s').' GMT');
         }
 
         return $this;
@@ -874,10 +919,10 @@ class Response
             $this->headers->remove('Etag');
         } else {
             if (0 !== strpos($etag, '"')) {
-                $etag = '"' . $etag . '"';
+                $etag = '"'.$etag.'"';
             }
 
-            $this->headers->set('ETag', (true === $weak ? 'W/' : '') . $etag);
+            $this->headers->set('ETag', (true === $weak ? 'W/' : '').$etag);
         }
 
         return $this;
@@ -1031,8 +1076,8 @@ class Response
             return false;
         }
 
-        $notModified   = false;
-        $lastModified  = $this->headers->get('Last-Modified');
+        $notModified = false;
+        $lastModified = $this->headers->get('Last-Modified');
         $modifiedSince = $request->headers->get('If-Modified-Since');
 
         if ($etags = $request->getEtags()) {
@@ -1196,9 +1241,16 @@ class Response
     public static function closeOutputBuffers($targetLevel, $flush)
     {
         $status = ob_get_status(true);
-        $level  = count($status);
+        $level = count($status);
 
-        while ($level-- > $targetLevel && (!empty($status[$level]['del']) || (isset($status[$level]['flags']) && ($status[$level]['flags'] & PHP_OUTPUT_HANDLER_REMOVABLE) && ($status[$level]['flags'] & ($flush ? PHP_OUTPUT_HANDLER_FLUSHABLE : PHP_OUTPUT_HANDLER_CLEANABLE))))) {
+        while ($level-- > $targetLevel
+            && (!empty($status[$level]['del'])
+                || (isset($status[$level]['flags'])
+                    && ($status[$level]['flags'] & PHP_OUTPUT_HANDLER_REMOVABLE)
+                    && ($status[$level]['flags'] & ($flush ? PHP_OUTPUT_HANDLER_FLUSHABLE : PHP_OUTPUT_HANDLER_CLEANABLE))
+                )
+            )
+        ) {
             if ($flush) {
                 ob_end_flush();
             } else {

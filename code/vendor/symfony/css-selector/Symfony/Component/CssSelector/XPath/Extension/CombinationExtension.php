@@ -28,7 +28,12 @@ class CombinationExtension extends AbstractExtension
      */
     public function getCombinationTranslators()
     {
-        return array(' ' => array($this, 'translateDescendant'), '>' => array($this, 'translateChild'), '+' => array($this, 'translateDirectAdjacent'), '~' => array($this, 'translateIndirectAdjacent'),);
+        return array(
+            ' ' => array($this, 'translateDescendant'),
+            '>' => array($this, 'translateChild'),
+            '+' => array($this, 'translateDirectAdjacent'),
+            '~' => array($this, 'translateIndirectAdjacent'),
+        );
     }
 
     /**
@@ -61,7 +66,10 @@ class CombinationExtension extends AbstractExtension
      */
     public function translateDirectAdjacent(XPathExpr $xpath, XPathExpr $combinedXpath)
     {
-        return $xpath->join('/following-sibling::', $combinedXpath)->addNameTest()->addCondition('position() = 1');
+        return $xpath
+            ->join('/following-sibling::', $combinedXpath)
+            ->addNameTest()
+            ->addCondition('position() = 1');
     }
 
     /**

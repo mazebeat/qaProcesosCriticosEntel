@@ -88,7 +88,12 @@ class CssSelector
             $translator->registerExtension(new HtmlExtension($translator));
         }
 
-        $translator->registerParserShortcut(new EmptyStringParser())->registerParserShortcut(new ElementParser())->registerParserShortcut(new ClassParser())->registerParserShortcut(new HashParser());
+        $translator
+            ->registerParserShortcut(new EmptyStringParser())
+            ->registerParserShortcut(new ElementParser())
+            ->registerParserShortcut(new ClassParser())
+            ->registerParserShortcut(new HashParser())
+        ;
 
         return $translator->cssToXPath($cssExpr, $prefix);
     }

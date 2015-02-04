@@ -41,7 +41,7 @@ class EsiResponseCacheStrategy implements EsiResponseCacheStrategyInterface
         if ($response->isValidateable()) {
             $this->cacheable = false;
         } else {
-            $this->ttls[]    = $response->getTtl();
+            $this->ttls[] = $response->getTtl();
             $this->maxAges[] = $response->getMaxAge();
         }
 
@@ -73,7 +73,7 @@ class EsiResponseCacheStrategy implements EsiResponseCacheStrategyInterface
             return;
         }
 
-        $this->ttls[]    = $response->getTtl();
+        $this->ttls[] = $response->getTtl();
         $this->maxAges[] = $response->getMaxAge();
 
         if (null !== $maxAge = min($this->maxAges)) {

@@ -15,42 +15,50 @@ namespace DebugBar\DataCollector;
  */
 class LocalizationCollector extends DataCollector implements Renderable
 {
-	/**
-	 * Get the current locale
-	 *
-	 * @return string
-	 */
-	public function getLocale()
-	{
-		return setlocale(LC_ALL, 0);
-	}
+    /**
+     * Get the current locale
+     *
+     * @return string
+     */
+    public function getLocale()
+    {
+        return setlocale(LC_ALL, 0);
+    }
 
-	/**
-	 * Get the current translations domain
-	 *
-	 * @return string
-	 */
-	public function getDomain()
-	{
-		return textdomain();
-	}
+    /**
+     * Get the current translations domain
+     *
+     * @return string
+     */
+    public function getDomain()
+    {
+        return textdomain();
+    }
 
-	public function collect()
-	{
-		return array('locale' => $this->getLocale(),
-		             'domain' => $this->getDomain(),);
-	}
+    public function collect()
+    {
+        return array(
+          'locale' => $this->getLocale(),
+          'domain' => $this->getDomain(),
+        );
+    }
 
-	public function getName()
-	{
-		return 'localization';
-	}
+    public function getName()
+    {
+        return 'localization';
+    }
 
-	public function getWidgets()
-	{
-		return array('domain' => array('icon' => 'bookmark',
-		                               'map'  => 'localization.domain',),
-		             'locale' => array('icon' => 'flag',
-		                               'map'  => 'localization.locale',));
-	}
+    public function getWidgets()
+    {
+        return array(
+            'domain' => array(
+                'icon' => 'bookmark',
+                'map'  => 'localization.domain',
+            ),
+            'locale' => array(
+                'icon' => 'flag',
+                'map'  => 'localization.locale',
+            )
+        );
+    }
 }

@@ -25,7 +25,10 @@ class DoctrineCaster
 {
     public static function castCommonProxy(CommonProxy $proxy, array $a, Stub $stub, $isNested)
     {
-        unset($a['__cloner__'], $a['__initializer__']);
+        unset(
+            $a['__cloner__'],
+            $a['__initializer__']
+        );
         $stub->cut += 2;
 
         return $a;
@@ -34,7 +37,10 @@ class DoctrineCaster
     public static function castOrmProxy(OrmProxy $proxy, array $a, Stub $stub, $isNested)
     {
         $prefix = "\0Doctrine\\ORM\\Proxy\\Proxy\0";
-        unset($a[$prefix . '_entityPersister'], $a[$prefix . '_identifier']);
+        unset(
+            $a[$prefix.'_entityPersister'],
+            $a[$prefix.'_identifier']
+        );
         $stub->cut += 2;
 
         return $a;
@@ -44,9 +50,9 @@ class DoctrineCaster
     {
         $prefix = "\0Doctrine\\ORM\\PersistentCollection\0";
 
-        $a[$prefix . 'snapshot']    = new CutStub($a[$prefix . 'snapshot']);
-        $a[$prefix . 'association'] = new CutStub($a[$prefix . 'association']);
-        $a[$prefix . 'typeClass']   = new CutStub($a[$prefix . 'typeClass']);
+        $a[$prefix.'snapshot'] = new CutStub($a[$prefix.'snapshot']);
+        $a[$prefix.'association'] = new CutStub($a[$prefix.'association']);
+        $a[$prefix.'typeClass'] = new CutStub($a[$prefix.'typeClass']);
 
         return $a;
     }

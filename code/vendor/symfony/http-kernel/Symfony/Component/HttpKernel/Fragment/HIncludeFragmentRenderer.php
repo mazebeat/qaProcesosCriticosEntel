@@ -41,8 +41,8 @@ class HIncludeFragmentRenderer extends RoutableFragmentRenderer
     {
         $this->setTemplating($templating);
         $this->globalDefaultTemplate = $globalDefaultTemplate;
-        $this->signer                = $signer;
-        $this->charset               = $charset;
+        $this->signer = $signer;
+        $this->charset = $charset;
     }
 
     /**
@@ -113,7 +113,11 @@ class HIncludeFragmentRenderer extends RoutableFragmentRenderer
                 $flags = ENT_QUOTES;
             }
             foreach ($attributes as $attribute => $value) {
-                $renderedAttributes .= sprintf(' %s="%s"', htmlspecialchars($attribute, $flags, $this->charset, false), htmlspecialchars($value, $flags, $this->charset, false));
+                $renderedAttributes .= sprintf(
+                    ' %s="%s"',
+                    htmlspecialchars($attribute, $flags, $this->charset, false),
+                    htmlspecialchars($value, $flags, $this->charset, false)
+                );
             }
         }
 

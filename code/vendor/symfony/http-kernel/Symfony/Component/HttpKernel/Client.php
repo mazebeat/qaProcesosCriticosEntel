@@ -43,7 +43,7 @@ class Client extends BaseClient
     public function __construct(HttpKernelInterface $kernel, array $server = array(), History $history = null, CookieJar $cookieJar = null)
     {
         // These class properties must be set before calling the parent constructor, as it may depend on it.
-        $this->kernel          = $kernel;
+        $this->kernel = $kernel;
         $this->followRedirects = false;
 
         parent::__construct($server, $history, $cookieJar);
@@ -96,12 +96,12 @@ class Client extends BaseClient
      */
     protected function getScript($request)
     {
-        $kernel  = str_replace("'", "\\'", serialize($this->kernel));
+        $kernel = str_replace("'", "\\'", serialize($this->kernel));
         $request = str_replace("'", "\\'", serialize($request));
 
-        $r              = new \ReflectionClass('\\Symfony\\Component\\ClassLoader\\ClassLoader');
-        $requirePath    = str_replace("'", "\\'", $r->getFileName());
-        $symfonyPath    = str_replace("'", "\\'", realpath(__DIR__ . '/../../..'));
+        $r = new \ReflectionClass('\\Symfony\\Component\\ClassLoader\\ClassLoader');
+        $requirePath = str_replace("'", "\\'", $r->getFileName());
+        $symfonyPath = str_replace("'", "\\'", realpath(__DIR__.'/../../..'));
         $errorReporting = error_reporting();
 
         $code = <<<EOF
@@ -119,7 +119,7 @@ require_once '$requirePath';
 \$request = unserialize('$request');
 EOF;
 
-        return $code . $this->getHandleScript();
+        return $code.$this->getHandleScript();
     }
 
     protected function getHandleScript()
@@ -176,9 +176,23 @@ EOF;
                 $filtered[$key] = $this->filterFiles($value);
             } elseif ($value instanceof UploadedFile) {
                 if ($value->isValid() && $value->getSize() > UploadedFile::getMaxFilesize()) {
-                    $filtered[$key] = new UploadedFile('', $value->getClientOriginalName(), $value->getClientMimeType(), 0, UPLOAD_ERR_INI_SIZE, true);
+                    $filtered[$key] = new UploadedFile(
+                        '',
+                        $value->getClientOriginalName(),
+                        $value->getClientMimeType(),
+                        0,
+                        UPLOAD_ERR_INI_SIZE,
+                        true
+                    );
                 } else {
-                    $filtered[$key] = new UploadedFile($value->getPathname(), $value->getClientOriginalName(), $value->getClientMimeType(), $value->getClientSize(), $value->getError(), true);
+                    $filtered[$key] = new UploadedFile(
+                        $value->getPathname(),
+                        $value->getClientOriginalName(),
+                        $value->getClientMimeType(),
+                        $value->getClientSize(),
+                        $value->getError(),
+                        true
+                    );
                 }
             }
         }

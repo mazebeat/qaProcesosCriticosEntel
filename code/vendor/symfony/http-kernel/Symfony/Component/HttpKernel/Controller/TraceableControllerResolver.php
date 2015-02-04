@@ -32,7 +32,7 @@ class TraceableControllerResolver implements ControllerResolverInterface
      */
     public function __construct(ControllerResolverInterface $resolver, Stopwatch $stopwatch)
     {
-        $this->resolver  = $resolver;
+        $this->resolver = $resolver;
         $this->stopwatch = $stopwatch;
     }
 

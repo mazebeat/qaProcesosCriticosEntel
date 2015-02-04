@@ -41,14 +41,14 @@ class CompiledRoute implements \Serializable
      */
     public function __construct($staticPrefix, $regex, array $tokens, array $pathVariables, $hostRegex = null, array $hostTokens = array(), array $hostVariables = array(), array $variables = array())
     {
-        $this->staticPrefix  = (string)$staticPrefix;
-        $this->regex         = $regex;
-        $this->tokens        = $tokens;
+        $this->staticPrefix = (string) $staticPrefix;
+        $this->regex = $regex;
+        $this->tokens = $tokens;
         $this->pathVariables = $pathVariables;
-        $this->hostRegex     = $hostRegex;
-        $this->hostTokens    = $hostTokens;
+        $this->hostRegex = $hostRegex;
+        $this->hostTokens = $hostTokens;
         $this->hostVariables = $hostVariables;
-        $this->variables     = $variables;
+        $this->variables = $variables;
     }
 
     /**
@@ -56,7 +56,16 @@ class CompiledRoute implements \Serializable
      */
     public function serialize()
     {
-        return serialize(array('vars' => $this->variables, 'path_prefix' => $this->staticPrefix, 'path_regex' => $this->regex, 'path_tokens' => $this->tokens, 'path_vars' => $this->pathVariables, 'host_regex' => $this->hostRegex, 'host_tokens' => $this->hostTokens, 'host_vars' => $this->hostVariables,));
+        return serialize(array(
+            'vars' => $this->variables,
+            'path_prefix' => $this->staticPrefix,
+            'path_regex' => $this->regex,
+            'path_tokens' => $this->tokens,
+            'path_vars' => $this->pathVariables,
+            'host_regex' => $this->hostRegex,
+            'host_tokens' => $this->hostTokens,
+            'host_vars' => $this->hostVariables,
+        ));
     }
 
     /**
@@ -64,14 +73,14 @@ class CompiledRoute implements \Serializable
      */
     public function unserialize($serialized)
     {
-        $data                = unserialize($serialized);
-        $this->variables     = $data['vars'];
-        $this->staticPrefix  = $data['path_prefix'];
-        $this->regex         = $data['path_regex'];
-        $this->tokens        = $data['path_tokens'];
+        $data = unserialize($serialized);
+        $this->variables = $data['vars'];
+        $this->staticPrefix = $data['path_prefix'];
+        $this->regex = $data['path_regex'];
+        $this->tokens = $data['path_tokens'];
         $this->pathVariables = $data['path_vars'];
-        $this->hostRegex     = $data['host_regex'];
-        $this->hostTokens    = $data['host_tokens'];
+        $this->hostRegex = $data['host_regex'];
+        $this->hostTokens = $data['host_tokens'];
         $this->hostVariables = $data['host_vars'];
     }
 

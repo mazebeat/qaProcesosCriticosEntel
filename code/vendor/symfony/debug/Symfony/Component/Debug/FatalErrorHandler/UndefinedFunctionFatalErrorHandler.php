@@ -26,8 +26,8 @@ class UndefinedFunctionFatalErrorHandler implements FatalErrorHandlerInterface
      */
     public function handleError(array $error, FatalErrorException $exception)
     {
-        $messageLen        = strlen($error['message']);
-        $notFoundSuffix    = '()';
+        $messageLen = strlen($error['message']);
+        $notFoundSuffix = '()';
         $notFoundSuffixLen = strlen($notFoundSuffix);
         if ($notFoundSuffixLen > $messageLen) {
             return;
@@ -37,7 +37,7 @@ class UndefinedFunctionFatalErrorHandler implements FatalErrorHandlerInterface
             return;
         }
 
-        $prefix    = 'Call to undefined function ';
+        $prefix = 'Call to undefined function ';
         $prefixLen = strlen($prefix);
         if (0 !== strpos($error['message'], $prefix)) {
             return;
@@ -45,12 +45,23 @@ class UndefinedFunctionFatalErrorHandler implements FatalErrorHandlerInterface
 
         $fullyQualifiedFunctionName = substr($error['message'], $prefixLen, -$notFoundSuffixLen);
         if (false !== $namespaceSeparatorIndex = strrpos($fullyQualifiedFunctionName, '\\')) {
-            $functionName    = substr($fullyQualifiedFunctionName, $namespaceSeparatorIndex + 1);
+            $functionName = substr($fullyQualifiedFunctionName, $namespaceSeparatorIndex + 1);
             $namespacePrefix = substr($fullyQualifiedFunctionName, 0, $namespaceSeparatorIndex);
-            $message         = sprintf('Attempted to call function "%s" from namespace "%s" in %s line %d.', $functionName, $namespacePrefix, $error['file'], $error['line']);
+            $message = sprintf(
+                'Attempted to call function "%s" from namespace "%s" in %s line %d.',
+                $functionName,
+                $namespacePrefix,
+                $error['file'],
+                $error['line']
+            );
         } else {
             $functionName = $fullyQualifiedFunctionName;
-            $message      = sprintf('Attempted to call function "%s" from the global namespace in %s line %d.', $functionName, $error['file'], $error['line']);
+            $message = sprintf(
+                'Attempted to call function "%s" from the global namespace in %s line %d.',
+                $functionName,
+                $error['file'],
+                $error['line']
+            );
         }
 
         $candidates = array();
@@ -63,16 +74,16 @@ class UndefinedFunctionFatalErrorHandler implements FatalErrorHandlerInterface
                 }
 
                 if ($definedFunctionNameBasename === $functionName) {
-                    $candidates[] = '\\' . $definedFunctionName;
+                    $candidates[] = '\\'.$definedFunctionName;
                 }
             }
         }
 
         if ($candidates) {
             sort($candidates);
-            $message .= ' Did you mean to call: ' . implode(', ', array_map(function ($val) {
-                    return '"' . $val . '"';
-                }, $candidates)) . '?';
+            $message .= ' Did you mean to call: '.implode(', ', array_map(function ($val) {
+                return '"'.$val.'"';
+            }, $candidates)).'?';
         }
 
         return new UndefinedFunctionException($message, $exception);

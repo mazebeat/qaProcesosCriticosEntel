@@ -91,7 +91,7 @@ class TokenStream
     {
         if ($this->peeking) {
             $this->peeking = false;
-            $this->used[]  = $this->peeked;
+            $this->used[] = $this->peeked;
 
             return $this->peeked;
         }
@@ -100,7 +100,7 @@ class TokenStream
             throw new InternalErrorException('Unexpected token stream end.');
         }
 
-        return $this->tokens[$this->cursor++];
+        return $this->tokens[$this->cursor ++];
     }
 
     /**
@@ -111,7 +111,7 @@ class TokenStream
     public function getPeek()
     {
         if (!$this->peeking) {
-            $this->peeked  = $this->getNext();
+            $this->peeked = $this->getNext();
             $this->peeking = true;
         }
 

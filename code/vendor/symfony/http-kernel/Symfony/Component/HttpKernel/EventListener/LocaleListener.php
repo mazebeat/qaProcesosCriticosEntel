@@ -41,8 +41,8 @@ class LocaleListener implements EventSubscriberInterface
     public function __construct($defaultLocale = 'en', RequestContextAwareInterface $router = null, RequestStack $requestStack = null)
     {
         $this->defaultLocale = $defaultLocale;
-        $this->requestStack  = $requestStack;
-        $this->router        = $router;
+        $this->requestStack = $requestStack;
+        $this->router = $router;
     }
 
     /**
@@ -102,7 +102,10 @@ class LocaleListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(// must be registered after the Router to have access to the _locale
-            KernelEvents::REQUEST => array(array('onKernelRequest', 16)), KernelEvents::FINISH_REQUEST => array(array('onKernelFinishRequest', 0)),);
+        return array(
+            // must be registered after the Router to have access to the _locale
+            KernelEvents::REQUEST => array(array('onKernelRequest', 16)),
+            KernelEvents::FINISH_REQUEST => array(array('onKernelFinishRequest', 0)),
+        );
     }
 }

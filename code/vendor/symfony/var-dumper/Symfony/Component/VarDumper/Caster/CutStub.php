@@ -26,29 +26,29 @@ class CutStub extends Stub
 
         switch (gettype($value)) {
             case 'object':
-                $this->type  = self::TYPE_OBJECT;
+                $this->type = self::TYPE_OBJECT;
                 $this->class = get_class($value);
-                $this->cut   = -1;
+                $this->cut = -1;
                 break;
 
             case 'array':
-                $this->type  = self::TYPE_ARRAY;
+                $this->type = self::TYPE_ARRAY;
                 $this->class = self::ARRAY_ASSOC;
-                $this->cut   = $this->value = count($value);
+                $this->cut = $this->value = count($value);
                 break;
 
             case 'resource':
             case 'unknown type':
-                $this->type   = self::TYPE_RESOURCE;
-                $this->handle = (int)$value;
-                $this->class  = @get_resource_type($value);
-                $this->cut    = -1;
+                $this->type = self::TYPE_RESOURCE;
+                $this->handle = (int) $value;
+                $this->class = @get_resource_type($value);
+                $this->cut = -1;
                 break;
 
             case 'string':
-                $this->type  = self::TYPE_STRING;
+                $this->type = self::TYPE_STRING;
                 $this->class = preg_match('//u', $value) ? self::STRING_UTF8 : self::STRING_BINARY;
-                $this->cut   = self::STRING_BINARY === $this->class ? strlen($value) : (function_exists('iconv_strlen') ? iconv_strlen($value, 'UTF-8') : -1);
+                $this->cut = self::STRING_BINARY === $this->class ? strlen($value) : (function_exists('iconv_strlen') ? iconv_strlen($value, 'UTF-8') : -1);
                 $this->value = '';
                 break;
         }

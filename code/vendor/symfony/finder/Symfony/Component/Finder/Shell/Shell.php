@@ -62,7 +62,7 @@ class Shell
 
         $command = escapeshellcmd($command);
 
-        exec($testCommand . $command, $output, $code);
+        exec($testCommand.$command, $output, $code);
 
         return 0 === $code && count($output) > 0;
     }

@@ -15,17 +15,17 @@ namespace DebugBar\DataCollector;
  */
 interface DataCollectorInterface
 {
-	/**
-	 * Called by the DebugBar when data needs to be collected
-	 *
-	 * @return array Collected data
-	 */
-	function collect();
+    /**
+     * Called by the DebugBar when data needs to be collected
+     *
+     * @return array Collected data
+     */
+    function collect();
 
-	/**
-	 * Returns the unique name of the collector
-	 *
-	 * @return string
-	 */
-	function getName();
+    /**
+     * Returns the unique name of the collector
+     *
+     * @return string
+     */
+    function getName();
 }

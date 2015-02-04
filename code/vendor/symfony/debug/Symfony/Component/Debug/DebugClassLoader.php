@@ -45,10 +45,10 @@ class DebugClassLoader
 
         if ($this->wasFinder) {
             $this->classLoader = array($classLoader, 'loadClass');
-            $this->isFinder    = true;
+            $this->isFinder = true;
         } else {
             $this->classLoader = $classLoader;
-            $this->isFinder    = is_array($classLoader) && method_exists($classLoader[0], 'findFile');
+            $this->isFinder = is_array($classLoader) && method_exists($classLoader[0], 'findFile');
         }
 
         if (!isset(self::$caseCheck)) {
@@ -74,7 +74,7 @@ class DebugClassLoader
     public static function enable()
     {
         // Ensures we don't hit https://bugs.php.net/42098
-        class_exists(__NAMESPACE__ . '\ErrorHandler', true);
+        class_exists(__NAMESPACE__.'\ErrorHandler', true);
 
         if (!is_array($functions = spl_autoload_functions())) {
             return;
@@ -190,14 +190,14 @@ class DebugClassLoader
 
                 if (2 === self::$caseCheck) {
                     // realpath() on MacOSX doesn't normalize the case of characters
-                    $cwd      = getcwd();
+                    $cwd = getcwd();
                     $basename = strrpos($real, '/');
                     chdir(substr($real, 0, $basename));
                     $basename = substr($real, $basename + 1);
                     // glob() patterns are case-sensitive even if the underlying fs is not
-                    if (!in_array($basename, glob($basename . '*', GLOB_NOSORT), true)) {
-                        $real = getcwd() . '/';
-                        $h    = opendir('.');
+                    if (!in_array($basename, glob($basename.'*', GLOB_NOSORT), true)) {
+                        $real = getcwd().'/';
+                        $h = opendir('.');
                         while (false !== $f = readdir($h)) {
                             if (0 === strcasecmp($f, $basename)) {
                                 $real .= $f;
@@ -209,7 +209,8 @@ class DebugClassLoader
                     chdir($cwd);
                 }
 
-                if (0 === substr_compare($real, $tail, -strlen($tail), strlen($tail), true) && 0 !== substr_compare($real, $tail, -strlen($tail), strlen($tail), false)
+                if (0 === substr_compare($real, $tail, -strlen($tail), strlen($tail), true)
+                  && 0 !== substr_compare($real, $tail, -strlen($tail), strlen($tail), false)
                 ) {
                     throw new \RuntimeException(sprintf('Case mismatch between class and source file names: %s vs %s', $class, $real));
                 }

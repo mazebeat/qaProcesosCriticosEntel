@@ -58,7 +58,9 @@ class SaveSessionListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(// low priority but higher than StreamedResponseListener
-            KernelEvents::RESPONSE => array(array('onKernelResponse', -1000)),);
+        return array(
+            // low priority but higher than StreamedResponseListener
+            KernelEvents::RESPONSE => array(array('onKernelResponse', -1000)),
+        );
     }
 }

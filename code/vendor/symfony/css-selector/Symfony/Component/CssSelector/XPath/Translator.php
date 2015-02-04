@@ -75,7 +75,13 @@ class Translator implements TranslatorInterface
     {
         $this->mainParser = $parser ?: new Parser();
 
-        $this->registerExtension(new Extension\NodeExtension())->registerExtension(new Extension\CombinationExtension())->registerExtension(new Extension\FunctionExtension())->registerExtension(new Extension\PseudoClassExtension())->registerExtension(new Extension\AttributeMatchingExtension());
+        $this
+            ->registerExtension(new Extension\NodeExtension())
+            ->registerExtension(new Extension\CombinationExtension())
+            ->registerExtension(new Extension\FunctionExtension())
+            ->registerExtension(new Extension\PseudoClassExtension())
+            ->registerExtension(new Extension\AttributeMatchingExtension())
+        ;
     }
 
     /**
@@ -86,20 +92,20 @@ class Translator implements TranslatorInterface
     public static function getXpathLiteral($element)
     {
         if (false === strpos($element, "'")) {
-            return "'" . $element . "'";
+            return "'".$element."'";
         }
 
         if (false === strpos($element, '"')) {
-            return '"' . $element . '"';
+            return '"'.$element.'"';
         }
 
         $string = $element;
-        $parts  = array();
+        $parts = array();
         while (true) {
             if (false !== $pos = strpos($string, "'")) {
                 $parts[] = sprintf("'%s'", substr($string, 0, $pos));
                 $parts[] = "\"'\"";
-                $string  = substr($string, $pos + 1);
+                $string = substr($string, $pos + 1);
             } else {
                 $parts[] = "'$string'";
                 break;
@@ -133,7 +139,7 @@ class Translator implements TranslatorInterface
      */
     public function selectorToXPath(SelectorNode $selector, $prefix = 'descendant-or-self::')
     {
-        return ($prefix ?: '') . $this->nodeToXPath($selector);
+        return ($prefix ?: '').$this->nodeToXPath($selector);
     }
 
     /**
@@ -147,10 +153,10 @@ class Translator implements TranslatorInterface
     {
         $this->extensions[$extension->getName()] = $extension;
 
-        $this->nodeTranslators              = array_merge($this->nodeTranslators, $extension->getNodeTranslators());
-        $this->combinationTranslators       = array_merge($this->combinationTranslators, $extension->getCombinationTranslators());
-        $this->functionTranslators          = array_merge($this->functionTranslators, $extension->getFunctionTranslators());
-        $this->pseudoClassTranslators       = array_merge($this->pseudoClassTranslators, $extension->getPseudoClassTranslators());
+        $this->nodeTranslators = array_merge($this->nodeTranslators, $extension->getNodeTranslators());
+        $this->combinationTranslators = array_merge($this->combinationTranslators, $extension->getCombinationTranslators());
+        $this->functionTranslators = array_merge($this->functionTranslators, $extension->getFunctionTranslators());
+        $this->pseudoClassTranslators = array_merge($this->pseudoClassTranslators, $extension->getPseudoClassTranslators());
         $this->attributeMatchingTranslators = array_merge($this->attributeMatchingTranslators, $extension->getAttributeMatchingTranslators());
 
         return $this;

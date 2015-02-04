@@ -40,7 +40,9 @@ class ClassParser implements ParserInterface
         //     3 => string 'input' (length=5)
         //     4 => string 'ab6bd_field' (length=11)
         if (preg_match('/^(([a-z]+)\|)?([\w-]+|\*)?\.([\w-]+)$/i', trim($source), $matches)) {
-            return array(new SelectorNode(new ClassNode(new ElementNode($matches[2] ?: null, $matches[3] ?: null), $matches[4])),);
+            return array(
+                new SelectorNode(new ClassNode(new ElementNode($matches[2] ?: null, $matches[3] ?: null), $matches[4])),
+            );
         }
 
         return array();

@@ -40,7 +40,7 @@ class Store implements StoreInterface
             mkdir($this->root, 0777, true);
         }
         $this->keyCache = new \SplObjectStorage();
-        $this->locks    = array();
+        $this->locks = array();
     }
 
     /**
@@ -73,7 +73,7 @@ class Store implements StoreInterface
      */
     public function lock(Request $request)
     {
-        $path = $this->getPath($this->getCacheKey($request) . '.lck');
+        $path = $this->getPath($this->getCacheKey($request).'.lck');
         if (!is_dir(dirname($path)) && false === @mkdir(dirname($path), 0777, true)) {
             return false;
         }
@@ -99,14 +99,14 @@ class Store implements StoreInterface
      */
     public function unlock(Request $request)
     {
-        $file = $this->getPath($this->getCacheKey($request) . '.lck');
+        $file = $this->getPath($this->getCacheKey($request).'.lck');
 
         return is_file($file) ? @unlink($file) : false;
     }
 
     public function isLocked(Request $request)
     {
-        return is_file($this->getPath($this->getCacheKey($request) . '.lck'));
+        return is_file($this->getPath($this->getCacheKey($request).'.lck'));
     }
 
     /**
@@ -163,7 +163,7 @@ class Store implements StoreInterface
      */
     public function write(Request $request, Response $response)
     {
-        $key       = $this->getCacheKey($request);
+        $key = $this->getCacheKey($request);
         $storedEnv = $this->persistRequest($request);
 
         // write the response body to the entity store if this is the original response
@@ -183,7 +183,7 @@ class Store implements StoreInterface
 
         // read existing cache entries, remove non-varying, and add this one to the list
         $entries = array();
-        $vary    = $response->headers->get('vary');
+        $vary = $response->headers->get('vary');
         foreach ($this->getMetadata($key) as $entry) {
             if (!isset($entry[1]['vary'][0])) {
                 $entry[1]['vary'] = array('');
@@ -215,7 +215,7 @@ class Store implements StoreInterface
      */
     protected function generateContentDigest(Response $response)
     {
-        return 'en' . hash('sha256', $response->getContent());
+        return 'en'.hash('sha256', $response->getContent());
     }
 
     /**
@@ -228,14 +228,14 @@ class Store implements StoreInterface
     public function invalidate(Request $request)
     {
         $modified = false;
-        $key      = $this->getCacheKey($request);
+        $key = $this->getCacheKey($request);
 
         $entries = array();
         foreach ($this->getMetadata($key) as $entry) {
             $response = $this->restoreResponse($entry[1]);
             if ($response->isFresh()) {
                 $response->expire();
-                $modified  = true;
+                $modified = true;
                 $entries[] = array($entry[0], $this->persistResponse($response));
             } else {
                 $entries[] = $entry;
@@ -267,8 +267,8 @@ class Store implements StoreInterface
 
         foreach (preg_split('/[\s,]+/', $vary) as $header) {
             $key = strtr(strtolower($header), '_', '-');
-            $v1  = isset($env1[$key]) ? $env1[$key] : null;
-            $v2  = isset($env2[$key]) ? $env2[$key] : null;
+            $v1 = isset($env1[$key]) ? $env1[$key] : null;
+            $v2 = isset($env2[$key]) ? $env2[$key] : null;
             if ($v1 !== $v2) {
                 return false;
             }
@@ -362,7 +362,7 @@ class Store implements StoreInterface
 
     public function getPath($key)
     {
-        return $this->root . DIRECTORY_SEPARATOR . substr($key, 0, 2) . DIRECTORY_SEPARATOR . substr($key, 2, 2) . DIRECTORY_SEPARATOR . substr($key, 4, 2) . DIRECTORY_SEPARATOR . substr($key, 6);
+        return $this->root.DIRECTORY_SEPARATOR.substr($key, 0, 2).DIRECTORY_SEPARATOR.substr($key, 2, 2).DIRECTORY_SEPARATOR.substr($key, 4, 2).DIRECTORY_SEPARATOR.substr($key, 6);
     }
 
     /**
@@ -381,7 +381,7 @@ class Store implements StoreInterface
      */
     protected function generateCacheKey(Request $request)
     {
-        return 'md' . hash('sha256', $request->getUri());
+        return 'md'.hash('sha256', $request->getUri());
     }
 
     /**
@@ -421,7 +421,7 @@ class Store implements StoreInterface
      */
     private function persistResponse(Response $response)
     {
-        $headers             = $response->headers->all();
+        $headers = $response->headers->all();
         $headers['X-Status'] = array($response->getStatusCode());
 
         return $headers;

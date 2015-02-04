@@ -26,7 +26,15 @@ class Cookie
      *
      * @var array
      */
-    private static $dateFormats = array('D, d M Y H:i:s T', 'D, d-M-y H:i:s T', 'D, d-M-Y H:i:s T', 'D, d-m-y H:i:s T', 'D, d-m-Y H:i:s T', 'D M j G:i:s Y', 'D M d H:i:s Y T',);
+    private static $dateFormats = array(
+        'D, d M Y H:i:s T',
+        'D, d-M-y H:i:s T',
+        'D, d-M-Y H:i:s T',
+        'D, d-m-y H:i:s T',
+        'D, d-m-Y H:i:s T',
+        'D M j G:i:s Y',
+        'D M d H:i:s Y T',
+    );
 
     protected $name;
     protected $value;
@@ -54,18 +62,18 @@ class Cookie
     public function __construct($name, $value, $expires = null, $path = null, $domain = '', $secure = false, $httponly = true, $encodedValue = false)
     {
         if ($encodedValue) {
-            $this->value    = urldecode($value);
+            $this->value = urldecode($value);
             $this->rawValue = $value;
         } else {
-            $this->value    = $value;
+            $this->value = $value;
             $this->rawValue = urlencode($value);
         }
-        $this->name     = $name;
-        $this->expires  = null === $expires ? null : (int)$expires;
-        $this->path     = empty($path) ? '/' : $path;
-        $this->domain   = $domain;
-        $this->secure   = (bool)$secure;
-        $this->httponly = (bool)$httponly;
+        $this->name = $name;
+        $this->expires = null === $expires ? null : (int) $expires;
+        $this->path = empty($path) ? '/' : $path;
+        $this->domain = $domain;
+        $this->secure = (bool) $secure;
+        $this->httponly = (bool) $httponly;
     }
 
     /**
@@ -88,15 +96,15 @@ class Cookie
                 throw new \UnexpectedValueException(sprintf('The cookie expiration time "%s" is not valid.'), $this->expires);
             }
 
-            $cookie .= '; expires=' . str_replace('+0000', '', $dateTime->format(self::$dateFormats[0]));
+            $cookie .= '; expires='.str_replace('+0000', '', $dateTime->format(self::$dateFormats[0]));
         }
 
         if ('' !== $this->domain) {
-            $cookie .= '; domain=' . $this->domain;
+            $cookie .= '; domain='.$this->domain;
         }
 
         if ($this->path) {
-            $cookie .= '; path=' . $this->path;
+            $cookie .= '; path='.$this->path;
         }
 
         if ($this->secure) {
@@ -132,7 +140,16 @@ class Cookie
 
         list($name, $value) = explode('=', array_shift($parts), 2);
 
-        $values = array('name' => trim($name), 'value' => trim($value), 'expires' => null, 'path' => '/', 'domain' => '', 'secure' => false, 'httponly' => false, 'passedRawValue' => true,);
+        $values = array(
+            'name' => trim($name),
+            'value' => trim($value),
+            'expires' => null,
+            'path' => '/',
+            'domain' => '',
+            'secure' => false,
+            'httponly' => false,
+            'passedRawValue' => true,
+        );
 
         if (null !== $url) {
             if ((false === $urlParts = parse_url($url)) || !isset($urlParts['host'])) {
@@ -140,7 +157,7 @@ class Cookie
             }
 
             $values['domain'] = $urlParts['host'];
-            $values['path']   = isset($urlParts['path']) ? substr($urlParts['path'], 0, strrpos($urlParts['path'], '/')) : '';
+            $values['path'] = isset($urlParts['path']) ? substr($urlParts['path'], 0, strrpos($urlParts['path'], '/')) : '';
         }
 
         foreach ($parts as $part) {
@@ -172,13 +189,22 @@ class Cookie
             }
         }
 
-        return new static($values['name'], $values['value'], $values['expires'], $values['path'], $values['domain'], $values['secure'], $values['httponly'], $values['passedRawValue']);
+        return new static(
+            $values['name'],
+            $values['value'],
+            $values['expires'],
+            $values['path'],
+            $values['domain'],
+            $values['secure'],
+            $values['httponly'],
+            $values['passedRawValue']
+        );
     }
 
     private static function parseDate($dateValue)
     {
         // trim single quotes around date if present
-        if (($length = strlen($dateValue)) > 1 && "'" === $dateValue[0] && "'" === $dateValue[$length - 1]) {
+        if (($length = strlen($dateValue)) > 1 && "'" === $dateValue[0] && "'" === $dateValue[$length-1]) {
             $dateValue = substr($dateValue, 1, -1);
         }
 

@@ -68,7 +68,7 @@ class AutoExpireFlashBag implements FlashBagInterface
         // This request we will show what is in 'display'.  What is placed into 'new' this time round will
         // be moved to display next time round.
         $this->flashes['display'] = array_key_exists('new', $this->flashes) ? $this->flashes['new'] : array();
-        $this->flashes['new']     = array();
+        $this->flashes['new'] = array();
     }
 
     /**
@@ -92,7 +92,7 @@ class AutoExpireFlashBag implements FlashBagInterface
      */
     public function peekAll()
     {
-        return array_key_exists('display', $this->flashes) ? (array)$this->flashes['display'] : array();
+        return array_key_exists('display', $this->flashes) ? (array) $this->flashes['display'] : array();
     }
 
     /**
@@ -119,7 +119,7 @@ class AutoExpireFlashBag implements FlashBagInterface
      */
     public function all()
     {
-        $return        = $this->flashes['display'];
+        $return = $this->flashes['display'];
         $this->flashes = array('new' => array(), 'display' => array());
 
         return $return;
@@ -138,7 +138,7 @@ class AutoExpireFlashBag implements FlashBagInterface
      */
     public function set($type, $messages)
     {
-        $this->flashes['new'][$type] = (array)$messages;
+        $this->flashes['new'][$type] = (array) $messages;
     }
 
     /**

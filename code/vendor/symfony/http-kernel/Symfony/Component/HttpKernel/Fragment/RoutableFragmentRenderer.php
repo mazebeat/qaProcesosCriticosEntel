@@ -68,13 +68,13 @@ abstract class RoutableFragmentRenderer implements FragmentRendererInterface
 
         $reference->query['_path'] = http_build_query($reference->attributes, '', '&');
 
-        $path = $this->fragmentPath . '?' . http_build_query($reference->query, '', '&');
+        $path = $this->fragmentPath.'?'.http_build_query($reference->query, '', '&');
 
         if ($absolute) {
             return $request->getUriForPath($path);
         }
 
-        return $request->getBaseUrl() . $path;
+        return $request->getBaseUrl().$path;
     }
 
     private function checkNonScalar($values)

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\View;
 /**
  * Class HomeController
  */
-class ConsolidadoController extends ApiController
+class ConsultaController extends ApiController
 {
 	/**
 	 *
@@ -18,16 +18,8 @@ class ConsolidadoController extends ApiController
 	/**
 	 * @return mixed
 	 */
-	public function index()
+	public function individual()
 	{
-		return View::make('dashboard.consolidado.index');
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function consolidadoIndividual()
-	{
-		return View::make('dashboard.consolidado.individual');
+		return View::make('dashboard.consulta.individual');
 	}
 }

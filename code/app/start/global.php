@@ -47,6 +47,25 @@ App::error(function (Exception $exception, $code) {
 	Log::error($exception);
 });
 
+if(Config::get('api.curlError')) {
+	App::error(function (Exception $exception) {
+
+		// if a request is being made using cURL,
+		// we want the standard errors swapped
+		// by something easier to handle.
+
+		$isCurl      = str_contains(Request::server("HTTP_USER_AGENT"), "curl");
+		$shouldDebug = (bool)Config::get("app.debug");
+
+		if ($isCurl and $shouldDebug) {
+			return $exception;
+		}
+
+		Log::error($exception);
+
+	});
+}
+
 /*
 |--------------------------------------------------------------------------
 | Maintenance Mode Handler

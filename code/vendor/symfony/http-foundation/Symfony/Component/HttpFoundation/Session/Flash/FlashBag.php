@@ -112,7 +112,7 @@ class FlashBag implements FlashBagInterface, \IteratorAggregate
      */
     public function all()
     {
-        $return        = $this->peekAll();
+        $return = $this->peekAll();
         $this->flashes = array();
 
         return $return;
@@ -123,7 +123,7 @@ class FlashBag implements FlashBagInterface, \IteratorAggregate
      */
     public function set($type, $messages)
     {
-        $this->flashes[$type] = (array)$messages;
+        $this->flashes[$type] = (array) $messages;
     }
 
     /**

@@ -15,44 +15,49 @@ namespace DebugBar\DataCollector;
  */
 class MemoryCollector extends DataCollector implements Renderable
 {
-	protected $peakUsage = 0;
+    protected $peakUsage = 0;
 
-	/**
-	 * Returns the peak memory usage
-	 *
-	 * @return integer
-	 */
-	public function getPeakUsage()
-	{
-		return $this->peakUsage;
-	}
+    /**
+     * Returns the peak memory usage
+     *
+     * @return integer
+     */
+    public function getPeakUsage()
+    {
+        return $this->peakUsage;
+    }
 
-	/**
-	 * Updates the peak memory usage value
-	 */
-	public function updatePeakUsage()
-	{
-		$this->peakUsage = memory_get_peak_usage(true);
-	}
+    /**
+     * Updates the peak memory usage value
+     */
+    public function updatePeakUsage()
+    {
+        $this->peakUsage = memory_get_peak_usage(true);
+    }
 
-	public function collect()
-	{
-		$this->updatePeakUsage();
+    public function collect()
+    {
+        $this->updatePeakUsage();
+        return array(
+            'peak_usage' => $this->peakUsage,
+            'peak_usage_str' => $this->getDataFormatter()->formatBytes($this->peakUsage)
+        );
+    }
 
-		return array('peak_usage'     => $this->peakUsage,
-		             'peak_usage_str' => $this->getDataFormatter()->formatBytes($this->peakUsage));
-	}
+    public function getName()
+    {
+        return 'memory';
+    }
 
-	public function getName()
-	{
-		return 'memory';
-	}
-
-	public function getWidgets()
-	{
-		return array("memory" => array("icon"    => "cogs",
-		                               "tooltip" => "Memory Usage",
-		                               "map"     => "memory.peak_usage_str",
-		                               "default" => "'0B'"));
-	}
+    public function getWidgets()
+    {
+        return array(
+            "memory" => array(
+                "icon" => "cogs",
+                "tooltip" => "Memory Usage",
+                "map" => "memory.peak_usage_str",
+                "default" => "'0B'"
+            )
+        );
+    }
 }

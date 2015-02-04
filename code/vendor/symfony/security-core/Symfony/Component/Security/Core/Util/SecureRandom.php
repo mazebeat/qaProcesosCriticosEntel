@@ -40,7 +40,7 @@ final class SecureRandom implements SecureRandomInterface
     public function __construct($seedFile = null, LoggerInterface $logger = null)
     {
         $this->seedFile = $seedFile;
-        $this->logger   = $logger;
+        $this->logger = $logger;
 
         // determine whether to use OpenSSL
         if ('\\' === DIRECTORY_SEPARATOR && PHP_VERSION_ID < 50304) {
@@ -90,8 +90,8 @@ final class SecureRandom implements SecureRandomInterface
         $bytes = '';
         while (strlen($bytes) < $nbBytes) {
             static $incr = 1;
-            $bytes .= hash('sha512', $incr++ . $this->seed . uniqid(mt_rand(), true) . $nbBytes, true);
-            $this->seed = base64_encode(hash('sha512', $this->seed . $bytes . $nbBytes, true));
+            $bytes .= hash('sha512', $incr++.$this->seed.uniqid(mt_rand(), true).$nbBytes, true);
+            $this->seed = base64_encode(hash('sha512', $this->seed.$bytes.$nbBytes, true));
             $this->updateSeed();
         }
 

@@ -48,13 +48,13 @@ class HeaderBag implements \IteratorAggregate, \Countable
             return '';
         }
 
-        $max     = max(array_map('strlen', array_keys($this->headers))) + 1;
+        $max = max(array_map('strlen', array_keys($this->headers))) + 1;
         $content = '';
         ksort($this->headers);
         foreach ($this->headers as $name => $values) {
             $name = implode('-', array_map('ucfirst', explode('-', $name)));
             foreach ($values as $value) {
-                $content .= sprintf("%-{$max}s %s\r\n", $name . ':', $value);
+                $content .= sprintf("%-{$max}s %s\r\n", $name.':', $value);
             }
         }
 
@@ -155,7 +155,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
     {
         $key = strtr(strtolower($key), '_', '-');
 
-        $values = array_values((array)$values);
+        $values = array_values((array) $values);
 
         if (true === $replace || !isset($this->headers[$key])) {
             $this->headers[$key] = $values;
@@ -318,7 +318,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
                 $parts[] = $key;
             } else {
                 if (preg_match('#[^a-zA-Z0-9._-]#', $value)) {
-                    $value = '"' . $value . '"';
+                    $value = '"'.$value.'"';
                 }
 
                 $parts[] = "$key=$value";

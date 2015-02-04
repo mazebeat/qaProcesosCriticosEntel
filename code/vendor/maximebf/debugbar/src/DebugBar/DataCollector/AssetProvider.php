@@ -15,14 +15,14 @@ namespace DebugBar\DataCollector;
  */
 interface AssetProvider
 {
-	/**
-	 * Returns an array with the following keys:
-	 *  - base_path
-	 *  - base_url
-	 *  - css: an array of filenames
-	 *  - js: an array of filenames
-	 *
-	 * @return array
-	 */
-	function getAssets();
+    /**
+     * Returns an array with the following keys:
+     *  - base_path
+     *  - base_url
+     *  - css: an array of filenames
+     *  - js: an array of filenames
+     *
+     * @return array
+     */
+    function getAssets();
 }

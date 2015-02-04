@@ -55,7 +55,7 @@ class ApplicationDescription
     public function __construct(Application $application, $namespace = null)
     {
         $this->application = $application;
-        $this->namespace   = $namespace;
+        $this->namespace = $namespace;
     }
 
     /**
@@ -100,7 +100,7 @@ class ApplicationDescription
 
     private function inspectApplication()
     {
-        $this->commands   = array();
+        $this->commands = array();
         $this->namespaces = array();
 
         $all = $this->application->all($this->namespace ? $this->application->findNamespace($this->namespace) : null);

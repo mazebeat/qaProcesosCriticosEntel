@@ -9,6 +9,46 @@
  * file that was distributed with this source code.
  */
 
+namespace Symfony\Component\HttpKernel\Exception;
+
+use Symfony\Component\Debug\Exception\FlattenException as DebugFlattenException;
+
+/**
+ * FlattenException wraps a PHP Exception to be able to serialize it.
+ *
+ * Basically, this class removes all objects from the trace.
+ *
+ * @author Fabien Potencier <fabien@symfony.com>
+ *
+ * @deprecated Deprecated in 2.3, to be removed in 3.0. Use the same class from the Debug component instead.
+ */
+class FlattenException
+{
+    private $handler;
+
+    public static function __callStatic($method, $args)
+    {
+        if (!method_exists('Symfony\Component\Debug\Exception\FlattenException', $method)) {
+            throw new \BadMethodCallException(sprintf('Call to undefined method %s::%s()', get_called_class(), $method));
+        }
+
+        return call_user_func_array(array('Symfony\Component\Debug\Exception\FlattenException', $method), $args);
+    }
+
+    public function __call($method, $args)
+    {
+        if (!isset($this->handler)) {
+            $this->handler = new DebugFlattenException();
+        }
+
+        if (!method_exists($this->handler, $method)) {
+            throw new \BadMethodCallException(sprintf('Call to undefined method %s::%s()', get_class($this), $method));
+        }
+
+        return call_user_func_array(array($this->handler, $method), $args);
+    }
+}
+
 namespace Symfony\Component\Debug\Exception;
 
 use Symfony\Component\HttpKernel\Exception\FlattenException as LegacyFlattenException;
@@ -41,7 +81,7 @@ class FlattenException extends LegacyFlattenException
 
         if ($exception instanceof HttpExceptionInterface) {
             $statusCode = $exception->getStatusCode();
-            $headers    = array_merge($headers, $exception->getHeaders());
+            $headers = array_merge($headers, $exception->getHeaders());
         }
 
         if (null === $statusCode) {
@@ -65,7 +105,11 @@ class FlattenException extends LegacyFlattenException
     {
         $exceptions = array();
         foreach (array_merge(array($this), $this->getAllPrevious()) as $exception) {
-            $exceptions[] = array('message' => $exception->getMessage(), 'class' => $exception->getClass(), 'trace' => $exception->getTrace(),);
+            $exceptions[] = array(
+                'message' => $exception->getMessage(),
+                'class' => $exception->getClass(),
+                'trace' => $exception->getTrace(),
+            );
         }
 
         return $exceptions;
@@ -154,7 +198,7 @@ class FlattenException extends LegacyFlattenException
     public function getAllPrevious()
     {
         $exceptions = array();
-        $e          = $this;
+        $e = $this;
         while ($e = $e->getPrevious()) {
             $exceptions[] = $e;
         }
@@ -174,18 +218,36 @@ class FlattenException extends LegacyFlattenException
 
     public function setTrace($trace, $file, $line)
     {
-        $this->trace   = array();
-        $this->trace[] = array('namespace' => '', 'short_class' => '', 'class' => '', 'type' => '', 'function' => '', 'file' => $file, 'line' => $line, 'args' => array(),);
+        $this->trace = array();
+        $this->trace[] = array(
+            'namespace' => '',
+            'short_class' => '',
+            'class' => '',
+            'type' => '',
+            'function' => '',
+            'file' => $file,
+            'line' => $line,
+            'args' => array(),
+        );
         foreach ($trace as $entry) {
-            $class     = '';
+            $class = '';
             $namespace = '';
             if (isset($entry['class'])) {
-                $parts     = explode('\\', $entry['class']);
-                $class     = array_pop($parts);
+                $parts = explode('\\', $entry['class']);
+                $class = array_pop($parts);
                 $namespace = implode('\\', $parts);
             }
 
-            $this->trace[] = array('namespace' => $namespace, 'short_class' => $class, 'class' => isset($entry['class']) ? $entry['class'] : '', 'type' => isset($entry['type']) ? $entry['type'] : '', 'function' => isset($entry['function']) ? $entry['function'] : null, 'file' => isset($entry['file']) ? $entry['file'] : null, 'line' => isset($entry['line']) ? $entry['line'] : null, 'args' => isset($entry['args']) ? $this->flattenArgs($entry['args']) : array(),);
+            $this->trace[] = array(
+                'namespace' => $namespace,
+                'short_class' => $class,
+                'class' => isset($entry['class']) ? $entry['class'] : '',
+                'type' => isset($entry['type']) ? $entry['type'] : '',
+                'function' => isset($entry['function']) ? $entry['function'] : null,
+                'file' => isset($entry['file']) ? $entry['file'] : null,
+                'line' => isset($entry['line']) ? $entry['line'] : null,
+                'args' => isset($entry['args']) ? $this->flattenArgs($entry['args']) : array(),
+            );
         }
     }
 
@@ -214,7 +276,7 @@ class FlattenException extends LegacyFlattenException
                 // Special case of object, is_object will return false
                 $result[$key] = array('incomplete-object', $this->getClassNameFromIncomplete($value));
             } else {
-                $result[$key] = array('string', (string)$value);
+                $result[$key] = array('string', (string) $value);
             }
         }
 
@@ -226,37 +288,5 @@ class FlattenException extends LegacyFlattenException
         $array = new \ArrayObject($value);
 
         return $array['__PHP_Incomplete_Class_Name'];
-    }
-}
-
-namespace Symfony\Component\HttpKernel\Exception;
-
-use Symfony\Component\Debug\Exception\FlattenException as DebugFlattenException;
-
-/**
- * FlattenException wraps a PHP Exception to be able to serialize it.
- *
- * Basically, this class removes all objects from the trace.
- *
- * @author     Fabien Potencier <fabien@symfony.com>
- *
- * @deprecated Deprecated in 2.3, to be removed in 3.0. Use the same class from the Debug component instead.
- */
-class FlattenException
-{
-    private $handler;
-
-    public static function __callStatic($method, $args)
-    {
-        return forward_static_call_array(array('Symfony\Component\Debug\Exception\FlattenException', $method), $args);
-    }
-
-    public function __call($method, $args)
-    {
-        if (!isset($this->handler)) {
-            $this->handler = new DebugFlattenException();
-        }
-
-        return call_user_func_array(array($this->handler, $method), $args);
     }
 }

@@ -27,7 +27,9 @@ use Symfony\Component\Config\Loader\FileLoader;
  */
 class YamlFileLoader extends FileLoader
 {
-    private static $availableKeys = array('resource', 'type', 'prefix', 'pattern', 'path', 'host', 'schemes', 'methods', 'defaults', 'requirements', 'options', 'condition',);
+    private static $availableKeys = array(
+        'resource', 'type', 'prefix', 'pattern', 'path', 'host', 'schemes', 'methods', 'defaults', 'requirements', 'options', 'condition',
+    );
     private $yamlParser;
 
     /**
@@ -115,13 +117,13 @@ class YamlFileLoader extends FileLoader
      */
     protected function parseRoute(RouteCollection $collection, $name, array $config, $path)
     {
-        $defaults     = isset($config['defaults']) ? $config['defaults'] : array();
+        $defaults = isset($config['defaults']) ? $config['defaults'] : array();
         $requirements = isset($config['requirements']) ? $config['requirements'] : array();
-        $options      = isset($config['options']) ? $config['options'] : array();
-        $host         = isset($config['host']) ? $config['host'] : '';
-        $schemes      = isset($config['schemes']) ? $config['schemes'] : array();
-        $methods      = isset($config['methods']) ? $config['methods'] : array();
-        $condition    = isset($config['condition']) ? $config['condition'] : null;
+        $options = isset($config['options']) ? $config['options'] : array();
+        $host = isset($config['host']) ? $config['host'] : '';
+        $schemes = isset($config['schemes']) ? $config['schemes'] : array();
+        $methods = isset($config['methods']) ? $config['methods'] : array();
+        $condition = isset($config['condition']) ? $config['condition'] : null;
 
         $route = new Route($config['path'], $defaults, $requirements, $options, $host, $schemes, $methods, $condition);
 
@@ -138,15 +140,15 @@ class YamlFileLoader extends FileLoader
      */
     protected function parseImport(RouteCollection $collection, array $config, $path, $file)
     {
-        $type         = isset($config['type']) ? $config['type'] : null;
-        $prefix       = isset($config['prefix']) ? $config['prefix'] : '';
-        $defaults     = isset($config['defaults']) ? $config['defaults'] : array();
+        $type = isset($config['type']) ? $config['type'] : null;
+        $prefix = isset($config['prefix']) ? $config['prefix'] : '';
+        $defaults = isset($config['defaults']) ? $config['defaults'] : array();
         $requirements = isset($config['requirements']) ? $config['requirements'] : array();
-        $options      = isset($config['options']) ? $config['options'] : array();
-        $host         = isset($config['host']) ? $config['host'] : null;
-        $condition    = isset($config['condition']) ? $config['condition'] : null;
-        $schemes      = isset($config['schemes']) ? $config['schemes'] : null;
-        $methods      = isset($config['methods']) ? $config['methods'] : null;
+        $options = isset($config['options']) ? $config['options'] : array();
+        $host = isset($config['host']) ? $config['host'] : null;
+        $condition = isset($config['condition']) ? $config['condition'] : null;
+        $schemes = isset($config['schemes']) ? $config['schemes'] : null;
+        $methods = isset($config['methods']) ? $config['methods'] : null;
 
         $this->setCurrentDir(dirname($path));
 
@@ -188,16 +190,28 @@ class YamlFileLoader extends FileLoader
             throw new \InvalidArgumentException(sprintf('The definition of "%s" in "%s" must be a YAML array.', $name, $path));
         }
         if ($extraKeys = array_diff(array_keys($config), self::$availableKeys)) {
-            throw new \InvalidArgumentException(sprintf('The routing file "%s" contains unsupported keys for "%s": "%s". Expected one of: "%s".', $path, $name, implode('", "', $extraKeys), implode('", "', self::$availableKeys)));
+            throw new \InvalidArgumentException(sprintf(
+                'The routing file "%s" contains unsupported keys for "%s": "%s". Expected one of: "%s".',
+                $path, $name, implode('", "', $extraKeys), implode('", "', self::$availableKeys)
+            ));
         }
         if (isset($config['resource']) && isset($config['path'])) {
-            throw new \InvalidArgumentException(sprintf('The routing file "%s" must not specify both the "resource" key and the "path" key for "%s". Choose between an import and a route definition.', $path, $name));
+            throw new \InvalidArgumentException(sprintf(
+                'The routing file "%s" must not specify both the "resource" key and the "path" key for "%s". Choose between an import and a route definition.',
+                $path, $name
+            ));
         }
         if (!isset($config['resource']) && isset($config['type'])) {
-            throw new \InvalidArgumentException(sprintf('The "type" key for the route definition "%s" in "%s" is unsupported. It is only available for imports in combination with the "resource" key.', $name, $path));
+            throw new \InvalidArgumentException(sprintf(
+                'The "type" key for the route definition "%s" in "%s" is unsupported. It is only available for imports in combination with the "resource" key.',
+                $name, $path
+            ));
         }
         if (!isset($config['resource']) && !isset($config['path'])) {
-            throw new \InvalidArgumentException(sprintf('You must define a "path" for the route "%s" in file "%s".', $name, $path));
+            throw new \InvalidArgumentException(sprintf(
+                'You must define a "path" for the route "%s" in file "%s".',
+                $name, $path
+            ));
         }
     }
 }

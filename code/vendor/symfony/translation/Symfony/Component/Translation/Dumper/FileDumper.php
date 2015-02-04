@@ -70,10 +70,10 @@ abstract class FileDumper implements DumperInterface
         // save a file for each domain
         foreach ($messages->getDomains() as $domain) {
             // backup
-            $fullpath = $options['path'] . '/' . $this->getRelativePath($domain, $messages->getLocale());
+            $fullpath = $options['path'].'/'.$this->getRelativePath($domain, $messages->getLocale());
             if (file_exists($fullpath)) {
                 if ($this->backup) {
-                    copy($fullpath, $fullpath . '~');
+                    copy($fullpath, $fullpath.'~');
                 }
             } else {
                 $directory = dirname($fullpath);
@@ -113,6 +113,10 @@ abstract class FileDumper implements DumperInterface
      */
     private function getRelativePath($domain, $locale)
     {
-        return strtr($this->relativePathTemplate, array('%domain%' => $domain, '%locale%' => $locale, '%extension%' => $this->getExtension(),));
+        return strtr($this->relativePathTemplate, array(
+            '%domain%' => $domain,
+            '%locale%' => $locale,
+            '%extension%' => $this->getExtension(),
+        ));
     }
 }

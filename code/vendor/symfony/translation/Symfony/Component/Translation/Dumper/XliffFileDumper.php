@@ -25,7 +25,7 @@ class XliffFileDumper extends FileDumper
      */
     protected function format(MessageCatalogue $messages, $domain)
     {
-        $dom               = new \DOMDocument('1.0', 'utf-8');
+        $dom = new \DOMDocument('1.0', 'utf-8');
         $dom->formatOutput = true;
 
         $xliff = $dom->appendChild($dom->createElement('xliff'));

@@ -54,7 +54,10 @@ class UsernameNotFoundException extends AuthenticationException
      */
     public function serialize()
     {
-        return serialize(array($this->username, parent::serialize(),));
+        return serialize(array(
+            $this->username,
+            parent::serialize(),
+        ));
     }
 
     /**

@@ -5231,7 +5231,7 @@ angular.module('ui.grid')
             var listener = {handler: handler, dereg: dereg, eventId: eventId, scope: scope};
             self.listeners.push(listener);
 
-            //destroy tracking when scope is destroyed
+            //destroy informe when scope is destroyed
             //wanted to remove the listener from the array but angular does
             //strange things in scope.$destroy so I could not access the listener array
             scope.$on('$destroy', function() {
@@ -15993,7 +15993,7 @@ module.filter('px', function() {
    * @description
    *
    *  # ui.grid.rowEdit
-   * This module extends the edit feature to provide tracking and saving of rows
+   * This module extends the edit feature to provide informe and saving of rows
    * of data.  The tutorial provides more information on how this feature is best
    * used {@link tutorial/205_row_editable here}.
    * <br/>

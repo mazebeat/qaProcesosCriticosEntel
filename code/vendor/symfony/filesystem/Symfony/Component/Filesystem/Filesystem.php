@@ -328,13 +328,13 @@ class Filesystem
     {
         // Normalize separators on Windows
         if ('\\' === DIRECTORY_SEPARATOR) {
-            $endPath   = strtr($endPath, '\\', '/');
+            $endPath = strtr($endPath, '\\', '/');
             $startPath = strtr($startPath, '\\', '/');
         }
 
         // Split the paths into arrays
         $startPathArr = explode('/', trim($startPath, '/'));
-        $endPathArr   = explode('/', trim($endPath, '/'));
+        $endPathArr = explode('/', trim($endPath, '/'));
 
         // Find for which directory the common path stops
         $index = 0;
@@ -351,7 +351,7 @@ class Filesystem
         $endPathRemainder = implode('/', array_slice($endPathArr, $index));
 
         // Construct $endPath from traversing to the common path, then to the remaining $endPath
-        $relativePath = $traverser . (strlen($endPathRemainder) > 0 ? $endPathRemainder . '/' : '');
+        $relativePath = $traverser.(strlen($endPathRemainder) > 0 ? $endPathRemainder.'/' : '');
 
         return (strlen($relativePath) === 0) ? './' : $relativePath;
     }
@@ -379,7 +379,7 @@ class Filesystem
         if ($this->exists($targetDir) && isset($options['delete']) && $options['delete']) {
             $deleteIterator = $iterator;
             if (null === $deleteIterator) {
-                $flags          = \FilesystemIterator::SKIP_DOTS;
+                $flags = \FilesystemIterator::SKIP_DOTS;
                 $deleteIterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($targetDir, $flags), \RecursiveIteratorIterator::CHILD_FIRST);
             }
             foreach ($deleteIterator as $file) {
@@ -396,7 +396,7 @@ class Filesystem
         }
 
         if (null === $iterator) {
-            $flags    = $copyOnWindows ? \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::FOLLOW_SYMLINKS : \FilesystemIterator::SKIP_DOTS;
+            $flags = $copyOnWindows ? \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::FOLLOW_SYMLINKS : \FilesystemIterator::SKIP_DOTS;
             $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($originDir, $flags), \RecursiveIteratorIterator::SELF_FIRST);
         }
 
@@ -438,7 +438,12 @@ class Filesystem
      */
     public function isAbsolutePath($file)
     {
-        if (strspn($file, '/\\', 0, 1) || (strlen($file) > 3 && ctype_alpha($file[0]) && substr($file, 1, 1) === ':' && (strspn($file, '/\\', 2, 1))) || null !== parse_url($file, PHP_URL_SCHEME)
+        if (strspn($file, '/\\', 0, 1)
+            || (strlen($file) > 3 && ctype_alpha($file[0])
+                && substr($file, 1, 1) === ':'
+                && (strspn($file, '/\\', 2, 1))
+            )
+            || null !== parse_url($file, PHP_URL_SCHEME)
         ) {
             return true;
         }

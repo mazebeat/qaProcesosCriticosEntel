@@ -18,15 +18,16 @@ class AdminController extends ApiController
 	/**
 	 * @return mixed
 	 */
-	public function index()
+	public function adminUsuarios()
 	{
-		return View::make('dashboard.index');
+		return View::make('dashboard.admin.users');
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function authUser() {
-		return Session::get('user', array());
+	public function adminCargaPlanes()
+	{
+		return View::make('dashboard.admin.loaddata');
 	}
 }

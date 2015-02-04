@@ -56,11 +56,11 @@ class Session implements SessionInterface, \IteratorAggregate, \Countable
     {
         $this->storage = $storage ?: new NativeSessionStorage();
 
-        $attributes          = $attributes ?: new AttributeBag();
+        $attributes = $attributes ?: new AttributeBag();
         $this->attributeName = $attributes->getName();
         $this->registerBag($attributes);
 
-        $flashes         = $flashes ?: new FlashBag();
+        $flashes = $flashes ?: new FlashBag();
         $this->flashName = $flashes->getName();
         $this->registerBag($flashes);
     }

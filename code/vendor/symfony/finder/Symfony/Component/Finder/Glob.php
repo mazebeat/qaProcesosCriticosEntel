@@ -38,7 +38,7 @@ class Glob
     /**
      * Returns a regexp which is the equivalent of the glob pattern.
      *
-     * @param string $glob The glob pattern
+     * @param string $glob                The glob pattern
      * @param bool   $strictLeadingDot
      * @param bool   $strictWildcardSlash
      *
@@ -47,10 +47,10 @@ class Glob
     public static function toRegex($glob, $strictLeadingDot = true, $strictWildcardSlash = true)
     {
         $firstByte = true;
-        $escaping  = false;
+        $escaping = false;
         $inCurlies = 0;
-        $regex     = '';
-        $sizeGlob  = strlen($glob);
+        $regex = '';
+        $sizeGlob = strlen($glob);
         for ($i = 0; $i < $sizeGlob; $i++) {
             $car = $glob[$i];
             if ($firstByte) {
@@ -98,6 +98,6 @@ class Glob
             $escaping = false;
         }
 
-        return '#^' . $regex . '$#';
+        return '#^'.$regex.'$#';
     }
 }

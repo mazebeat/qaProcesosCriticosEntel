@@ -1255,7 +1255,7 @@
      *   created in "strict-di" mode. This means that the application will fail to invoke functions which
      *   do not use explicit function annotation (and are thus unsuitable for minification), as described
      *   in {@link guide/di the Dependency Injection guide}, and useful debugging info will assist in
-     *   tracking down the root of these bugs.
+     *   informe down the root of these bugs.
      *
      * @description
      *
@@ -3724,7 +3724,7 @@
 
      * @example
      *
-     * The following example shows how to create a simple event tracking service and register it using
+     * The following example shows how to create a simple event informe service and register it using
      * {@link auto.$provide#provider $provide.provider()}.
      *
      * ```js
@@ -3774,7 +3774,7 @@
  *      expect(eventTracker.event('login')).toEqual(2);
  *    }));
  *
- *    it('saves to the tracking url', inject(function(eventTracker, $http) {
+ *    it('saves to the informe url', inject(function(eventTracker, $http) {
  *      postSpy = spyOn($http, 'post');
  *      eventTracker.event('login');
  *      eventTracker.save();
@@ -24018,12 +24018,12 @@
      *
      *     For example: `(name, age) in {'adam':10, 'amalie':12}`.
      *
-     *   * `variable in expression track by tracking_expression` – You can also provide an optional tracking function
-     *     which can be used to associate the objects in the collection with the DOM elements. If no tracking function
+     *   * `variable in expression track by tracking_expression` – You can also provide an optional informe function
+     *     which can be used to associate the objects in the collection with the DOM elements. If no informe function
      *     is specified the ng-repeat associates elements by identity in the collection. It is an error to have
-     *     more than one tracking function to resolve to the same key. (This would mean that two distinct objects are
+     *     more than one informe function to resolve to the same key. (This would mean that two distinct objects are
      *     mapped to the same DOM element, which is not possible.)  Filters should be applied to the expression,
-     *     before specifying a tracking expression.
+     *     before specifying a informe expression.
      *
      *     For example: `item in items` is equivalent to `item in items track by $id(item)`. This implies that the DOM elements
      *     will be associated by item identity in the array.
@@ -24038,7 +24038,7 @@
      *     property is same.
      *
      *     For example: `item in items | filter:searchText track by item.id` is a pattern that might be used to apply a filter
-     *     to items in conjunction with a tracking expression.
+     *     to items in conjunction with a informe expression.
      *
      *   * `variable in expression as alias_expression` – You can also provide an optional alias expression which will then store the
      *     intermediate results of the repeater after the filters have been applied. Typically this is used to render a special message
@@ -25547,7 +25547,7 @@
 
                                 selectedSet = new HashMap([]);
                                 for (var trackIndex = 0; trackIndex < viewValue.length; trackIndex++) {
-                                    // tracking by key
+                                    // informe by key
                                     selectedSet.put(callExpression(trackFn, null, viewValue[trackIndex]), true);
                                 }
                             } else {

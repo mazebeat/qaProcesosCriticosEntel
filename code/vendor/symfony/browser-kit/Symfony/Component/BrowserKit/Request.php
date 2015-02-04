@@ -43,13 +43,13 @@ class Request
      */
     public function __construct($uri, $method, array $parameters = array(), array $files = array(), array $cookies = array(), array $server = array(), $content = null)
     {
-        $this->uri        = $uri;
-        $this->method     = $method;
+        $this->uri = $uri;
+        $this->method = $method;
         $this->parameters = $parameters;
-        $this->files      = $files;
-        $this->cookies    = $cookies;
-        $this->server     = $server;
-        $this->content    = $content;
+        $this->files = $files;
+        $this->cookies = $cookies;
+        $this->server = $server;
+        $this->content = $content;
     }
 
     /**

@@ -33,9 +33,9 @@ class MessageDigestPasswordEncoder extends BasePasswordEncoder
      */
     public function __construct($algorithm = 'sha512', $encodeHashAsBase64 = true, $iterations = 5000)
     {
-        $this->algorithm          = $algorithm;
+        $this->algorithm = $algorithm;
         $this->encodeHashAsBase64 = $encodeHashAsBase64;
-        $this->iterations         = $iterations;
+        $this->iterations = $iterations;
     }
 
     /**
@@ -56,7 +56,7 @@ class MessageDigestPasswordEncoder extends BasePasswordEncoder
 
         // "stretch" hash
         for ($i = 1; $i < $this->iterations; $i++) {
-            $digest = hash($this->algorithm, $digest . $salted, true);
+            $digest = hash($this->algorithm, $digest.$salted, true);
         }
 
         return $this->encodeHashAsBase64 ? base64_encode($digest) : bin2hex($digest);

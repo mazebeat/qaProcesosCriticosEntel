@@ -108,7 +108,7 @@ class ControllerResolver implements ControllerResolverInterface
     protected function doGetArguments(Request $request, $controller, array $parameters)
     {
         $attributes = $request->attributes->all();
-        $arguments  = array();
+        $arguments = array();
         foreach ($parameters as $param) {
             if (array_key_exists($param->name, $attributes)) {
                 $arguments[] = $attributes[$param->name];

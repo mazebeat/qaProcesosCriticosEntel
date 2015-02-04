@@ -33,8 +33,8 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
      */
     public function __construct($dsn, $username = '', $password = '', $lifetime = 86400)
     {
-        $this->dsn      = $dsn;
-        $this->lifetime = (int)$lifetime;
+        $this->dsn = $dsn;
+        $this->lifetime = (int) $lifetime;
     }
 
     /**
@@ -50,7 +50,7 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
         }
 
         $profileList = explode("\n", $indexContent);
-        $result      = array();
+        $result = array();
 
         foreach ($profileList as $item) {
             if ($limit === 0) {
@@ -63,7 +63,7 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
 
             list($itemToken, $itemIp, $itemMethod, $itemUrl, $itemTime, $itemParent) = explode("\t", $item, 6);
 
-            $itemTime = (int)$itemTime;
+            $itemTime = (int) $itemTime;
 
             if ($ip && false === strpos($itemIp, $ip) || $url && false === strpos($itemUrl, $url) || $method && false === strpos($itemMethod, $method)) {
                 continue;
@@ -77,7 +77,14 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
                 continue;
             }
 
-            $result[$itemToken] = array('token' => $itemToken, 'ip' => $itemIp, 'method' => $itemMethod, 'url' => $itemUrl, 'time' => $itemTime, 'parent' => $itemParent,);
+            $result[$itemToken] = array(
+                'token' => $itemToken,
+                'ip' => $itemIp,
+                'method' => $itemMethod,
+                'url' => $itemUrl,
+                'time' => $itemTime,
+                'parent' => $itemParent,
+            );
             --$limit;
         }
 
@@ -144,9 +151,16 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
      */
     public function write(Profile $profile)
     {
-        $data = array('token'               => $profile->getToken(), 'parent' => $profile->getParentToken(), 'children' => array_map(function ($p) {
-            return $p->getToken();
-        }, $profile->getChildren()), 'data' => $profile->getCollectors(), 'ip' => $profile->getIp(), 'method' => $profile->getMethod(), 'url' => $profile->getUrl(), 'time' => $profile->getTime(),);
+        $data = array(
+            'token' => $profile->getToken(),
+            'parent' => $profile->getParentToken(),
+            'children' => array_map(function ($p) { return $p->getToken(); }, $profile->getChildren()),
+            'data' => $profile->getCollectors(),
+            'ip' => $profile->getIp(),
+            'method' => $profile->getMethod(),
+            'url' => $profile->getUrl(),
+            'time' => $profile->getTime(),
+        );
 
         $profileIndexed = false !== $this->getValue($this->getItemName($profile->getToken()));
 
@@ -155,7 +169,14 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
                 // Add to index
                 $indexName = $this->getIndexName();
 
-                $indexRow = implode("\t", array($profile->getToken(), $profile->getIp(), $profile->getMethod(), $profile->getUrl(), $profile->getTime(), $profile->getParentToken(),)) . "\n";
+                $indexRow = implode("\t", array(
+                    $profile->getToken(),
+                    $profile->getIp(),
+                    $profile->getMethod(),
+                    $profile->getUrl(),
+                    $profile->getTime(),
+                    $profile->getParentToken(),
+                ))."\n";
 
                 return $this->appendValue($indexName, $indexRow, $this->lifetime);
             }
@@ -247,7 +268,7 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
      */
     private function getItemName($token)
     {
-        $name = self::TOKEN_PREFIX . $token;
+        $name = self::TOKEN_PREFIX.$token;
 
         if ($this->isItemNameValid($name)) {
             return $name;
@@ -263,7 +284,7 @@ abstract class BaseMemcacheProfilerStorage implements ProfilerStorageInterface
      */
     private function getIndexName()
     {
-        $name = self::TOKEN_PREFIX . 'index';
+        $name = self::TOKEN_PREFIX.'index';
 
         if ($this->isItemNameValid($name)) {
             return $name;

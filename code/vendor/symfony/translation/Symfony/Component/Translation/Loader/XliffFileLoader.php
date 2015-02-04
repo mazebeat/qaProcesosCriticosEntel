@@ -53,7 +53,7 @@ class XliffFileLoader implements LoaderInterface
             }
 
             $source = isset($attributes['resname']) && $attributes['resname'] ? $attributes['resname'] : $translation->source;
-            $target = (string)$translation->target;
+            $target = (string) $translation->target;
 
             // If the xlf file has another encoding specified, try to convert it because
             // simple_xml will always return utf-8 encoded values
@@ -67,7 +67,7 @@ class XliffFileLoader implements LoaderInterface
                 }
             }
 
-            $catalogue->set((string)$source, $target, $domain);
+            $catalogue->set((string) $source, $target, $domain);
         }
         $catalogue->addResource(new FileResource($resource));
 
@@ -95,8 +95,8 @@ class XliffFileLoader implements LoaderInterface
 
         $internalErrors = libxml_use_internal_errors(true);
 
-        $location = str_replace('\\', '/', __DIR__) . '/schema/dic/xliff-core/xml.xsd';
-        $parts    = explode('/', $location);
+        $location = str_replace('\\', '/', __DIR__).'/schema/dic/xliff-core/xml.xsd';
+        $parts = explode('/', $location);
         if (0 === stripos($location, 'phar://')) {
             $tmpfile = tempnam(sys_get_temp_dir(), 'sf2');
             if ($tmpfile) {
@@ -104,10 +104,10 @@ class XliffFileLoader implements LoaderInterface
                 $parts = explode('/', str_replace('\\', '/', $tmpfile));
             }
         }
-        $drive    = '\\' === DIRECTORY_SEPARATOR ? array_shift($parts) . '/' : '';
-        $location = 'file:///' . $drive . implode('/', array_map('rawurlencode', $parts));
+        $drive = '\\' === DIRECTORY_SEPARATOR ? array_shift($parts).'/' : '';
+        $location = 'file:///'.$drive.implode('/', array_map('rawurlencode', $parts));
 
-        $source = file_get_contents(__DIR__ . '/schema/dic/xliff-core/xliff-core-1.2-strict.xsd');
+        $source = file_get_contents(__DIR__.'/schema/dic/xliff-core/xliff-core-1.2-strict.xsd');
         $source = str_replace('http://www.w3.org/2001/xml.xsd', $location, $source);
 
         if (!@$dom->schemaValidateSource($source)) {
@@ -133,7 +133,14 @@ class XliffFileLoader implements LoaderInterface
     {
         $errors = array();
         foreach (libxml_get_errors() as $error) {
-            $errors[] = sprintf('[%s %s] %s (in %s - line %d, column %d)', LIBXML_ERR_WARNING == $error->level ? 'WARNING' : 'ERROR', $error->code, trim($error->message), $error->file ? $error->file : 'n/a', $error->line, $error->column);
+            $errors[] = sprintf('[%s %s] %s (in %s - line %d, column %d)',
+                LIBXML_ERR_WARNING == $error->level ? 'WARNING' : 'ERROR',
+                $error->code,
+                trim($error->message),
+                $error->file ? $error->file : 'n/a',
+                $error->line,
+                $error->column
+            );
         }
 
         libxml_clear_errors();

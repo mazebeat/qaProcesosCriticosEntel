@@ -37,7 +37,7 @@ class ExceptionHandler
 
     public function __construct($debug = true, $charset = 'UTF-8')
     {
-        $this->debug   = $debug;
+        $this->debug = $debug;
         $this->charset = $charset;
     }
 
@@ -69,7 +69,7 @@ class ExceptionHandler
         if (null !== $handler && !is_callable($handler)) {
             throw new \LogicException('The exception handler must be a valid PHP callable.');
         }
-        $old           = $this->handler;
+        $old = $this->handler;
         $this->handler = $handler;
 
         return $old;
@@ -156,7 +156,7 @@ class ExceptionHandler
         if (!headers_sent()) {
             header(sprintf('HTTP/1.0 %s', $exception->getStatusCode()));
             foreach ($exception->getHeaders() as $name => $value) {
-                header($name . ': ' . $value, false);
+                header($name.': '.$value, false);
             }
         }
 
@@ -202,8 +202,8 @@ class ExceptionHandler
                 $count = count($exception->getAllPrevious());
                 $total = $count + 1;
                 foreach ($exception->toArray() as $position => $e) {
-                    $ind     = $count - $position + 1;
-                    $class   = $this->abbrClass($e['class']);
+                    $ind = $count - $position + 1;
+                    $class = $this->abbrClass($e['class']);
                     $message = nl2br($e['message']);
                     $content .= sprintf(<<<EOF
                         <div class="block_exception clear_fix">
@@ -370,11 +370,11 @@ EOF;
             } elseif ('null' === $item[0]) {
                 $formattedValue = '<em>null</em>';
             } elseif ('boolean' === $item[0]) {
-                $formattedValue = '<em>' . strtolower(var_export($item[1], true)) . '</em>';
+                $formattedValue = '<em>'.strtolower(var_export($item[1], true)).'</em>';
             } elseif ('resource' === $item[0]) {
                 $formattedValue = '<em>resource</em>';
             } else {
-                $formattedValue = str_replace("\n", '', var_export(htmlspecialchars((string)$item[1], $flags, $this->charset), true));
+                $formattedValue = str_replace("\n", '', var_export(htmlspecialchars((string) $item[1], $flags, $this->charset), true));
             }
 
             $result[] = is_int($key) ? $formattedValue : sprintf("'%s' => %s", $key, $formattedValue);

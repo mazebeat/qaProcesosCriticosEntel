@@ -87,17 +87,17 @@ class TokenizerPatterns
     public function __construct()
     {
         $this->unicodeEscapePattern = '\\\\([0-9a-f]{1,6})(?:\r\n|[ \n\r\t\f])?';
-        $this->simpleEscapePattern  = '\\\\(.)';
+        $this->simpleEscapePattern = '\\\\(.)';
         $this->newLineEscapePattern = '\\\\(?:\n|\r\n|\r|\f)';
-        $this->escapePattern        = $this->unicodeEscapePattern . '|\\\\[^\n\r\f0-9a-f]';
-        $this->stringEscapePattern  = $this->newLineEscapePattern . '|' . $this->escapePattern;
-        $this->nonAsciiPattern      = '[^\x00-\x7F]';
-        $this->nmCharPattern        = '[_a-z0-9-]|' . $this->escapePattern . '|' . $this->nonAsciiPattern;
-        $this->nmStartPattern       = '[_a-z]|' . $this->escapePattern . '|' . $this->nonAsciiPattern;
-        $this->identifierPattern    = '(?:' . $this->nmStartPattern . ')(?:' . $this->nmCharPattern . ')*';
-        $this->hashPattern          = '#((?:' . $this->nmCharPattern . ')+)';
-        $this->numberPattern        = '[+-]?(?:[0-9]*\.[0-9]+|[0-9]+)';
-        $this->quotedStringPattern  = '([^\n\r\f%s]|' . $this->stringEscapePattern . ')*';
+        $this->escapePattern = $this->unicodeEscapePattern.'|\\\\[^\n\r\f0-9a-f]';
+        $this->stringEscapePattern = $this->newLineEscapePattern.'|'.$this->escapePattern;
+        $this->nonAsciiPattern = '[^\x00-\x7F]';
+        $this->nmCharPattern = '[_a-z0-9-]|'.$this->escapePattern.'|'.$this->nonAsciiPattern;
+        $this->nmStartPattern = '[_a-z]|'.$this->escapePattern.'|'.$this->nonAsciiPattern;
+        $this->identifierPattern = '(?:'.$this->nmStartPattern.')(?:'.$this->nmCharPattern.')*';
+        $this->hashPattern = '#((?:'.$this->nmCharPattern.')+)';
+        $this->numberPattern = '[+-]?(?:[0-9]*\.[0-9]+|[0-9]+)';
+        $this->quotedStringPattern = '([^\n\r\f%s]|'.$this->stringEscapePattern.')*';
     }
 
     /**
@@ -105,7 +105,7 @@ class TokenizerPatterns
      */
     public function getNewLineEscapePattern()
     {
-        return '~^' . $this->newLineEscapePattern . '~';
+        return '~^'.$this->newLineEscapePattern.'~';
     }
 
     /**
@@ -113,7 +113,7 @@ class TokenizerPatterns
      */
     public function getSimpleEscapePattern()
     {
-        return '~^' . $this->simpleEscapePattern . '~';
+        return '~^'.$this->simpleEscapePattern.'~';
     }
 
     /**
@@ -121,7 +121,7 @@ class TokenizerPatterns
      */
     public function getUnicodeEscapePattern()
     {
-        return '~^' . $this->unicodeEscapePattern . '~i';
+        return '~^'.$this->unicodeEscapePattern.'~i';
     }
 
     /**
@@ -129,7 +129,7 @@ class TokenizerPatterns
      */
     public function getIdentifierPattern()
     {
-        return '~^' . $this->identifierPattern . '~i';
+        return '~^'.$this->identifierPattern.'~i';
     }
 
     /**
@@ -137,7 +137,7 @@ class TokenizerPatterns
      */
     public function getHashPattern()
     {
-        return '~^' . $this->hashPattern . '~i';
+        return '~^'.$this->hashPattern.'~i';
     }
 
     /**
@@ -145,7 +145,7 @@ class TokenizerPatterns
      */
     public function getNumberPattern()
     {
-        return '~^' . $this->numberPattern . '~';
+        return '~^'.$this->numberPattern.'~';
     }
 
     /**
@@ -155,6 +155,6 @@ class TokenizerPatterns
      */
     public function getQuotedStringPattern($quote)
     {
-        return '~^' . sprintf($this->quotedStringPattern, $quote) . '~i';
+        return '~^'.sprintf($this->quotedStringPattern, $quote).'~i';
     }
 }

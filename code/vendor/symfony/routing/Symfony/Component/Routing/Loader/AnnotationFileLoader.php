@@ -85,9 +85,9 @@ class AnnotationFileLoader extends FileLoader
      */
     protected function findClass($file)
     {
-        $class     = false;
+        $class = false;
         $namespace = false;
-        $tokens    = token_get_all(file_get_contents($file));
+        $tokens = token_get_all(file_get_contents($file));
         for ($i = 0, $count = count($tokens); $i < $count; $i++) {
             $token = $tokens[$i];
 
@@ -96,7 +96,7 @@ class AnnotationFileLoader extends FileLoader
             }
 
             if (true === $class && T_STRING === $token[0]) {
-                return $namespace . '\\' . $token[1];
+                return $namespace.'\\'.$token[1];
             }
 
             if (true === $namespace && T_STRING === $token[0]) {

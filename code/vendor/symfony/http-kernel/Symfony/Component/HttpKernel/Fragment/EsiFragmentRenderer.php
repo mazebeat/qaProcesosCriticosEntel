@@ -40,9 +40,9 @@ class EsiFragmentRenderer extends RoutableFragmentRenderer
      */
     public function __construct(Esi $esi = null, InlineFragmentRenderer $inlineStrategy, UriSigner $signer = null)
     {
-        $this->esi            = $esi;
+        $this->esi = $esi;
         $this->inlineStrategy = $inlineStrategy;
-        $this->signer         = $signer;
+        $this->signer = $signer;
     }
 
     /**

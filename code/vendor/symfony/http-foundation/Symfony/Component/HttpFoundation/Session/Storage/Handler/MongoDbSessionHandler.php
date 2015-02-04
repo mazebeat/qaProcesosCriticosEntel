@@ -61,7 +61,11 @@ class MongoDbSessionHandler implements \SessionHandlerInterface
 
         $this->mongo = $mongo;
 
-        $this->options = array_merge(array('id_field' => '_id', 'data_field' => 'data', 'time_field' => 'time',), $options);
+        $this->options = array_merge(array(
+            'id_field' => '_id',
+            'data_field' => 'data',
+            'time_field' => 'time',
+        ), $options);
     }
 
     /**
@@ -85,7 +89,9 @@ class MongoDbSessionHandler implements \SessionHandlerInterface
      */
     public function destroy($sessionId)
     {
-        $this->getCollection()->remove(array($this->options['id_field'] => $sessionId,));
+        $this->getCollection()->remove(array(
+            $this->options['id_field'] => $sessionId,
+        ));
 
         return true;
     }
@@ -105,7 +111,9 @@ class MongoDbSessionHandler implements \SessionHandlerInterface
          */
         $time = new \MongoDate(time() - $maxlifetime);
 
-        $this->getCollection()->remove(array($this->options['time_field'] => array('$lt' => $time),));
+        $this->getCollection()->remove(array(
+            $this->options['time_field'] => array('$lt' => $time),
+        ));
 
         return true;
     }
@@ -115,7 +123,14 @@ class MongoDbSessionHandler implements \SessionHandlerInterface
      */
     public function write($sessionId, $data)
     {
-        $this->getCollection()->update(array($this->options['id_field'] => $sessionId), array('$set' => array($this->options['data_field'] => new \MongoBinData($data, \MongoBinData::BYTE_ARRAY), $this->options['time_field'] => new \MongoDate(),)), array('upsert' => true, 'multiple' => false));
+        $this->getCollection()->update(
+            array($this->options['id_field'] => $sessionId),
+            array('$set' => array(
+                $this->options['data_field'] => new \MongoBinData($data, \MongoBinData::BYTE_ARRAY),
+                $this->options['time_field'] => new \MongoDate(),
+            )),
+            array('upsert' => true, 'multiple' => false)
+        );
 
         return true;
     }
@@ -125,7 +140,9 @@ class MongoDbSessionHandler implements \SessionHandlerInterface
      */
     public function read($sessionId)
     {
-        $dbData = $this->getCollection()->findOne(array($this->options['id_field'] => $sessionId,));
+        $dbData = $this->getCollection()->findOne(array(
+            $this->options['id_field'] => $sessionId,
+        ));
 
         return null === $dbData ? '' : $dbData[$this->options['data_field']]->bin;
     }

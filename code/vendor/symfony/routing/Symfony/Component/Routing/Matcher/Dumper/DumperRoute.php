@@ -38,7 +38,7 @@ class DumperRoute
      */
     public function __construct($name, Route $route)
     {
-        $this->name  = $name;
+        $this->name = $name;
         $this->route = $route;
     }
 

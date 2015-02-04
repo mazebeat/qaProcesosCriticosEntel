@@ -100,30 +100,30 @@ class SqliteProfilerStorage extends PdoProfilerStorage
     protected function buildCriteria($ip, $url, $start, $end, $limit, $method)
     {
         $criteria = array();
-        $args     = array();
+        $args = array();
 
         if ($ip = preg_replace('/[^\d\.]/', '', $ip)) {
-            $criteria[]  = 'ip LIKE :ip';
-            $args[':ip'] = '%' . $ip . '%';
+            $criteria[] = 'ip LIKE :ip';
+            $args[':ip'] = '%'.$ip.'%';
         }
 
         if ($url) {
-            $criteria[]   = 'url LIKE :url ESCAPE "\"';
-            $args[':url'] = '%' . addcslashes($url, '%_\\') . '%';
+            $criteria[] = 'url LIKE :url ESCAPE "\"';
+            $args[':url'] = '%'.addcslashes($url, '%_\\').'%';
         }
 
         if ($method) {
-            $criteria[]      = 'method = :method';
+            $criteria[] = 'method = :method';
             $args[':method'] = $method;
         }
 
         if (!empty($start)) {
-            $criteria[]     = 'time >= :start';
+            $criteria[] = 'time >= :start';
             $args[':start'] = $start;
         }
 
         if (!empty($end)) {
-            $criteria[]   = 'time <= :end';
+            $criteria[] = 'time <= :end';
             $args[':end'] = $end;
         }
 

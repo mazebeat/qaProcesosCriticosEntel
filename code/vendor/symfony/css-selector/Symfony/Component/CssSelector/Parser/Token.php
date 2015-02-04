@@ -51,8 +51,8 @@ class Token
      */
     public function __construct($type, $value, $position)
     {
-        $this->type     = $type;
-        $this->value    = $value;
+        $this->type = $type;
+        $this->value = $value;
         $this->position = $position;
     }
 

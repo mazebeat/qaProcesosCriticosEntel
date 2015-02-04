@@ -66,7 +66,7 @@ class Glob implements ValueInterface
      */
     public function prepend($expr)
     {
-        $this->pattern = $expr . $this->pattern;
+        $this->pattern = $expr.$this->pattern;
 
         return $this;
     }
@@ -88,7 +88,8 @@ class Glob implements ValueInterface
      */
     public function isExpandable()
     {
-        return false !== strpos($this->pattern, '{') && false !== strpos($this->pattern, '}');
+        return false !== strpos($this->pattern, '{')
+            && false !== strpos($this->pattern, '}');
     }
 
     /**
@@ -100,10 +101,10 @@ class Glob implements ValueInterface
     public function toRegex($strictLeadingDot = true, $strictWildcardSlash = true)
     {
         $firstByte = true;
-        $escaping  = false;
+        $escaping = false;
         $inCurlies = 0;
-        $regex     = '';
-        $sizeGlob  = strlen($this->pattern);
+        $regex = '';
+        $sizeGlob = strlen($this->pattern);
         for ($i = 0; $i < $sizeGlob; $i++) {
             $car = $this->pattern[$i];
             if ($firstByte) {
@@ -151,6 +152,6 @@ class Glob implements ValueInterface
             $escaping = false;
         }
 
-        return new Regex('^' . $regex . '$');
+        return new Regex('^'.$regex.'$');
     }
 }

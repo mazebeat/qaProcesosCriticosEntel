@@ -77,7 +77,7 @@ class Parser implements ParserInterface
                 throw SyntaxErrorException::stringAsFunctionArgument();
             }
 
-            return (int)$string;
+            return (int) $string;
         };
 
         switch (true) {
@@ -94,7 +94,10 @@ class Parser implements ParserInterface
         $split = explode('n', $joined);
         $first = isset($split[0]) ? $split[0] : null;
 
-        return array($first ? ('-' === $first || '+' === $first ? $int($first . '1') : $int($first)) : 1, isset($split[1]) && $split[1] ? $int($split[1]) : 0,);
+        return array(
+            $first ? ('-' === $first || '+' === $first ? $int($first.'1') : $int($first)) : 1,
+            isset($split[1]) && $split[1] ? $int($split[1]) : 0,
+        );
     }
 
     /**
@@ -177,12 +180,15 @@ class Parser implements ParserInterface
         $stream->skipWhitespace();
 
         $selectorStart = count($stream->getUsed());
-        $result        = $this->parseElementNode($stream);
+        $result = $this->parseElementNode($stream);
         $pseudoElement = null;
 
         while (true) {
             $peek = $stream->getPeek();
-            if ($peek->isWhitespace() || $peek->isFileEnd() || $peek->isDelimiter(array(',', '+', '>', '~')) || ($insideNegation && $peek->isDelimiter(array(')')))
+            if ($peek->isWhitespace()
+                || $peek->isFileEnd()
+                || $peek->isDelimiter(array(',', '+', '>', '~'))
+                || ($insideNegation && $peek->isDelimiter(array(')')))
             ) {
                 break;
             }
@@ -246,13 +252,16 @@ class Parser implements ParserInterface
                     $result = new Node\NegationNode($result, $argument);
                 } else {
                     $arguments = array();
-                    $next      = null;
+                    $next = null;
 
                     while (true) {
                         $stream->skipWhitespace();
                         $next = $stream->getNext();
 
-                        if ($next->isIdentifier() || $next->isString() || $next->isNumber() || $next->isDelimiter(array('+', '-'))
+                        if ($next->isIdentifier()
+                            || $next->isString()
+                            || $next->isNumber()
+                            || $next->isDelimiter(array('+', '-'))
                         ) {
                             $arguments[] = $next;
                         } elseif ($next->isDelimiter(array(')'))) {
@@ -303,7 +312,7 @@ class Parser implements ParserInterface
                 $stream->getNext();
                 $element = $stream->getNextIdentifierOrStar();
             } else {
-                $element   = $namespace;
+                $element = $namespace;
                 $namespace = null;
             }
         } else {
@@ -342,7 +351,7 @@ class Parser implements ParserInterface
             } else {
                 $namespace = $attribute;
                 $attribute = $stream->getNextIdentifier();
-                $operator  = null;
+                $operator = null;
             }
         } else {
             $namespace = $operator = null;
@@ -356,9 +365,10 @@ class Parser implements ParserInterface
                 return new Node\AttributeNode($selector, $namespace, $attribute, 'exists', null);
             } elseif ($next->isDelimiter(array('='))) {
                 $operator = '=';
-            } elseif ($next->isDelimiter(array('^', '$', '*', '~', '|', '!')) && $stream->getPeek()->isDelimiter(array('='))
+            } elseif ($next->isDelimiter(array('^', '$', '*', '~', '|', '!'))
+                && $stream->getPeek()->isDelimiter(array('='))
             ) {
-                $operator = $next->getValue() . '=';
+                $operator = $next->getValue().'=';
                 $stream->getNext();
             } else {
                 throw SyntaxErrorException::unexpectedToken('operator', $next);
@@ -370,7 +380,7 @@ class Parser implements ParserInterface
 
         if ($value->isNumber()) {
             // if the value is a number, it's casted into a string
-            $value = new Token(Token::TYPE_STRING, (string)$value->getValue(), $value->getPosition());
+            $value = new Token(Token::TYPE_STRING, (string) $value->getValue(), $value->getPosition());
         }
 
         if (!($value->isIdentifier() || $value->isString())) {

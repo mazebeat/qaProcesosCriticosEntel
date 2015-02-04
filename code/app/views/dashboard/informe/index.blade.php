@@ -1,171 +1,137 @@
 @extends('layouts.master')
 
 @section('title')
-	Tracking
+	Informes
 @endsection
 
 @section('content')
-	<meta http-equiv="content-type" content="application/vnd.ms-excel; charset=UTF-8">
-	<div ng-controller="trackingController">
+	<div ng-controller="informeController">
 		<div class="row">
 			<div class="col-md-12">
-				<div class="panel panel-danger">
+				<div class="panel panel-default">
 					<div class="panel-heading">
-						Tracking
-                        <span class="tools pull-right">
-                            <a class="fa fa-question" href="#"></a>
-							<a class="fa fa-chevron-down" href="javascript:"></a>
+						Informes
+						<span class="tools pull-right">
+						<a class="fa fa-question" href="#"></a>
+						<a class="fa fa-chevron-down" href="javascript:"></a>
 						</span>
 					</div>
 					<div class="panel-body">
-						<form role="form" name="trackingForm" ng-submit="submit()">
-							<div class="row">
-								<div class="form-group col-xs-3 col-md-3"
-								     ng-class="{ 'has-error' : trackingForm.fecha.$invalid && !trackingForm.fecha.$pristine }">
-									{{ Form::label('fecha', 'Fecha (*)', array('class' => 'control-label')) }}
-									<input type="text" name="fecha" value="{{ Input::old('fecha') }}" size="16"
-									       ng-model='tracking.fecha'
-									       data-date-minviewmode="months" data-date-viewmode="months"
-									       data-date-format="yyyy-mm"
-									       class="form-control form-control-inline input-medium default-date-picker ng-dirty ng-invalid"
-									       autocomplete='off'
-									       required>
-									<small class="help-block">{{ $errors->first('fecha') }}</small>
-								</div>
-								<div class="form-group col-xs-3 col-md-3"
-								     ng-class="{ 'has-error' : trackingForm.campana.$invalid && !trackingForm.campana.$pristine }">
-									{{ Form::label('negocio', 'Negocio (*)', array('class' => 'control-label')) }}
-									<select name="negocio" class="form-control ng-dirty ng-invalid"
-									        ng-model="tracking.negocio"
-									        ng-options="item as item for item in negocios"
-									        ng-change="loadCamps()"
-									        required>
-										<option value="" selected>Seleccione un Negocio</option>
-									</select>
-									<small class="help-block">{{ $errors->first('campana') }}</small>
-								</div>
-								<div class="form-group col-xs-3 col-md-3"
-								     ng-class="{ 'has-error' : trackingForm.campana.$invalid && !trackingForm.campana.$pristine }">
-									{{ Form::label('campana', 'Campaña', array('class' => 'control-label')) }}
-									<select name="campana" class="form-control ng-dirty ng-invalid"
-									        ng-model="tracking.campana"
-									        ng-options="item.id as item.campana for item in campanas">
-										<option value="" selected>Seleccione una Campaña</option>
-									</select>
-									<small class="help-block">{{ $errors->first('campana') }}</small>
-								</div>
-								<div class="form-group col-xs-1 col-md-1" style="margin-top: 24px;">
-									{{ Form::label('consultar', 'Consultar', array('class' => 'control-label sr-only' )) }}
-									<button id="trackingFormButton" type="submit" class="ladda-button btn btn-success"
-									        data-style="zoom-in"
-									        ng-disabled="trackingForm.$invalid">
-										Consultar
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<section class="panel" ng-show="result">
-					<header class="panel-heading custom-tab dark-tab">
-						<ul class="nav nav-tabs">
-							<li class="active">
-								<a data-toggle="tab" href="#tabla">Detalle</a>
-							</li>
-							<li class="">
-								<a data-toggle="tab" href="#grafico">Gráfico</a>
-							</li>
-							<li class="pull-right"></li>
-						</ul>
-					</header>
-					<div class="panel-body">
-						<div class="tab-content">
-							<div id="tabla" class="tab-pane active">
-								<div id="tablaTracking" class="table-responsive">
-									<table class="table">
-										<thead>
-										<tr>
-											<th></th>
-											<th>Fecha</th>
-											<th>Campaña</th>
-											<th>Ciclo</th>
-											<th>Q doc. Emitidos</th>
-											<th>Q Físicos</th>
-											<th>Q Electrónicos</th>
-											<th>Visualizacion Mail</th>
-											<th>Visualizacion Portal</th>
-											<th>Lecturas Email</th>
-											<th>No Leídos</th>
-											<th>Retenidos</th>
-											<th>Env. Fallidos</th>
-										</tr>
-										</thead>
-										<tbody>
-										<tr ng-repeat="row in result">
-											<td>
-												<a
-														ng-click="descargaExcel()"
-														class="readyDetail ladda-button btn btn-link"
-														data-style="zoom-in">
-														<span class="ladda-label">
-															<i class="fa fa-download fa-fw"></i>
-														</span>
-												</a>
+						<div class="col-md-12">
+							<div class="pull-right">
+								<form action="#" method="get" class="form-inline" role="form">
+									<div class="form-group">
+										<label class="" for="q"><i class="fa fa-filter fa-fw"></i>Filtrar: </label>
 
-												{{--<form method="post" id="FormularioExportacion">--}}
-												{{--<button type="submit" class="botonExcel">Export</button>--}}
-												{{--<input type="hidden" id="fecha" name="fecha"--}}
-												{{--value="@{{ row.fecha }}"/>--}}
-												{{--<input type="hidden" id="idCampana" name="idCampana"--}}
-												{{--value="@{{ row.idCampana }}"/>--}}
-												{{--<input type="hidden" id="campana" name="campana"--}}
-												{{--value="@{{ row.NCampana  }}"/>--}}
-												{{--<input type="hidden" id="datos_a_enviar" name="datos_a_enviar"/>--}}
-												{{--</form>--}}
-											</td>
-											<td>@{{row.ano + '-' + row.mes | date:'yyyy-MM'}}</td>
-											<td>@{{row.nombre_campana}}</td>
-											<td>@{{row.ciclo}}</td>
-											<td>@{{row.qemitidos}}</td>
-											<td>@{{row.qfisicos}}</td>
-											<td>@{{row.qelectronicos}}</td>
-											<td>@{{ 0 }}</td>
-											<td>@{{ 0 }}</td>
-											<td>@{{row.qleidos}}</td>
-											<td>@{{row.qnoleidos}}</td>
-											<td>@{{row.qrebotes}}</td>
-											<td>@{{row.qenviosfallidos}}</td>
-										</tr>
-										</tbody>
-									</table>
-								</div>
+										<div class="input-group">
+											<input class="form-control system-search" id="" name="q" required>
+											<span class="input-group-btn">
+												<button type="submit" class="btn btn-default">
+													<i class="glyphicon glyphicon-search"></i>
+												</button>
+											</span>
+										</div>
+
+									</div>
+								</form>
 							</div>
-							<div id="grafico" class="tab-pane">
-								<div id="resumenTracking"
-								     style="width: 100%; height: 400px;  background-color: #FFFFFF;"></div>
+							<div class="btn-group" role="group" aria-label="...">
+								<button type="button" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i>
+								</button>
+								<button type="button" class="btn btn-info"><i class="fa fa-refresh fa-lg"></i></button>
+								<button type="button" class="btn btn-default"><i class="fa fa-ellipsis-h fa-lg"></i>
+								</button>
 							</div>
 						</div>
-					</div>
-				</section>
-
-				<div id="detailDiv" style="display: none"></div>
-
-				<div class="modal fade" id="mDetail" tabindex="-1" role="dialog" aria-labelledby="mDetailLabel"
-				     aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-											aria-hidden="true">&times;</span></button>
-								<h3 class="modal-title" id="mDetailLabel">Detalle </h3>
-							</div>
-							<div class="modal-body">
-								<h4 class="modal-subtitle text-center" id="mDetailLabel2"></h4>
-
-								<div id="gDetail" style="width: 100%; height: 400px;  background-color: #FFFFFF;"></div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-hover table-list-search">
+									<thead>
+									<tr>
+										<th class="text-center" style="width: 35px;">
+											<i class="fa fa-check fa-lg"></i>
+										</th>
+										<th class="" style="width: 30px;"></th>
+										<th class="filename" style="width: 80%;">Nombre</th>
+										<th class="text-center" style="width: 5%;">Tipo</th>
+										<th class="text-center" style="width: 10%;">Tamaño</th>
+										<th class="text-center" style="width: 50px;"></th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td class="icheck">
+											<div class="square-blue single-row">
+												<div class="checkbox">
+													<input type="checkbox">
+												</div>
+											</div>
+										</td>
+										<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
+										<td class="filename">Informe_Mensual_201501</td>
+										<td class="">XLS</td>
+										<td class="">16 KB</td>
+										<td class="">
+											<button type="button" class="btn btn-info btn-sm">
+												<i class="fa fa-download"></i>
+											</button>
+										</td>
+									</tr>
+									<tr>
+										<td class="icheck">
+											<div class="square-blue single-row">
+												<div class="checkbox">
+													<input type="checkbox">
+												</div>
+											</div>
+										</td>
+										<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
+										<td class="filename">Cargo_Fijo_201501</td>
+										<td class="">XLS</td>
+										<td class="">38 MB</td>
+										<td class="">
+											<button type="button" class="btn btn-info btn-sm">
+												<i class="fa fa-download"></i>
+											</button>
+										</td>
+									</tr>
+									<tr>
+										<td class="icheck">
+											<div class="square-blue single-row">
+												<div class="checkbox">
+													<input type="checkbox">
+												</div>
+											</div>
+										</td>
+										<td class=""><i class="fa fa-file-pdf-o fa-lg"></i></td>
+										<td class="filename">Detalle_Trafico_201502</td>
+										<td class="">PDF</td>
+										<td class="">320 MB</td>
+										<td class="">
+											<button type="button" class="btn btn-info btn-sm">
+												<i class="fa fa-download"></i>
+											</button>
+										</td>
+									</tr>
+									<tr>
+										<td class="icheck">
+											<div class="square-blue single-row">
+												<div class="checkbox">
+													<input type="checkbox">
+												</div>
+											</div>
+										</td>
+										<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
+										<td class="filename">Informe_Anual_2015</td>
+										<td class="">XLS</td>
+										<td class="">96 KB</td>
+										<td class="">
+											<button type="button" class="btn btn-info btn-sm">
+												<i class="fa fa-download"></i>
+											</button>
+										</td>
+									</tr>
+								</table>
 							</div>
 						</div>
 					</div>
@@ -176,8 +142,13 @@
 @endsection
 
 @section('file-style')
+	{{--datepicker--}}
 	{{ HTML::style('js/bootstrap-datepicker/css/datepicker.css') }}
 	{{ HTML::style('js/bootstrap-datepicker/css/datepicker-custom.css') }}
+
+	<!--icheck-->
+	{{ HTML::style('js/iCheck/skins/square/_all.css') }}
+	{{ HTML::style('js/iCheck/skins/square/blue.css') }}
 @endsection
 
 @section('text-style')
@@ -188,6 +159,15 @@
 
 		.table th, .table td {
 			word-wrap: break-word;
+		}
+
+		.table tbody tr td {
+			vertical-align: middle;
+			padding: 5px;
+		}
+
+		.filename {
+			font-weight: bold;
 		}
 	</style>
 @endsection
@@ -203,25 +183,12 @@
 
 	{{--{{ HTML::script('js/excellentexport.min.js') }}--}}
 	{{--{{ HTML::script('js/download.js') }}--}}
+
+	{{--icheck--}}
+	{{ HTML::script('js/iCheck/icheck.min.js') }}
+	{{ HTML::script('js/icheck-init.js') }}
 @endsection
 
 @section('text-script')
-	<script type="text/javascript">
-		var chart = new AmCharts.AmPieChart();
-		var gDetail = new AmCharts.AmPieChart();
-		var readyDetail = Ladda.create(document.querySelector('.readyDetail'));
-		var trackingButton = Ladda.create(document.querySelector('#trackingFormButton'));
-
-		Ladda.bind('.ladda-button');
-
-		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-			var news = $(e.target);
-			var olds = $(e.relatedTarget);
-
-			if (news.attr('href') == '#grafico') {
-				chart.validateNow();
-//                chart.animateAgain();
-			}
-		})
-	</script>
+	<script type="text/javascript"></script>
 @endsection

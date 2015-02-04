@@ -162,7 +162,7 @@ class MockArraySessionStorage implements SessionStorageInterface
             throw new \RuntimeException("Trying to save a session that was not started yet or was already closed");
         }
         // nothing to do since we don't persist the session data
-        $this->closed  = false;
+        $this->closed = false;
         $this->started = false;
     }
 
@@ -257,12 +257,12 @@ class MockArraySessionStorage implements SessionStorageInterface
         $bags = array_merge($this->bags, array($this->metadataBag));
 
         foreach ($bags as $bag) {
-            $key              = $bag->getStorageKey();
+            $key = $bag->getStorageKey();
             $this->data[$key] = isset($this->data[$key]) ? $this->data[$key] : array();
             $bag->initialize($this->data[$key]);
         }
 
         $this->started = true;
-        $this->closed  = false;
+        $this->closed = false;
     }
 }

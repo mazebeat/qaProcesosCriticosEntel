@@ -15,11 +15,11 @@ namespace DebugBar\DataCollector;
  */
 interface Renderable
 {
-	/**
-	 * Returns a hash where keys are control names and their values
-	 * an array of options as defined in {@see DebugBar\JavascriptRenderer::addControl()}
-	 *
-	 * @return array
-	 */
-	function getWidgets();
+    /**
+     * Returns a hash where keys are control names and their values
+     * an array of options as defined in {@see DebugBar\JavascriptRenderer::addControl()}
+     *
+     * @return array
+     */
+    function getWidgets();
 }

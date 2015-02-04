@@ -25,7 +25,6 @@ App::before(function ($request) {
 	$monolog->info($log, compact('bindings', 'time'));
 });
 
-
 App::after(function ($request, $response) {
 	//	if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') || strpos($_SERVER['HTTP_USER_AGENT'], 'Safari')) {
 	//		$response->header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
@@ -105,8 +104,3 @@ Route::filter('csrf', function () {
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
-
-
-
-
-

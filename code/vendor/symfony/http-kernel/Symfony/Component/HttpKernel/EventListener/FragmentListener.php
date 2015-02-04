@@ -42,7 +42,7 @@ class FragmentListener implements EventSubscriberInterface
      */
     public function __construct(UriSigner $signer, $fragmentPath = '/_fragment')
     {
-        $this->signer       = $signer;
+        $this->signer = $signer;
         $this->fragmentPath = $fragmentPath;
     }
 
@@ -80,7 +80,7 @@ class FragmentListener implements EventSubscriberInterface
 
         // is the Request signed?
         // we cannot use $request->getUri() here as we want to work with the original URI (no query string reordering)
-        if ($this->signer->check($request->getSchemeAndHttpHost() . $request->getBaseUrl() . $request->getPathInfo() . (null !== ($qs = $request->server->get('QUERY_STRING')) ? '?' . $qs : ''))) {
+        if ($this->signer->check($request->getSchemeAndHttpHost().$request->getBaseUrl().$request->getPathInfo().(null !== ($qs = $request->server->get('QUERY_STRING')) ? '?'.$qs : ''))) {
             return;
         }
 
@@ -99,6 +99,8 @@ class FragmentListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(KernelEvents::REQUEST => array(array('onKernelRequest', 48)),);
+        return array(
+            KernelEvents::REQUEST => array(array('onKernelRequest', 48)),
+        );
     }
 }

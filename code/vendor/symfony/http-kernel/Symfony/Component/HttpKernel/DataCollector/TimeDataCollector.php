@@ -27,7 +27,7 @@ class TimeDataCollector extends DataCollector implements LateDataCollectorInterf
 
     public function __construct(KernelInterface $kernel = null, $stopwatch = null)
     {
-        $this->kernel    = $kernel;
+        $this->kernel = $kernel;
         $this->stopwatch = $stopwatch;
     }
 
@@ -42,7 +42,11 @@ class TimeDataCollector extends DataCollector implements LateDataCollectorInterf
             $startTime = $request->server->get('REQUEST_TIME_FLOAT', $request->server->get('REQUEST_TIME'));
         }
 
-        $this->data = array('token' => $response->headers->get('X-Debug-Token'), 'start_time' => $startTime * 1000, 'events' => array(),);
+        $this->data = array(
+            'token' => $response->headers->get('X-Debug-Token'),
+            'start_time' => $startTime * 1000,
+            'events' => array(),
+        );
     }
 
     /**

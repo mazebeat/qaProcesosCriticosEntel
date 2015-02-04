@@ -39,7 +39,7 @@ class Response
     public function __construct($content = '', $status = 200, array $headers = array())
     {
         $this->content = $content;
-        $this->status  = $status;
+        $this->status = $status;
         $this->headers = $headers;
     }
 
@@ -61,7 +61,7 @@ class Response
             }
         }
 
-        return $headers . "\n" . $this->content;
+        return $headers."\n".$this->content;
     }
 
     /**

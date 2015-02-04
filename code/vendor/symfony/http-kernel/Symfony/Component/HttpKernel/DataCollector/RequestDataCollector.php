@@ -40,7 +40,7 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
     public function collect(Request $request, Response $response, \Exception $exception = null)
     {
         $responseHeaders = $response->headers->all();
-        $cookies         = array();
+        $cookies = array();
         foreach ($response->headers->getCookies() as $cookie) {
             $cookies[] = $this->getCookieHeader($cookie->getName(), $cookie->getValue(), $cookie->getExpiresTime(), $cookie->getPath(), $cookie->getDomain(), $cookie->isSecure(), $cookie->isHttpOnly());
         }
@@ -72,23 +72,42 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
             $content = false;
         }
 
-        $sessionMetadata   = array();
+        $sessionMetadata = array();
         $sessionAttributes = array();
-        $flashes           = array();
+        $flashes = array();
         if ($request->hasSession()) {
             $session = $request->getSession();
             if ($session->isStarted()) {
-                $sessionMetadata['Created']   = date(DATE_RFC822, $session->getMetadataBag()->getCreated());
+                $sessionMetadata['Created'] = date(DATE_RFC822, $session->getMetadataBag()->getCreated());
                 $sessionMetadata['Last used'] = date(DATE_RFC822, $session->getMetadataBag()->getLastUsed());
-                $sessionMetadata['Lifetime']  = $session->getMetadataBag()->getLifetime();
-                $sessionAttributes            = $session->all();
-                $flashes                      = $session->getFlashBag()->peekAll();
+                $sessionMetadata['Lifetime'] = $session->getMetadataBag()->getLifetime();
+                $sessionAttributes = $session->all();
+                $flashes = $session->getFlashBag()->peekAll();
             }
         }
 
         $statusCode = $response->getStatusCode();
 
-        $this->data = array('format' => $request->getRequestFormat(), 'content' => $content, 'content_type' => $response->headers->get('Content-Type') ? $response->headers->get('Content-Type') : 'text/html', 'status_text' => isset(Response::$statusTexts[$statusCode]) ? Response::$statusTexts[$statusCode] : '', 'status_code' => $statusCode, 'request_query' => $request->query->all(), 'request_request' => $request->request->all(), 'request_headers' => $request->headers->all(), 'request_server' => $request->server->all(), 'request_cookies' => $request->cookies->all(), 'request_attributes' => $attributes, 'response_headers' => $responseHeaders, 'session_metadata' => $sessionMetadata, 'session_attributes' => $sessionAttributes, 'flashes' => $flashes, 'path_info' => $request->getPathInfo(), 'controller' => 'n/a', 'locale' => $request->getLocale(),);
+        $this->data = array(
+            'format' => $request->getRequestFormat(),
+            'content' => $content,
+            'content_type' => $response->headers->get('Content-Type') ? $response->headers->get('Content-Type') : 'text/html',
+            'status_text' => isset(Response::$statusTexts[$statusCode]) ? Response::$statusTexts[$statusCode] : '',
+            'status_code' => $statusCode,
+            'request_query' => $request->query->all(),
+            'request_request' => $request->request->all(),
+            'request_headers' => $request->headers->all(),
+            'request_server' => $request->server->all(),
+            'request_cookies' => $request->cookies->all(),
+            'request_attributes' => $attributes,
+            'response_headers' => $responseHeaders,
+            'session_metadata' => $sessionMetadata,
+            'session_attributes' => $sessionAttributes,
+            'flashes' => $flashes,
+            'path_info' => $request->getPathInfo(),
+            'controller' => 'n/a',
+            'locale' => $request->getLocale(),
+        );
 
         if (isset($this->data['request_headers']['php-auth-pw'])) {
             $this->data['request_headers']['php-auth-pw'] = '******';
@@ -102,22 +121,42 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
             $controller = $this->controllers[$request];
             if (is_array($controller)) {
                 try {
-                    $r                        = new \ReflectionMethod($controller[0], $controller[1]);
-                    $this->data['controller'] = array('class' => is_object($controller[0]) ? get_class($controller[0]) : $controller[0], 'method' => $controller[1], 'file' => $r->getFilename(), 'line' => $r->getStartLine(),);
+                    $r = new \ReflectionMethod($controller[0], $controller[1]);
+                    $this->data['controller'] = array(
+                        'class' => is_object($controller[0]) ? get_class($controller[0]) : $controller[0],
+                        'method' => $controller[1],
+                        'file' => $r->getFilename(),
+                        'line' => $r->getStartLine(),
+                    );
                 } catch (\ReflectionException $re) {
                     if (is_callable($controller)) {
                         // using __call or  __callStatic
-                        $this->data['controller'] = array('class' => is_object($controller[0]) ? get_class($controller[0]) : $controller[0], 'method' => $controller[1], 'file' => 'n/a', 'line' => 'n/a',);
+                        $this->data['controller'] = array(
+                            'class' => is_object($controller[0]) ? get_class($controller[0]) : $controller[0],
+                            'method' => $controller[1],
+                            'file' => 'n/a',
+                            'line' => 'n/a',
+                        );
                     }
                 }
             } elseif ($controller instanceof \Closure) {
-                $r                        = new \ReflectionFunction($controller);
-                $this->data['controller'] = array('class' => $r->getName(), 'method' => null, 'file' => $r->getFilename(), 'line' => $r->getStartLine(),);
+                $r = new \ReflectionFunction($controller);
+                $this->data['controller'] = array(
+                    'class' => $r->getName(),
+                    'method' => null,
+                    'file' => $r->getFilename(),
+                    'line' => $r->getStartLine(),
+                );
             } elseif (is_object($controller)) {
-                $r                        = new \ReflectionClass($controller);
-                $this->data['controller'] = array('class' => $r->getName(), 'method' => null, 'file' => $r->getFileName(), 'line' => $r->getStartLine(),);
+                $r = new \ReflectionClass($controller);
+                $this->data['controller'] = array(
+                    'class' => $r->getName(),
+                    'method' => null,
+                    'file' => $r->getFileName(),
+                    'line' => $r->getStartLine(),
+                );
             } else {
-                $this->data['controller'] = (string)$controller ?: 'n/a';
+                $this->data['controller'] = (string) $controller ?: 'n/a';
             }
             unset($this->controllers[$request]);
         }
@@ -266,7 +305,7 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
 
         if (0 !== $expires) {
             if (is_numeric($expires)) {
-                $expires = (int)$expires;
+                $expires = (int) $expires;
             } elseif ($expires instanceof \DateTime) {
                 $expires = $expires->getTimestamp();
             } else {
@@ -277,14 +316,14 @@ class RequestDataCollector extends DataCollector implements EventSubscriberInter
                 $expires = $tmp;
             }
 
-            $cookie .= '; expires=' . str_replace('+0000', '', \DateTime::createFromFormat('U', $expires, new \DateTimeZone('GMT'))->format('D, d-M-Y H:i:s T'));
+            $cookie .= '; expires='.str_replace('+0000', '', \DateTime::createFromFormat('U', $expires, new \DateTimeZone('GMT'))->format('D, d-M-Y H:i:s T'));
         }
 
         if ($domain) {
-            $cookie .= '; domain=' . $domain;
+            $cookie .= '; domain='.$domain;
         }
 
-        $cookie .= '; path=' . $path;
+        $cookie .= '; path='.$path;
 
         if ($secure) {
             $cookie .= '; secure';

@@ -39,7 +39,9 @@ abstract class SessionListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(KernelEvents::REQUEST => array('onKernelRequest', 128),);
+        return array(
+            KernelEvents::REQUEST => array('onKernelRequest', 128),
+        );
     }
 
     /**

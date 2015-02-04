@@ -48,8 +48,8 @@ class AuthenticationProviderManager implements AuthenticationManagerInterface
             throw new \InvalidArgumentException('You must at least add one authentication provider.');
         }
 
-        $this->providers        = $providers;
-        $this->eraseCredentials = (bool)$eraseCredentials;
+        $this->providers = $providers;
+        $this->eraseCredentials = (bool) $eraseCredentials;
     }
 
     public function setEventDispatcher(EventDispatcherInterface $dispatcher)
@@ -63,7 +63,7 @@ class AuthenticationProviderManager implements AuthenticationManagerInterface
     public function authenticate(TokenInterface $token)
     {
         $lastException = null;
-        $result        = null;
+        $result = null;
 
         foreach ($this->providers as $provider) {
             if (!$provider->supports($token)) {

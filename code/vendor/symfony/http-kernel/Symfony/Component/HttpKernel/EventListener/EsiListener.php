@@ -51,6 +51,8 @@ class EsiListener implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array(KernelEvents::RESPONSE => 'onKernelResponse',);
+        return array(
+            KernelEvents::RESPONSE => 'onKernelResponse',
+        );
     }
 }

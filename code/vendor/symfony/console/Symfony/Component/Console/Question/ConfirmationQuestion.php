@@ -26,7 +26,7 @@ class ConfirmationQuestion extends Question
      */
     public function __construct($question, $default = true)
     {
-        parent::__construct($question, (bool)$default);
+        parent::__construct($question, (bool) $default);
 
         $this->setNormalizer($this->getDefaultNormalizer());
     }

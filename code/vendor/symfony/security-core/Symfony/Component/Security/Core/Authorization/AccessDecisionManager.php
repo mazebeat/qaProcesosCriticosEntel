@@ -47,15 +47,15 @@ class AccessDecisionManager implements AccessDecisionManagerInterface
             throw new \InvalidArgumentException('You must at least add one voter.');
         }
 
-        $strategyMethod = 'decide' . ucfirst($strategy);
+        $strategyMethod = 'decide'.ucfirst($strategy);
         if (!is_callable(array($this, $strategyMethod))) {
             throw new \InvalidArgumentException(sprintf('The strategy "%s" is not supported.', $strategy));
         }
 
-        $this->voters                             = $voters;
-        $this->strategy                           = $strategyMethod;
-        $this->allowIfAllAbstainDecisions         = (bool)$allowIfAllAbstainDecisions;
-        $this->allowIfEqualGrantedDeniedDecisions = (bool)$allowIfEqualGrantedDeniedDecisions;
+        $this->voters = $voters;
+        $this->strategy = $strategyMethod;
+        $this->allowIfAllAbstainDecisions = (bool) $allowIfAllAbstainDecisions;
+        $this->allowIfEqualGrantedDeniedDecisions = (bool) $allowIfEqualGrantedDeniedDecisions;
     }
 
     /**
@@ -142,8 +142,8 @@ class AccessDecisionManager implements AccessDecisionManagerInterface
      */
     private function decideConsensus(TokenInterface $token, array $attributes, $object = null)
     {
-        $grant   = 0;
-        $deny    = 0;
+        $grant = 0;
+        $deny = 0;
         $abstain = 0;
         foreach ($this->voters as $voter) {
             $result = $voter->vote($token, $object, $attributes);

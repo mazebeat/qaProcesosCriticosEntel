@@ -27,7 +27,7 @@ class UserPasswordValidator extends ConstraintValidator
     public function __construct(SecurityContextInterface $securityContext, EncoderFactoryInterface $encoderFactory)
     {
         $this->securityContext = $securityContext;
-        $this->encoderFactory  = $encoderFactory;
+        $this->encoderFactory = $encoderFactory;
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPasswordValidator extends ConstraintValidator
     public function validate($password, Constraint $constraint)
     {
         if (!$constraint instanceof UserPassword) {
-            throw new UnexpectedTypeException($constraint, __NAMESPACE__ . '\UserPassword');
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\UserPassword');
         }
 
         $user = $this->securityContext->getToken()->getUser();

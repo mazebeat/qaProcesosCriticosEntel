@@ -81,15 +81,48 @@ class Process
      *
      * @var array
      */
-    public static $exitCodes = array(0   => 'OK', 1 => 'General error', 2 => 'Misuse of shell builtins',
+    public static $exitCodes = array(
+        0 => 'OK',
+        1 => 'General error',
+        2 => 'Misuse of shell builtins',
 
-                                     126 => 'Invoked command cannot execute', 127 => 'Command not found', 128 => 'Invalid exit argument',
+        126 => 'Invoked command cannot execute',
+        127 => 'Command not found',
+        128 => 'Invalid exit argument',
 
         // signals
-                                     129 => 'Hangup', 130 => 'Interrupt', 131 => 'Quit and dump core', 132 => 'Illegal instruction', 133 => 'Trace/breakpoint trap', 134 => 'Process aborted', 135 => 'Bus error: "access to undefined portion of memory object"', 136 => 'Floating point exception: "erroneous arithmetic operation"', 137 => 'Kill (terminate immediately)', 138 => 'User-defined 1', 139 => 'Segmentation violation', 140 => 'User-defined 2', 141 => 'Write to pipe with no one reading', 142 => 'Signal raised by alarm', 143 => 'Termination (request to terminate)', // 144 - not defined
-                                     145 => 'Child process terminated, stopped (or continued*)', 146 => 'Continue if stopped', 147 => 'Stop executing temporarily', 148 => 'Terminal stop signal', 149 => 'Background process attempting to read from tty ("in")', 150 => 'Background process attempting to write to tty ("out")', 151 => 'Urgent data available on socket', 152 => 'CPU time limit exceeded', 153 => 'File size limit exceeded', 154 => 'Signal raised by timer counting virtual time: "virtual timer expired"', 155 => 'Profiling timer expired', // 156 - not defined
-                                     157 => 'Pollable event', // 158 - not defined
-                                     159 => 'Bad syscall',);
+        129 => 'Hangup',
+        130 => 'Interrupt',
+        131 => 'Quit and dump core',
+        132 => 'Illegal instruction',
+        133 => 'Trace/breakpoint trap',
+        134 => 'Process aborted',
+        135 => 'Bus error: "access to undefined portion of memory object"',
+        136 => 'Floating point exception: "erroneous arithmetic operation"',
+        137 => 'Kill (terminate immediately)',
+        138 => 'User-defined 1',
+        139 => 'Segmentation violation',
+        140 => 'User-defined 2',
+        141 => 'Write to pipe with no one reading',
+        142 => 'Signal raised by alarm',
+        143 => 'Termination (request to terminate)',
+        // 144 - not defined
+        145 => 'Child process terminated, stopped (or continued*)',
+        146 => 'Continue if stopped',
+        147 => 'Stop executing temporarily',
+        148 => 'Terminal stop signal',
+        149 => 'Background process attempting to read from tty ("in")',
+        150 => 'Background process attempting to write to tty ("out")',
+        151 => 'Urgent data available on socket',
+        152 => 'CPU time limit exceeded',
+        153 => 'File size limit exceeded',
+        154 => 'Signal raised by timer counting virtual time: "virtual timer expired"',
+        155 => 'Profiling timer expired',
+        // 156 - not defined
+        157 => 'Pollable event',
+        // 158 - not defined
+        159 => 'Bad syscall',
+    );
 
     /**
      * Constructor.
@@ -112,7 +145,7 @@ class Process
         }
 
         $this->commandline = $commandline;
-        $this->cwd         = $cwd;
+        $this->cwd = $cwd;
 
         // on Windows, if the cwd changed via chdir(), proc_open defaults to the dir where PHP was started
         // on Gnu/Linux, PHP builds with --enable-maintainer-zts are also affected
@@ -127,11 +160,11 @@ class Process
 
         $this->input = $input;
         $this->setTimeout($timeout);
-        $this->useFileHandles               = '\\' === DIRECTORY_SEPARATOR;
-        $this->pty                          = false;
-        $this->enhanceWindowsCompatibility  = true;
+        $this->useFileHandles = '\\' === DIRECTORY_SEPARATOR;
+        $this->pty = false;
+        $this->enhanceWindowsCompatibility = true;
         $this->enhanceSigchildCompatibility = '\\' !== DIRECTORY_SEPARATOR && $this->isSigchildEnabled();
-        $this->options                      = array_replace(array('suppress_errors' => true, 'binary_pipes' => true), $options);
+        $this->options = array_replace(array('suppress_errors' => true, 'binary_pipes' => true), $options);
     }
 
     public function __destruct()
@@ -234,15 +267,15 @@ class Process
 
         $this->resetProcessData();
         $this->starttime = $this->lastOutputTime = microtime(true);
-        $this->callback  = $this->buildCallback($callback);
-        $descriptors     = $this->getDescriptors();
+        $this->callback = $this->buildCallback($callback);
+        $descriptors = $this->getDescriptors();
 
         $commandline = $this->commandline;
 
         if ('\\' === DIRECTORY_SEPARATOR && $this->enhanceWindowsCompatibility) {
-            $commandline = 'cmd /V:ON /E:ON /C "(' . $commandline . ')';
+            $commandline = 'cmd /V:ON /E:ON /C "('.$commandline.')';
             foreach ($this->processPipes->getFiles() as $offset => $filename) {
-                $commandline .= ' ' . $offset . '>' . ProcessUtils::escapeArgument($filename);
+                $commandline .= ' '.$offset.'>'.ProcessUtils::escapeArgument($filename);
             }
             $commandline .= '"';
 
@@ -323,7 +356,7 @@ class Process
         do {
             $this->checkTimeout();
             $running = '\\' === DIRECTORY_SEPARATOR ? $this->isRunning() : $this->processPipes->hasOpenHandles();
-            $close   = '\\' !== DIRECTORY_SEPARATOR || !$running;
+            $close = '\\' !== DIRECTORY_SEPARATOR || !$running;
             $this->readPipes(true, $close);
         } while ($running);
 
@@ -482,7 +515,7 @@ class Process
      */
     public function clearOutput()
     {
-        $this->stdout                  = '';
+        $this->stdout = '';
         $this->incrementalOutputOffset = 0;
 
         return $this;
@@ -547,7 +580,7 @@ class Process
      */
     public function clearErrorOutput()
     {
-        $this->stderr                       = '';
+        $this->stderr = '';
         $this->incrementalErrorOutputOffset = 0;
 
         return $this;
@@ -916,7 +949,7 @@ class Process
             throw new RuntimeException('TTY mode is not supported on Windows platform.');
         }
 
-        $this->tty = (bool)$tty;
+        $this->tty = (bool) $tty;
 
         return $this;
     }
@@ -940,7 +973,7 @@ class Process
      */
     public function setPty($bool)
     {
-        $this->pty = (bool)$bool;
+        $this->pty = (bool) $bool;
 
         return $this;
     }
@@ -1017,7 +1050,7 @@ class Process
 
         $this->env = array();
         foreach ($env as $key => $value) {
-            $this->env[(binary)$key] = (binary)$value;
+            $this->env[(binary) $key] = (binary) $value;
         }
 
         return $this;
@@ -1133,7 +1166,7 @@ class Process
      */
     public function setEnhanceWindowsCompatibility($enhance)
     {
-        $this->enhanceWindowsCompatibility = (bool)$enhance;
+        $this->enhanceWindowsCompatibility = (bool) $enhance;
 
         return $this;
     }
@@ -1161,7 +1194,7 @@ class Process
      */
     public function setEnhanceSigchildCompatibility($enhance)
     {
-        $this->enhanceSigchildCompatibility = (bool)$enhance;
+        $this->enhanceSigchildCompatibility = (bool) $enhance;
 
         return $this;
     }
@@ -1228,13 +1261,13 @@ class Process
     private function getDescriptors()
     {
         $this->processPipes = new ProcessPipes($this->useFileHandles, $this->tty, $this->pty, $this->outputDisabled);
-        $descriptors        = $this->processPipes->getDescriptors();
+        $descriptors = $this->processPipes->getDescriptors();
 
         if (!$this->useFileHandles && $this->enhanceSigchildCompatibility && $this->isSigchildEnabled()) {
             // last exit code is output on the fourth pipe and caught to work around --enable-sigchild
             $descriptors = array_merge($descriptors, array(array('pipe', 'w')));
 
-            $this->commandline = '(' . $this->commandline . ') 3>/dev/null; code=$?; echo $code >&3; exit $code';
+            $this->commandline = '('.$this->commandline.') 3>/dev/null; code=$?; echo $code >&3; exit $code';
         }
 
         return $descriptors;
@@ -1252,10 +1285,9 @@ class Process
      */
     protected function buildCallback($callback)
     {
-        $that     = $this;
-        $out      = self::OUT;
-        $err      = self::ERR;
-        $callback = function ($type, $data) use ($that, $callback, $out, $err) {
+        $that = $this;
+        $out = self::OUT;
+        $callback = function ($type, $data) use ($that, $callback, $out) {
             if ($out == $type) {
                 $that->addOutput($data);
             } else {
@@ -1323,7 +1355,7 @@ class Process
      */
     private function validateTimeout($timeout)
     {
-        $timeout = (float)$timeout;
+        $timeout = (float) $timeout;
 
         if (0.0 === $timeout) {
             $timeout = null;
@@ -1351,7 +1383,7 @@ class Process
         $callback = $this->callback;
         foreach ($result as $type => $data) {
             if (3 == $type) {
-                $this->fallbackExitcode = (int)$data;
+                $this->fallbackExitcode = (int) $data;
             } else {
                 $callback($type === self::STDOUT ? self::OUT : self::ERR, $data);
             }
@@ -1383,7 +1415,7 @@ class Process
         }
 
         $this->exitcode = -1 !== $exitcode ? $exitcode : (null !== $this->exitcode ? $this->exitcode : -1);
-        $this->status   = self::STATUS_TERMINATED;
+        $this->status = self::STATUS_TERMINATED;
 
         if (-1 === $this->exitcode && null !== $this->fallbackExitcode) {
             $this->exitcode = $this->fallbackExitcode;
@@ -1400,17 +1432,17 @@ class Process
      */
     private function resetProcessData()
     {
-        $this->starttime                    = null;
-        $this->callback                     = null;
-        $this->exitcode                     = null;
-        $this->fallbackExitcode             = null;
-        $this->processInformation           = null;
-        $this->stdout                       = null;
-        $this->stderr                       = null;
-        $this->process                      = null;
-        $this->latestSignal                 = null;
-        $this->status                       = self::STATUS_READY;
-        $this->incrementalOutputOffset      = 0;
+        $this->starttime = null;
+        $this->callback = null;
+        $this->exitcode = null;
+        $this->fallbackExitcode = null;
+        $this->processInformation = null;
+        $this->stdout = null;
+        $this->stderr = null;
+        $this->process = null;
+        $this->latestSignal = null;
+        $this->status = self::STATUS_READY;
+        $this->incrementalOutputOffset = 0;
         $this->incrementalErrorOutputOffset = 0;
     }
 

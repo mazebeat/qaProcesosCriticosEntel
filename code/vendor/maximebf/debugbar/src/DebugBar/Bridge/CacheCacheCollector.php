@@ -29,34 +29,34 @@ use Monolog\Logger;
  */
 class CacheCacheCollector extends MonologCollector
 {
-	protected $logger;
+    protected $logger;
 
-	public function __construct(Cache $cache = null, Logger $logger = null, $level = Logger::DEBUG, $bubble = true)
-	{
-		parent::__construct(null, $level, $bubble);
+    public function __construct(Cache $cache = null, Logger $logger = null, $level = Logger::DEBUG, $bubble = true)
+    {
+        parent::__construct(null, $level, $bubble);
 
-		if ($logger === null) {
-			$logger = new Logger('Cache');
-		}
-		$this->logger = $logger;
+        if ($logger === null) {
+            $logger = new Logger('Cache');
+        }
+        $this->logger = $logger;
 
-		if ($cache !== null) {
-			$this->addCache($cache);
-		}
-	}
+        if ($cache !== null) {
+            $this->addCache($cache);
+        }
+    }
 
-	public function addCache(Cache $cache)
-	{
-		$backend = $cache->getBackend();
-		if (!($backend instanceof LoggingBackend)) {
-			$backend = new LoggingBackend($backend, $this->logger);
-		}
-		$cache->setBackend($backend);
-		$this->addLogger($backend->getLogger());
-	}
+    public function addCache(Cache $cache)
+    {
+        $backend = $cache->getBackend();
+        if (!($backend instanceof LoggingBackend)) {
+            $backend = new LoggingBackend($backend, $this->logger);
+        }
+        $cache->setBackend($backend);
+        $this->addLogger($backend->getLogger());
+    }
 
-	public function getName()
-	{
-		return 'cache';
-	}
+    public function getName()
+    {
+        return 'cache';
+    }
 }

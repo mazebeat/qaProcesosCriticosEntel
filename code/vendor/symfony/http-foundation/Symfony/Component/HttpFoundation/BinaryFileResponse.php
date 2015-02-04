@@ -72,7 +72,7 @@ class BinaryFileResponse extends Response
     /**
      * Sets the file to stream.
      *
-     * @param \SplFileInfo|string $file The file to stream
+     * @param \SplFileInfo|string $file               The file to stream
      * @param string              $contentDisposition
      * @param bool                $autoEtag
      * @param bool                $autoLastModified
@@ -87,7 +87,7 @@ class BinaryFileResponse extends Response
             if ($file instanceof \SplFileInfo) {
                 $file = new File($file->getPathname());
             } else {
-                $file = new File((string)$file);
+                $file = new File((string) $file);
             }
         }
 
@@ -198,11 +198,11 @@ class BinaryFileResponse extends Response
                     $mapping = explode('=', $mapping, 2);
 
                     if (2 == count($mapping)) {
-                        $location   = trim($mapping[0]);
+                        $location = trim($mapping[0]);
                         $pathPrefix = trim($mapping[1]);
 
                         if (substr($path, 0, strlen($pathPrefix)) == $pathPrefix) {
-                            $path = $location . substr($path, strlen($pathPrefix));
+                            $path = $location.substr($path, strlen($pathPrefix));
                             break;
                         }
                     }
@@ -213,18 +213,18 @@ class BinaryFileResponse extends Response
         } elseif ($request->headers->has('Range')) {
             // Process the range headers.
             if (!$request->headers->has('If-Range') || $this->getEtag() == $request->headers->get('If-Range')) {
-                $range    = $request->headers->get('Range');
+                $range = $request->headers->get('Range');
                 $fileSize = $this->file->getSize();
 
                 list($start, $end) = explode('-', substr($range, 6), 2) + array(0);
 
-                $end = ('' === $end) ? $fileSize - 1 : (int)$end;
+                $end = ('' === $end) ? $fileSize - 1 : (int) $end;
 
                 if ('' === $start) {
                     $start = $fileSize - $end;
-                    $end   = $fileSize - 1;
+                    $end = $fileSize - 1;
                 } else {
-                    $start = (int)$start;
+                    $start = (int) $start;
                 }
 
                 if ($start <= $end) {
@@ -260,7 +260,7 @@ class BinaryFileResponse extends Response
             return;
         }
 
-        $out  = fopen('php://output', 'wb');
+        $out = fopen('php://output', 'wb');
         $file = fopen($this->file->getPathname(), 'rb');
 
         stream_copy_to_stream($file, $out, $this->maxlen, $this->offset);

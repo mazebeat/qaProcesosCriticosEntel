@@ -63,7 +63,7 @@ class FileProfilerStorage implements ProfilerStorageInterface
         while (count($result) < $limit && $line = $this->readLineFromFile($file)) {
             list($csvToken, $csvIp, $csvMethod, $csvUrl, $csvTime, $csvParent) = str_getcsv($line);
 
-            $csvTime = (int)$csvTime;
+            $csvTime = (int) $csvTime;
 
             if ($ip && false === strpos($csvIp, $ip) || $url && false === strpos($csvUrl, $url) || $method && false === strpos($csvMethod, $method)) {
                 continue;
@@ -77,7 +77,14 @@ class FileProfilerStorage implements ProfilerStorageInterface
                 continue;
             }
 
-            $result[$csvToken] = array('token' => $csvToken, 'ip' => $csvIp, 'method' => $csvMethod, 'url' => $csvUrl, 'time' => $csvTime, 'parent' => $csvParent,);
+            $result[$csvToken] = array(
+                'token' => $csvToken,
+                'ip' => $csvIp,
+                'method' => $csvMethod,
+                'url' => $csvUrl,
+                'time' => $csvTime,
+                'parent' => $csvParent,
+            );
         }
 
         fclose($file);
@@ -90,7 +97,7 @@ class FileProfilerStorage implements ProfilerStorageInterface
      */
     public function purge()
     {
-        $flags    = \FilesystemIterator::SKIP_DOTS;
+        $flags = \FilesystemIterator::SKIP_DOTS;
         $iterator = new \RecursiveDirectoryIterator($this->folder, $flags);
         $iterator = new \RecursiveIteratorIterator($iterator, \RecursiveIteratorIterator::CHILD_FIRST);
 
@@ -132,9 +139,16 @@ class FileProfilerStorage implements ProfilerStorageInterface
         }
 
         // Store profile
-        $data = array('token'               => $profile->getToken(), 'parent' => $profile->getParentToken(), 'children' => array_map(function ($p) {
-            return $p->getToken();
-        }, $profile->getChildren()), 'data' => $profile->getCollectors(), 'ip' => $profile->getIp(), 'method' => $profile->getMethod(), 'url' => $profile->getUrl(), 'time' => $profile->getTime(),);
+        $data = array(
+            'token' => $profile->getToken(),
+            'parent' => $profile->getParentToken(),
+            'children' => array_map(function ($p) { return $p->getToken(); }, $profile->getChildren()),
+            'data' => $profile->getCollectors(),
+            'ip' => $profile->getIp(),
+            'method' => $profile->getMethod(),
+            'url' => $profile->getUrl(),
+            'time' => $profile->getTime(),
+        );
 
         if (false === file_put_contents($file, serialize($data))) {
             return false;
@@ -146,7 +160,14 @@ class FileProfilerStorage implements ProfilerStorageInterface
                 return false;
             }
 
-            fputcsv($file, array($profile->getToken(), $profile->getIp(), $profile->getMethod(), $profile->getUrl(), $profile->getTime(), $profile->getParentToken(),));
+            fputcsv($file, array(
+                $profile->getToken(),
+                $profile->getIp(),
+                $profile->getMethod(),
+                $profile->getUrl(),
+                $profile->getTime(),
+                $profile->getParentToken(),
+            ));
             fclose($file);
         }
 
@@ -166,7 +187,7 @@ class FileProfilerStorage implements ProfilerStorageInterface
         $folderA = substr($token, -2, 2);
         $folderB = substr($token, -4, 2);
 
-        return $this->folder . '/' . $folderA . '/' . $folderB . '/' . $token;
+        return $this->folder.'/'.$folderA.'/'.$folderB.'/'.$token;
     }
 
     /**
@@ -176,7 +197,7 @@ class FileProfilerStorage implements ProfilerStorageInterface
      */
     protected function getIndexFilename()
     {
-        return $this->folder . '/index.csv';
+        return $this->folder.'/index.csv';
     }
 
     /**
@@ -190,7 +211,7 @@ class FileProfilerStorage implements ProfilerStorageInterface
      */
     protected function readLineFromFile($file)
     {
-        $line     = '';
+        $line = '';
         $position = ftell($file);
 
         if (0 === $position) {
@@ -210,12 +231,12 @@ class FileProfilerStorage implements ProfilerStorageInterface
             $buffer = fread($file, $chunkSize);
 
             if (false === ($upTo = strrpos($buffer, "\n"))) {
-                $line = $buffer . $line;
+                $line = $buffer.$line;
                 continue;
             }
 
             $position += $upTo;
-            $line = substr($buffer, $upTo + 1) . $line;
+            $line = substr($buffer, $upTo + 1).$line;
             fseek($file, max(0, $position), SEEK_SET);
 
             if ('' !== $line) {

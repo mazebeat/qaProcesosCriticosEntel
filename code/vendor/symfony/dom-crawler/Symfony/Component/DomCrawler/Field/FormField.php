@@ -50,8 +50,8 @@ abstract class FormField
      */
     public function __construct(\DOMElement $node)
     {
-        $this->node  = $node;
-        $this->name  = $node->getAttribute('name');
+        $this->node = $node;
+        $this->name = $node->getAttribute('name');
         $this->xpath = new \DOMXPath($node->ownerDocument);
 
         $this->initialize();
@@ -86,7 +86,7 @@ abstract class FormField
      */
     public function setValue($value)
     {
-        $this->value = (string)$value;
+        $this->value = (string) $value;
     }
 
     /**

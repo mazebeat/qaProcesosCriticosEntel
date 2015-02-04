@@ -31,7 +31,7 @@ class UndefinedMethodFatalErrorHandler implements FatalErrorHandlerInterface
             return;
         }
 
-        $className  = $matches[1];
+        $className = $matches[1];
         $methodName = $matches[2];
 
         $message = sprintf('Attempted to call method "%s" on class "%s" in %s line %d.', $methodName, $className, $error['file'], $error['line']);

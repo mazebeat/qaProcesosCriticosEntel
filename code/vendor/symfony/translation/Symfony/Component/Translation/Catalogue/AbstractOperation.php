@@ -58,10 +58,10 @@ abstract class AbstractOperation implements OperationInterface
             throw new \LogicException('Operated catalogues must belong to the same locale.');
         }
 
-        $this->source   = $source;
-        $this->target   = $target;
-        $this->result   = new MessageCatalogue($source->getLocale());
-        $this->domains  = null;
+        $this->source = $source;
+        $this->target = $target;
+        $this->result = new MessageCatalogue($source->getLocale());
+        $this->domains = null;
         $this->messages = array();
     }
 

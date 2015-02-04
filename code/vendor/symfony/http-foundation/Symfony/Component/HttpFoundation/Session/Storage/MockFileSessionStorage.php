@@ -122,7 +122,7 @@ class MockFileSessionStorage extends MockArraySessionStorage
      */
     private function getFilePath()
     {
-        return $this->savePath . '/' . $this->id . '.mocksess';
+        return $this->savePath.'/'.$this->id.'.mocksess';
     }
 
     /**
@@ -130,7 +130,7 @@ class MockFileSessionStorage extends MockArraySessionStorage
      */
     private function read()
     {
-        $filePath   = $this->getFilePath();
+        $filePath = $this->getFilePath();
         $this->data = is_readable($filePath) && is_file($filePath) ? unserialize(file_get_contents($filePath)) : array();
 
         $this->loadSession();

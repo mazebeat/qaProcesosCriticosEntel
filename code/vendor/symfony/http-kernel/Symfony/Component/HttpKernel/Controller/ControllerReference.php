@@ -41,6 +41,6 @@ class ControllerReference
     {
         $this->controller = $controller;
         $this->attributes = $attributes;
-        $this->query      = $query;
+        $this->query = $query;
     }
 }

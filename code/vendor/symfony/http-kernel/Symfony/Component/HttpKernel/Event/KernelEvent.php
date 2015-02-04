@@ -48,8 +48,8 @@ class KernelEvent extends Event
 
     public function __construct(HttpKernelInterface $kernel, Request $request, $requestType)
     {
-        $this->kernel      = $kernel;
-        $this->request     = $request;
+        $this->kernel = $kernel;
+        $this->request = $request;
         $this->requestType = $requestType;
     }
 

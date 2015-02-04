@@ -51,13 +51,13 @@ class MessageSelector
      */
     public function choose($message, $number, $locale)
     {
-        $parts         = explode('|', $message);
+        $parts = explode('|', $message);
         $explicitRules = array();
         $standardRules = array();
         foreach ($parts as $part) {
             $part = trim($part);
 
-            if (preg_match('/^(?P<interval>' . Interval::getIntervalRegexp() . ')\s*(?P<message>.*?)$/x', $part, $matches)) {
+            if (preg_match('/^(?P<interval>'.Interval::getIntervalRegexp().')\s*(?P<message>.*?)$/x', $part, $matches)) {
                 $explicitRules[$matches['interval']] = $matches['message'];
             } elseif (preg_match('/^\w+\:\s*(.*?)$/', $part, $matches)) {
                 $standardRules[] = $matches[1];

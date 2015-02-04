@@ -32,7 +32,7 @@ class RememberMeAuthenticationProvider implements AuthenticationProviderInterfac
     public function __construct(UserCheckerInterface $userChecker, $key, $providerKey)
     {
         $this->userChecker = $userChecker;
-        $this->key         = $key;
+        $this->key = $key;
         $this->providerKey = $providerKey;
     }
 

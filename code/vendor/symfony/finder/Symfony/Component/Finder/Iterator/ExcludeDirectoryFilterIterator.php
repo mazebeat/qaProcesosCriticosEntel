@@ -29,7 +29,7 @@ class ExcludeDirectoryFilterIterator extends FilterIterator
     public function __construct(\Iterator $iterator, array $directories)
     {
         foreach ($directories as $directory) {
-            $this->patterns[] = '#(^|/)' . preg_quote($directory, '#') . '(/|$)#';
+            $this->patterns[] = '#(^|/)'.preg_quote($directory, '#').'(/|$)#';
         }
 
         parent::__construct($iterator);

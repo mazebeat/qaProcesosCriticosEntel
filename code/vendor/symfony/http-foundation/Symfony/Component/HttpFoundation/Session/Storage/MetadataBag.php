@@ -61,7 +61,7 @@ class MetadataBag implements SessionBagInterface
      */
     public function __construct($storageKey = '_sf2_meta', $updateThreshold = 0)
     {
-        $this->storageKey      = $storageKey;
+        $this->storageKey = $storageKey;
         $this->updateThreshold = $updateThreshold;
     }
 
@@ -163,8 +163,8 @@ class MetadataBag implements SessionBagInterface
 
     private function stampCreated($lifetime = null)
     {
-        $timeStamp                  = time();
-        $this->meta[self::CREATED]  = $this->meta[self::UPDATED] = $this->lastUsed = $timeStamp;
+        $timeStamp = time();
+        $this->meta[self::CREATED] = $this->meta[self::UPDATED] = $this->lastUsed = $timeStamp;
         $this->meta[self::LIFETIME] = (null === $lifetime) ? ini_get('session.cookie_lifetime') : $lifetime;
     }
 }

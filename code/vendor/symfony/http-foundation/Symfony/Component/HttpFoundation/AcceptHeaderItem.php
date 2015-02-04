@@ -61,8 +61,8 @@ class AcceptHeaderItem
      */
     public static function fromString($itemValue)
     {
-        $bits       = preg_split('/\s*(?:;*("[^"]+");*|;*(\'[^\']+\');*|;+)\s*/', $itemValue, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-        $value      = array_shift($bits);
+        $bits = preg_split('/\s*(?:;*("[^"]+");*|;*(\'[^\']+\');*|;+)\s*/', $itemValue, 0, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $value = array_shift($bits);
         $attributes = array();
 
         $lastNullAttribute = null;
@@ -71,9 +71,9 @@ class AcceptHeaderItem
                 $attributes[$lastNullAttribute] = substr($bit, 1, -1);
             } elseif ('=' === $end) {
                 $lastNullAttribute = $bit = substr($bit, 0, -1);
-                $attributes[$bit]  = null;
+                $attributes[$bit] = null;
             } else {
-                $parts                 = explode('=', $bit);
+                $parts = explode('=', $bit);
                 $attributes[$parts[0]] = isset($parts[1]) && strlen($parts[1]) > 0 ? $parts[1] : '';
             }
         }
@@ -88,11 +88,11 @@ class AcceptHeaderItem
      */
     public function __toString()
     {
-        $string = $this->value . ($this->quality < 1 ? ';q=' . $this->quality : '');
+        $string = $this->value.($this->quality < 1 ? ';q='.$this->quality : '');
         if (count($this->attributes) > 0) {
-            $string .= ';' . implode(';', array_map(function ($name, $value) {
-                    return sprintf(preg_match('/[,;=]/', $value) ? '%s="%s"' : '%s=%s', $name, $value);
-                }, array_keys($this->attributes), $this->attributes));
+            $string .= ';'.implode(';', array_map(function ($name, $value) {
+                return sprintf(preg_match('/[,;=]/', $value) ? '%s="%s"' : '%s=%s', $name, $value);
+            }, array_keys($this->attributes), $this->attributes));
         }
 
         return $string;
@@ -216,9 +216,9 @@ class AcceptHeaderItem
     public function setAttribute($name, $value)
     {
         if ('q' === $name) {
-            $this->quality = (float)$value;
+            $this->quality = (float) $value;
         } else {
-            $this->attributes[$name] = (string)$value;
+            $this->attributes[$name] = (string) $value;
         }
 
         return $this;

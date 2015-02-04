@@ -35,12 +35,12 @@ abstract class BasePasswordEncoder implements PasswordEncoderInterface
             return array('', '');
         }
 
-        $password   = $mergedPasswordSalt;
-        $salt       = '';
+        $password = $mergedPasswordSalt;
+        $salt = '';
         $saltBegins = strrpos($mergedPasswordSalt, '{');
 
         if (false !== $saltBegins && $saltBegins + 1 < strlen($mergedPasswordSalt)) {
-            $salt     = substr($mergedPasswordSalt, $saltBegins + 1, -1);
+            $salt = substr($mergedPasswordSalt, $saltBegins + 1, -1);
             $password = substr($mergedPasswordSalt, 0, $saltBegins);
         }
 
@@ -67,7 +67,7 @@ abstract class BasePasswordEncoder implements PasswordEncoderInterface
             throw new \InvalidArgumentException('Cannot use { or } in salt.');
         }
 
-        return $password . '{' . $salt . '}';
+        return $password.'{'.$salt.'}';
     }
 
     /**

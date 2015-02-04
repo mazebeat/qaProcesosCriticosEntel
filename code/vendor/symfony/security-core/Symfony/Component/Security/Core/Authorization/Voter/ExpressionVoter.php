@@ -39,8 +39,8 @@ class ExpressionVoter implements VoterInterface
     public function __construct(ExpressionLanguage $expressionLanguage, AuthenticationTrustResolverInterface $trustResolver, RoleHierarchyInterface $roleHierarchy = null)
     {
         $this->expressionLanguage = $expressionLanguage;
-        $this->trustResolver      = $trustResolver;
-        $this->roleHierarchy      = $roleHierarchy;
+        $this->trustResolver = $trustResolver;
+        $this->roleHierarchy = $roleHierarchy;
     }
 
     /**
@@ -64,7 +64,7 @@ class ExpressionVoter implements VoterInterface
      */
     public function vote(TokenInterface $token, $object, array $attributes)
     {
-        $result    = VoterInterface::ACCESS_ABSTAIN;
+        $result = VoterInterface::ACCESS_ABSTAIN;
         $variables = null;
         foreach ($attributes as $attribute) {
             if (!$this->supportsAttribute($attribute)) {
@@ -92,9 +92,13 @@ class ExpressionVoter implements VoterInterface
             $roles = $token->getRoles();
         }
 
-        $variables = array('token'   => $token, 'user' => $token->getUser(), 'object' => $object, 'roles' => array_map(function ($role) {
-            return $role->getRole();
-        }, $roles), 'trust_resolver' => $this->trustResolver,);
+        $variables = array(
+            'token' => $token,
+            'user' => $token->getUser(),
+            'object' => $object,
+            'roles' => array_map(function ($role) { return $role->getRole(); }, $roles),
+            'trust_resolver' => $this->trustResolver,
+        );
 
         // this is mainly to propose a better experience when the expression is used
         // in an access control rule, as the developer does not know that it's going

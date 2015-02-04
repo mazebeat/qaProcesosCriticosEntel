@@ -28,10 +28,14 @@ class ProcessTimedOutException extends RuntimeException
 
     public function __construct(Process $process, $timeoutType)
     {
-        $this->process     = $process;
+        $this->process = $process;
         $this->timeoutType = $timeoutType;
 
-        parent::__construct(sprintf('The process "%s" exceeded the timeout of %s seconds.', $process->getCommandLine(), $this->getExceededTimeout()));
+        parent::__construct(sprintf(
+            'The process "%s" exceeded the timeout of %s seconds.',
+            $process->getCommandLine(),
+            $this->getExceededTimeout()
+        ));
     }
 
     public function getProcess()

@@ -44,7 +44,7 @@ class NamespacedAttributeBag extends AttributeBag
     public function has($name)
     {
         $attributes = $this->resolveAttributePath($name);
-        $name       = $this->resolveKey($name);
+        $name = $this->resolveKey($name);
 
         if (null === $attributes) {
             return false;
@@ -59,7 +59,7 @@ class NamespacedAttributeBag extends AttributeBag
     public function get($name, $default = null)
     {
         $attributes = $this->resolveAttributePath($name);
-        $name       = $this->resolveKey($name);
+        $name = $this->resolveKey($name);
 
         if (null === $attributes) {
             return $default;
@@ -73,8 +73,8 @@ class NamespacedAttributeBag extends AttributeBag
      */
     public function set($name, $value)
     {
-        $attributes        = &$this->resolveAttributePath($name, true);
-        $name              = $this->resolveKey($name);
+        $attributes = & $this->resolveAttributePath($name, true);
+        $name = $this->resolveKey($name);
         $attributes[$name] = $value;
     }
 
@@ -83,9 +83,9 @@ class NamespacedAttributeBag extends AttributeBag
      */
     public function remove($name)
     {
-        $retval     = null;
-        $attributes = &$this->resolveAttributePath($name);
-        $name       = $this->resolveKey($name);
+        $retval = null;
+        $attributes = & $this->resolveAttributePath($name);
+        $name = $this->resolveKey($name);
         if (null !== $attributes && array_key_exists($name, $attributes)) {
             $retval = $attributes[$name];
             unset($attributes[$name]);
@@ -106,8 +106,8 @@ class NamespacedAttributeBag extends AttributeBag
      */
     protected function &resolveAttributePath($name, $writeContext = false)
     {
-        $array = &$this->attributes;
-        $name  = (strpos($name, $this->namespaceCharacter) === 0) ? substr($name, 1) : $name;
+        $array = & $this->attributes;
+        $name = (strpos($name, $this->namespaceCharacter) === 0) ? substr($name, 1) : $name;
 
         // Check if there is anything to do, else return
         if (!$name) {
@@ -125,14 +125,14 @@ class NamespacedAttributeBag extends AttributeBag
             return $array;
         }
 
-        unset($parts[count($parts) - 1]);
+        unset($parts[count($parts)-1]);
 
         foreach ($parts as $part) {
             if (null !== $array && !array_key_exists($part, $array)) {
                 $array[$part] = $writeContext ? array() : null;
             }
 
-            $array = &$array[$part];
+            $array = & $array[$part];
         }
 
         return $array;
@@ -150,7 +150,7 @@ class NamespacedAttributeBag extends AttributeBag
     protected function resolveKey($name)
     {
         if (false !== $pos = strrpos($name, $this->namespaceCharacter)) {
-            $name = substr($name, $pos + 1);
+            $name = substr($name, $pos+1);
         }
 
         return $name;

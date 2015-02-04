@@ -253,7 +253,7 @@ class Command
             $statusCode = $this->execute($input, $output);
         }
 
-        return is_numeric($statusCode) ? (int)$statusCode : 0;
+        return is_numeric($statusCode) ? (int) $statusCode : 0;
     }
 
     /**
@@ -520,8 +520,14 @@ class Command
     {
         $name = $this->name;
 
-        $placeholders = array('%command.name%', '%command.full_name%',);
-        $replacements = array($name, $_SERVER['PHP_SELF'] . ' ' . $name,);
+        $placeholders = array(
+            '%command.name%',
+            '%command.full_name%',
+        );
+        $replacements = array(
+            $name,
+            $_SERVER['PHP_SELF'].' '.$name,
+        );
 
         return str_replace($placeholders, $replacements, $this->getHelp());
     }
@@ -604,7 +610,7 @@ class Command
     public function asText()
     {
         $descriptor = new TextDescriptor();
-        $output     = new BufferedOutput(BufferedOutput::VERBOSITY_NORMAL, true);
+        $output = new BufferedOutput(BufferedOutput::VERBOSITY_NORMAL, true);
         $descriptor->describe($output, $this, array('raw_output' => true));
 
         return $output->fetch();

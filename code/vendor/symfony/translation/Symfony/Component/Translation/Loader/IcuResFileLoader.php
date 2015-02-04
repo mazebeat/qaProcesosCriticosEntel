@@ -49,7 +49,7 @@ class IcuResFileLoader implements LoaderInterface
             throw new InvalidResourceException($rb->getErrorMessage(), $rb->getErrorCode());
         }
 
-        $messages  = $this->flatten($rb);
+        $messages = $this->flatten($rb);
         $catalogue = new MessageCatalogue($locale);
         $catalogue->add($messages, $domain);
         $catalogue->addResource(new DirectoryResource($resource));
@@ -76,7 +76,7 @@ class IcuResFileLoader implements LoaderInterface
     protected function flatten(\ResourceBundle $rb, array &$messages = array(), $path = null)
     {
         foreach ($rb as $key => $value) {
-            $nodePath = $path ? $path . '.' . $key : $key;
+            $nodePath = $path ? $path.'.'.$key : $key;
             if ($value instanceof \ResourceBundle) {
                 $this->flatten($value, $messages, $nodePath);
             } else {

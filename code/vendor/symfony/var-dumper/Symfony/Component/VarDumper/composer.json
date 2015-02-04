@@ -2,16 +2,17 @@
     "name": "symfony/var-dumper",
     "type": "library",
     "description": "Symfony mechanism for exploring and dumping PHP variables",
-    "keywords": [
-        "dump",
-        "debug"
-    ],
+    "keywords": ["dump", "debug"],
     "homepage": "http://symfony.com",
     "license": "MIT",
     "authors": [
         {
             "name": "Nicolas Grekas",
             "email": "p@tchwork.com"
+        },
+        {
+            "name": "Symfony Community",
+            "homepage": "http://symfony.com/contributors"
         }
     ],
     "require": {
@@ -21,8 +22,8 @@
         "ext-symfony_debug": ""
     },
     "autoload": {
-        "files": ["Resources/functions/dump.php"],
-        "psr-0": {"Symfony\\Component\\VarDumper\\": ""}
+        "files": [ "Resources/functions/dump.php" ],
+        "psr-0": { "Symfony\\Component\\VarDumper\\": "" }
     },
     "target-dir": "Symfony/Component/VarDumper",
     "minimum-stability": "dev",

@@ -46,12 +46,23 @@ class HomeController extends ApiController
 
 		try {
 			if (Auth::attempt($this->credentials)) {
-				$this->setData(array('user' => $this->credentials, 'message' => array('Autentificación correcta'), 'ok' => true));
-			} else {
-				$this->setData(array('message' => array('Autentificación fallida'), 'ok' => false));
+				$this->setData(array(
+					               'user'    => $this->credentials,
+					               'message' => array('Autentificación correcta'),
+					               'ok'      => true
+				               ));
+			}
+			else {
+				$this->setData(array(
+					               'message' => array('Autentificación fallida'),
+					               'ok'      => false
+				               ));
 			}
 		} catch (Exception $e) {
-			$this->setData(array('message' => array($e->getMessage()), 'ok' => false));
+			$this->setData(array(
+				               'message' => array($e->getMessage()),
+				               'ok'      => false
+			               ));
 		}
 
 		return Response::json($this->getData(), $this->getStatus(), $this->getHeaders());

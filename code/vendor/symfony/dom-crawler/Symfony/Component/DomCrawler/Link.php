@@ -53,7 +53,7 @@ class Link
         }
 
         $this->setNode($node);
-        $this->method     = $method ? strtoupper($method) : null;
+        $this->method = $method ? strtoupper($method) : null;
         $this->currentUri = $currentUri;
     }
 
@@ -102,32 +102,32 @@ class Link
 
         // an anchor
         if ('#' === $uri[0]) {
-            return $this->cleanupAnchor($this->currentUri) . $uri;
+            return $this->cleanupAnchor($this->currentUri).$uri;
         }
 
         $baseUri = $this->cleanupUri($this->currentUri);
 
         if ('?' === $uri[0]) {
-            return $baseUri . $uri;
+            return $baseUri.$uri;
         }
 
         // absolute URL with relative schema
         if (0 === strpos($uri, '//')) {
-            return preg_replace('#^([^/]*)//.*$#', '$1', $baseUri) . $uri;
+            return preg_replace('#^([^/]*)//.*$#', '$1', $baseUri).$uri;
         }
 
         $baseUri = preg_replace('#^(.*?//[^/]*)(?:\/.*)?$#', '$1', $baseUri);
 
         // absolute path
         if ('/' === $uri[0]) {
-            return $baseUri . $uri;
+            return $baseUri.$uri;
         }
 
         // relative path
         $path = parse_url(substr($this->currentUri, strlen($baseUri)), PHP_URL_PATH);
-        $path = $this->canonicalizePath(substr($path, 0, strrpos($path, '/')) . '/' . $uri);
+        $path = $this->canonicalizePath(substr($path, 0, strrpos($path, '/')).'/'.$uri);
 
-        return $baseUri . ('' === $path || '/' !== $path[0] ? '/' : '') . $path;
+        return $baseUri.('' === $path || '/' !== $path[0] ? '/' : '').$path;
     }
 
     /**
@@ -154,7 +154,7 @@ class Link
         }
 
         if ('.' === substr($path, -1)) {
-            $path = $path . '/';
+            $path = $path.'/';
         }
 
         $output = array();

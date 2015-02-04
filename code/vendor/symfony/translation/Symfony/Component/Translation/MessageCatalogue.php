@@ -39,7 +39,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
      */
     public function __construct($locale, array $messages = array())
     {
-        $this->locale   = $locale;
+        $this->locale = $locale;
         $this->messages = $messages;
     }
 
@@ -197,7 +197,7 @@ class MessageCatalogue implements MessageCatalogueInterface, MetadataAwareInterf
             }
         } while ($c = $c->parent);
 
-        $catalogue->parent       = $this;
+        $catalogue->parent = $this;
         $this->fallbackCatalogue = $catalogue;
 
         foreach ($catalogue->getResources() as $resource) {

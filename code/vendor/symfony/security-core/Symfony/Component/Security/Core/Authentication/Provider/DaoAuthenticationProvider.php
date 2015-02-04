@@ -45,7 +45,7 @@ class DaoAuthenticationProvider extends UserAuthenticationProvider
         parent::__construct($userChecker, $providerKey, $hideUserNotFoundExceptions);
 
         $this->encoderFactory = $encoderFactory;
-        $this->userProvider   = $userProvider;
+        $this->userProvider = $userProvider;
     }
 
     /**
