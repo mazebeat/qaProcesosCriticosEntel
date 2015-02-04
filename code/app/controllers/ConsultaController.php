@@ -3,14 +3,14 @@
 use Illuminate\Support\Facades\View;
 
 /**
- * Class ConsultaController
+ * Class HomeController
  */
-class ConsultaController extends ApiController
+class ConsolidadoController extends ApiController
 {
 	/**
 	 *
 	 */
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
 	}
@@ -18,16 +18,16 @@ class ConsultaController extends ApiController
 	/**
 	 * @return mixed
 	 */
-	public function historica()
+	public function index()
 	{
-		return View::make('dashboard.consultas.historica');
+		return View::make('dashboard.consolidado.index');
 	}
 
 	/**
 	 * @return mixed
 	 */
-	public function individual()
+	public function consolidadoIndividual()
 	{
-		return View::make('dashboard.consultas.individual');
+		return View::make('dashboard.consolidado.individual');
 	}
-} 
+}
