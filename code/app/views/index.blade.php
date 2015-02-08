@@ -14,7 +14,8 @@
 
 @section('content')
     <div ng-controller="homeController">
-        <form class="form-signin" name="loginForm" ng-submit="submit()">
+        {{ Form::open(array('url' => 'login' ,'class' => 'form-signin', 'name' => 'loginForm')) }}
+        {{--<form class="form-signin" name="loginForm" ng-submit="submit()">--}}
             {{--<div class="alert alert-warning alert-dismissible" role="alert" ng-show="message">--}}
             {{--<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span--}}
             {{--class="sr-only">Close</span></button>--}}
@@ -43,10 +44,12 @@
                 </div>
             </div>
             <div>
-                <a class="" href="http://www.customertrigger.com/" target="_blank"><img
-                            src="http://www.intelidata.cl/wp-content/themes/intelidata/images/ct.png"></a>
-                <a class="pull-right" href="http://www.intersoft-sa.com/" target="_blank"><img
-                            src="http://www.intelidata.cl/wp-content/themes/intelidata/images/is2.png"></a>
+                <a class="" href="http://www.customertrigger.com/" target="_blank">
+                    {{ HTML::image('images/ct.png') }}
+                </a>
+                <a class="pull-right" href="http://www.intersoft-sa.com/" target="_blank">
+                    {{ HTML::image('images/is2.png') }}
+                </a>
             </div>
         </form>
         <!-- Modal -->

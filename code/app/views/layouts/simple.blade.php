@@ -31,10 +31,11 @@
 
 	{{ HTML::script('https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js') }}
 	{{-- AmCharts JS --}}
+	{{-- AmCharts JS --}}
 	{{ HTML::script('js/amcharts/amcharts.js') }}
 	{{ HTML::script('js/amcharts/pie.js') }}
 	{{ HTML::script('js/amcharts/serial.js') }}
-	{{ HTML::script('http://www.amcharts.com/lib/3/exporting/amexport_combined.js') }}
+	{{ HTML::script('js/amcharts/exporting/amexport_combined.js') }}
 	{{ HTML::script('js/amcharts/lang/es.js') }}
 	@yield('file-script')
     @include('layouts.angularjs')

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Inicio       c
+	Inicio
 @endsection
 
 @section('content')

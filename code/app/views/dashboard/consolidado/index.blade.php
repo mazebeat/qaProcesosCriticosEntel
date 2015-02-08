@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-	Consolidado
+	Inicio
 @endsection
 
 @section('content')
@@ -123,6 +123,7 @@
 									<table class="table table-hover table-list-search" id="uno">
 										<thead>
 										<tr>
+											<th>#</th>
 											<th style="width: 100px;">Cliente</th>
 											<th>Contrato</th>
 											<th>Plan</th>
@@ -138,6 +139,7 @@
 										</thead>
 										<tbody>
 										<tr>
+											<td>1</td>
 											<td>3.838.42.00.100235</td>
 											<td>11238620</td>
 											<td>Bolsa Promo 450 Min - 3 m</td>
@@ -171,6 +173,7 @@
 									<table class="table table-hover table-list-search">
 										<thead>
 										<tr>
+											<th>#</th>
 											<th style="width: 100px;">Cliente</th>
 											<th>Contrato</th>
 											<th>Plan</th>
@@ -186,6 +189,7 @@
 										</thead>
 										<tbody>
 										<tr>
+											<td>1</td>
 											<td>110.100.140</td>
 											<td>190</td>
 											<td>1472 Multimedia Full 2 GB</td>
@@ -205,6 +209,7 @@
 											</td>
 										</tr>
 										<tr>
+											<td>2</td>
 											<td>110.100.179</td>
 											<td>222</td>
 											<td>77 Plus 80s</td>
@@ -224,6 +229,7 @@
 											</td>
 										</tr>
 										<tr>
+											<td>3</td>
 											<td>110.100.140</td>
 											<td>7546046</td>
 											<td>1082 Tarifa Unica Frec 100+100</td>
@@ -257,6 +263,7 @@
 									<table class="table table-hover table-list-search">
 										<thead>
 										<tr>
+											<th>#</th>
 											<th>Cliente</th>
 											<th>Contrato</th>
 											<th>Detalle</th>
@@ -269,6 +276,7 @@
 										</thead>
 										<tbody>
 										<tr>
+											<td>1</td>
 											<td>110.100.188</td>
 											<td>4566639</td>
 											<td>Dscto. Multimedia</td>
@@ -285,6 +293,7 @@
 											</td>
 										</tr>
 										<tr>
+											<td>2</td>
 											<td>110.100.140</td>
 											<td>190</td>
 											<td>Dscto. Multimedia</td>
@@ -301,6 +310,7 @@
 											</td>
 										</tr>
 										<tr>
+											<td>3</td>
 											<td>110.100.140</td>
 											<td>1751238</td>
 											<td>Dscto. Multimedia</td>
@@ -331,6 +341,7 @@
 										<table class="table table-hover table-list-search">
 										<thead>
 										<tr>
+											<th>#</th>
 											<th>Cliente</th>
 											<th>Contrato</th>
 											<th>Plan o Bolsa</th>
@@ -341,6 +352,7 @@
 										</thead>
 										<tbody>
 										<tr>
+											<td>1</td>
 											<td>110.100.140</td>
 											<td>190</td>
 											<td>1053 Multimedia 300</td>
@@ -356,6 +368,7 @@
 											</td>
 										</tr>
 										<tr>
+											<td>2</td>
 											<td>110.100.140</td>
 											<td>190</td>
 											<td>1053 Multimedia 300</td>
@@ -371,6 +384,7 @@
 											</td>
 										</tr>
 										<tr>
+											<td>3</td>
 											<td>110.100.140</td>
 											<td>190</td>
 											<td>1053 Multimedia 300</td>
@@ -394,7 +408,46 @@
 				</div>
 			</div>
 		</section>
+	</div>
 
+	<!-- Modal -->
+	<div class="modal fade" id="modalComment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Deja tu observación...</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12">
+							<span class="pull-right">Fecha: <kbd>{{ \Carbon::now() }}</kbd></span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form">
+							<div class="form-group">
+								<div class="col-sm-12">
+									<label id="userLabel" for="usuarioResponsable">Responsable </label>
+									<input type="text" name="usuarioResponsable" id="usuarioResponsable" value="{{ Config::get('api.testUsername') }}" class="form-control" readonly/>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12">
+									<label id="commentLabel" for="comment">Observaciones </label>
+									<textarea class="form-control ckeditor" name="comment" placeholder="Observaciones..." maxlength="240" rows="7"></textarea>
+									<span class="help-block"><p id="characterLeft" class="help-block">Has pasado el limite!</p></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+					<button class="btn btn-success" id="btnSubmit" name="btnSubmit" type="button">Enviar</button>
+				</div>
+			</div>
+		</div>
 	</div>
 @endsection
 
@@ -446,7 +499,7 @@
 			"trendLines": [],
 			"graphs": [
 				{
-					"balloonText": "Cantidad de <strong>[[title]]</strong> en  [[category]]: [[value]]%",
+					"balloonText": "Cantidad de <strong>[[title]]</strong> en  [[category]]: [[percents]]%",
 					"fillAlphas": 1,
 					"id": "AmGraph-1",
 					"title": "Correctos",
@@ -454,7 +507,7 @@
 					"valueField": "column-1"
 				},
 				{
-					"balloonText": "Cantidad de <strong>[[title]]</strong> en  [[category]]: [[value]]%",
+					"balloonText": "Cantidad de <strong>[[title]]</strong> en  [[category]]: [[percents]]%",
 					"fillAlphas": 1,
 					"id": "AmGraph-2",
 					"title": "Incorrectos",
@@ -606,7 +659,7 @@
 			"trendLines": [],
 			"graphs": [
 				{
-					"balloonText": "Porcentaje de <strong>[[title]]</strong> en  [[category]]: [[value]]%",
+					"balloonText": "Porcentaje de <strong>[[title]]</strong> en  [[category]]: [[percents]]%",
 //											"fillAlphas": 1,
 					"id": "AmGraph-1",
 					"stackable": false,
@@ -619,7 +672,7 @@
 					"valueField": "Correctos"
 				},
 				{
-					"balloonText": "Porcentaje de <strong>[[title]]</strong> en  [[category]]: [[value]]%",
+					"balloonText": "Porcentaje de <strong>[[title]]</strong> en  [[category]]: [[percents]]%",
 //											"fillAlphas": 1,
 					"id": "AmGraph-2",
 					"stackable": false,

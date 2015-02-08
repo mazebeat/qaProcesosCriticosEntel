@@ -66,7 +66,7 @@
 {{ HTML::script('js/amcharts/amcharts.js') }}
 {{ HTML::script('js/amcharts/pie.js') }}
 {{ HTML::script('js/amcharts/serial.js') }}
-{{ HTML::script('http://www.amcharts.com/lib/3/exporting/amexport_combined.js') }}
+{{ HTML::script('js/amcharts/exporting/amexport_combined.js') }}
 {{ HTML::script('js/amcharts/lang/es.js') }}
 @yield('file-script')
 {{ HTML::script('js/scripts.js') }}

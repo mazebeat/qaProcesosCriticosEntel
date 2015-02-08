@@ -4,9 +4,14 @@ ini_set('memory_limit', '3500M');
 ini_set('max_execution_time', '0');
 ini_set('set_time_limit', '0');
 //Iconv
-iconv_set_encoding('internal_encoding', 'UTF-8');
-iconv_set_encoding('input_encoding', 'UTF-8');
-iconv_set_encoding('output_encoding', 'UTF-8');
+if (PHP_VERSION_ID < 50600) {
+	iconv_set_encoding('input_encoding', 'UTF-8');
+	iconv_set_encoding('output_encoding', 'UTF-8');
+	iconv_set_encoding('internal_encoding', 'UTF-8');
+}
+else {
+	ini_set('default_charset', 'UTF-8');
+}
 //XDebug
 ini_set('xdebug.collect_vars', 'on');
 ini_set('xdebug.collect_params', '4');
@@ -27,11 +32,11 @@ ini_set('display_startup_errors', true);
  * | and give it the Closure to execute when that URI is requested.
  * |
  */
-Route::when('*', 'csrf', array(
-	'post',
-	'put',
-	'delete'
-));
+//Route::when('*', 'csrf', array(
+//	'post',
+//	'put',
+//	'delete'
+//));
 
 //Route::group(array('after' => 'auth'), function () {
 Route::get('/', 'HomeController@index');

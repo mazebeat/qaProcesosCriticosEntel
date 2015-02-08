@@ -3,18 +3,18 @@ ip: "192.168.10.10"
 memory: 2048
 cpus: 1
 
-authorize: C:/xampp2/htdocs/tracking_correos/.ssh/id_rsa.pub
+authorize: E:/Projects/Php/qaProcesosCriticosEntel/.ssh/id_rsa.pub
 
 keys:
-    - C:/xampp2/htdocs/tracking_correos/.ssh/id_rsa
+    - E:/Projects/Php/qaProcesosCriticosEntel/.ssh/id_rsa
 
 folders:
-    - map: C:/xampp2/htdocs/tracking_correos
-      to: /home/vagrant/tracking_correos
+    - map: E:/Projects/Php/qaProcesosCriticosEntel
+      to: /home/vagrant/qaProcesosCriticosEntel
 
 sites:
     - map: homestead.app
-      to: /home/vagrant/tracking_correos/code/public
+      to: /home/vagrant/qaProcesosCriticosEntel/code/public
 
 variables:
     - key: APP_ENV

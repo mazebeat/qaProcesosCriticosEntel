@@ -41,31 +41,33 @@ class HomeController extends ApiController
 	 */
 	public function login()
 	{
-		$this->credentials = Input::all();
-		Session::put('user', $this->credentials);
+		return Redirect::to('dashboard');
+//		$this->credentials = Input::all();
+//		Session::put('user', $this->credentials);
+//
+//		try {
+//			if (Auth::attempt($this->credentials)) {
+//				$this->setData(array(
+//					               'user'    => $this->credentials,
+//					               'message' => array('Autentificación correcta'),
+//					               'ok'      => true
+//				               ));
+//			}
+//			else {
+//				$this->setData(array(
+//					               'message' => array('Autentificación fallida'),
+//					               'ok'      => false
+//				               ));
+//			}
+//		} catch (Exception $e) {
+//			$this->setData(array(
+//				               'message' => array($e->getMessage()),
+//				               'ok'      => false
+//			               ));
+//		}
+//
+//		return Response::json($this->getData(), $this->getStatus(), $this->getHeaders());
 
-		try {
-			if (Auth::attempt($this->credentials)) {
-				$this->setData(array(
-					               'user'    => $this->credentials,
-					               'message' => array('Autentificación correcta'),
-					               'ok'      => true
-				               ));
-			}
-			else {
-				$this->setData(array(
-					               'message' => array('Autentificación fallida'),
-					               'ok'      => false
-				               ));
-			}
-		} catch (Exception $e) {
-			$this->setData(array(
-				               'message' => array($e->getMessage()),
-				               'ok'      => false
-			               ));
-		}
-
-		return Response::json($this->getData(), $this->getStatus(), $this->getHeaders());
 	}
 
 	/**
@@ -73,10 +75,10 @@ class HomeController extends ApiController
 	 */
 	public function logout()
 	{
-		Auth::logout();
-		Session::forget('credentials');
-		Session::forget('user');
-
+//		Auth::logout();
+//		Session::forget('credentials');
+//		Session::forget('user');
+//
 		return Redirect::to('/');
 	}
 }
