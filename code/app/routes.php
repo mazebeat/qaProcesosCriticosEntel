@@ -77,6 +77,9 @@ Route::get('test', function () {
 	), 'POST'));
 });
 
-Route::get('gentable', function () {
-	return HTML::gentable('table', Input::get('body'), Input::get('headers'), false, array(), array('class' => 'table table-hover'));
+Route::post('gentable', function () {
+	$data = Input::get('data');
+
+	//	 dd(array_get($data, 'header'));
+	return HTML::gentable('table', array_get($data, 'body'), array_get($data, 'header'), false, array(), array('class' => 'table table-hover'));
 });

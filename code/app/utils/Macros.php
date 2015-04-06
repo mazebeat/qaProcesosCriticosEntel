@@ -58,7 +58,7 @@ Form::macro('selectYear2', function ($name, $startYear = null, $endYear = null, 
 	return "<select{$options}>{$list}</select>";
 });
 
-Form::macro('checkbox2', function ($name, $title, $value, $class = 'default', $check = false, $options = array()) {
+\Form::macro('checkbox2', function ($name, $title, $value, $class = 'default', $check = false, $options = array()) {
 	$output = '<div class="ckbox ckbox-%s">%s%s</div>';
 	if (!isset($options['name'])) {
 		$options['name'] = $name;
@@ -71,7 +71,7 @@ Form::macro('checkbox2', function ($name, $title, $value, $class = 'default', $c
 	return sprintf($output, $class, Form::checkbox($name, $value, $check, $options), Form::label($name, $title, $options));
 });
 
-HTML::macro('tableize', function ($structure, $data, $headers = true) {
+\HTML::macro('tableize', function ($structure, $data, $headers = true) {
 
 	$html = '';
 
@@ -112,7 +112,7 @@ HTML::macro('tableize', function ($structure, $data, $headers = true) {
 	return $html;
 });
 
-HTML::macro('dateRange', function ($name, $options = array()) {
+\HTML::macro('dateRange', function ($name, $options = array()) {
 	$months = array(
 		1 => 'Enero',
 		'Febrero',
@@ -152,31 +152,31 @@ HTML::macro('dateRange', function ($name, $options = array()) {
 		}
 	}
 
-	$options = HTML::attributes($options);
+	$options = \HTML::attributes($options);
 	$list    = implode('', $html);
 
 	return "<select{$options}>{$list}</select>";
 });
 
-HTML::macro('gentable', function ($name, array $list = array(), array $head = array(), $isSort = false, $sort = array(), $options = array()) {
+\HTML::macro('gentable', function ($name, array $list = array(), array $head = array(), $isSort = false, $sort = array(), $options = array()) {
 	try {
-		if(is_array($list) && count($list) > 0) {
-			throw new Exception('The list is empty.<br>');
+		if (is_array($list) && count($list) <= 0) {
+			throw new \Exception('The list is empty.<br>');
 		}
 
 		if (is_array($list[0]) && is_array($head)) {
 			$b = count($head);
 			$c = count($list[0]);
 			if ($b > $c) {
-				throw new Exception('The quantity of thead is more than of list quantity.<br>');
+				throw new \Exception('The quantity of thead is more than of list quantity.<br>');
 			}
 
 			if ($b > $c) {
-				throw new Exception('The quantity of list is more than of thead quantity.<br>');
+				throw new \Exception('The quantity of list is more than of thead quantity.<br>');
 			}
 		}
 		else {
-			throw new Exception('The content of the list should be an array.<br>');
+			throw new \Exception('The content of the list should be an array.<br>');
 		}
 
 		if (!isset($options['name'])) {
@@ -187,15 +187,20 @@ HTML::macro('gentable', function ($name, array $list = array(), array $head = ar
 			$options['id'] = $name;
 		}
 
-		$options = HTML::attributes($options);
+		$options = \HTML::attributes($options);
 
-		$result = '<table border="1" cellpadding="0" cellspacing="0" width="100%" {$options}>';
+		$result = '<table ' . $options . '>';
 		$result .= '<thead>';
 		$result .= '<tr>';
 
+		$head = array_flatten(array_flatten($head));
 		foreach ($head as $h) {
-			$result .= '<th>' . utf8_encode($h) . '</th>';
+			$result .= '<th style="width: 10%; text-align: center">' . ($h) . '</th>';
 		}
+
+		$result .= '<th>Observaciones</th>';
+
+		$list = ($list);
 
 		$result .= '</tr>';
 		$result .= '</thead>';
@@ -218,16 +223,20 @@ HTML::macro('gentable', function ($name, array $list = array(), array $head = ar
 
 			if (is_array($value)) {
 				foreach ($value as $k => $v) {
-					if (Str::lower($v) == 'estado') {
-						$result .= '<td><h4><span class="label label-success">' . Str::upper(utf8_encode($v)) . '</span></h4></td>';
+					if (\Str::lower($v) == 'error') {
+						$result .= '<td style="text-align: center;"><h4><span class="label label-danger">' . \Str::upper(($v)) . '</span></h4></td>';
 					}
-					elseif (Str::lower($v) == 'observaciones') {
-						$result .= '<td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalComment"><i class="fa fa-comment-o"></i></button></td>';
+					elseif (\Str::lower($v) == 'ok') {
+						$result .= '<td style="text-align: center;"><h4><span class="label label-success">' . \Str::upper(($v)) . '</span></h4></td>';
+					}
+					elseif (\Str::lower($v) == 'observacion') {
+						$result .= '<td style="text-align: center;"><h4><span class="label label-warning">' . \Str::upper(($v)) . '</span></h4></td>';
 					}
 					else {
-						$result .= '<td>' . utf8_encode($v) . '</td>';
+						$result .= '<td style="text-align: center;">' . ($v) . '</td>';
 					}
 				}
+				$result .= '<td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalComment"><i class="fa fa-comment-o"></i></button></td>';
 			}
 
 			$result .= '</tr>';
@@ -235,8 +244,8 @@ HTML::macro('gentable', function ($name, array $list = array(), array $head = ar
 		$result .= '</tbody></table>';
 
 		return $result;
-	} catch (Exception $e) {
-		return 'ERROR: ' . ' ' . $e->getMessage() .  ' <br>';
+	} catch (\Exception $e) {
+		return 'ERROR: ' . ' ' . $e->getMessage() . ' <br>';
 	}
 
 });

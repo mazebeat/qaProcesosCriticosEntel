@@ -234,6 +234,7 @@ qaProcesosCriticos.controller('consultaIndividualController', ['$scope', '$http'
     $scope.debug = false;
 
     var date = new Date();
+
     $scope.isLoading = false;
     $scope.datas = {
         clientePorEstado: {}
@@ -243,7 +244,9 @@ qaProcesosCriticos.controller('consultaIndividualController', ['$scope', '$http'
         mes: parseInt(date.getMonth() + 1),
         ano: parseInt(date.getFullYear()),
         tipoDetalle: '',
-        estado: ''
+        estado: '',
+        cuenta: '',
+        contrato: ''
     };
     $scope.errors = {
         estado: '',
@@ -260,8 +263,12 @@ qaProcesosCriticos.controller('consultaIndividualController', ['$scope', '$http'
     }
 
     $scope.processData = function (data) {
-        alert(data);
+        var array = apiFactory.createDataForTable(data);
+        $.post('/gentable', $.param(array), function (data) {
+            $('#tableresponse').html('').html(data);
+        });
     }
+
 
     $scope.changeTipoDetalle = function (id) {
         switch (parseInt(id)) {
@@ -292,17 +299,43 @@ qaProcesosCriticos.controller('consultaIndividualController', ['$scope', '$http'
         apiFactory.post('DatoCliente/postClientesPorEstado', {ano: $scope.filters.ano, mes: $scope.filters.mes, tipoDetalle: $scope.filters.tipoDetalle, estado: $scope.filters.estado})
             .then(function (data) {
                 console.info('CLIENTE POR ESTADO', data);
-                if ($scope.hasError(data, 'gDetalle')) {
-                    if (data.length > 0 && data[0].hasOwnProperty('message')) {
-                        $scope.errors.detalle = data[0].message;
-                    }
-                } else {
-                    $scope.errors.estado = false;
-                    $scope.errors.detalle = '';
-                    $scope.datas.clientePorEstado = data;
+                $scope.errors.estado = false;
+                $scope.errors.detalle = '';
+                $scope.datas.clientePorEstado = data;
 
+                if (data.length > 1) {
                     $scope.processData(data);
+                } else {
+                    $('#tableresponse').html('');
                 }
+            })
+            .catch(function (error) {
+                console.warn(error)
+                $scope.errors.estado = false;
+                $scope.errors.message = error.message;
+            })
+            .finally(function () {
+                $scope.isLoading = false;
+            });
+    };
+
+    // BEGIN GRÁFICO DETALLE
+    $scope.clientePorCuenta = function () {
+        apiFactory.post('DatoCliente/postClientesPorCuenta', {
+            ano: $scope.filters.ano,
+            mes: $scope.filters.mes,
+            tipoDetalle: $scope.filters.tipoDetalle,
+            estado: $scope.filters.estado,
+            cuenta: $scope.filters.cuenta,
+            contrato: $scope.filters.contrato
+        })
+            .then(function (data) {
+                console.info('CLIENTE POR ESTADO', data);
+                $scope.errors.estado = false;
+                $scope.errors.detalle = '';
+                $scope.datas.clientePorEstado = data;
+
+                $scope.processData(data);
             })
             .catch(function (error) {
                 console.warn(error)
@@ -320,7 +353,14 @@ qaProcesosCriticos.controller('consultaIndividualController', ['$scope', '$http'
         // check to make sure the form is completely valid
         if (isValid) {
             $scope.changeTipoDetalle($scope.filters.td);
-            $scope.clientePorEstado();
+
+            if ($scope.filters.cuenta != '') {
+                $scope.clientePorCuenta();
+            }
+
+            if ($scope.filters.estado != '') {
+                $scope.clientePorEstado();
+            }
         } else {
             $scope.isLoading = false;
             $scope.errors.estado = false;
