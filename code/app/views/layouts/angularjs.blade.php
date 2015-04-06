@@ -13,7 +13,8 @@
         var servicio = {
             root: "{{ Request::root() }}",
             store: "{{ storage_path() }}",
-            public: "{{ public_path() }}"
+	        public: "{{ public_path() }}",
+	        serviciows: "{{ Config::get('webservice.url') }}"
         };
         return servicio;
     });
