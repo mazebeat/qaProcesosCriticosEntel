@@ -21,7 +21,7 @@
 	{{ HTML::script('js/respond.min.js') }}
 	<![endif]-->
 </head>
-<body id="{{ \App\Util\SiteHelpers::bodyId() }}" class="login-body" ng-app="trackingCorreos">
+<body id="{{ \App\Util\SiteHelpers::bodyId() }}" class="login-body" ng-app="qaProcesosCriticos">
 	{{--@include('layouts.preloader')--}}
 	<div class="container">
 		@yield('content')

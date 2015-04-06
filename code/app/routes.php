@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 //Memory
 ini_set('memory_limit', '3500M');
 ini_set('max_execution_time', '0');
@@ -68,3 +69,14 @@ Route::group(array('prefix' => 'dashboard'), function () {
 	});
 });
 //});
+
+Route::get('test', function () {
+	dd(Functions::curlRequest('http://192.168.1.100:9998/QAFacturacionWS/Grafico/postGraficoPie', array(
+		'mes' => 3,
+		'ano' => 2015
+	), 'POST'));
+});
+
+Route::get('gentable', function () {
+	return HTML::gentable('table', Input::get('body'), Input::get('headers'), false, array(), array('class' => 'table table-hover'));
+});

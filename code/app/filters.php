@@ -15,6 +15,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 
 App::before(function ($request) {
+
 	$logFile = storage_path() . '/logs/request.log';
 
 	$log = 'Method ' . $request->method() . ' Path ' . $request->path();
@@ -22,12 +23,39 @@ App::before(function ($request) {
 	$monolog = new Logger('log');
 	$monolog->pushHandler(new StreamHandler($logFile), Logger::INFO);
 	$monolog->info($log, compact('bindings', 'time'));
+
+	if($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+		$statusCode = 204;
+
+		$headers = array(
+			'Access-Control-Allow-Origin'      => '*/*',
+			'Access-Control-Allow-Methods'     => 'GET, POST, OPTIONS',
+			'Access-Control-Allow-Headers'     => 'Origin, Content-Type, Accept, Authorization, X-Requested-With',
+			'Access-Control-Allow-Credentials' => 'true'
+			);
+
+		return Response::make(null, $statusCode, $headers);
+	}
 });
 
 App::after(function ($request, $response) {
-	//	if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') || strpos($_SERVER['HTTP_USER_AGENT'], 'Safari')) {
-	//		$response->header('P3P', 'CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
-	//	}
+	if (isset($_SERVER['HTTP_ORIGIN'])) {
+		header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+		header('Access-Control-Allow-Credentials: true');
+		header('Access-Control-Max-Age: 86400'); 
+	}
+
+	if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+		if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+			header("Access-Control-Allow-Methods: GET, POST, OPTIONS");         
+
+		if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+			header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+		exit(0);
+	}
+
 });
 
 /**

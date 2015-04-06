@@ -9,8 +9,7 @@
 {{-- Main app --}}
 {{ HTML::script('js/app.js') }}
 <script>
-    {{-- Factory root --}}
-    trackingCorreos.factory('rootFactory', function () {
+    qaProcesosCriticos.factory('rootFactory', function () {
         var servicio = {
             root: "{{ Request::root() }}",
             store: "{{ storage_path() }}",

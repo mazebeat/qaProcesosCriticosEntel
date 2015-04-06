@@ -19,7 +19,7 @@
 	<![endif]-->
 	@yield('text-style')
 </head>
-<body id="{{ \App\Util\SiteHelpers::bodyId() }}" class="signin" ng-app="trackingCorreos">
+<body id="{{ \App\Util\SiteHelpers::bodyId() }}" class="signin" ng-app="qaProcesosCriticos">
 	@include('layouts.preloader')
     <div class="container">
 	    @yield('content')

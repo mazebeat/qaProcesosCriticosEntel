@@ -6,6 +6,15 @@
 
 @section('content')
 	<div ng-controller="consultaIndividualController">
+		<code ng-if="debug == true">
+			<p>Filtros: @{{ filters }}</p>
+
+			<p>Datos: @{{ datas }}</p>
+
+			<p>Errores: @{{ errors }}</p>
+		</code>
+
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -17,41 +26,38 @@
 					</div>
 					<div class="panel-body">
 						<div class="row">
-							{{ Form::open(array('role' => 'form')) }}
-							<div class="form-group col-xs-4 col-md-2">
-								{{ Form::label('cuenta', 'N° Cuenta', array('class' => 'control-label')) }}
-								<input type="text" name="cuenta" value="{{ Input::old('cuenta') }}" class="form-control" autocomplete="off">
-								<small class="help-block">{{ $errors->first('cuenta') }}</small>
-							</div>
-							<div class="form-group col-xs-4 col-md-2">
-								{{ Form::label('rut', 'RUT', array('class' => 'control-label')) }}
-								<input type="text" name="rut" value="{{ Input::old('rut') }}" class="form-control" autocomplete="off">
-								<small class="help-block">{{ $errors->first('rut') }}</small>
-							</div>
-							<div class="form-group col-xs-4 col-md-2">
-								{{ Form::label('tipodoc', 'Tipo Documento', array('class' => 'control-label')) }}
-								{{ Form::select('tipodoc', array(), Input::old('tipos'), array('class' => 'form-control'))  }}
-								<small class="help-block">{{ $errors->first('tipodoc') }}</small>
-							</div>
-							<div class="form-group col-xs-4 col-md-2">
-								{{ Form::label('folio', 'Folio', array('class' => 'control-label')) }}
-								<input type="text" name="folio" value="{{ Input::old('folio') }}" class="form-control" autocomplete="off">
-								<small class="help-block">{{ $errors->first('folio') }}</small>
-							</div>
-							<div class="form-group col-xs-4 col-md-2">
-								{{ Form::label('correo', 'Correo', array('class' => 'control-label')) }}
-								<input type="text" name="correo" value="{{ Input::old('correo') }}" class="form-control" autocomplete="off">
-								<small class="help-block">{{ $errors->first('correo') }}</small>
-							</div>
-							<div class="form-group col-xs-4 col-md-2" style="margin-top: 24px;">
-								<button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in">Consultar</button>
-								<button type="button" class="btn btn-default">Limpiar</button>
-							</div>
-							{{ Form::close() }}
+							<form role="form" name="myForm" novalidate ng-submit="submitForm(myForm.$valid)">
+								<div class="form-group col-xs-4 col-md-2">
+									{{ Form::label('dateRange', 'Fecha (*)', array('class' => 'control-label')) }}
+									{{ HTML::dateRange('dateRange', array('class' => 'form-control', 'ng-model' => 'filters.date', 'ng-change' => 'updateDate()', 'required')) }}
+									<small class="help-block">{{ $errors->first('dateRange') }}</small>
+								</div>
+								<div class="form-group col-md-3">
+									{{ Form::label('td', 'Tipo Detalle (*)', array('class' => 'control-label')) }}
+									{{ Form::select('td', array('' => 'Seleccione un Tipo', '1' => 'Cargo Fijo Planes', 'Cargo Fijo Bolsas', 'Descuentos Cargo Fijo y trafico', 'Aplicación Unidades Libres Planes', 'Aplicación Unidades Libres Bolsas'), Input::old('td'), array('class' => 'form-control', 'ng-model' => 'filters.td', 'required'))  }}
+									<small class="help-block">{{ $errors->first('td') }}</small>
+								</div>
+								<div class="form-group col-md-2">
+									{{ Form::label('estado', 'Estado (*)', array('class' => 'control-label')) }}
+									{{ Form::select('estado', array('' => 'Seleccione un Estado', 'OK' => 'OK', 'ERROR' => 'Error'), Input::old('estado'), array('class' => 'form-control', 'ng-model' => 'filters.estado', 'required'))  }}
+									<small class="help-block">{{ $errors->first('estado') }}</small>
+								</div>
+								<div class="form-group col-md-2" style="margin-top: 24px;">
+									<button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" ng-disabled="myForm.$invalid">Consultar</button>
+									<button type="button" class="btn btn-default">Limpiar</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
-				<div class="panel panel-default">
+
+				<h3 ng-if="isLoading"><em>Loading{{ HTML::image('images/loaders/loader28.gif') }}</em></h3>
+
+				<div ng-if="errors.estado == true && isLoading == false" class="alert alert-warning" role="alert">
+					<strong>Warning!</strong> @{{ errors.message }}.
+				</div>
+
+				<div class="panel panel-default" ng-if="isLoading == false && errors.estado == true">
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-12">
@@ -77,42 +83,20 @@
 									<table class="table table-hover table-list-search">
 										<thead>
 										<tr>
-											<th>N° Cuenta</th>
-											<th>Nombre Completo</th>
-											<th>Rut</th>
-											<th>Folio</th>
-											<th>Monto</th>
-											<th>Fecha</th>
+											{{-- BEGIN HEADERS LOOP  --}}
+											<th></th>
+											{{-- END HEADERS LOOP --}}
 											<th style="width: 55px;">Estado</th>
 											<th style="width: 55px;">Observaciones</th>
 										</tr>
 										</thead>
 										<tbody>
 										<tr>
-											<td>4.203300100000</td>
-											<td>Usuario de prueba 1</td>
-											<td>1111111-1</td>
-											<td>47785444478</td>
-											<td>$585.048</td>
-											<td>31/01/2015</td>
+											{{-- BEGIN BODY LOOP  --}}
+											<td></td>
+											{{-- END BODY LOOP --}}
 											<td>
 												<h4><span class="label label-warning">En revisión</span></h4>
-											</td>
-											<td>
-												<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalComment">
-													<i class="fa fa-comment-o"></i>
-												</button>
-											</td>
-										</tr>
-										<tr>
-											<td>110101610</td>
-											<td>Usuario de prueba 2</td>
-											<td>222222-2</td>
-											<td>323478</td>
-											<td>$1.895.081</td>
-											<td>31/01/2015</td>
-											<td>
-												<h4><span class="label label-danger">Bug</span></h4>
 											</td>
 											<td>
 												<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalComment">
