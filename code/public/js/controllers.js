@@ -671,11 +671,9 @@ qaProcesosCriticos
             if (isValid) {
                 $scope.changeTipoDetalle($scope.filters.td);
 
-                if ($scope.filters.cuenta != '') {
+                if ($scope.filters.cuenta != '' || $scope.filters.contrato != '') {
                     $scope.clientePorCuenta();
-                }
-
-                if ($scope.filters.estado != '') {
+                } else {
                     $scope.clientePorEstado();
                 }
             } else {
