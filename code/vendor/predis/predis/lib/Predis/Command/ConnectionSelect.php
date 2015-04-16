@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/select
+ * @link http://redis.io/commands/select
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ConnectionSelect extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SELECT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SELECT';
+    }
 }

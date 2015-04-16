@@ -20,33 +20,34 @@ use Predis\Protocol\ResponseHandlerInterface;
  * Implements a response handler for bulk replies using the standard wire
  * protocol defined by Redis.
  *
- * @link   http://redis.io/topics/protocol
+ * @link http://redis.io/topics/protocol
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ResponseBulkHandler implements ResponseHandlerInterface
 {
-	/**
-	 * Handles a bulk reply returned by Redis.
-	 *
-	 * @param  ComposableConnectionInterface $connection   Connection to Redis.
-	 * @param  string                        $lengthString Bytes size of the bulk reply.
-	 *
-	 * @return string
-	 */
-	public function handle(ComposableConnectionInterface $connection, $lengthString)
-	{
-		$length = (int)$lengthString;
+    /**
+     * Handles a bulk reply returned by Redis.
+     *
+     * @param  ComposableConnectionInterface $connection   Connection to Redis.
+     * @param  string                        $lengthString Bytes size of the bulk reply.
+     * @return string
+     */
+    public function handle(ComposableConnectionInterface $connection, $lengthString)
+    {
+        $length = (int) $lengthString;
 
-		if ("$length" !== $lengthString) {
-			CommunicationException::handle(new ProtocolException($connection, "Cannot parse '$lengthString' as bulk length"));
-		}
+        if ("$length" !== $lengthString) {
+            CommunicationException::handle(new ProtocolException(
+                $connection, "Cannot parse '$lengthString' as bulk length"
+            ));
+        }
 
-		if ($length >= 0) {
-			return substr($connection->readBytes($length + 2), 0, -2);
-		}
+        if ($length >= 0) {
+            return substr($connection->readBytes($length + 2), 0, -2);
+        }
 
-		if ($length == -1) {
-			return null;
-		}
-	}
+        if ($length == -1) {
+            return null;
+        }
+    }
 }

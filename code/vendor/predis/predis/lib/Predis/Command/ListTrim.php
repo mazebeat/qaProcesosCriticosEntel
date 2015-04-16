@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/ltrim
+ * @link http://redis.io/commands/ltrim
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListTrim extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LTRIM';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LTRIM';
+    }
 }

@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zrevrange
+ * @link http://redis.io/commands/zrevrange
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetReverseRange extends ZSetRange
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZREVRANGE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZREVRANGE';
+    }
 }

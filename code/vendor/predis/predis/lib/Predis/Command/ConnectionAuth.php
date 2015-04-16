@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/auth
+ * @link http://redis.io/commands/auth
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ConnectionAuth extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'AUTH';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'AUTH';
+    }
 }

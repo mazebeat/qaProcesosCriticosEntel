@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/sunionstore
+ * @link http://redis.io/commands/sunionstore
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class SetUnionStore extends SetIntersectionStore
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SUNIONSTORE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SUNIONSTORE';
+    }
 }

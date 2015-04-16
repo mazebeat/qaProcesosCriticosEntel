@@ -21,59 +21,58 @@ use Predis\Connection\ReplicationConnectionInterface;
  */
 class ClientReplication extends AbstractOption
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function filter(ClientOptionsInterface $options, $value)
-	{
-		if (is_callable($value)) {
-			$connection = call_user_func($value, $options, $this);
+    /**
+     * Checks if the specified value is a valid instance of ReplicationConnectionInterface.
+     *
+     * @param  ReplicationConnectionInterface $connection Instance of a replication connection.
+     * @return ReplicationConnectionInterface
+     */
+    protected function checkInstance($connection)
+    {
+        if (!$connection instanceof ReplicationConnectionInterface) {
+            throw new \InvalidArgumentException('Instance of Predis\Connection\ReplicationConnectionInterface expected');
+        }
 
-			if (!$connection instanceof ReplicationConnectionInterface) {
-				throw new \InvalidArgumentException('Instance of Predis\Connection\ReplicationConnectionInterface expected');
-			}
+        return $connection;
+    }
 
-			return $connection;
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function filter(ClientOptionsInterface $options, $value)
+    {
+        if (is_callable($value)) {
+            $connection = call_user_func($value, $options, $this);
 
-		if (is_string($value)) {
-			if (!class_exists($value)) {
-				throw new \InvalidArgumentException("Class $value does not exist");
-			}
+            if (!$connection instanceof ReplicationConnectionInterface) {
+                throw new \InvalidArgumentException('Instance of Predis\Connection\ReplicationConnectionInterface expected');
+            }
 
-			if (!($connection = new $value()) instanceof ReplicationConnectionInterface) {
-				throw new \InvalidArgumentException('Instance of Predis\Connection\ReplicationConnectionInterface expected');
-			}
+            return $connection;
+        }
 
-			return $connection;
-		}
+        if (is_string($value)) {
+            if (!class_exists($value)) {
+                throw new \InvalidArgumentException("Class $value does not exist");
+            }
 
-		if ($value == true) {
-			return $this->getDefault($options);
-		}
-	}
+            if (!($connection = new $value()) instanceof ReplicationConnectionInterface) {
+                throw new \InvalidArgumentException('Instance of Predis\Connection\ReplicationConnectionInterface expected');
+            }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getDefault(ClientOptionsInterface $options)
-	{
-		return new MasterSlaveReplication();
-	}
+            return $connection;
+        }
 
-	/**
-	 * Checks if the specified value is a valid instance of ReplicationConnectionInterface.
-	 *
-	 * @param  ReplicationConnectionInterface $connection Instance of a replication connection.
-	 *
-	 * @return ReplicationConnectionInterface
-	 */
-	protected function checkInstance($connection)
-	{
-		if (!$connection instanceof ReplicationConnectionInterface) {
-			throw new \InvalidArgumentException('Instance of Predis\Connection\ReplicationConnectionInterface expected');
-		}
+        if ($value == true) {
+            return $this->getDefault($options);
+        }
+    }
 
-		return $connection;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefault(ClientOptionsInterface $options)
+    {
+        return new MasterSlaveReplication();
+    }
 }

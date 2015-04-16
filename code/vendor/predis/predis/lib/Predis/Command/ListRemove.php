@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/lrem
+ * @link http://redis.io/commands/lrem
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListRemove extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LREM';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LREM';
+    }
 }

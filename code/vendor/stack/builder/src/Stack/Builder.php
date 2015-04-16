@@ -6,58 +6,58 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 
 class Builder
 {
-	private $specs;
+    private $specs;
 
-	public function __construct()
-	{
-		$this->specs = new \SplStack();
-	}
+    public function __construct()
+    {
+        $this->specs = new \SplStack();
+    }
 
-	public function unshift(/*$kernelClass, $args...*/)
-	{
-		if (func_num_args() === 0) {
-			throw new \InvalidArgumentException("Missing argument(s) when calling unshift");
-		}
+    public function unshift(/*$kernelClass, $args...*/)
+    {
+        if (func_num_args() === 0) {
+            throw new \InvalidArgumentException("Missing argument(s) when calling unshift");
+        }
 
-		$spec = func_get_args();
-		$this->specs->unshift($spec);
+        $spec = func_get_args();
+        $this->specs->unshift($spec);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function push(/*$kernelClass, $args...*/)
-	{
-		if (func_num_args() === 0) {
-			throw new \InvalidArgumentException("Missing argument(s) when calling push");
-		}
+    public function push(/*$kernelClass, $args...*/)
+    {
+        if (func_num_args() === 0) {
+            throw new \InvalidArgumentException("Missing argument(s) when calling push");
+        }
 
-		$spec = func_get_args();
-		$this->specs->push($spec);
+        $spec = func_get_args();
+        $this->specs->push($spec);
 
-		return $this;
-	}
+        return $this;
+    }
 
-	public function resolve(HttpKernelInterface $app)
-	{
-		$middlewares = array($app);
+    public function resolve(HttpKernelInterface $app)
+    {
+        $middlewares = array($app);
 
-		foreach ($this->specs as $spec) {
-			$args     = $spec;
-			$firstArg = array_shift($args);
+        foreach ($this->specs as $spec) {
+            $args = $spec;
+            $firstArg = array_shift($args);
 
-			if (is_callable($firstArg)) {
-				$app = $firstArg($app);
-			} else {
-				$kernelClass = $firstArg;
-				array_unshift($args, $app);
+            if (is_callable($firstArg)) {
+                $app = $firstArg($app);
+            } else {
+                $kernelClass = $firstArg;
+                array_unshift($args, $app);
 
-				$reflection = new \ReflectionClass($kernelClass);
-				$app        = $reflection->newInstanceArgs($args);
-			}
+                $reflection = new \ReflectionClass($kernelClass);
+                $app = $reflection->newInstanceArgs($args);
+            }
 
-			array_unshift($middlewares, $app);
-		}
+            array_unshift($middlewares, $app);
+        }
 
-		return new StackedHttpKernel($app, $middlewares);
-	}
+        return new StackedHttpKernel($app, $middlewares);
+    }
 }

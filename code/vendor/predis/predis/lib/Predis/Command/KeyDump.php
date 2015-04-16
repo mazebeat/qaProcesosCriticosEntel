@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/dump
+ * @link http://redis.io/commands/dump
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeyDump extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'DUMP';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'DUMP';
+    }
 }

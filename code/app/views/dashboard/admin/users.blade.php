@@ -45,98 +45,20 @@
 								<thead>
 								<tr>
 									<th>#</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Username</th>
+									<th>Nombre</th>
+									<th>Apellido</th>
+									<th>Usuario</th>
+									<th>Tipo Usuario</th>
 									<th style="width: 160px;"></th>
 								</tr>
 								</thead>
 								<tbody>
 								<tr>
 									<td>1</td>
-									<td>Mark</td>
-									<td>Tompson</td>
-									<td>the_mark7</td>
-									<td>
-										<div class="pull-right">
-											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
-											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
-											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
-											{{--{{ Form::close() }}--}}
-											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
-											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Ashley</td>
-									<td>Jacobs</td>
-									<td>ash11927</td>
-									<td>
-										<div class="pull-right">
-											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
-											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
-											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
-											{{--{{ Form::close() }}--}}
-											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
-											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Audrey</td>
-									<td>Ann</td>
-									<td>audann84</td>
-									<td>
-										<div class="pull-right">
-											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
-											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
-											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
-											{{--{{ Form::close() }}--}}
-											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
-											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>John</td>
-									<td>Robinson</td>
-									<td>jr5527</td>
-									<td>
-										<div class="pull-right">
-											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
-											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
-											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
-											{{--{{ Form::close() }}--}}
-											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
-											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>Aaron</td>
-									<td>Butler</td>
-									<td>aaron_butler</td>
-									<td>
-										<div class="pull-right">
-											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
-											{{--{{ Form::hidden('_method', 'DELETE') }}--}}
-											{{ HTML::button('submit', '<i class="fa fa-trash fa-fw"></i>', array('class' => 'btn btn-sm btn-danger')) }}
-											{{--{{ Form::close() }}--}}
-											<a class="btn btn-sm btn-success" href="{{ URL::to('admin/usuarios/?') }}"><i class="fa fa-eye fa-fw"></i></a>
-											<a class="btn btn-sm btn-info" href="{{ URL::to('admin/usuarios/?/edit') }}"><i class="fa fa-pencil fa-fw"></i></a>&nbsp;
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>Chris</td>
-									<td>Albert</td>
-									<td>cab79</td>
+									<td>admin</td>
+									<td>admin</td>
+									<td>admin</td>
+									<td>Usuario</td>
 									<td>
 										<div class="pull-right">
 											{{--{{ Form::open(array('url' => 'admin/usuarios/' . $value->idUsuario, 'class' => 'pull-right')) }}--}}
@@ -156,12 +78,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="pagination pull-right">
-							<li><a href="#">«</a></li>
+							<li class="active"><a href="#">«</a></li>
 							<li><a href="#">1</a></li>
 							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li class="active"><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
 							<li><a href="#">»</a></li>
 						</ul>
 					</div>

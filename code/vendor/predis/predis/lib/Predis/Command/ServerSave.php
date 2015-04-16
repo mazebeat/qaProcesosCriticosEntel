@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/save
+ * @link http://redis.io/commands/save
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerSave extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SAVE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SAVE';
+    }
 }

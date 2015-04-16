@@ -12,30 +12,30 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/hgetall
+ * @link http://redis.io/commands/hgetall
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class HashGetAll extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'HGETALL';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'HGETALL';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function parseResponse($data)
-	{
-		$result = array();
+    /**
+     * {@inheritdoc}
+     */
+    public function parseResponse($data)
+    {
+        $result = array();
 
-		for ($i = 0; $i < count($data); $i++) {
-			$result[$data[$i]] = $data[++$i];
-		}
+        for ($i = 0; $i < count($data); $i++) {
+            $result[$data[$i]] = $data[++$i];
+        }
 
-		return $result;
-	}
+        return $result;
+    }
 }

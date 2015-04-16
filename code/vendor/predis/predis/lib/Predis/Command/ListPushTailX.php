@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/rpushx
+ * @link http://redis.io/commands/rpushx
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListPushTailX extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'RPUSHX';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'RPUSHX';
+    }
 }

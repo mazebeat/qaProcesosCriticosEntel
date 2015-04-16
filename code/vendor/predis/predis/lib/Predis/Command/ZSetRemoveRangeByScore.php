@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zremrangebyscore
+ * @link http://redis.io/commands/zremrangebyscore
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetRemoveRangeByScore extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZREMRANGEBYSCORE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZREMRANGEBYSCORE';
+    }
 }

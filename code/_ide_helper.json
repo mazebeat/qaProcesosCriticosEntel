@@ -348,6 +348,7 @@
                     "orWhereNull": "($column)",
                     "whereNotNull": "($column, $boolean = 'and')",
                     "orWhereNotNull": "($column)",
+	                "whereDate": "($column, $operator, $value, $boolean = 'and')",
                     "whereDay": "($column, $operator, $value, $boolean = 'and')",
                     "whereMonth": "($column, $operator, $value, $boolean = 'and')",
                     "whereYear": "($column, $operator, $value, $boolean = 'and')",
@@ -428,7 +429,7 @@
                     "get": "($path)",
                     "getRequire": "($path)",
                     "requireOnce": "($file)",
-                    "put": "($path, $contents)",
+	                "put": "($path, $contents, $lock = false)",
                     "prepend": "($path, $data)",
                     "append": "($path, $data)",
                     "delete": "($paths)",
@@ -1124,19 +1125,8 @@
                     "offsetUnset": "($key)"
                 }
             },
-            "Excel": {
-                "functions": {
-                    "create": "($filename, $callback = null)",
-                    "load": "($file, $callback = null, $encoding = null)",
-                    "selectSheets": "($sheets = array())",
-                    "selectSheetsByIndex": "($sheets = array())",
-                    "batch": "($files, $callback)",
-                    "shareView": "($view, $data = array(), $mergeData = array())",
-                    "loadView": "($view, $data = array(), $mergeData = array())",
-                    "registerFilters": "($filters = array())",
-                    "filter": "($filter, $class = false)",
-                    "getFilters": "($key = false)"
-                }
+	        "Functions": {
+		        "functions": { }
             }
         }
     }

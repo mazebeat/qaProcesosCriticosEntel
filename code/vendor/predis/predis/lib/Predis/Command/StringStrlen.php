@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/strlen
+ * @link http://redis.io/commands/strlen
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringStrlen extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'STRLEN';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'STRLEN';
+    }
 }

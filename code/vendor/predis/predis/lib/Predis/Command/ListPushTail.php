@@ -12,24 +12,24 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/rpush
+ * @link http://redis.io/commands/rpush
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListPushTail extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'RPUSH';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'RPUSH';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		return self::normalizeVariadic($arguments);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        return self::normalizeVariadic($arguments);
+    }
 }

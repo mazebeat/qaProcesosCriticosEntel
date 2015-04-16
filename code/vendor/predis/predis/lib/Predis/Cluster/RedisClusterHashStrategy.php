@@ -22,30 +22,29 @@ use Predis\Cluster\Hash\HashGeneratorInterface;
  */
 class RedisClusterHashStrategy extends PredisClusterHashStrategy
 {
-	/**
-	 *
-	 */
-	public function __construct(HashGeneratorInterface $hashGenerator = null)
-	{
-		parent::__construct($hashGenerator ?: new CRC16HashGenerator());
-	}
+    /**
+     *
+     */
+    public function __construct(HashGeneratorInterface $hashGenerator = null)
+    {
+        parent::__construct($hashGenerator ?: new CRC16HashGenerator());
+    }
 
-	/**
-	 * Returns only the hashable part of a key (delimited by "{...}"), or the
-	 * whole key if a key tag is not found in the string.
-	 *
-	 * @param  string $key A key.
-	 *
-	 * @return string
-	 */
-	protected function extractKeyTag($key)
-	{
-		if (false !== $start = strpos($key, '{')) {
-			if (false !== ($end = strpos($key, '}', $start)) && $end !== ++$start) {
-				$key = substr($key, $start, $end - $start);
-			}
-		}
+    /**
+     * Returns only the hashable part of a key (delimited by "{...}"), or the
+     * whole key if a key tag is not found in the string.
+     *
+     * @param  string $key A key.
+     * @return string
+     */
+    protected function extractKeyTag($key)
+    {
+        if (false !== $start = strpos($key, '{')) {
+            if (false !== ($end = strpos($key, '}', $start)) && $end !== ++$start) {
+                $key = substr($key, $start, $end - $start);
+            }
+        }
 
-		return $key;
-	}
+        return $key;
+    }
 }

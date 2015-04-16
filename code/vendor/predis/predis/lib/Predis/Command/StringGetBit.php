@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/getbit
+ * @link http://redis.io/commands/getbit
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringGetBit extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'GETBIT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'GETBIT';
+    }
 }

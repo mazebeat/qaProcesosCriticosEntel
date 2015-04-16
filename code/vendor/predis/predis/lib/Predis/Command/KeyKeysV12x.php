@@ -12,17 +12,17 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/keys
+ * @link http://redis.io/commands/keys
  * @author Daniele Alessandri <suppakilla@gmail.com>
  * @deprecated
  */
 class KeyKeysV12x extends KeyKeys
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function parseResponse($data)
-	{
-		return explode(' ', $data);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function parseResponse($data)
+    {
+        return explode(' ', $data);
+    }
 }

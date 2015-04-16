@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/shutdown
+ * @link http://redis.io/commands/shutdown
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerShutdown extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SHUTDOWN';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SHUTDOWN';
+    }
 }

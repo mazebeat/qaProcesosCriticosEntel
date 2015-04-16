@@ -12,74 +12,73 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/hscan
+ * @link http://redis.io/commands/hscan
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class HashScan extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'HSCAN';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'HSCAN';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function parseResponse($data)
-	{
-		if (is_array($data)) {
-			$data[0] = (int)$data[0];
-			$fields  = $data[1];
-			$result  = array();
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        if (count($arguments) === 3 && is_array($arguments[2])) {
+            $options = $this->prepareOptions(array_pop($arguments));
+            $arguments = array_merge($arguments, $options);
+        }
 
-			for ($i = 0; $i < count($fields); $i++) {
-				$result[$fields[$i]] = $fields[++$i];
-			}
+        return $arguments;
+    }
 
-			$data[1] = $result;
-		}
+    /**
+     * Returns a list of options and modifiers compatible with Redis.
+     *
+     * @param  array $options List of options.
+     * @return array
+     */
+    protected function prepareOptions($options)
+    {
+        $options = array_change_key_case($options, CASE_UPPER);
+        $normalized = array();
 
-		return $data;
-	}
+        if (!empty($options['MATCH'])) {
+            $normalized[] = 'MATCH';
+            $normalized[] = $options['MATCH'];
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		if (count($arguments) === 3 && is_array($arguments[2])) {
-			$options   = $this->prepareOptions(array_pop($arguments));
-			$arguments = array_merge($arguments, $options);
-		}
+        if (!empty($options['COUNT'])) {
+            $normalized[] = 'COUNT';
+            $normalized[] = $options['COUNT'];
+        }
 
-		return $arguments;
-	}
+        return $normalized;
+    }
 
-	/**
-	 * Returns a list of options and modifiers compatible with Redis.
-	 *
-	 * @param  array $options List of options.
-	 *
-	 * @return array
-	 */
-	protected function prepareOptions($options)
-	{
-		$options    = array_change_key_case($options, CASE_UPPER);
-		$normalized = array();
+    /**
+     * {@inheritdoc}
+     */
+    public function parseResponse($data)
+    {
+        if (is_array($data)) {
+            $data[0] = (int) $data[0];
+            $fields = $data[1];
+            $result = array();
 
-		if (!empty($options['MATCH'])) {
-			$normalized[] = 'MATCH';
-			$normalized[] = $options['MATCH'];
-		}
+            for ($i = 0; $i < count($fields); $i++) {
+                $result[$fields[$i]] = $fields[++$i];
+            }
 
-		if (!empty($options['COUNT'])) {
-			$normalized[] = 'COUNT';
-			$normalized[] = $options['COUNT'];
-		}
+            $data[1] = $result;
+        }
 
-		return $normalized;
-	}
+        return $data;
+    }
 }

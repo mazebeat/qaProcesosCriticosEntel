@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/incrbyfloat
+ * @link http://redis.io/commands/incrbyfloat
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringIncrementByFloat extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'INCRBYFLOAT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'INCRBYFLOAT';
+    }
 }

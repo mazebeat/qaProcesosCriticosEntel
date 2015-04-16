@@ -115,10 +115,11 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
-		//		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 		'Fitztrev\LaravelHtmlMinify\LaravelHtmlMinifyServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
 		'Barryvdh\VendorCleanup\VendorCleanupServiceProvider',
+		'Dollar\Generators\GeneratorsServiceProvider'
 	),
 	/*
 	|--------------------------------------------------------------------------

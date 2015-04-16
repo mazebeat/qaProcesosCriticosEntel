@@ -2,14 +2,7 @@
     "name": "jeremeamia/SuperClosure",
     "type": "library",
     "description": "Doing interesting things with closures like serialization.",
-    "keywords": [
-        "closure",
-        "serialize",
-        "serializable",
-        "function",
-        "parser",
-        "tokenizer"
-    ],
+    "keywords": ["closure", "serialize", "serializable", "function", "parser", "tokenizer"],
     "homepage": "https://github.com/jeremeamia/super_closure",
     "license": "MIT",
     "authors": [
@@ -25,6 +18,6 @@
         "phpunit/phpunit": "~3.7"
     },
     "autoload": {
-        "psr-0": {"Jeremeamia\\SuperClosure": "src/"}
+        "psr-0": { "Jeremeamia\\SuperClosure": "src/" }
     }
 }

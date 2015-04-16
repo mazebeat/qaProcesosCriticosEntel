@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/decrby
+ * @link http://redis.io/commands/decrby
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringDecrementBy extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'DECRBY';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'DECRBY';
+    }
 }

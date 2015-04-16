@@ -12,24 +12,24 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zrem
+ * @link http://redis.io/commands/zrem
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetRemove extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZREM';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZREM';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		return self::normalizeVariadic($arguments);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        return self::normalizeVariadic($arguments);
+    }
 }

@@ -12,24 +12,24 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/setnx
+ * @link http://redis.io/commands/setnx
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringSetPreserve extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SETNX';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SETNX';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function parseResponse($data)
-	{
-		return (bool)$data;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function parseResponse($data)
+    {
+        return (bool) $data;
+    }
 }

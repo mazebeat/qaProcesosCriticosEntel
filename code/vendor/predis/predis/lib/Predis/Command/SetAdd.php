@@ -12,24 +12,24 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/sadd
+ * @link http://redis.io/commands/sadd
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class SetAdd extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SADD';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SADD';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		return self::normalizeVariadic($arguments);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        return self::normalizeVariadic($arguments);
+    }
 }

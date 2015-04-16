@@ -11,10 +11,10 @@
 
 namespace Predis\Connection;
 
-use Predis\Command\CommandInterface;
 use Predis\NotSupportedException;
 use Predis\ResponseError;
 use Predis\ResponseQueued;
+use Predis\Command\CommandInterface;
 
 /**
  * This class provides the implementation of a Predis connection that uses the
@@ -41,353 +41,353 @@ use Predis\ResponseQueued;
  *  - timeout: timeout to perform the connection.
  *  - read_write_timeout: timeout of read / write operations.
  *
- * @link   http://github.com/nrk/phpiredis
+ * @link http://github.com/nrk/phpiredis
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class PhpiredisConnection extends AbstractConnection
 {
-	const ERR_MSG_EXTENSION = 'The %s extension must be loaded in order to be able to use this connection class';
+    const ERR_MSG_EXTENSION = 'The %s extension must be loaded in order to be able to use this connection class';
 
-	private $reader;
+    private $reader;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __construct(ConnectionParametersInterface $parameters)
-	{
-		$this->checkExtensions();
-		$this->initializeReader();
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(ConnectionParametersInterface $parameters)
+    {
+        $this->checkExtensions();
+        $this->initializeReader();
 
-		parent::__construct($parameters);
-	}
+        parent::__construct($parameters);
+    }
 
-	/**
-	 * Checks if the socket and phpiredis extensions are loaded in PHP.
-	 */
-	private function checkExtensions()
-	{
-		if (!function_exists('socket_create')) {
-			throw new NotSupportedException(sprintf(self::ERR_MSG_EXTENSION, 'socket'));
-		}
-		if (!function_exists('phpiredis_reader_create')) {
-			throw new NotSupportedException(sprintf(self::ERR_MSG_EXTENSION, 'phpiredis'));
-		}
-	}
+    /**
+     * Disconnects from the server and destroys the underlying resource and the
+     * protocol reader resource when PHP's garbage collector kicks in.
+     */
+    public function __destruct()
+    {
+        phpiredis_reader_destroy($this->reader);
 
-	/**
-	 * Initializes the protocol reader resource.
-	 */
-	private function initializeReader()
-	{
-		$reader = phpiredis_reader_create();
+        parent::__destruct();
+    }
 
-		phpiredis_reader_set_status_handler($reader, $this->getStatusHandler());
-		phpiredis_reader_set_error_handler($reader, $this->getErrorHandler());
+    /**
+     * Checks if the socket and phpiredis extensions are loaded in PHP.
+     */
+    private function checkExtensions()
+    {
+        if (!function_exists('socket_create')) {
+            throw new NotSupportedException(sprintf(self::ERR_MSG_EXTENSION, 'socket'));
+        }
+        if (!function_exists('phpiredis_reader_create')) {
+            throw new NotSupportedException(sprintf(self::ERR_MSG_EXTENSION, 'phpiredis'));
+        }
+    }
 
-		$this->reader = $reader;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function checkParameters(ConnectionParametersInterface $parameters)
+    {
+        if (isset($parameters->iterable_multibulk)) {
+            $this->onInvalidOption('iterable_multibulk', $parameters);
+        }
+        if (isset($parameters->persistent)) {
+            $this->onInvalidOption('persistent', $parameters);
+        }
 
-	/**
-	 * Gets the handler used by the protocol reader to handle status replies.
-	 *
-	 * @return \Closure
-	 */
-	private function getStatusHandler()
-	{
-		return function ($payload) {
-			switch ($payload) {
-				case 'OK':
-					return true;
+        return parent::checkParameters($parameters);
+    }
 
-				case 'QUEUED':
-					return new ResponseQueued();
+    /**
+     * Initializes the protocol reader resource.
+     */
+    private function initializeReader()
+    {
+        $reader = phpiredis_reader_create();
 
-				default:
-					return $payload;
-			}
-		};
-	}
+        phpiredis_reader_set_status_handler($reader, $this->getStatusHandler());
+        phpiredis_reader_set_error_handler($reader, $this->getErrorHandler());
 
-	/**
-	 * Gets the handler used by the protocol reader to handle Redis errors.
-	 *
-	 * @return \Closure
-	 */
-	private function getErrorHandler()
-	{
-		return function ($errorMessage) {
-			return new ResponseError($errorMessage);
-		};
-	}
+        $this->reader = $reader;
+    }
 
-	/**
-	 * Disconnects from the server and destroys the underlying resource and the
-	 * protocol reader resource when PHP's garbage collector kicks in.
-	 */
-	public function __destruct()
-	{
-		phpiredis_reader_destroy($this->reader);
+    /**
+     * Gets the handler used by the protocol reader to handle status replies.
+     *
+     * @return \Closure
+     */
+    private function getStatusHandler()
+    {
+        return function ($payload) {
+            switch ($payload) {
+                case 'OK':
+                    return true;
 
-		parent::__destruct();
-	}
+                case 'QUEUED':
+                    return new ResponseQueued();
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function connect()
-	{
-		parent::connect();
+                default:
+                    return $payload;
+            }
+        };
+    }
 
-		$this->connectWithTimeout($this->parameters);
+    /**
+     * Gets the handler used by the protocol reader to handle Redis errors.
+     *
+     * @return \Closure
+     */
+    private function getErrorHandler()
+    {
+        return function ($errorMessage) {
+            return new ResponseError($errorMessage);
+        };
+    }
 
-		if ($this->initCmds) {
-			$this->sendInitializationCommands();
-		}
-	}
+    /**
+     * Helper method used to throw exceptions on socket errors.
+     */
+    private function emitSocketError()
+    {
+        $errno  = socket_last_error();
+        $errstr = socket_strerror($errno);
 
-	/**
-	 * Opens the actual connection to the server with a timeout.
-	 *
-	 * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
-	 *
-	 * @return string
-	 */
-	private function connectWithTimeout(ConnectionParametersInterface $parameters)
-	{
-		if (false === $host = self::getAddress($parameters)) {
-			$this->onConnectionError("Cannot resolve the address of '$parameters->host'.");
-		}
+        $this->disconnect();
 
-		$socket = $this->getResource();
+        $this->onConnectionError(trim($errstr), $errno);
+    }
 
-		socket_set_nonblock($socket);
+    /**
+     * {@inheritdoc}
+     */
+    protected function createResource()
+    {
+        $parameters = $this->parameters;
 
-		if (@socket_connect($socket, $host, $parameters->port) === false) {
-			$error = socket_last_error();
-			if ($error != SOCKET_EINPROGRESS && $error != SOCKET_EALREADY) {
-				$this->emitSocketError();
-			}
-		}
+        $isUnix = $this->parameters->scheme === 'unix';
+        $domain = $isUnix ? AF_UNIX : AF_INET;
+        $protocol = $isUnix ? 0 : SOL_TCP;
 
-		socket_set_block($socket);
+        $socket = @call_user_func('socket_create', $domain, SOCK_STREAM, $protocol);
+        if (!is_resource($socket)) {
+            $this->emitSocketError();
+        }
 
-		$null       = null;
-		$selectable = array($socket);
+        $this->setSocketOptions($socket, $parameters);
 
-		$timeout      = $parameters->timeout;
-		$timeoutSecs  = floor($timeout);
-		$timeoutUSecs = ($timeout - $timeoutSecs) * 1000000;
+        return $socket;
+    }
 
-		$selected = socket_select($selectable, $selectable, $null, $timeoutSecs, $timeoutUSecs);
+    /**
+     * Sets options on the socket resource from the connection parameters.
+     *
+     * @param resource                      $socket     Socket resource.
+     * @param ConnectionParametersInterface $parameters Parameters used to initialize the connection.
+     */
+    private function setSocketOptions($socket, ConnectionParametersInterface $parameters)
+    {
+        if ($parameters->scheme !== 'tcp') {
+            return;
+        }
 
-		if ($selected === 2) {
-			$this->onConnectionError('Connection refused', SOCKET_ECONNREFUSED);
-		}
-		if ($selected === 0) {
-			$this->onConnectionError('Connection timed out', SOCKET_ETIMEDOUT);
-		}
-		if ($selected === false) {
-			$this->emitSocketError();
-		}
-	}
+        if (!socket_set_option($socket, SOL_TCP, TCP_NODELAY, 1)) {
+            $this->emitSocketError();
+        }
 
-	/**
-	 * Gets the address from the connection parameters.
-	 *
-	 * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
-	 *
-	 * @return string
-	 */
-	protected static function getAddress(ConnectionParametersInterface $parameters)
-	{
-		if ($parameters->scheme === 'unix') {
-			return $parameters->path;
-		}
+        if (!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1)) {
+            $this->emitSocketError();
+        }
 
-		$host = $parameters->host;
+        if (isset($parameters->read_write_timeout)) {
+            $rwtimeout = $parameters->read_write_timeout;
+            $timeoutSec = floor($rwtimeout);
+            $timeoutUsec = ($rwtimeout - $timeoutSec) * 1000000;
 
-		if (ip2long($host) === false) {
-			if (false === $addresses = gethostbynamel($host)) {
-				return false;
-			}
+            $timeout = array(
+                'sec' => $timeoutSec,
+                'usec' => $timeoutUsec,
+            );
 
-			return $addresses[array_rand($addresses)];
-		}
+            if (!socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout)) {
+                $this->emitSocketError();
+            }
 
-		return $host;
-	}
+            if (!socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout)) {
+                $this->emitSocketError();
+            }
+        }
+    }
 
-	/**
-	 * Sends the initialization commands to Redis when the connection is opened.
-	 */
-	private function sendInitializationCommands()
-	{
-		foreach ($this->initCmds as $command) {
-			$this->writeCommand($command);
-		}
-		foreach ($this->initCmds as $command) {
-			$this->readResponse($command);
-		}
-	}
+    /**
+     * Gets the address from the connection parameters.
+     *
+     * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
+     * @return string
+     */
+    protected static function getAddress(ConnectionParametersInterface $parameters)
+    {
+        if ($parameters->scheme === 'unix') {
+            return $parameters->path;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function writeCommand(CommandInterface $command)
-	{
-		$cmdargs = $command->getArguments();
-		array_unshift($cmdargs, $command->getId());
-		$this->write(phpiredis_format_command($cmdargs));
-	}
+        $host = $parameters->host;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function write($buffer)
-	{
-		$socket = $this->getResource();
+        if (ip2long($host) === false) {
+            if (false === $addresses = gethostbynamel($host)) {
+                return false;
+            }
 
-		while (($length = strlen($buffer)) > 0) {
-			$written = socket_write($socket, $buffer, $length);
+            return $addresses[array_rand($addresses)];
+        }
 
-			if ($length === $written) {
-				return;
-			}
-			if ($written === false) {
-				$this->onConnectionError('Error while writing bytes to the server');
-			}
+        return $host;
+    }
 
-			$buffer = substr($buffer, $written);
-		}
-	}
+    /**
+     * Opens the actual connection to the server with a timeout.
+     *
+     * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
+     * @return string
+     */
+    private function connectWithTimeout(ConnectionParametersInterface $parameters)
+    {
+        if (false === $host = self::getAddress($parameters)) {
+            $this->onConnectionError("Cannot resolve the address of '$parameters->host'.");
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function read()
-	{
-		$socket = $this->getResource();
-		$reader = $this->reader;
+        $socket = $this->getResource();
 
-		while (($state = phpiredis_reader_get_state($reader)) === PHPIREDIS_READER_STATE_INCOMPLETE) {
-			if (@socket_recv($socket, $buffer, 4096, 0) === false || $buffer === '') {
-				$this->emitSocketError();
-			}
+        socket_set_nonblock($socket);
 
-			phpiredis_reader_feed($reader, $buffer);
-		}
+        if (@socket_connect($socket, $host, $parameters->port) === false) {
+            $error = socket_last_error();
+            if ($error != SOCKET_EINPROGRESS && $error != SOCKET_EALREADY) {
+                $this->emitSocketError();
+            }
+        }
 
-		if ($state === PHPIREDIS_READER_STATE_COMPLETE) {
-			return phpiredis_reader_get_reply($reader);
-		} else {
-			$this->onProtocolError(phpiredis_reader_get_error($reader));
-		}
-	}
+        socket_set_block($socket);
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __wakeup()
-	{
-		$this->checkExtensions();
-		$this->initializeReader();
-	}
+        $null = null;
+        $selectable = array($socket);
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function checkParameters(ConnectionParametersInterface $parameters)
-	{
-		if (isset($parameters->iterable_multibulk)) {
-			$this->onInvalidOption('iterable_multibulk', $parameters);
-		}
-		if (isset($parameters->persistent)) {
-			$this->onInvalidOption('persistent', $parameters);
-		}
+        $timeout = $parameters->timeout;
+        $timeoutSecs = floor($timeout);
+        $timeoutUSecs = ($timeout - $timeoutSecs) * 1000000;
 
-		return parent::checkParameters($parameters);
-	}
+        $selected = socket_select($selectable, $selectable, $null, $timeoutSecs, $timeoutUSecs);
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function createResource()
-	{
-		$parameters = $this->parameters;
+        if ($selected === 2) {
+            $this->onConnectionError('Connection refused', SOCKET_ECONNREFUSED);
+        }
+        if ($selected === 0) {
+            $this->onConnectionError('Connection timed out', SOCKET_ETIMEDOUT);
+        }
+        if ($selected === false) {
+            $this->emitSocketError();
+        }
+    }
 
-		$isUnix   = $this->parameters->scheme === 'unix';
-		$domain   = $isUnix ? AF_UNIX : AF_INET;
-		$protocol = $isUnix ? 0 : SOL_TCP;
+    /**
+     * {@inheritdoc}
+     */
+    public function connect()
+    {
+        parent::connect();
 
-		$socket = @call_user_func('socket_create', $domain, SOCK_STREAM, $protocol);
-		if (!is_resource($socket)) {
-			$this->emitSocketError();
-		}
+        $this->connectWithTimeout($this->parameters);
 
-		$this->setSocketOptions($socket, $parameters);
+        if ($this->initCmds) {
+            $this->sendInitializationCommands();
+        }
+    }
 
-		return $socket;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function disconnect()
+    {
+        if ($this->isConnected()) {
+            socket_close($this->getResource());
+            parent::disconnect();
+        }
+    }
 
-	/**
-	 * Helper method used to throw exceptions on socket errors.
-	 */
-	private function emitSocketError()
-	{
-		$errno  = socket_last_error();
-		$errstr = socket_strerror($errno);
+    /**
+     * Sends the initialization commands to Redis when the connection is opened.
+     */
+    private function sendInitializationCommands()
+    {
+        foreach ($this->initCmds as $command) {
+            $this->writeCommand($command);
+        }
+        foreach ($this->initCmds as $command) {
+            $this->readResponse($command);
+        }
+    }
 
-		$this->disconnect();
+    /**
+     * {@inheritdoc}
+     */
+    protected function write($buffer)
+    {
+        $socket = $this->getResource();
 
-		$this->onConnectionError(trim($errstr), $errno);
-	}
+        while (($length = strlen($buffer)) > 0) {
+            $written = socket_write($socket, $buffer, $length);
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function disconnect()
-	{
-		if ($this->isConnected()) {
-			socket_close($this->getResource());
-			parent::disconnect();
-		}
-	}
+            if ($length === $written) {
+                return;
+            }
+            if ($written === false) {
+                $this->onConnectionError('Error while writing bytes to the server');
+            }
 
-	/**
-	 * Sets options on the socket resource from the connection parameters.
-	 *
-	 * @param resource                      $socket     Socket resource.
-	 * @param ConnectionParametersInterface $parameters Parameters used to initialize the connection.
-	 */
-	private function setSocketOptions($socket, ConnectionParametersInterface $parameters)
-	{
-		if ($parameters->scheme !== 'tcp') {
-			return;
-		}
+            $buffer = substr($buffer, $written);
+        }
+    }
 
-		if (!socket_set_option($socket, SOL_TCP, TCP_NODELAY, 1)) {
-			$this->emitSocketError();
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function read()
+    {
+        $socket = $this->getResource();
+        $reader = $this->reader;
 
-		if (!socket_set_option($socket, SOL_SOCKET, SO_REUSEADDR, 1)) {
-			$this->emitSocketError();
-		}
+        while (($state = phpiredis_reader_get_state($reader)) === PHPIREDIS_READER_STATE_INCOMPLETE) {
+            if (@socket_recv($socket, $buffer, 4096, 0) === false || $buffer === '') {
+                $this->emitSocketError();
+            }
 
-		if (isset($parameters->read_write_timeout)) {
-			$rwtimeout   = $parameters->read_write_timeout;
-			$timeoutSec  = floor($rwtimeout);
-			$timeoutUsec = ($rwtimeout - $timeoutSec) * 1000000;
+            phpiredis_reader_feed($reader, $buffer);
+        }
 
-			$timeout = array('sec'  => $timeoutSec,
-			                 'usec' => $timeoutUsec,);
+        if ($state === PHPIREDIS_READER_STATE_COMPLETE) {
+            return phpiredis_reader_get_reply($reader);
+        } else {
+            $this->onProtocolError(phpiredis_reader_get_error($reader));
+        }
+    }
 
-			if (!socket_set_option($socket, SOL_SOCKET, SO_SNDTIMEO, $timeout)) {
-				$this->emitSocketError();
-			}
+    /**
+     * {@inheritdoc}
+     */
+    public function writeCommand(CommandInterface $command)
+    {
+        $cmdargs = $command->getArguments();
+        array_unshift($cmdargs, $command->getId());
+        $this->write(phpiredis_format_command($cmdargs));
+    }
 
-			if (!socket_set_option($socket, SOL_SOCKET, SO_RCVTIMEO, $timeout)) {
-				$this->emitSocketError();
-			}
-		}
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function __wakeup()
+    {
+        $this->checkExtensions();
+        $this->initializeReader();
+    }
 }

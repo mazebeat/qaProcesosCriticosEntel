@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/substr
+ * @link http://redis.io/commands/substr
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringSubstr extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SUBSTR';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SUBSTR';
+    }
 }

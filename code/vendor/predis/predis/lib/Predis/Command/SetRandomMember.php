@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/srandmember
+ * @link http://redis.io/commands/srandmember
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class SetRandomMember extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SRANDMEMBER';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SRANDMEMBER';
+    }
 }

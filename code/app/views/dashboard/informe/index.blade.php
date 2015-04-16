@@ -6,6 +6,14 @@
 
 @section('content')
 	<div ng-controller="informeController">
+		<code ng-if="debug">
+			<p>Filtros: @{{ filters }}</p>
+
+			<p>Datos: @{{ datas }}</p>
+
+			<p>Errores: @{{ errors }}</p>
+		</code>
+
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
@@ -17,121 +25,84 @@
 						</span>
 					</div>
 					<div class="panel-body">
-						<div class="col-md-12">
-							<div class="pull-right">
-								<form action="#" method="get" class="form-inline" role="form">
-									<div class="form-group">
-										<label class="" for="q"><i class="fa fa-filter fa-fw"></i>Filtrar: </label>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="row">
+									<div class="col-md-2 pull-right">
+										<form action="#" method="get" class="form-inline" role="form">
+											<div class="form-group">
+												<label class="" for="q"><i class="fa fa-filter fa-fw"></i>Filtrar: </label>
 
-										<div class="input-group">
-											<input class="form-control system-search" id="" name="q" required>
-											<span class="input-group-btn">
-												<button type="submit" class="btn btn-default">
-													<i class="glyphicon glyphicon-search"></i>
-												</button>
-											</span>
-										</div>
-
+												<div class="input-group">
+													<input class="form-control system-search" id="" name="q" required>
+													<span class="input-group-btn">
+														<button type="submit" class="btn btn-default">
+															<i class="glyphicon glyphicon-search"></i>
+														</button>
+													</span>
+												</div>
+											</div>
+										</form>
 									</div>
-								</form>
+									<div class="col-md-2 col-xs-12 col-sm-6">
+										<label for="dateRange">
+											<small>Fecha</small>
+										</label>
+										{{ HTML::dateRange('dateRange', array('class' => 'form-control', 'ng-model' => 'filters.date', 'ng-change' => 'updateDate()')) }}
+									</div>
+									<div class="col-md-2 col-xs-12 col-sm-6">
+										<label for="dateRange">
+											<small>Herramientas</small>
+										</label><br>
+
+										<div class="btn-group" role="group" aria-label="...">
+											<button type="button" class="btn btn-info" ng-click="updateInforms()"><i class="fa fa-search fa-lg"></i></button>
+											<button type="button" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+											<button type="button" class="btn btn-default"><i class="fa fa-ellipsis-h fa-lg"></i></button>
+										</div>
+									</div>
+								</div>
 							</div>
-							<div class="btn-group" role="group" aria-label="...">
-								<button type="button" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i>
-								</button>
-								<button type="button" class="btn btn-info"><i class="fa fa-refresh fa-lg"></i></button>
-								<button type="button" class="btn btn-default"><i class="fa fa-ellipsis-h fa-lg"></i>
-								</button>
+							<div class="col-md-5">
+								<div ng-if="errors.message != '' && !isLoadingActual" class="alert alert-warning" role="alert">
+									<strong>Warning!</strong> @{{ errors.message }}.
+								</div>
+								<h3 ng-if="isLoadingActual"><em>Loading{{ HTML::image('images/loaders/loader28.gif') }}</em></h3>
 							</div>
-						</div>
-						<div class="col-md-12">
-							<div class="table-responsive">
-								<table class="table table-hover table-list-search">
-									<thead>
-									<tr>
-										<th class="text-center" style="width: 35px;">
-											<i class="fa fa-check fa-lg"></i>
-										</th>
-										<th class="" style="width: 30px;"></th>
-										<th class="filename" style="width: 80%;">Nombre</th>
-										<th class="text-center" style="width: 5%;">Tipo</th>
-										<th class="text-center" style="width: 10%;">Tamaño</th>
-										<th class="text-center" style="width: 50px;"></th>
-									</tr>
-									</thead>
-									<tbody>
-									<tr>
-										<td class="icheck">
-											<div class="square-blue single-row">
-												<div class="checkbox">
-													<input type="checkbox">
+							<div class="col-md-12">
+								<div class="table-responsive">
+									<table class="table table-hover table-list-search">
+										<thead>
+										<tr>
+											<th class="text-center" style="width: 35px;">
+												<i class="fa fa-check fa-lg"></i>
+											</th>
+											<th class="" style="width: 30px;"></th>
+											<th class="filename" style="width: 80%;">Nombre</th>
+											<th class="text-center" style="width: 15%;">Tipo Documento</th>
+											<th class="text-center" style="width: 50px;"></th>
+										</tr>
+										</thead>
+										<tbody>
+										<tr ng-repeat="inf in filters.informs">
+											<td class="icheck">
+												<div class="square-blue single-row">
+													<div class="checkbox">
+														<input type="checkbox" id="check@{{ inf.data.id }}">
+													</div>
 												</div>
-											</div>
-										</td>
-										<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
-										<td class="filename">Informe_Mensual_201501</td>
-										<td class="">XLS</td>
-										<td class="">16 KB</td>
-										<td class="">
-											<button type="button" class="btn btn-info btn-sm">
-												<i class="fa fa-download"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="icheck">
-											<div class="square-blue single-row">
-												<div class="checkbox">
-													<input type="checkbox">
-												</div>
-											</div>
-										</td>
-										<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
-										<td class="filename">Cargo_Fijo_201501</td>
-										<td class="">XLS</td>
-										<td class="">38 MB</td>
-										<td class="">
-											<button type="button" class="btn btn-info btn-sm">
-												<i class="fa fa-download"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="icheck">
-											<div class="square-blue single-row">
-												<div class="checkbox">
-													<input type="checkbox">
-												</div>
-											</div>
-										</td>
-										<td class=""><i class="fa fa-file-pdf-o fa-lg"></i></td>
-										<td class="filename">Detalle_Trafico_201502</td>
-										<td class="">PDF</td>
-										<td class="">320 MB</td>
-										<td class="">
-											<button type="button" class="btn btn-info btn-sm">
-												<i class="fa fa-download"></i>
-											</button>
-										</td>
-									</tr>
-									<tr>
-										<td class="icheck">
-											<div class="square-blue single-row">
-												<div class="checkbox">
-													<input type="checkbox">
-												</div>
-											</div>
-										</td>
-										<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
-										<td class="filename">Informe_Anual_2015</td>
-										<td class="">XLS</td>
-										<td class="">96 KB</td>
-										<td class="">
-											<button type="button" class="btn btn-info btn-sm">
-												<i class="fa fa-download"></i>
-											</button>
-										</td>
-									</tr>
-								</table>
+											</td>
+											<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
+											<td class="filename">@{{ inf.data.nombre  }}</td>
+											<td class="">@{{ inf.data.documento }}</td>
+											<td class="">
+												<button type="button" class="btn btn-info btn-sm" ng-click="downloadInform(inf.data.id, inf.data.nombre)">
+													<i class="fa fa-download"></i>
+												</button>
+											</td>
+										</tr>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>

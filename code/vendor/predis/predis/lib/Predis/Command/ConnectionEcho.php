@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/echo
+ * @link http://redis.io/commands/echo
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ConnectionEcho extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ECHO';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ECHO';
+    }
 }

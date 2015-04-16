@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/pttl
+ * @link http://redis.io/commands/pttl
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeyPreciseTimeToLive extends KeyTimeToLive
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'PTTL';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'PTTL';
+    }
 }

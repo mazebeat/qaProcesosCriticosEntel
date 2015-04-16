@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zlexcount
+ * @link http://redis.io/commands/zlexcount
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetLexCount extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZLEXCOUNT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZLEXCOUNT';
+    }
 }

@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/brpop
+ * @link http://redis.io/commands/brpop
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListPopLastBlocking extends ListPopFirstBlocking
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'BRPOP';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'BRPOP';
+    }
 }

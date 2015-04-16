@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/lrange
+ * @link http://redis.io/commands/lrange
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListRange extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LRANGE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LRANGE';
+    }
 }

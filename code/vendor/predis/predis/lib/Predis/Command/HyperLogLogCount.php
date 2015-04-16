@@ -12,32 +12,32 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/pfcount
+ * @link http://redis.io/commands/pfcount
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class HyperLogLogCount extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'PFCOUNT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'PFCOUNT';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function prefixKeys($prefix)
-	{
-		PrefixHelpers::all($this, $prefix);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(array $arguments)
+    {
+        return self::normalizeArguments($arguments);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(array $arguments)
-	{
-		return self::normalizeArguments($arguments);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function prefixKeys($prefix)
+    {
+        PrefixHelpers::all($this, $prefix);
+    }
 }

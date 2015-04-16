@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/dbsize
+ * @link http://redis.io/commands/dbsize
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerDatabaseSize extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'DBSIZE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'DBSIZE';
+    }
 }

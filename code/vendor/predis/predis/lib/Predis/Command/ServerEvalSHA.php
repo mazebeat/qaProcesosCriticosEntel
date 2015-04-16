@@ -12,26 +12,26 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/evalsha
+ * @link http://redis.io/commands/evalsha
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerEvalSHA extends ServerEval
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'EVALSHA';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'EVALSHA';
+    }
 
-	/**
-	 * Returns the SHA1 hash of the body of the script.
-	 *
-	 * @return string SHA1 hash.
-	 */
-	public function getScriptHash()
-	{
-		return $this->getArgument(0);
-	}
+    /**
+     * Returns the SHA1 hash of the body of the script.
+     *
+     * @return string SHA1 hash.
+     */
+    public function getScriptHash()
+    {
+        return $this->getArgument(0);
+    }
 }

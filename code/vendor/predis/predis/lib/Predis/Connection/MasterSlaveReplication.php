@@ -22,240 +22,240 @@ use Predis\Replication\ReplicationStrategy;
  */
 class MasterSlaveReplication implements ReplicationConnectionInterface
 {
-	protected $strategy;
-	protected $master;
-	protected $slaves;
-	protected $current;
+    protected $strategy;
+    protected $master;
+    protected $slaves;
+    protected $current;
 
-	/**
-	 *
-	 */
-	public function __construct(ReplicationStrategy $strategy = null)
-	{
-		$this->slaves   = array();
-		$this->strategy = $strategy ?: new ReplicationStrategy();
-	}
+    /**
+     *
+     */
+    public function __construct(ReplicationStrategy $strategy = null)
+    {
+        $this->slaves = array();
+        $this->strategy = $strategy ?: new ReplicationStrategy();
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function add(SingleConnectionInterface $connection)
-	{
-		$alias = $connection->getParameters()->alias;
+    /**
+     * Checks if one master and at least one slave have been defined.
+     */
+    protected function check()
+    {
+        if (!isset($this->master) || !$this->slaves) {
+            throw new \RuntimeException('Replication needs a master and at least one slave.');
+        }
+    }
 
-		if ($alias === 'master') {
-			$this->master = $connection;
-		} else {
-			$this->slaves[$alias ?: count($this->slaves)] = $connection;
-		}
+    /**
+     * Resets the connection state.
+     */
+    protected function reset()
+    {
+        $this->current = null;
+    }
 
-		$this->reset();
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function add(SingleConnectionInterface $connection)
+    {
+        $alias = $connection->getParameters()->alias;
 
-	/**
-	 * Resets the connection state.
-	 */
-	protected function reset()
-	{
-		$this->current = null;
-	}
+        if ($alias === 'master') {
+            $this->master = $connection;
+        } else {
+            $this->slaves[$alias ?: count($this->slaves)] = $connection;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function remove(SingleConnectionInterface $connection)
-	{
-		if ($connection->getParameters()->alias === 'master') {
-			$this->master = null;
-			$this->reset();
+        $this->reset();
+    }
 
-			return true;
-		} else {
-			if (($id = array_search($connection, $this->slaves, true)) !== false) {
-				unset($this->slaves[$id]);
-				$this->reset();
+    /**
+     * {@inheritdoc}
+     */
+    public function remove(SingleConnectionInterface $connection)
+    {
+        if ($connection->getParameters()->alias === 'master') {
+            $this->master = null;
+            $this->reset();
 
-				return true;
-			}
-		}
+            return true;
+        } else {
+            if (($id = array_search($connection, $this->slaves, true)) !== false) {
+                unset($this->slaves[$id]);
+                $this->reset();
 
-		return false;
-	}
+                return true;
+            }
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function switchTo($connection)
-	{
-		$this->check();
+        return false;
+    }
 
-		if (!$connection instanceof SingleConnectionInterface) {
-			$connection = $this->getConnectionById($connection);
-		}
-		if ($connection !== $this->master && !in_array($connection, $this->slaves, true)) {
-			throw new \InvalidArgumentException('The specified connection is not valid.');
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function getConnection(CommandInterface $command)
+    {
+        if ($this->current === null) {
+            $this->check();
+            $this->current = $this->strategy->isReadOperation($command) ? $this->pickSlave() : $this->master;
 
-		$this->current = $connection;
-	}
+            return $this->current;
+        }
 
-	/**
-	 * Checks if one master and at least one slave have been defined.
-	 */
-	protected function check()
-	{
-		if (!isset($this->master) || !$this->slaves) {
-			throw new \RuntimeException('Replication needs a master and at least one slave.');
-		}
-	}
+        if ($this->current === $this->master) {
+            return $this->current;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getConnectionById($connectionId)
-	{
-		if ($connectionId === 'master') {
-			return $this->master;
-		}
+        if (!$this->strategy->isReadOperation($command)) {
+            $this->current = $this->master;
+        }
 
-		if (isset($this->slaves[$connectionId])) {
-			return $this->slaves[$connectionId];
-		}
+        return $this->current;
+    }
 
-		return null;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getConnectionById($connectionId)
+    {
+        if ($connectionId === 'master') {
+            return $this->master;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getCurrent()
-	{
-		return $this->current;
-	}
+        if (isset($this->slaves[$connectionId])) {
+            return $this->slaves[$connectionId];
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getMaster()
-	{
-		return $this->master;
-	}
+        return null;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getSlaves()
-	{
-		return array_values($this->slaves);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function switchTo($connection)
+    {
+        $this->check();
 
-	/**
-	 * Returns the underlying replication strategy.
-	 *
-	 * @return ReplicationStrategy
-	 */
-	public function getReplicationStrategy()
-	{
-		return $this->strategy;
-	}
+        if (!$connection instanceof SingleConnectionInterface) {
+            $connection = $this->getConnectionById($connection);
+        }
+        if ($connection !== $this->master && !in_array($connection, $this->slaves, true)) {
+            throw new \InvalidArgumentException('The specified connection is not valid.');
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function isConnected()
-	{
-		return $this->current ? $this->current->isConnected() : false;
-	}
+        $this->current = $connection;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function connect()
-	{
-		if ($this->current === null) {
-			$this->check();
-			$this->current = $this->pickSlave();
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function getCurrent()
+    {
+        return $this->current;
+    }
 
-		$this->current->connect();
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getMaster()
+    {
+        return $this->master;
+    }
 
-	/**
-	 * Returns a random slave.
-	 *
-	 * @return SingleConnectionInterface
-	 */
-	protected function pickSlave()
-	{
-		return $this->slaves[array_rand($this->slaves)];
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getSlaves()
+    {
+        return array_values($this->slaves);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function disconnect()
-	{
-		if ($this->master) {
-			$this->master->disconnect();
-		}
+    /**
+     * Returns the underlying replication strategy.
+     *
+     * @return ReplicationStrategy
+     */
+    public function getReplicationStrategy()
+    {
+        return $this->strategy;
+    }
 
-		foreach ($this->slaves as $connection) {
-			$connection->disconnect();
-		}
-	}
+    /**
+     * Returns a random slave.
+     *
+     * @return SingleConnectionInterface
+     */
+    protected function pickSlave()
+    {
+        return $this->slaves[array_rand($this->slaves)];
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function writeCommand(CommandInterface $command)
-	{
-		$this->getConnection($command)->writeCommand($command);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function isConnected()
+    {
+        return $this->current ? $this->current->isConnected() : false;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getConnection(CommandInterface $command)
-	{
-		if ($this->current === null) {
-			$this->check();
-			$this->current = $this->strategy->isReadOperation($command) ? $this->pickSlave() : $this->master;
+    /**
+     * {@inheritdoc}
+     */
+    public function connect()
+    {
+        if ($this->current === null) {
+            $this->check();
+            $this->current = $this->pickSlave();
+        }
 
-			return $this->current;
-		}
+        $this->current->connect();
+    }
 
-		if ($this->current === $this->master) {
-			return $this->current;
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function disconnect()
+    {
+        if ($this->master) {
+            $this->master->disconnect();
+        }
 
-		if (!$this->strategy->isReadOperation($command)) {
-			$this->current = $this->master;
-		}
+        foreach ($this->slaves as $connection) {
+            $connection->disconnect();
+        }
+    }
 
-		return $this->current;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function writeCommand(CommandInterface $command)
+    {
+        $this->getConnection($command)->writeCommand($command);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function readResponse(CommandInterface $command)
-	{
-		return $this->getConnection($command)->readResponse($command);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function readResponse(CommandInterface $command)
+    {
+        return $this->getConnection($command)->readResponse($command);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function executeCommand(CommandInterface $command)
-	{
-		return $this->getConnection($command)->executeCommand($command);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function executeCommand(CommandInterface $command)
+    {
+        return $this->getConnection($command)->executeCommand($command);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __sleep()
-	{
-		return array('master', 'slaves', 'strategy');
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function __sleep()
+    {
+        return array('master', 'slaves', 'strategy');
+    }
 }

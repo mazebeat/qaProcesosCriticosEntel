@@ -17,42 +17,6 @@ class DummyAuthProvider implements UserProviderInterface
 	 */
 	private $credentials;
 
-
-	/**
-	 * @param mixed $identifier
-	 *
-	 * @return \Illuminate\Auth\GenericUser
-	 */
-	public function retrieveById($identifier)
-	{
-		return $this->dummyUser();
-	}
-
-	/**
-	 * @return \Illuminate\Auth\GenericUser
-	 */
-	protected function dummyUser()
-	{
-		$this->credentials = Session::get('credentials');
-
-		$attributes = array('type'                  => $this->credentials['type'],
-		                    'id'                    => $this->credentials['idUsuario'],
-		                    'rut'                   => $this->credentials['rut'],
-		                    'usuario'               => $this->credentials['usuario'],
-		                    'tipoUsuario'           => $this->credentials['tipoUsuario'],
-		                    'password'              => \Hash::make($this->credentials['password']),
-		                    'mail'                  => $this->credentials['mail'],
-		                    'nombre'                => $this->credentials['nombre'],
-		                    'apellido'              => $this->credentials['apellido'],
-		                    'descripcion'           => $this->credentials['descripcion'],
-		                    'perfil'                => $this->credentials['codigoprivilegio'],
-		                    'descripcionprivilegio' => $this->credentials['descripcionprivilegio'],
-		                    'empresa'               => $this->credentials['empresa'],
-		                    'negocios'               => $this->credentials['negocios'],);
-
-		return new GenericUser($attributes);
-	}
-
 	/**
 	 * @param array $credentials
 	 *
@@ -74,14 +38,13 @@ class DummyAuthProvider implements UserProviderInterface
 	}
 
 	/**
-	 * @param \Illuminate\Auth\UserInterface $user
-	 * @param array                          $credentials
+	 * @param mixed $identifier
 	 *
-	 * @return bool
+	 * @return \Illuminate\Auth\GenericUser
 	 */
-	public function validateCredentials(UserInterface $user, array $credentials)
+	public function retrieveById($identifier)
 	{
-		return true;
+		return $this->dummyUser();
 	}
 
 	/**
@@ -104,5 +67,35 @@ class DummyAuthProvider implements UserProviderInterface
 	public function updateRememberToken(UserInterface $user, $token)
 	{
 		return new \Exception('not implemented');
+	}
+
+	/**
+	 * @param \Illuminate\Auth\UserInterface $user
+	 * @param array                          $credentials
+	 *
+	 * @return bool
+	 */
+	public function validateCredentials(UserInterface $user, array $credentials)
+	{
+		return true;
+	}
+
+	/**
+	 * @return \Illuminate\Auth\GenericUser
+	 */
+	protected function dummyUser()
+	{
+		$this->credentials = Session::get('credentials');
+
+		$attributes = array(
+			'id'         => $this->credentials['id'],
+			'type'       => $this->credentials['type'],
+			'nombre'     => $this->credentials['nombre'],
+			'privilegio' => $this->credentials['privilegio'],
+			'usuario'    => $this->credentials['usuario'],
+			'password'   => \Hash::make($this->credentials['password'])
+		);
+
+		return new GenericUser($attributes);
 	}
 }

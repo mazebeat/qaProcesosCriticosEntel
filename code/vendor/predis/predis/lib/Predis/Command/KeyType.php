@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/type
+ * @link http://redis.io/commands/type
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeyType extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'TYPE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'TYPE';
+    }
 }

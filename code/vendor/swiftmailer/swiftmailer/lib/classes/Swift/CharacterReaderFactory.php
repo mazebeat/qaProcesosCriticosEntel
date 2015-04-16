@@ -15,12 +15,12 @@
  */
 interface Swift_CharacterReaderFactory
 {
-	/**
-	 * Returns a CharacterReader suitable for the charset applied.
-	 *
-	 * @param string $charset
-	 *
-	 * @return Swift_CharacterReader
-	 */
-	public function getReaderFor($charset);
+    /**
+     * Returns a CharacterReader suitable for the charset applied.
+     *
+     * @param string $charset
+     *
+     * @return Swift_CharacterReader
+     */
+    public function getReaderFor($charset);
 }

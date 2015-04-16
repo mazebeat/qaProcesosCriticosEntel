@@ -5,27 +5,22 @@
 @endsection
 
 @section('content')
-	<div ng-controller="consolidadoController">
-		<code ng-if="debug == true">
+	<div ng-controller="consolidadoIndexController">
+		<code ng-if="debug">
 			<h3>FILTROS</h3>
-
 			<p>@{{ filters }}</p>
 
 			<h3>DATOS</h3>
 			<h4>Detalle</h4>
-
 			<p>@{{ datas.detalle }}</p>
 
 			<h4>Actual</h4>
-
 			<p>@{{ datas.actual }}</p>
 
 			<h4>Historico</h4>
-
 			<p>@{{ datas.historico }}</p>
 
 			<h3>ERRORES</h3>
-
 			<p> @{{ errors }}</p>
 		</code>
 
@@ -38,17 +33,39 @@
 				</span>
 			</div>
 			<div class="panel-body">
+
+				{{-- BEGIN FILTERS --}}
+				<div class="row">
+					<div class="col-md-2 col-xs-12 col-sm-6">
+						<label for="dateRange">
+							<small>Fecha</small>
+						</label>
+						{{ HTML::dateRange('dateRange', array('class' => 'form-control', 'ng-model' => 'filters.date', 'ng-change' => 'updateDate()')) }}
+					</div>
+					<div class="col-md-2 col-xs-12 col-sm-6">
+						<label for="typeDocument">
+							<small>Tipo Documento</small>
+						</label>
+						{{ Form::select('typeDocument', array('CG_NORMAL_BOLETA' => 'Boleta', 'CG_NORMAL_FACTURA' => 'Factura'), 'cg_normal_boleta', array('class' => 'form-control', 'ng-model' => 'filters.typeDocument', 'ng-change' => 'changeDocumentType()')) }}
+					</div>
+
+					{{-- BEGIN TITLE --}}
+					<div class="col-md-6 text-center">
+						<h3 ng-show="isLoadingActual == false">@{{ filters.titleActual }}</h3>
+						<!--<h3 ng-show="errors.actual == '' && isLoadingActual == false && datas.actual.length > 1">@{{ filters.titleActual }}</h3>-->
+					</div>
+					{{--END TITLE --}}
+				</div>
+				{{-- END FILTERS --}}
+
 				<div class="row">
 
 					{{-- BEGIN OPTIONS --}}
 					<div class="col-md-2 text-center legend" style="color:white;">
 						<div class="row">
 							<div class="col-md-12 col-xs-12 col-sm-6">
-								{{ HTML::dateRange('dateRange', array('class' => 'form-control', 'ng-model' => 'filters.date', 'ng-change' => 'updateDate()')) }}
-							</div>
-							<div class="col-md-12 col-xs-12 col-sm-6">
 								<div class="options" ng-click="changeDashboard(1)">
-									<div class="panel" style="background-color:#37468E;">
+									<div class="panel active" style="background-color:#37468E;">
 										<div class="state-value">
 											<div class="title">Cargo Fijo Planes</div>
 										</div>
@@ -95,6 +112,13 @@
 					</div>
 					{{-- END OPTIONS --}}
 
+					{{-- BEGIN TITLE --}}
+					{{--<div class="col-md-10 text-center">--}}
+					<!--<h3 ng-show="isLoadingActual == false">@{{ filters.titleActual }}</h3>-->
+					{{--<!--<h3 ng-show="errors.actual == '' && isLoadingActual == false && datas.actual.length > 1">@{{ filters.titleActual }}</h3>-->--}}
+					{{--</div>--}}
+					{{--END TITLE --}}
+
 					{{-- BEGIN GRÁFICO ACTUAL --}}
 					<div class="col-md-5">
 						<h3 ng-if="isLoadingActual"><em>Loading{{ HTML::image('images/loaders/loader28.gif') }}</em></h3>
@@ -103,8 +127,7 @@
 							<strong>Warning!</strong> @{{ errors.actual }}.
 						</div>
 
-						<h3 ng-show="errors.actual == '' && isLoadingActual == false && datas.actual.length > 1">@{{ filters.titleActual }}</h3>
-						<div>
+						<div ng-if="errors.actual === ''">
 							<div id="actual" style="width: 100%; height: 400px; background-color: #FFFFFF;"></div>
 						</div>
 					</div>
@@ -190,8 +213,15 @@
 			filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
 		}
 
+		.options .panel.active {
+			-webkit-filter: drop-shadow(0px 5px 0px rgba(0, 0, 0, 0.5));
+			filter: drop-shadow(0px 5px 0px rgba(0, 0, 0, 0.5));
+			-ms-filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+			filter: "progid:DXImageTransform.Microsoft.Dropshadow(OffX=12, OffY=12, Color='#444')";
+		}
+
 		code {
-			line-height: 1.25;
+			line-height: 0.9;
 			display: inline-block;
 			color: lightslategray;
 		}
@@ -200,7 +230,6 @@
 @endsection
 
 @section('file-script')
-
 @endsection
 
 @section('text-script')
@@ -209,226 +238,10 @@
 		var detallePieChart = new AmCharts.AmPieChart();
 		var historicoSerialChart = new AmCharts.AmSerialChart();
 
-//		$(function () {
-//			actualSerialChart.validateNow();
-//			detallePieChart.validateNow();
-//			historicoSerialChart.validateNow();
-//		});
-
-
-
-		// {
-		// 	"balloonText": "Porcentaje de <strong>[[title]]</strong> en  [[category]]: [[percents]]%",
-		// 	"fillAlphas": 1,
-		// 	"id": "AmGraph-2",
-		// 	"stackable": false,
-		// 	"switchable": false,
-		// 	"title": "Incorrectos",
-		// 	"type": "line",
-		// 	"bullet": "round",
-		// 	"lineThickness": 2,
-		// 	"bulletSize": 10,
-		// 	"valueField": "Incorrectos"
-		// }
-		// ];
-
-		//     AmCharts.makeChart("detalle", {
-		//         "type": "pie",
-		//         "pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-		//         "balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
-		//         "labelText": "[[percents]]% ",
-		//         "innerRadius": "50%",
-		//         "minRadius": 100,
-		//         "colors": [
-		//         "#374152",
-		//         "#E70D2F",
-		//         "#12DC49",
-		//         "#86A6C2"
-		//         ],
-		//         "labelsEnabled": false,
-		//         "titleField": title,
-		//         "valueField": value,
-		//         "allLabels": [],
-		//         "balloon": {},
-		//         "legend": {
-		//             "align": "center",
-		//             "equalWidths": true,
-		//             "markerType": "circle"
-		//         },
-		//         "titles": [],
-		//         "dataProvider": data,
-		//         "pathToImages": "http://www.amcharts.com/lib/3/images/",
-		//         "amExport": {
-		//             "buttonTitle": "Guardar",
-		//             "imageFileName": "amCharts",
-		//             "buttonAlpha": 1,
-		//             "exportJPG": true,
-		//             "exportPNG": true,
-		//             "exportSVG": true,
-		//             "exportPDF": true,
-		//             "userCFG": {
-		//                 menuItems: [{
-		//                     textAlign: 'center',
-		//                     icon: 'http://www.amcharts.com/lib/3/images/export.png',
-		//                     iconTitle: 'Save chart as an image',
-		//                     onclick: function () {
-		//                     },
-		//                     items: [{
-		//                         title: 'JPG',
-		//                         format: 'jpg'
-		//                     }, {
-		//                         title: 'PNG',
-		//                         format: 'png'
-		//                     }, {
-		//                         title: 'XLS',
-		//                         format: 'svg'
-		//                     }]
-		//                 }],
-		//                 removeImagery: true
-		//             }
-		//         }
-		//     });
-
-		// AmCharts.makeChart("actual", {
-		// 	"type": "serial",
-		// 	"pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-		// 	"categoryField": "category",
-		// 	"startDuration": 1,
-		// 	"categoryAxis": {
-		// 		"gridPosition": "start"
-		// 	},
-		// 	"colors": [
-		// 	"#374152",
-		// 	"#E70D2F"
-		// 	],
-		// 	"trendLines": [],
-		// 	"graphs": graphActual,
-		// 	"guides": [],
-		// 	"valueAxes": [
-		// 	{
-		// 		"id": "ValueAxis-1",
-		// 		"title": "Cantidad"
-		// 	}
-		// 	],
-		// 	"allLabels": [],
-		// 	"balloon": {},
-		// 	"legend": {
-		// 		"useGraphSettings": true
-		// 	},
-		// 	"titles": [
-		// 	{
-		// 		"id": "Title-1",
-		// 		"size": 15,
-		// 		"text": "Marzo 2015"
-		// 	}
-		// 	],
-		// 	"dataProvider": dataActual,
-		// 	"pathToImages": "http://www.amcharts.com/lib/3/images/",
-		// 	"amExport": {
-		// 		"buttonTitle": "Guardar",
-		// 		"imageFileName": "amCharts",
-		// 		"buttonAlpha": 1,
-		// 		"exportJPG": true,
-		// 		"exportPNG": true,
-		// 		"exportSVG": true,
-		// 		"exportPDF": true,
-		// 		"userCFG": {
-		// 			menuItems: [{
-		// 				textAlign: 'center',
-		// 				icon: 'http://www.amcharts.com/lib/3/images/export.png',
-		// 				iconTitle: 'Save chart as an image',
-		// 				onclick: function () {
-		// 				},
-		// 				items: [{
-		// 					title: 'JPG',
-		// 					format: 'jpg'
-		// 				}, {
-		// 					title: 'PNG',
-		// 					format: 'png'
-		// 				}, {
-		// 					title: 'XLS',
-		// 					format: 'svg'
-		// 				}]
-		// 			}],
-		// 			removeImagery: true
-		// 		}
-		// 	}
-		// });
-
-		// AmCharts.makeChart("historico", {
-		// 	"type": "serial",
-		// 	"pathToImages": "http://cdn.amcharts.com/lib/3/images/",
-		// 	"categoryField": "category",
-		// 	"colors": [
-		// 	"#374152",
-		// 	"#E70D2F"
-		// 	],
-		// 	"startDuration": 1,
-		// 	"categoryAxis": {
-		// 		"gridPosition": "start",
-		// 		"titleFontSize": 2
-		// 	},
-		// 	"trendLines": [],
-		// 	"graphs": graphHistorico,
-		// 	"guides": [],
-		// 	"valueAxes": [
-		// 	{
-		// 		"id": "ValueAxis-1",
-		// 		"maximum": 0,
-		// 		"radarCategoriesEnabled": false,
-		// 		"stackType": "100%",
-		// 		"unit": "%",
-		// 		"autoGridCount": false,
-		// 		"title": "Porcentaje"
-		// 	}
-		// 	],
-		// 	"allLabels": [],
-		// 	"balloon": {},
-		// 	"legend": {
-		// 		"useGraphSettings": true
-		// 	},
-		// 	"titles": [
-		// 	{
-		// 		"id": "Title-1",
-		// 		"size": 15,
-		// 		"text": "Historial de Procesos 2015"
-		// 	}
-		// 	],
-		// 	"chartCursor": {
-		// 		"oneBalloonOnly": false
-		// 	},
-		// 	"dataProvider": dataHistorico,
-		// 	"pathToImages": "http://www.amcharts.com/lib/3/images/",
-		// 	"amExport": {
-		// 		"buttonTitle": "Guardar",
-		// 		"imageFileName": "amCharts",
-		// 		"buttonAlpha": 1,
-		// 		"exportJPG": true,
-		// 		"exportPNG": true,
-		// 		"exportSVG": true,
-		// 		"exportPDF": true,
-		// 		"userCFG": {
-		// 			menuItems: [{
-		// 				textAlign: 'center',
-		// 				icon: 'http://www.amcharts.com/lib/3/images/export.png',
-		// 				iconTitle: 'Save chart as an image',
-		// 				onclick: function () {
-		// 				},
-		// 				items: [{
-		// 					title: 'JPG',
-		// 					format: 'jpg'
-		// 				}, {
-		// 					title: 'PNG',
-		// 					format: 'png'
-		// 				}, {
-		// 					title: 'XLS',
-		// 					format: 'svg'
-		// 				}]
-		// 			}],
-		// 			removeImagery: true
-		// 		}
-		// 	}
-		// });
-
+		$('.options .panel').click(function () {
+			var $this = $(this);
+			$this.parents('.legend').find('.options .panel.active').toggleClass('active');
+			$this.toggleClass('active');
+		});
 	</script>
 @endsection

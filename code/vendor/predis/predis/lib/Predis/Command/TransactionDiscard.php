@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/discard
+ * @link http://redis.io/commands/discard
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class TransactionDiscard extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'DISCARD';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'DISCARD';
+    }
 }

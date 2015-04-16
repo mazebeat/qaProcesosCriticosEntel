@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/setex
+ * @link http://redis.io/commands/setex
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringSetExpire extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SETEX';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SETEX';
+    }
 }

@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zremrangebylex
+ * @link http://redis.io/commands/zremrangebylex
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetRemoveRangeByLex extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZREMRANGEBYLEX';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZREMRANGEBYLEX';
+    }
 }

@@ -12,24 +12,24 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/rename
+ * @link http://redis.io/commands/rename
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeyRename extends AbstractCommand implements PrefixableCommandInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'RENAME';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'RENAME';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function prefixKeys($prefix)
-	{
-		PrefixHelpers::all($this, $prefix);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function prefixKeys($prefix)
+    {
+        PrefixHelpers::all($this, $prefix);
+    }
 }

@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/lpop
+ * @link http://redis.io/commands/lpop
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListPopFirst extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LPOP';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LPOP';
+    }
 }

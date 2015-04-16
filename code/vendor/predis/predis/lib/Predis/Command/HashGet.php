@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/hget
+ * @link http://redis.io/commands/hget
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class HashGet extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'HGET';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'HGET';
+    }
 }

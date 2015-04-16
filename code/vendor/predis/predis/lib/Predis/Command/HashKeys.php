@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/hkeys
+ * @link http://redis.io/commands/hkeys
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class HashKeys extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'HKEYS';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'HKEYS';
+    }
 }

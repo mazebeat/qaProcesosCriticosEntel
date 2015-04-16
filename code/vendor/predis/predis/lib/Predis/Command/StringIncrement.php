@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/incr
+ * @link http://redis.io/commands/incr
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringIncrement extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'INCR';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'INCR';
+    }
 }

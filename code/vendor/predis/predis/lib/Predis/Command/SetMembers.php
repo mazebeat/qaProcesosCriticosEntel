@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/smembers
+ * @link http://redis.io/commands/smembers
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class SetMembers extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SMEMBERS';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SMEMBERS';
+    }
 }

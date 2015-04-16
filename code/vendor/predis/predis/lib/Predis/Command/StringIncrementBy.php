@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/incrby
+ * @link http://redis.io/commands/incrby
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringIncrementBy extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'INCRBY';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'INCRBY';
+    }
 }

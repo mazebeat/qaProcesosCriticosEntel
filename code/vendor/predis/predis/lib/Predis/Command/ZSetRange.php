@@ -12,93 +12,92 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zrange
+ * @link http://redis.io/commands/zrange
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetRange extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZRANGE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZRANGE';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function parseResponse($data)
-	{
-		if ($this->withScores()) {
-			$result = array();
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        if (count($arguments) === 4) {
+            $lastType = gettype($arguments[3]);
 
-			for ($i = 0; $i < count($data); $i++) {
-				$result[] = array($data[$i], $data[++$i]);
-			}
+            if ($lastType === 'string' && strtoupper($arguments[3]) === 'WITHSCORES') {
+                // Used for compatibility with older versions
+                $arguments[3] = array('WITHSCORES' => true);
+                $lastType = 'array';
+            }
 
-			return $result;
-		}
+            if ($lastType === 'array') {
+                $options = $this->prepareOptions(array_pop($arguments));
 
-		return $data;
-	}
+                return array_merge($arguments, $options);
+            }
+        }
 
-	/**
-	 * Checks for the presence of the WITHSCORES modifier.
-	 *
-	 * @return bool
-	 */
-	protected function withScores()
-	{
-		$arguments = $this->getArguments();
+        return $arguments;
+    }
 
-		if (count($arguments) < 4) {
-			return false;
-		}
+    /**
+     * Returns a list of options and modifiers compatible with Redis.
+     *
+     * @param  array $options List of options.
+     * @return array
+     */
+    protected function prepareOptions($options)
+    {
+        $opts = array_change_key_case($options, CASE_UPPER);
+        $finalizedOpts = array();
 
-		return strtoupper($arguments[3]) === 'WITHSCORES';
-	}
+        if (!empty($opts['WITHSCORES'])) {
+            $finalizedOpts[] = 'WITHSCORES';
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		if (count($arguments) === 4) {
-			$lastType = gettype($arguments[3]);
+        return $finalizedOpts;
+    }
 
-			if ($lastType === 'string' && strtoupper($arguments[3]) === 'WITHSCORES') {
-				// Used for compatibility with older versions
-				$arguments[3] = array('WITHSCORES' => true);
-				$lastType     = 'array';
-			}
+    /**
+     * Checks for the presence of the WITHSCORES modifier.
+     *
+     * @return bool
+     */
+    protected function withScores()
+    {
+        $arguments = $this->getArguments();
 
-			if ($lastType === 'array') {
-				$options = $this->prepareOptions(array_pop($arguments));
+        if (count($arguments) < 4) {
+            return false;
+        }
 
-				return array_merge($arguments, $options);
-			}
-		}
+        return strtoupper($arguments[3]) === 'WITHSCORES';
+    }
 
-		return $arguments;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function parseResponse($data)
+    {
+        if ($this->withScores()) {
+            $result = array();
 
-	/**
-	 * Returns a list of options and modifiers compatible with Redis.
-	 *
-	 * @param  array $options List of options.
-	 *
-	 * @return array
-	 */
-	protected function prepareOptions($options)
-	{
-		$opts          = array_change_key_case($options, CASE_UPPER);
-		$finalizedOpts = array();
+            for ($i = 0; $i < count($data); $i++) {
+                $result[] = array($data[$i], $data[++$i]);
+            }
 
-		if (!empty($opts['WITHSCORES'])) {
-			$finalizedOpts[] = 'WITHSCORES';
-		}
+            return $result;
+        }
 
-		return $finalizedOpts;
-	}
+        return $data;
+    }
 }

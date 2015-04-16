@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zcard
+ * @link http://redis.io/commands/zcard
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetCardinality extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZCARD';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZCARD';
+    }
 }

@@ -12,37 +12,37 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/blpop
+ * @link http://redis.io/commands/blpop
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListPopFirstBlocking extends AbstractCommand implements PrefixableCommandInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'BLPOP';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'BLPOP';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function prefixKeys($prefix)
-	{
-		PrefixHelpers::skipLast($this, $prefix);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        if (count($arguments) === 2 && is_array($arguments[0])) {
+            list($arguments, $timeout) = $arguments;
+            array_push($arguments, $timeout);
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		if (count($arguments) === 2 && is_array($arguments[0])) {
-			list($arguments, $timeout) = $arguments;
-			array_push($arguments, $timeout);
-		}
+        return $arguments;
+    }
 
-		return $arguments;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function prefixKeys($prefix)
+    {
+        PrefixHelpers::skipLast($this, $prefix);
+    }
 }

@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/hincrbyfloat
+ * @link http://redis.io/commands/hincrbyfloat
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class HashIncrementByFloat extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'HINCRBYFLOAT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'HINCRBYFLOAT';
+    }
 }

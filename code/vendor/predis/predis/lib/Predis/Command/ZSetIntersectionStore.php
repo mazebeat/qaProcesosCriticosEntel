@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zinterstore
+ * @link http://redis.io/commands/zinterstore
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetIntersectionStore extends ZSetUnionStore
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZINTERSTORE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZINTERSTORE';
+    }
 }

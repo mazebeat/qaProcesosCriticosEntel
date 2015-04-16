@@ -12,13 +12,13 @@
 namespace Predis\Pipeline;
 
 use Iterator;
-use Predis\Command\CommandInterface;
-use Predis\Connection\ConnectionInterface;
-use Predis\Connection\ReplicationConnectionInterface;
+use SplQueue;
 use Predis\ResponseErrorInterface;
 use Predis\ResponseObjectInterface;
 use Predis\ServerException;
-use SplQueue;
+use Predis\Command\CommandInterface;
+use Predis\Connection\ConnectionInterface;
+use Predis\Connection\ReplicationConnectionInterface;
 
 /**
  * Implements the standard pipeline executor strategy used
@@ -29,97 +29,95 @@ use SplQueue;
  */
 class StandardExecutor implements PipelineExecutorInterface
 {
-	protected $exceptions;
+    protected $exceptions;
 
-	/**
-	 * @param bool $exceptions Specifies if the executor should throw exceptions on server errors.
-	 */
-	public function __construct($exceptions = true)
-	{
-		$this->exceptions = (bool)$exceptions;
-	}
+    /**
+     * @param bool $exceptions Specifies if the executor should throw exceptions on server errors.
+     */
+    public function __construct($exceptions = true)
+    {
+        $this->exceptions = (bool) $exceptions;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function execute(ConnectionInterface $connection, SplQueue $commands)
-	{
-		$this->checkConnection($connection);
+    /**
+     * Allows the pipeline executor to perform operations on the
+     * connection before starting to execute the commands stored
+     * in the pipeline.
+     *
+     * @param ConnectionInterface $connection Connection instance.
+     */
+    protected function checkConnection(ConnectionInterface $connection)
+    {
+        if ($connection instanceof ReplicationConnectionInterface) {
+            $connection->switchTo('master');
+        }
+    }
 
-		foreach ($commands as $command) {
-			$connection->writeCommand($command);
-		}
+    /**
+     * Handles a response object.
+     *
+     * @param  ConnectionInterface     $connection
+     * @param  CommandInterface        $command
+     * @param  ResponseObjectInterface $response
+     * @return mixed
+     */
+    protected function onResponseObject(ConnectionInterface $connection, CommandInterface $command, ResponseObjectInterface $response)
+    {
+        if ($response instanceof ResponseErrorInterface) {
+            return $this->onResponseError($connection, $response);
+        }
 
-		$values = array();
+        if ($response instanceof Iterator) {
+            return $command->parseResponse(iterator_to_array($response));
+        }
 
-		while (!$commands->isEmpty()) {
-			$command  = $commands->dequeue();
-			$response = $connection->readResponse($command);
+        return $response;
+    }
 
-			if ($response instanceof ResponseObjectInterface) {
-				$values[] = $this->onResponseObject($connection, $command, $response);
-			} else {
-				$values[] = $command->parseResponse($response);
-			}
-		}
+    /**
+     * Handles -ERR responses returned by Redis.
+     *
+     * @param  ConnectionInterface    $connection The connection that returned the error.
+     * @param  ResponseErrorInterface $response   The error response instance.
+     * @return ResponseErrorInterface
+     */
+    protected function onResponseError(ConnectionInterface $connection, ResponseErrorInterface $response)
+    {
+        if (!$this->exceptions) {
+            return $response;
+        }
 
-		return $values;
-	}
+        // Force disconnection to prevent protocol desynchronization.
+        $connection->disconnect();
+        $message = $response->getMessage();
 
-	/**
-	 * Allows the pipeline executor to perform operations on the
-	 * connection before starting to execute the commands stored
-	 * in the pipeline.
-	 *
-	 * @param ConnectionInterface $connection Connection instance.
-	 */
-	protected function checkConnection(ConnectionInterface $connection)
-	{
-		if ($connection instanceof ReplicationConnectionInterface) {
-			$connection->switchTo('master');
-		}
-	}
+        throw new ServerException($message);
+    }
 
-	/**
-	 * Handles a response object.
-	 *
-	 * @param  ConnectionInterface     $connection
-	 * @param  CommandInterface        $command
-	 * @param  ResponseObjectInterface $response
-	 *
-	 * @return mixed
-	 */
-	protected function onResponseObject(ConnectionInterface $connection, CommandInterface $command, ResponseObjectInterface $response)
-	{
-		if ($response instanceof ResponseErrorInterface) {
-			return $this->onResponseError($connection, $response);
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function execute(ConnectionInterface $connection, SplQueue $commands)
+    {
+        $this->checkConnection($connection);
 
-		if ($response instanceof Iterator) {
-			return $command->parseResponse(iterator_to_array($response));
-		}
+        foreach ($commands as $command) {
+            $connection->writeCommand($command);
+        }
 
-		return $response;
-	}
+        $values = array();
 
-	/**
-	 * Handles -ERR responses returned by Redis.
-	 *
-	 * @param  ConnectionInterface    $connection The connection that returned the error.
-	 * @param  ResponseErrorInterface $response   The error response instance.
-	 *
-	 * @return ResponseErrorInterface
-	 */
-	protected function onResponseError(ConnectionInterface $connection, ResponseErrorInterface $response)
-	{
-		if (!$this->exceptions) {
-			return $response;
-		}
+        while (!$commands->isEmpty()) {
+            $command = $commands->dequeue();
+            $response = $connection->readResponse($command);
 
-		// Force disconnection to prevent protocol desynchronization.
-		$connection->disconnect();
-		$message = $response->getMessage();
+            if ($response instanceof ResponseObjectInterface) {
+                $values[] = $this->onResponseObject($connection, $command, $response);
+            } else {
+                $values[] = $command->parseResponse($response);
+            }
+        }
 
-		throw new ServerException($message);
-	}
+        return $values;
+    }
 }

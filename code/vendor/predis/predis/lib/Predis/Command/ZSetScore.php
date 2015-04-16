@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zscore
+ * @link http://redis.io/commands/zscore
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetScore extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZSCORE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZSCORE';
+    }
 }

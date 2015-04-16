@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/multi
+ * @link http://redis.io/commands/multi
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class TransactionMulti extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'MULTI';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'MULTI';
+    }
 }

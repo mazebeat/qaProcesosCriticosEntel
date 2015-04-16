@@ -12,36 +12,36 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/sinterstore
+ * @link http://redis.io/commands/sinterstore
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class SetIntersectionStore extends AbstractCommand implements PrefixableCommandInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SINTERSTORE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SINTERSTORE';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function prefixKeys($prefix)
-	{
-		PrefixHelpers::all($this, $prefix);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            return array_merge(array($arguments[0]), $arguments[1]);
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		if (count($arguments) === 2 && is_array($arguments[1])) {
-			return array_merge(array($arguments[0]), $arguments[1]);
-		}
+        return $arguments;
+    }
 
-		return $arguments;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function prefixKeys($prefix)
+    {
+        PrefixHelpers::all($this, $prefix);
+    }
 }

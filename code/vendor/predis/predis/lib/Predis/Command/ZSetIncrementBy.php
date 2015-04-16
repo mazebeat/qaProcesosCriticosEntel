@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zincrby
+ * @link http://redis.io/commands/zincrby
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetIncrementBy extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZINCRBY';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZINCRBY';
+    }
 }

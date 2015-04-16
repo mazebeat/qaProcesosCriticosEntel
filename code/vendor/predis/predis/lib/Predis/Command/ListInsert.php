@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/linsert
+ * @link http://redis.io/commands/linsert
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListInsert extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LINSERT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LINSERT';
+    }
 }

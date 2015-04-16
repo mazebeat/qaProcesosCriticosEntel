@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/time
+ * @link http://redis.io/commands/time
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerTime extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'TIME';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'TIME';
+    }
 }

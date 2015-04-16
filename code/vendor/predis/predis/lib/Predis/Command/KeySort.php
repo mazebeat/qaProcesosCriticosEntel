@@ -12,105 +12,106 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/sort
+ * @link http://redis.io/commands/sort
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeySort extends AbstractCommand implements PrefixableCommandInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SORT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SORT';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function prefixKeys($prefix)
-	{
-		if ($arguments = $this->getArguments()) {
-			$arguments[0] = "$prefix{$arguments[0]}";
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        if (count($arguments) === 1) {
+            return $arguments;
+        }
 
-			if (($count = count($arguments)) > 1) {
-				for ($i = 1; $i < $count; $i++) {
-					switch ($arguments[$i]) {
-						case 'BY':
-						case 'STORE':
-							$arguments[$i] = "$prefix{$arguments[++$i]}";
-							break;
+        $query = array($arguments[0]);
+        $sortParams = array_change_key_case($arguments[1], CASE_UPPER);
 
-						case 'GET':
-							$value = $arguments[++$i];
-							if ($value !== '#') {
-								$arguments[$i] = "$prefix$value";
-							}
-							break;
+        if (isset($sortParams['BY'])) {
+            $query[] = 'BY';
+            $query[] = $sortParams['BY'];
+        }
 
-						case 'LIMIT';
-							$i += 2;
-							break;
-					}
-				}
-			}
+        if (isset($sortParams['GET'])) {
+            $getargs = $sortParams['GET'];
 
-			$this->setRawArguments($arguments);
-		}
-	}
+            if (is_array($getargs)) {
+                foreach ($getargs as $getarg) {
+                    $query[] = 'GET';
+                    $query[] = $getarg;
+                }
+            } else {
+                $query[] = 'GET';
+                $query[] = $getargs;
+            }
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		if (count($arguments) === 1) {
-			return $arguments;
-		}
+        if (isset($sortParams['LIMIT']) &&
+            is_array($sortParams['LIMIT']) &&
+            count($sortParams['LIMIT']) == 2) {
 
-		$query      = array($arguments[0]);
-		$sortParams = array_change_key_case($arguments[1], CASE_UPPER);
+            $query[] = 'LIMIT';
+            $query[] = $sortParams['LIMIT'][0];
+            $query[] = $sortParams['LIMIT'][1];
+        }
 
-		if (isset($sortParams['BY'])) {
-			$query[] = 'BY';
-			$query[] = $sortParams['BY'];
-		}
+        if (isset($sortParams['SORT'])) {
+            $query[] = strtoupper($sortParams['SORT']);
+        }
 
-		if (isset($sortParams['GET'])) {
-			$getargs = $sortParams['GET'];
+        if (isset($sortParams['ALPHA']) && $sortParams['ALPHA'] == true) {
+            $query[] = 'ALPHA';
+        }
 
-			if (is_array($getargs)) {
-				foreach ($getargs as $getarg) {
-					$query[] = 'GET';
-					$query[] = $getarg;
-				}
-			} else {
-				$query[] = 'GET';
-				$query[] = $getargs;
-			}
-		}
+        if (isset($sortParams['STORE'])) {
+            $query[] = 'STORE';
+            $query[] = $sortParams['STORE'];
+        }
 
-		if (isset($sortParams['LIMIT']) && is_array($sortParams['LIMIT']) && count($sortParams['LIMIT']) == 2
-		) {
+        return $query;
+    }
 
-			$query[] = 'LIMIT';
-			$query[] = $sortParams['LIMIT'][0];
-			$query[] = $sortParams['LIMIT'][1];
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function prefixKeys($prefix)
+    {
+        if ($arguments = $this->getArguments()) {
+            $arguments[0] = "$prefix{$arguments[0]}";
 
-		if (isset($sortParams['SORT'])) {
-			$query[] = strtoupper($sortParams['SORT']);
-		}
+            if (($count = count($arguments)) > 1) {
+                for ($i = 1; $i < $count; $i++) {
+                    switch ($arguments[$i]) {
+                        case 'BY':
+                        case 'STORE':
+                            $arguments[$i] = "$prefix{$arguments[++$i]}";
+                            break;
 
-		if (isset($sortParams['ALPHA']) && $sortParams['ALPHA'] == true) {
-			$query[] = 'ALPHA';
-		}
+                        case 'GET':
+                            $value = $arguments[++$i];
+                            if ($value !== '#') {
+                                $arguments[$i] = "$prefix$value";
+                            }
+                            break;
 
-		if (isset($sortParams['STORE'])) {
-			$query[] = 'STORE';
-			$query[] = $sortParams['STORE'];
-		}
+                        case 'LIMIT';
+                            $i += 2;
+                            break;
+                    }
+                }
+            }
 
-		return $query;
-	}
+            $this->setRawArguments($arguments);
+        }
+    }
 }

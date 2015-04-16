@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/lindex
+ * @link http://redis.io/commands/lindex
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListIndex extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LINDEX';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LINDEX';
+    }
 }

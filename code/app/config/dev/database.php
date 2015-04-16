@@ -3,9 +3,13 @@
 return array(
 
 	'default'     => 'sqlite',
-	'connections' => array('sqlite' => array('driver'   => 'sqlite',
-	                                         'database' => __DIR__ . '/../../database/production.sqlite',
-	                                         'prefix'   => 'gd_',),),
+	'connections' => array(
+		'sqlite' => array(
+			'driver'   => 'sqlite',
+			'database' => app_path() . '/database/production.sqlite',
+			'prefix'   => 'qa_'
+		)
+	),
 	'debug'       => true
 
 );

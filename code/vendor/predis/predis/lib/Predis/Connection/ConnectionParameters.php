@@ -20,164 +20,164 @@ use Predis\ClientException;
  */
 class ConnectionParameters implements ConnectionParametersInterface
 {
-	private static $defaults = array('scheme'  => 'tcp',
-	                                 'host'    => '127.0.0.1',
-	                                 'port'    => 6379,
-	                                 'timeout' => 5.0,);
-	private $parameters;
+    private $parameters;
 
-	/**
-	 * @param string|array $parameters Connection parameters in the form of an URI string or a named array.
-	 */
-	public function __construct($parameters = array())
-	{
-		if (!is_array($parameters)) {
-			$parameters = self::parseURI($parameters);
-		}
+    private static $defaults = array(
+        'scheme' => 'tcp',
+        'host' => '127.0.0.1',
+        'port' => 6379,
+        'timeout' => 5.0,
+    );
 
-		$this->parameters = $this->filter($parameters) + $this->getDefaults();
-	}
+    /**
+     * @param string|array $parameters Connection parameters in the form of an URI string or a named array.
+     */
+    public function __construct($parameters = array())
+    {
+        if (!is_array($parameters)) {
+            $parameters = self::parseURI($parameters);
+        }
 
-	/**
-	 * Parses an URI string and returns an array of connection parameters.
-	 *
-	 * @param  string $uri Connection string.
-	 *
-	 * @return array
-	 */
-	public static function parseURI($uri)
-	{
-		if (stripos($uri, 'unix') === 0) {
-			// Hack to support URIs for UNIX sockets with minimal effort.
-			$uri = str_ireplace('unix:///', 'unix://localhost/', $uri);
-		}
+        $this->parameters = $this->filter($parameters) + $this->getDefaults();
+    }
 
-		if (!($parsed = @parse_url($uri)) || !isset($parsed['host'])) {
-			throw new ClientException("Invalid URI: $uri");
-		}
+    /**
+     * Returns some default parameters with their values.
+     *
+     * @return array
+     */
+    protected function getDefaults()
+    {
+        return self::$defaults;
+    }
 
-		if (isset($parsed['query'])) {
-			parse_str($parsed['query'], $queryarray);
-			unset($parsed['query']);
+    /**
+     * Returns cast functions for user-supplied parameter values.
+     *
+     * @return array
+     */
+    protected function getValueCasters()
+    {
+        return array(
+            'port' => 'self::castInteger',
+            'async_connect' => 'self::castBoolean',
+            'persistent' => 'self::castBoolean',
+            'timeout' => 'self::castFloat',
+            'read_write_timeout' => 'self::castFloat',
+            'iterable_multibulk' => 'self::castBoolean',
+        );
+    }
 
-			$parsed = array_merge($parsed, $queryarray);
-		}
+    /**
+     * Validates value as boolean.
+     *
+     * @param  mixed $value Input value.
+     * @return bool
+     */
+    private static function castBoolean($value)
+    {
+        return (bool) $value;
+    }
 
-		return $parsed;
-	}
+    /**
+     * Validates value as float.
+     *
+     * @param  mixed $value Input value.
+     * @return float
+     */
+    private static function castFloat($value)
+    {
+        return (float) $value;
+    }
 
-	/**
-	 * Validates and converts each value of the connection parameters array.
-	 *
-	 * @param  array $parameters Connection parameters.
-	 *
-	 * @return array
-	 */
-	private function filter(Array $parameters)
-	{
-		if ($parameters) {
-			$casters = array_intersect_key($this->getValueCasters(), $parameters);
+    /**
+     * Validates value as integer.
+     *
+     * @param  mixed $value Input value.
+     * @return int
+     */
+    private static function castInteger($value)
+    {
+        return (int) $value;
+    }
 
-			foreach ($casters as $parameter => $caster) {
-				$parameters[$parameter] = call_user_func($caster, $parameters[$parameter]);
-			}
-		}
+    /**
+     * Parses an URI string and returns an array of connection parameters.
+     *
+     * @param  string $uri Connection string.
+     * @return array
+     */
+    public static function parseURI($uri)
+    {
+        if (stripos($uri, 'unix') === 0) {
+            // Hack to support URIs for UNIX sockets with minimal effort.
+            $uri = str_ireplace('unix:///', 'unix://localhost/', $uri);
+        }
 
-		return $parameters;
-	}
+        if (!($parsed = @parse_url($uri)) || !isset($parsed['host'])) {
+            throw new ClientException("Invalid URI: $uri");
+        }
 
-	/**
-	 * Returns cast functions for user-supplied parameter values.
-	 *
-	 * @return array
-	 */
-	protected function getValueCasters()
-	{
-		return array('port'               => 'self::castInteger',
-		             'async_connect'      => 'self::castBoolean',
-		             'persistent'         => 'self::castBoolean',
-		             'timeout'            => 'self::castFloat',
-		             'read_write_timeout' => 'self::castFloat',
-		             'iterable_multibulk' => 'self::castBoolean',);
-	}
+        if (isset($parsed['query'])) {
+            parse_str($parsed['query'], $queryarray);
+            unset($parsed['query']);
 
-	/**
-	 * Returns some default parameters with their values.
-	 *
-	 * @return array
-	 */
-	protected function getDefaults()
-	{
-		return self::$defaults;
-	}
+            $parsed = array_merge($parsed, $queryarray);
+        }
 
-	/**
-	 * Validates value as boolean.
-	 *
-	 * @param  mixed $value Input value.
-	 *
-	 * @return bool
-	 */
-	private static function castBoolean($value)
-	{
-		return (bool)$value;
-	}
+        return $parsed;
+    }
 
-	/**
-	 * Validates value as float.
-	 *
-	 * @param  mixed $value Input value.
-	 *
-	 * @return float
-	 */
-	private static function castFloat($value)
-	{
-		return (float)$value;
-	}
+    /**
+     * Validates and converts each value of the connection parameters array.
+     *
+     * @param  array $parameters Connection parameters.
+     * @return array
+     */
+    private function filter(Array $parameters)
+    {
+        if ($parameters) {
+            $casters = array_intersect_key($this->getValueCasters(), $parameters);
 
-	/**
-	 * Validates value as integer.
-	 *
-	 * @param  mixed $value Input value.
-	 *
-	 * @return int
-	 */
-	private static function castInteger($value)
-	{
-		return (int)$value;
-	}
+            foreach ($casters as $parameter => $caster) {
+                $parameters[$parameter] = call_user_func($caster, $parameters[$parameter]);
+            }
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __get($parameter)
-	{
-		if (isset($this->{$parameter})) {
-			return $this->parameters[$parameter];
-		}
-	}
+        return $parameters;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __isset($parameter)
-	{
-		return isset($this->parameters[$parameter]);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function __get($parameter)
+    {
+        if (isset($this->{$parameter})) {
+            return $this->parameters[$parameter];
+        }
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function toArray()
-	{
-		return $this->parameters;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function __isset($parameter)
+    {
+        return isset($this->parameters[$parameter]);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __sleep()
-	{
-		return array('parameters');
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray()
+    {
+        return $this->parameters;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __sleep()
+    {
+        return array('parameters');
+    }
 }

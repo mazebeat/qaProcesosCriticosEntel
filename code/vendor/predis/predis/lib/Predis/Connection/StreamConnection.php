@@ -11,10 +11,10 @@
 
 namespace Predis\Connection;
 
-use Predis\Command\CommandInterface;
-use Predis\Iterator\MultiBulkResponseSimple;
 use Predis\ResponseError;
 use Predis\ResponseQueued;
+use Predis\Command\CommandInterface;
+use Predis\Iterator\MultiBulkResponseSimple;
 
 /**
  * Standard connection to Redis servers implemented on top of PHP's streams.
@@ -35,275 +35,273 @@ use Predis\ResponseQueued;
  */
 class StreamConnection extends AbstractConnection
 {
-	private $mbiterable;
+    private $mbiterable;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __construct(ConnectionParametersInterface $parameters)
-	{
-		$this->mbiterable = (bool)$parameters->iterable_multibulk;
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(ConnectionParametersInterface $parameters)
+    {
+        $this->mbiterable = (bool) $parameters->iterable_multibulk;
 
-		parent::__construct($parameters);
-	}
+        parent::__construct($parameters);
+    }
 
-	/**
-	 * Disconnects from the server and destroys the underlying resource when
-	 * PHP's garbage collector kicks in only if the connection has not been
-	 * marked as persistent.
-	 */
-	public function __destruct()
-	{
-		if (isset($this->parameters) && !$this->parameters->persistent) {
-			$this->disconnect();
-		}
-	}
+    /**
+     * Disconnects from the server and destroys the underlying resource when
+     * PHP's garbage collector kicks in only if the connection has not been
+     * marked as persistent.
+     */
+    public function __destruct()
+    {
+        if (isset($this->parameters) && !$this->parameters->persistent) {
+            $this->disconnect();
+        }
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function disconnect()
-	{
-		if ($this->isConnected()) {
-			fclose($this->getResource());
-			parent::disconnect();
-		}
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function createResource()
+    {
+        $parameters = $this->parameters;
+        $initializer = "{$parameters->scheme}StreamInitializer";
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function connect()
-	{
-		parent::connect();
+        return $this->$initializer($parameters);
+    }
 
-		if ($this->initCmds) {
-			$this->sendInitializationCommands();
-		}
-	}
+    /**
+     * Initializes a TCP stream resource.
+     *
+     * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
+     * @return resource
+     */
+    protected function tcpStreamInitializer(ConnectionParametersInterface $parameters)
+    {
+        $uri = "tcp://{$parameters->host}:{$parameters->port}";
+        $flags = STREAM_CLIENT_CONNECT;
 
-	/**
-	 * Sends the initialization commands to Redis when the connection is opened.
-	 */
-	private function sendInitializationCommands()
-	{
-		foreach ($this->initCmds as $command) {
-			$this->writeCommand($command);
-		}
-		foreach ($this->initCmds as $command) {
-			$this->readResponse($command);
-		}
-	}
+        if (isset($parameters->async_connect) && $parameters->async_connect) {
+            $flags |= STREAM_CLIENT_ASYNC_CONNECT;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function writeCommand(CommandInterface $command)
-	{
-		$commandId = $command->getId();
-		$arguments = $command->getArguments();
+        if (isset($parameters->persistent) && $parameters->persistent) {
+            $flags |= STREAM_CLIENT_PERSISTENT;
+            $uri .= strpos($path = $parameters->path, '/') === 0 ? $path : "/$path";
+        }
 
-		$cmdlen = strlen($commandId);
-		$reqlen = count($arguments) + 1;
+        $resource = @stream_socket_client($uri, $errno, $errstr, $parameters->timeout, $flags);
 
-		$buffer = "*{$reqlen}\r\n\${$cmdlen}\r\n{$commandId}\r\n";
+        if (!$resource) {
+            $this->onConnectionError(trim($errstr), $errno);
+        }
 
-		for ($i = 0, $reqlen--; $i < $reqlen; $i++) {
-			$argument = $arguments[$i];
-			$arglen   = strlen($argument);
-			$buffer .= "\${$arglen}\r\n{$argument}\r\n";
-		}
+        if (isset($parameters->read_write_timeout)) {
+            $rwtimeout = $parameters->read_write_timeout;
+            $rwtimeout = $rwtimeout > 0 ? $rwtimeout : -1;
+            $timeoutSeconds  = floor($rwtimeout);
+            $timeoutUSeconds = ($rwtimeout - $timeoutSeconds) * 1000000;
+            stream_set_timeout($resource, $timeoutSeconds, $timeoutUSeconds);
+        }
 
-		$this->writeBytes($buffer);
-	}
+        if (isset($parameters->tcp_nodelay) && function_exists('socket_import_stream')) {
+            $socket = socket_import_stream($resource);
+            socket_set_option($socket, SOL_TCP, TCP_NODELAY, (int) $parameters->tcp_nodelay);
+        }
 
-	/**
-	 * Performs a write operation on the stream of the buffer containing a
-	 * command serialized with the Redis wire protocol.
-	 *
-	 * @param string $buffer Redis wire protocol representation of a command.
-	 */
-	protected function writeBytes($buffer)
-	{
-		$socket = $this->getResource();
+        return $resource;
+    }
 
-		while (($length = strlen($buffer)) > 0) {
-			$written = @fwrite($socket, $buffer);
+    /**
+     * Initializes a UNIX stream resource.
+     *
+     * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
+     * @return resource
+     */
+    private function unixStreamInitializer(ConnectionParametersInterface $parameters)
+    {
+        $uri = "unix://{$parameters->path}";
+        $flags = STREAM_CLIENT_CONNECT;
 
-			if ($length === $written) {
-				return;
-			}
-			if ($written === false || $written === 0) {
-				$this->onConnectionError('Error while writing bytes to the server');
-			}
+        if ($parameters->persistent) {
+            $flags |= STREAM_CLIENT_PERSISTENT;
+        }
 
-			$buffer = substr($buffer, $written);
-		}
-	}
+        $resource = @stream_socket_client($uri, $errno, $errstr, $parameters->timeout, $flags);
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function read()
-	{
-		$socket = $this->getResource();
-		$chunk  = fgets($socket);
+        if (!$resource) {
+            $this->onConnectionError(trim($errstr), $errno);
+        }
 
-		if ($chunk === false || $chunk === '') {
-			$this->onConnectionError('Error while reading line from the server');
-		}
+        return $resource;
+    }
 
-		$prefix  = $chunk[0];
-		$payload = substr($chunk, 1, -2);
+    /**
+     * {@inheritdoc}
+     */
+    public function connect()
+    {
+        parent::connect();
 
-		switch ($prefix) {
-			case '+':
-				switch ($payload) {
-					case 'OK':
-						return true;
+        if ($this->initCmds) {
+            $this->sendInitializationCommands();
+        }
+    }
 
-					case 'QUEUED':
-						return new ResponseQueued();
+    /**
+     * {@inheritdoc}
+     */
+    public function disconnect()
+    {
+        if ($this->isConnected()) {
+            fclose($this->getResource());
+            parent::disconnect();
+        }
+    }
 
-					default:
-						return $payload;
-				}
+    /**
+     * Sends the initialization commands to Redis when the connection is opened.
+     */
+    private function sendInitializationCommands()
+    {
+        foreach ($this->initCmds as $command) {
+            $this->writeCommand($command);
+        }
+        foreach ($this->initCmds as $command) {
+            $this->readResponse($command);
+        }
+    }
 
-			case '$':
-				$size = (int)$payload;
-				if ($size === -1) {
-					return null;
-				}
+    /**
+     * Performs a write operation on the stream of the buffer containing a
+     * command serialized with the Redis wire protocol.
+     *
+     * @param string $buffer Redis wire protocol representation of a command.
+     */
+    protected function writeBytes($buffer)
+    {
+        $socket = $this->getResource();
 
-				$bulkData  = '';
-				$bytesLeft = ($size += 2);
+        while (($length = strlen($buffer)) > 0) {
+            $written = @fwrite($socket, $buffer);
 
-				do {
-					$chunk = fread($socket, min($bytesLeft, 4096));
+            if ($length === $written) {
+                return;
+            }
+            if ($written === false || $written === 0) {
+                $this->onConnectionError('Error while writing bytes to the server');
+            }
 
-					if ($chunk === false || $chunk === '') {
-						$this->onConnectionError('Error while reading bytes from the server');
-					}
+            $buffer = substr($buffer, $written);
+        }
+    }
 
-					$bulkData .= $chunk;
-					$bytesLeft = $size - strlen($bulkData);
-				} while ($bytesLeft > 0);
+    /**
+     * {@inheritdoc}
+     */
+    public function read()
+    {
+        $socket = $this->getResource();
+        $chunk  = fgets($socket);
 
-				return substr($bulkData, 0, -2);
+        if ($chunk === false || $chunk === '') {
+            $this->onConnectionError('Error while reading line from the server');
+        }
 
-			case '*':
-				$count = (int)$payload;
+        $prefix  = $chunk[0];
+        $payload = substr($chunk, 1, -2);
 
-				if ($count === -1) {
-					return null;
-				}
-				if ($this->mbiterable) {
-					return new MultiBulkResponseSimple($this, $count);
-				}
+        switch ($prefix) {
+            case '+':
+                switch ($payload) {
+                    case 'OK':
+                        return true;
 
-				$multibulk = array();
+                    case 'QUEUED':
+                        return new ResponseQueued();
 
-				for ($i = 0; $i < $count; $i++) {
-					$multibulk[$i] = $this->read();
-				}
+                    default:
+                        return $payload;
+                }
 
-				return $multibulk;
+            case '$':
+                $size = (int) $payload;
+                if ($size === -1) {
+                    return null;
+                }
 
-			case ':':
-				return (int)$payload;
+                $bulkData = '';
+                $bytesLeft = ($size += 2);
 
-			case '-':
-				return new ResponseError($payload);
+                do {
+                    $chunk = fread($socket, min($bytesLeft, 4096));
 
-			default:
-				$this->onProtocolError("Unknown prefix: '$prefix'");
-		}
-	}
+                    if ($chunk === false || $chunk === '') {
+                        $this->onConnectionError('Error while reading bytes from the server');
+                    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __sleep()
-	{
-		return array_merge(parent::__sleep(), array('mbiterable'));
-	}
+                    $bulkData .= $chunk;
+                    $bytesLeft = $size - strlen($bulkData);
+                } while ($bytesLeft > 0);
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function createResource()
-	{
-		$parameters  = $this->parameters;
-		$initializer = "{$parameters->scheme}StreamInitializer";
+                return substr($bulkData, 0, -2);
 
-		return $this->$initializer($parameters);
-	}
+            case '*':
+                $count = (int) $payload;
 
-	/**
-	 * Initializes a TCP stream resource.
-	 *
-	 * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
-	 *
-	 * @return resource
-	 */
-	protected function tcpStreamInitializer(ConnectionParametersInterface $parameters)
-	{
-		$uri   = "tcp://{$parameters->host}:{$parameters->port}";
-		$flags = STREAM_CLIENT_CONNECT;
+                if ($count === -1) {
+                    return null;
+                }
+                if ($this->mbiterable) {
+                    return new MultiBulkResponseSimple($this, $count);
+                }
 
-		if (isset($parameters->async_connect) && $parameters->async_connect) {
-			$flags |= STREAM_CLIENT_ASYNC_CONNECT;
-		}
+                $multibulk = array();
 
-		if (isset($parameters->persistent) && $parameters->persistent) {
-			$flags |= STREAM_CLIENT_PERSISTENT;
-			$uri .= strpos($path = $parameters->path, '/') === 0 ? $path : "/$path";
-		}
+                for ($i = 0; $i < $count; $i++) {
+                    $multibulk[$i] = $this->read();
+                }
 
-		$resource = @stream_socket_client($uri, $errno, $errstr, $parameters->timeout, $flags);
+                return $multibulk;
 
-		if (!$resource) {
-			$this->onConnectionError(trim($errstr), $errno);
-		}
+            case ':':
+                return (int) $payload;
 
-		if (isset($parameters->read_write_timeout)) {
-			$rwtimeout       = $parameters->read_write_timeout;
-			$rwtimeout       = $rwtimeout > 0 ? $rwtimeout : -1;
-			$timeoutSeconds  = floor($rwtimeout);
-			$timeoutUSeconds = ($rwtimeout - $timeoutSeconds) * 1000000;
-			stream_set_timeout($resource, $timeoutSeconds, $timeoutUSeconds);
-		}
+            case '-':
+                return new ResponseError($payload);
 
-		if (isset($parameters->tcp_nodelay) && function_exists('socket_import_stream')) {
-			$socket = socket_import_stream($resource);
-			socket_set_option($socket, SOL_TCP, TCP_NODELAY, (int)$parameters->tcp_nodelay);
-		}
+            default:
+                $this->onProtocolError("Unknown prefix: '$prefix'");
+        }
+    }
 
-		return $resource;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function writeCommand(CommandInterface $command)
+    {
+        $commandId = $command->getId();
+        $arguments = $command->getArguments();
 
-	/**
-	 * Initializes a UNIX stream resource.
-	 *
-	 * @param  ConnectionParametersInterface $parameters Parameters used to initialize the connection.
-	 *
-	 * @return resource
-	 */
-	private function unixStreamInitializer(ConnectionParametersInterface $parameters)
-	{
-		$uri   = "unix://{$parameters->path}";
-		$flags = STREAM_CLIENT_CONNECT;
+        $cmdlen = strlen($commandId);
+        $reqlen = count($arguments) + 1;
 
-		if ($parameters->persistent) {
-			$flags |= STREAM_CLIENT_PERSISTENT;
-		}
+        $buffer = "*{$reqlen}\r\n\${$cmdlen}\r\n{$commandId}\r\n";
 
-		$resource = @stream_socket_client($uri, $errno, $errstr, $parameters->timeout, $flags);
+        for ($i = 0, $reqlen--; $i < $reqlen; $i++) {
+            $argument = $arguments[$i];
+            $arglen = strlen($argument);
+            $buffer .= "\${$arglen}\r\n{$argument}\r\n";
+        }
 
-		if (!$resource) {
-			$this->onConnectionError(trim($errstr), $errno);
-		}
+        $this->writeBytes($buffer);
+    }
 
-		return $resource;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function __sleep()
+    {
+        return array_merge(parent::__sleep(), array('mbiterable'));
+    }
 }

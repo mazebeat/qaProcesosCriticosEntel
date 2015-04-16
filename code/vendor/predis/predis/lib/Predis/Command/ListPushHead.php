@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/lpush
+ * @link http://redis.io/commands/lpush
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ListPushHead extends ListPushTail
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LPUSH';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LPUSH';
+    }
 }

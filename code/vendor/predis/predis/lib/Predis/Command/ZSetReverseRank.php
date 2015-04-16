@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/zrevrank
+ * @link http://redis.io/commands/zrevrank
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ZSetReverseRank extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'ZREVRANK';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'ZREVRANK';
+    }
 }

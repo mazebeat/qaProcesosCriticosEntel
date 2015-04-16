@@ -45,18 +45,17 @@ class ClosureLocation
      */
     public static function fromReflection(\ReflectionFunction $reflection)
     {
-        $location            = new self;
+        $location = new self;
         $location->directory = dirname($reflection->getFileName());
-        $location->file      = $reflection->getFileName();
-        $location->function  = $reflection->getName();
-        $location->line      = $reflection->getStartLine();
+        $location->file = $reflection->getFileName();
+        $location->function = $reflection->getName();
+        $location->line = $reflection->getStartLine();
 
         // @codeCoverageIgnoreStart
         if (version_compare(PHP_VERSION, '5.4', '>=')) {
-            $closureScopeClass           = $reflection->getClosureScopeClass();
+            $closureScopeClass = $reflection->getClosureScopeClass();
             $location->closureScopeClass = $closureScopeClass ? $closureScopeClass->getName() : null;
         }
-
         // @codeCoverageIgnoreEnd
 
         return $location;
@@ -65,7 +64,7 @@ class ClosureLocation
     public function finalize()
     {
         if ($this->class || $this->trait) {
-            $class        = $this->class ?: $this->trait;
+            $class = $this->class ?: $this->trait;
             $this->method = "{$class}::{$this->function}";
         }
 

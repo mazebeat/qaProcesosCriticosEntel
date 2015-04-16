@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/pexpire
+ * @link http://redis.io/commands/pexpire
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeyPreciseExpire extends KeyExpire
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'PEXPIRE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'PEXPIRE';
+    }
 }

@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/append
+ * @link http://redis.io/commands/append
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringAppend extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'APPEND';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'APPEND';
+    }
 }

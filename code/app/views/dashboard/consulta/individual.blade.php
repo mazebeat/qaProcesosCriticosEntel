@@ -25,21 +25,25 @@
 				        </span>
 					</div>
 					<div class="panel-body">
-						<div class="row">
-							<form role="form" name="myForm" novalidate ng-submit="submitForm(myForm.$valid)">
-								<div class="form-group col-xs-4 col-md-2">
+						<form role="form" name="myForm" novalidate ng-submit="submitForm(myForm.$valid)">
+							<div class="row">
+								<div class="form-group col-md-2">
+									{{ Form::label('typeDocument', 'Tipo Docu. (*)', array('class' => 'control-label')) }}
+									{{ Form::select('typeDocument', array('CG_NORMAL_BOLETA' => 'Boleta', 'CG_NORMAL_FACTURA' => 'Factura'), 'cg_normal_boleta', array('class' => 'form-control', 'ng-model' => 'filters.typeDocument', 'ng-change' => 'changeDocumentType()')) }}
+								</div>
+								<div class="form-group col-md-2">
 									{{ Form::label('dateRange', 'Fecha (*)', array('class' => 'control-label')) }}
 									{{ HTML::dateRange('dateRange', array('class' => 'form-control', 'ng-model' => 'filters.date', 'ng-change' => 'updateDate()', 'required')) }}
 									<small class="help-block">{{ $errors->first('dateRange') }}</small>
 								</div>
 								<div class="form-group col-md-2">
 									{{ Form::label('td', 'Tipo Detalle (*)', array('class' => 'control-label')) }}
-									{{ Form::select('td', array('' => 'Seleccione un Tipo', '1' => 'Cargo Fijo Planes', 'Cargo Fijo Bolsas', 'Descuentos Cargo Fijo y trafico', 'Aplicación Unidades Libres Planes', 'Aplicación Unidades Libres Bolsas'), Input::old('td'), array('class' => 'form-control', 'ng-model' => 'filters.td', 'required'))  }}
+									{{ Form::select('td', array('1' => 'Cargo Fijo Planes', 'Cargo Fijo Bolsas', 'Descuentos Cargo Fijo y trafico', 'Aplicación Unidades Libres Planes', 'Aplicación Unidades Libres Bolsas'), Input::old('td'), array('class' => 'form-control', 'ng-model' => 'filters.td', 'required'))  }}
 									<small class="help-block">{{ $errors->first('td') }}</small>
 								</div>
 								<div class="form-group col-md-2">
 									{{ Form::label('estado', 'Estado (*)', array('class' => 'control-label')) }}
-									{{ Form::select('estado', array('' => 'Seleccione un Estado', 'OK' => 'OK', 'ERROR' => 'Error', 'OBSERVACION' => 'Observacion'), Input::old('estado'), array('class' => 'form-control', 'ng-model' => 'filters.estado', 'required'))  }}
+									{{ Form::select('estado', array('OK' => 'OK', 'ERROR' => 'Error', 'OBSERVACION' => 'Observacion'), Input::old('estado'), array('class' => 'form-control', 'ng-model' => 'filters.estado', 'required'))  }}
 									<small class="help-block">{{ $errors->first('estado') }}</small>
 								</div>
 								<div class="form-group col-md-2">
@@ -52,12 +56,13 @@
 									{{ Form::text('contrato', Input::old('contrato'), array('class' => 'form-control', 'ng-model' => 'filters.contrato'))  }}
 									<small class="help-block">{{ $errors->first('contrato') }}</small>
 								</div>
-								<div class="form-group col-md-2" style="margin-top: 24px;">
-									<button type="submit" class="btn btn-primary ladda-button" data-style="zoom-in" ng-disabled="myForm.$invalid">Consultar</button>
-									<button type="button" class="btn btn-default">Limpiar</button>
+							</div>
+							<div class="row">
+								<div class="form-group col-md-2 col-offset-md-8" style="margin-top: 24px;">
+									<button type="submit" class="btn btn-primary ladda-button pull-right" data-style="zoom-in" ng-disabled="myForm.$invalid">Consultar</button>
 								</div>
-							</form>
-						</div>
+							</div>
+						</form>
 					</div>
 				</div>
 

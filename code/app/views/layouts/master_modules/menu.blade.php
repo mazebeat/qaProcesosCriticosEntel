@@ -39,7 +39,7 @@
 				<li class="dropdown" id="menuUsuario">
 					<a href="javascript;" class="dropdown-toggle" data-toggle="dropdown">
 						@if(!Config::get('api.demo'))
-							{{--<i class="fa fa-user fa-lg fa-fw" style="color: #FFFFFF;"></i> {{ Str::upper(Auth::user()->nombre)  }}--}}
+							<i class="fa fa-user fa-lg fa-fw" style="color: #FFFFFF;"></i> {{ Str::upper(Auth::user()->nombre)  }}
 						@else
 							<i class="fa fa-user fa-lg fa-fw" style="color: #FFFFFF;"></i> {{ Config::get('api.testUsername') }}
 						@endif

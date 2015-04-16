@@ -80,6 +80,12 @@ Route::get('test', function () {
 Route::post('gentable', function () {
 	$data = Input::get('data');
 
-	//	 dd(array_get($data, 'header'));
 	return HTML::gentable('table', array_get($data, 'body'), array_get($data, 'header'), false, array(), array('class' => 'table table-hover'));
 });
+
+Route::get('posts-json', array(
+	'as'   => 'posts-json',
+	'uses' => 'PostController@json'
+));
+
+Route::resource('posts', 'PostsController');

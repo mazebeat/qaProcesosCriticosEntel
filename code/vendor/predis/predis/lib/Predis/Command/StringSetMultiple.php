@@ -12,44 +12,44 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/mset
+ * @link http://redis.io/commands/mset
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringSetMultiple extends AbstractCommand implements PrefixableCommandInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'MSET';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'MSET';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function prefixKeys($prefix)
-	{
-		PrefixHelpers::interleaved($this, $prefix);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        if (count($arguments) === 1 && is_array($arguments[0])) {
+            $flattenedKVs = array();
+            $args = $arguments[0];
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		if (count($arguments) === 1 && is_array($arguments[0])) {
-			$flattenedKVs = array();
-			$args         = $arguments[0];
+            foreach ($args as $k => $v) {
+                $flattenedKVs[] = $k;
+                $flattenedKVs[] = $v;
+            }
 
-			foreach ($args as $k => $v) {
-				$flattenedKVs[] = $k;
-				$flattenedKVs[] = $v;
-			}
+            return $flattenedKVs;
+        }
 
-			return $flattenedKVs;
-		}
+        return $arguments;
+    }
 
-		return $arguments;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function prefixKeys($prefix)
+    {
+        PrefixHelpers::interleaved($this, $prefix);
+    }
 }

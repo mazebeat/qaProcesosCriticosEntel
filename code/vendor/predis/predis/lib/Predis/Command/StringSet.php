@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/set
+ * @link http://redis.io/commands/set
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class StringSet extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SET';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SET';
+    }
 }

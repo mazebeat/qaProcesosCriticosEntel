@@ -104,7 +104,7 @@ class SerializableClosure implements \Serializable
      */
     protected function createState()
     {
-        $parser      = new ClosureParser($this->getReflection());
+        $parser = new ClosureParser($this->getReflection());
         $this->state = array($parser->getCode());
         // Add the used variables (context) to the state, but wrap all closures with SerializableClosure
         $this->state[] = array_map(function ($var) {

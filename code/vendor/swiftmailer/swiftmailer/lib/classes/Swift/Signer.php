@@ -16,5 +16,5 @@
  */
 interface Swift_Signer
 {
-	public function reset();
+    public function reset();
 }

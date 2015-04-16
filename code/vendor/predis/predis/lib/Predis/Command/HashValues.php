@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/hvals
+ * @link http://redis.io/commands/hvals
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class HashValues extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'HVALS';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'HVALS';
+    }
 }

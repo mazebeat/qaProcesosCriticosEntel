@@ -62,7 +62,6 @@
     {{ HTML::script('js/bootstrap-tour/build/js/bootstrap-tour-standalone.min.js') }}
     {{ HTML::script('https://rawgithub.com/eligrey/FileSaver.js/master/FileSaver.js') }}
     {{--{{ HTML::script('js/bootstrap-tour/build/js/bootstrap-tour.min.js') }}--}}
-
     {{-- AmCharts JS --}}
     {{ HTML::script('js/amcharts/amcharts.js') }}
     {{ HTML::script('js/amcharts/pie.js') }}
@@ -70,7 +69,6 @@
     {{ HTML::script('js/amcharts/exporting/amexport_combined.js') }}
     {{ HTML::script('js/amcharts/lang/es.js') }}
     <style>
-
 	    .amcharts-graph-graph2 .amcharts-graph-stroke {
 		    stroke-dasharray: 4px 5px;
 		    stroke-linejoin: round;
@@ -78,7 +76,6 @@
 		    -webkit-animation: am-moving-dashes 1s linear infinite;
 		    animation: am-moving-dashes 1s linear infinite;
 	    }
-
 	    @-webkit-keyframes am-moving-dashes {
 		    100% {
 			    stroke-dashoffset: -28px;

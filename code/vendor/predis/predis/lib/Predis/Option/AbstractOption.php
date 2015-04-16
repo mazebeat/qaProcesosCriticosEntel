@@ -18,31 +18,31 @@ namespace Predis\Option;
  */
 abstract class AbstractOption implements OptionInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __invoke(ClientOptionsInterface $options, $value)
-	{
-		if (isset($value)) {
-			return $this->filter($options, $value);
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function filter(ClientOptionsInterface $options, $value)
+    {
+        return $value;
+    }
 
-		return $this->getDefault($options);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getDefault(ClientOptionsInterface $options)
+    {
+        return null;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function filter(ClientOptionsInterface $options, $value)
-	{
-		return $value;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function __invoke(ClientOptionsInterface $options, $value)
+    {
+        if (isset($value)) {
+            return $this->filter($options, $value);
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getDefault(ClientOptionsInterface $options)
-	{
-		return null;
-	}
+        return $this->getDefault($options);
+    }
 }

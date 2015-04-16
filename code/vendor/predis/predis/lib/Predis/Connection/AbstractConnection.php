@@ -12,9 +12,9 @@
 namespace Predis\Connection;
 
 use Predis\ClientException;
-use Predis\Command\CommandInterface;
 use Predis\CommunicationException;
 use Predis\NotSupportedException;
+use Predis\Command\CommandInterface;
 use Predis\Protocol\ProtocolException;
 
 /**
@@ -24,204 +24,204 @@ use Predis\Protocol\ProtocolException;
  */
 abstract class AbstractConnection implements SingleConnectionInterface
 {
-	protected $parameters;
-	protected $initCmds = array();
-	private $resource;
-	private $cachedId;
+    private $resource;
+    private $cachedId;
 
-	/**
-	 * @param ConnectionParametersInterface $parameters Parameters used to initialize the connection.
-	 */
-	public function __construct(ConnectionParametersInterface $parameters)
-	{
-		$this->parameters = $this->checkParameters($parameters);
-	}
+    protected $parameters;
+    protected $initCmds = array();
 
-	/**
-	 * Checks some of the parameters used to initialize the connection.
-	 *
-	 * @param  ConnectionParametersInterface $parameters Initialization parameters for the connection.
-	 *
-	 * @return ConnectionParametersInterface
-	 */
-	protected function checkParameters(ConnectionParametersInterface $parameters)
-	{
-		switch ($parameters->scheme) {
-			case 'unix':
-				if (!isset($parameters->path)) {
-					throw new \InvalidArgumentException('Missing UNIX domain socket path');
-				}
+    /**
+     * @param ConnectionParametersInterface $parameters Parameters used to initialize the connection.
+     */
+    public function __construct(ConnectionParametersInterface $parameters)
+    {
+        $this->parameters = $this->checkParameters($parameters);
+    }
 
-			case 'tcp':
-				return $parameters;
+    /**
+     * Disconnects from the server and destroys the underlying resource when
+     * PHP's garbage collector kicks in.
+     */
+    public function __destruct()
+    {
+        $this->disconnect();
+    }
 
-			default:
-				throw new \InvalidArgumentException("Invalid scheme: {$parameters->scheme}");
-		}
-	}
+    /**
+     * Checks some of the parameters used to initialize the connection.
+     *
+     * @param  ConnectionParametersInterface $parameters Initialization parameters for the connection.
+     * @return ConnectionParametersInterface
+     */
+    protected function checkParameters(ConnectionParametersInterface $parameters)
+    {
+        switch ($parameters->scheme) {
+            case 'unix':
+                if (!isset($parameters->path)) {
+                    throw new \InvalidArgumentException('Missing UNIX domain socket path');
+                }
 
-	/**
-	 * Disconnects from the server and destroys the underlying resource when
-	 * PHP's garbage collector kicks in.
-	 */
-	public function __destruct()
-	{
-		$this->disconnect();
-	}
+            case 'tcp':
+                return $parameters;
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function disconnect()
-	{
-		unset($this->resource);
-	}
+            default:
+                throw new \InvalidArgumentException("Invalid scheme: {$parameters->scheme}");
+        }
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function pushInitCommand(CommandInterface $command)
-	{
-		$this->initCmds[] = $command;
-	}
+    /**
+     * Creates the underlying resource used to communicate with Redis.
+     *
+     * @return mixed
+     */
+    abstract protected function createResource();
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function executeCommand(CommandInterface $command)
-	{
-		$this->writeCommand($command);
+    /**
+     * {@inheritdoc}
+     */
+    public function isConnected()
+    {
+        return isset($this->resource);
+    }
 
-		return $this->readResponse($command);
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function connect()
+    {
+        if ($this->isConnected()) {
+            throw new ClientException('Connection already estabilished');
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function readResponse(CommandInterface $command)
-	{
-		return $this->read();
-	}
+        $this->resource = $this->createResource();
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getResource()
-	{
-		if (isset($this->resource)) {
-			return $this->resource;
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function disconnect()
+    {
+        unset($this->resource);
+    }
 
-		$this->connect();
+    /**
+     * {@inheritdoc}
+     */
+    public function pushInitCommand(CommandInterface $command)
+    {
+        $this->initCmds[] = $command;
+    }
 
-		return $this->resource;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function executeCommand(CommandInterface $command)
+    {
+        $this->writeCommand($command);
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function connect()
-	{
-		if ($this->isConnected()) {
-			throw new ClientException('Connection already estabilished');
-		}
+        return $this->readResponse($command);
+    }
 
-		$this->resource = $this->createResource();
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function readResponse(CommandInterface $command)
+    {
+        return $this->read();
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function isConnected()
-	{
-		return isset($this->resource);
-	}
+    /**
+     * Helper method to handle connection errors.
+     *
+     * @param string $message Error message.
+     * @param int    $code    Error code.
+     */
+    protected function onConnectionError($message, $code = null)
+    {
+        CommunicationException::handle(new ConnectionException($this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]", $code));
+    }
 
-	/**
-	 * Creates the underlying resource used to communicate with Redis.
-	 *
-	 * @return mixed
-	 */
-	abstract protected function createResource();
+    /**
+     * Helper method to handle protocol errors.
+     *
+     * @param string $message Error message.
+     */
+    protected function onProtocolError($message)
+    {
+        CommunicationException::handle(new ProtocolException($this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]"));
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getParameters()
-	{
-		return $this->parameters;
-	}
+    /**
+     * Helper method to handle not supported connection parameters.
+     *
+     * @param string $option     Name of the option.
+     * @param mixed  $parameters Parameters used to initialize the connection.
+     */
+    protected function onInvalidOption($option, $parameters = null)
+    {
+        $class = get_called_class();
+        $message = "Invalid option for connection $class: $option";
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __toString()
-	{
-		if (!isset($this->cachedId)) {
-			$this->cachedId = $this->getIdentifier();
-		}
+        if (isset($parameters)) {
+            $message .= sprintf(' [%s => %s]', $option, $parameters->{$option});
+        }
 
-		return $this->cachedId;
-	}
+        throw new NotSupportedException($message);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __sleep()
-	{
-		return array('parameters', 'initCmds');
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getResource()
+    {
+        if (isset($this->resource)) {
+            return $this->resource;
+        }
 
-	/**
-	 * Helper method to handle connection errors.
-	 *
-	 * @param string $message Error message.
-	 * @param int    $code    Error code.
-	 */
-	protected function onConnectionError($message, $code = null)
-	{
-		CommunicationException::handle(new ConnectionException($this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]", $code));
-	}
+        $this->connect();
 
-	/**
-	 * Gets an identifier for the connection.
-	 *
-	 * @return string
-	 */
-	protected function getIdentifier()
-	{
-		if ($this->parameters->scheme === 'unix') {
-			return $this->parameters->path;
-		}
+        return $this->resource;
+    }
 
-		return "{$this->parameters->host}:{$this->parameters->port}";
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getParameters()
+    {
+        return $this->parameters;
+    }
 
-	/**
-	 * Helper method to handle protocol errors.
-	 *
-	 * @param string $message Error message.
-	 */
-	protected function onProtocolError($message)
-	{
-		CommunicationException::handle(new ProtocolException($this, "$message [{$this->parameters->scheme}://{$this->getIdentifier()}]"));
-	}
+    /**
+     * Gets an identifier for the connection.
+     *
+     * @return string
+     */
+    protected function getIdentifier()
+    {
+        if ($this->parameters->scheme === 'unix') {
+            return $this->parameters->path;
+        }
 
-	/**
-	 * Helper method to handle not supported connection parameters.
-	 *
-	 * @param string $option     Name of the option.
-	 * @param mixed  $parameters Parameters used to initialize the connection.
-	 */
-	protected function onInvalidOption($option, $parameters = null)
-	{
-		$class   = get_called_class();
-		$message = "Invalid option for connection $class: $option";
+        return "{$this->parameters->host}:{$this->parameters->port}";
+    }
 
-		if (isset($parameters)) {
-			$message .= sprintf(' [%s => %s]', $option, $parameters->{$option});
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        if (!isset($this->cachedId)) {
+            $this->cachedId = $this->getIdentifier();
+        }
 
-		throw new NotSupportedException($message);
-	}
+        return $this->cachedId;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __sleep()
+    {
+        return array('parameters', 'initCmds');
+    }
 }

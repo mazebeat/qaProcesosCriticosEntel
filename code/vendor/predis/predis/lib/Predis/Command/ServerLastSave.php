@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/lastsave
+ * @link http://redis.io/commands/lastsave
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerLastSave extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'LASTSAVE';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'LASTSAVE';
+    }
 }

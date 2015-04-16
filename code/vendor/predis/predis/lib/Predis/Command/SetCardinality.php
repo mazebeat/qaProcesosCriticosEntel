@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/scard
+ * @link http://redis.io/commands/scard
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class SetCardinality extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SCARD';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SCARD';
+    }
 }

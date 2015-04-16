@@ -11,33 +11,33 @@
 
 namespace Predis\Protocol\Text;
 
+use Predis\ResponseQueued;
 use Predis\Connection\ComposableConnectionInterface;
 use Predis\Protocol\ResponseHandlerInterface;
-use Predis\ResponseQueued;
 
 /**
  * Implements a response handler for status replies using the standard wire
  * protocol defined by Redis.
  *
- * @link   http://redis.io/topics/protocol
+ * @link http://redis.io/topics/protocol
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ResponseStatusHandler implements ResponseHandlerInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function handle(ComposableConnectionInterface $connection, $status)
-	{
-		switch ($status) {
-			case 'OK':
-				return true;
+    /**
+     * {@inheritdoc}
+     */
+    public function handle(ComposableConnectionInterface $connection, $status)
+    {
+        switch ($status) {
+            case 'OK':
+                return true;
 
-			case 'QUEUED':
-				return new ResponseQueued();
+            case 'QUEUED':
+                return new ResponseQueued();
 
-			default:
-				return $status;
-		}
-	}
+            default:
+                return $status;
+        }
+    }
 }

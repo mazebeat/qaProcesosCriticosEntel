@@ -8,6 +8,6 @@ return array(
 		'public'        => 'PUB',
 	),
 	'testUsername' => 'Test User',
-	'demo'         => true,
+	'demo' => false,
 	'curlError'    => false
 );

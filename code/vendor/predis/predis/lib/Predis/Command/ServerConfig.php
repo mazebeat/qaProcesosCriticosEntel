@@ -12,37 +12,37 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/config-set
- * @link   http://redis.io/commands/config-get
- * @link   http://redis.io/commands/config-resetstat
- * @link   http://redis.io/commands/config-rewrite
+ * @link http://redis.io/commands/config-set
+ * @link http://redis.io/commands/config-get
+ * @link http://redis.io/commands/config-resetstat
+ * @link http://redis.io/commands/config-rewrite
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerConfig extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'CONFIG';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'CONFIG';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function parseResponse($data)
-	{
-		if (is_array($data)) {
-			$result = array();
+    /**
+     * {@inheritdoc}
+     */
+    public function parseResponse($data)
+    {
+        if (is_array($data)) {
+            $result = array();
 
-			for ($i = 0; $i < count($data); $i++) {
-				$result[$data[$i]] = $data[++$i];
-			}
+            for ($i = 0; $i < count($data); $i++) {
+                $result[$data[$i]] = $data[++$i];
+            }
 
-			return $result;
-		}
+            return $result;
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 }

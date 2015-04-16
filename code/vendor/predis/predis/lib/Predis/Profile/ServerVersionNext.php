@@ -18,19 +18,19 @@ namespace Predis\Profile;
  */
 class ServerVersionNext extends ServerVersion30
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getVersion()
-	{
-		return '3.0';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getVersion()
+    {
+        return '3.0';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getSupportedCommands()
-	{
-		return array_merge(parent::getSupportedCommands(), array());
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getSupportedCommands()
+    {
+        return array_merge(parent::getSupportedCommands(), array());
+    }
 }

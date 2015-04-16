@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/monitor
+ * @link http://redis.io/commands/monitor
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerMonitor extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'MONITOR';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'MONITOR';
+    }
 }

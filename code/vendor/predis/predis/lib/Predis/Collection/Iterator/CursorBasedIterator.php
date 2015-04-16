@@ -24,168 +24,168 @@ use Predis\NotSupportedException;
  * iterators offer limited guarantees about the returned elements because
  * the collection can change several times during the iteration process.
  *
- * @see    http://redis.io/commands/scan
+ * @see http://redis.io/commands/scan
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 abstract class CursorBasedIterator implements Iterator
 {
-	protected $client;
-	protected $match;
-	protected $count;
+    protected $client;
+    protected $match;
+    protected $count;
 
-	protected $valid;
-	protected $fetchmore;
-	protected $elements;
-	protected $cursor;
-	protected $position;
-	protected $current;
+    protected $valid;
+    protected $fetchmore;
+    protected $elements;
+    protected $cursor;
+    protected $position;
+    protected $current;
 
-	/**
-	 * @param ClientInterface $client Client connected to Redis.
-	 * @param string          $match  Pattern to match during the server-side iteration.
-	 * @param int             $count  Hints used by Redis to compute the number of results per iteration.
-	 */
-	public function __construct(ClientInterface $client, $match = null, $count = null)
-	{
-		$this->client = $client;
-		$this->match  = $match;
-		$this->count  = $count;
+    /**
+     * @param ClientInterface $client Client connected to Redis.
+     * @param string          $match  Pattern to match during the server-side iteration.
+     * @param int             $count  Hints used by Redis to compute the number of results per iteration.
+     */
+    public function __construct(ClientInterface $client, $match = null, $count = null)
+    {
+        $this->client = $client;
+        $this->match = $match;
+        $this->count = $count;
 
-		$this->reset();
-	}
+        $this->reset();
+    }
 
-	/**
-	 * Resets the inner state of the iterator.
-	 */
-	protected function reset()
-	{
-		$this->valid     = true;
-		$this->fetchmore = true;
-		$this->elements  = array();
-		$this->cursor    = 0;
-		$this->position  = -1;
-		$this->current   = null;
-	}
+    /**
+     * Ensures that the client instance supports the specified Redis
+     * command required to fetch elements from the server to perform
+     * the iteration.
+     *
+     * @param ClientInterface $client    Client connected to Redis.
+     * @param string          $commandID Command ID.
+     */
+    protected function requiredCommand(ClientInterface $client, $commandID)
+    {
+        if (!$client->getProfile()->supportsCommand($commandID)) {
+            throw new NotSupportedException("The specified server profile does not support the `$commandID` command.");
+        }
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function rewind()
-	{
-		$this->reset();
-		$this->next();
-	}
+    /**
+     * Resets the inner state of the iterator.
+     */
+    protected function reset()
+    {
+        $this->valid = true;
+        $this->fetchmore = true;
+        $this->elements = array();
+        $this->cursor = 0;
+        $this->position = -1;
+        $this->current = null;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function next()
-	{
-		tryFetch: {
-		if (!$this->elements && $this->fetchmore) {
-			$this->fetch();
-		}
+    /**
+     * Returns an array of options for the `SCAN` command.
+     *
+     * @return array
+     */
+    protected function getScanOptions()
+    {
+        $options = array();
 
-		if ($this->elements) {
-			$this->extractNext();
-		} elseif ($this->cursor) {
-			goto tryFetch;
-		} else {
-			$this->valid = false;
-		}
-	}
-	}
+        if (strlen($this->match) > 0) {
+            $options['MATCH'] = $this->match;
+        }
 
-	/**
-	 * Populates the local buffer of elements fetched from the
-	 * server during the iteration.
-	 */
-	protected function fetch()
-	{
-		list($cursor, $elements) = $this->executeCommand();
+        if ($this->count > 0) {
+            $options['COUNT'] = $this->count;
+        }
 
-		if (!$cursor) {
-			$this->fetchmore = false;
-		}
+        return $options;
+    }
 
-		$this->cursor   = $cursor;
-		$this->elements = $elements;
-	}
+    /**
+     * Fetches a new set of elements from the remote collection,
+     * effectively advancing the iteration process.
+     *
+     * @return array
+     */
+    abstract protected function executeCommand();
 
-	/**
-	 * Fetches a new set of elements from the remote collection,
-	 * effectively advancing the iteration process.
-	 *
-	 * @return array
-	 */
-	abstract protected function executeCommand();
+    /**
+     * Populates the local buffer of elements fetched from the
+     * server during the iteration.
+     */
+    protected function fetch()
+    {
+        list($cursor, $elements) = $this->executeCommand();
 
-	/**
-	 * Extracts next values for key() and current().
-	 */
-	protected function extractNext()
-	{
-		$this->position++;
-		$this->current = array_shift($this->elements);
-	}
+        if (!$cursor) {
+            $this->fetchmore = false;
+        }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function current()
-	{
-		return $this->current;
-	}
+        $this->cursor = $cursor;
+        $this->elements = $elements;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function key()
-	{
-		return $this->position;
-	}
+    /**
+     * Extracts next values for key() and current().
+     */
+    protected function extractNext()
+    {
+        $this->position++;
+        $this->current = array_shift($this->elements);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function valid()
-	{
-		return $this->valid;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function rewind()
+    {
+        $this->reset();
+        $this->next();
+    }
 
-	/**
-	 * Ensures that the client instance supports the specified Redis
-	 * command required to fetch elements from the server to perform
-	 * the iteration.
-	 *
-	 * @param ClientInterface $client    Client connected to Redis.
-	 * @param string          $commandID Command ID.
-	 */
-	protected function requiredCommand(ClientInterface $client, $commandID)
-	{
-		if (!$client->getProfile()->supportsCommand($commandID)) {
-			throw new NotSupportedException("The specified server profile does not support the `$commandID` command.");
-		}
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function current()
+    {
+        return $this->current;
+    }
 
-	/**
-	 * Returns an array of options for the `SCAN` command.
-	 *
-	 * @return array
-	 */
-	protected function getScanOptions()
-	{
-		$options = array();
+    /**
+     * {@inheritdoc}
+     */
+    public function key()
+    {
+        return $this->position;
+    }
 
-		if (strlen($this->match) > 0) {
-			$options['MATCH'] = $this->match;
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function next()
+    {
+        tryFetch: {
+            if (!$this->elements && $this->fetchmore) {
+                $this->fetch();
+            }
 
-		if ($this->count > 0) {
-			$options['COUNT'] = $this->count;
-		}
+            if ($this->elements) {
+                $this->extractNext();
+            } elseif ($this->cursor) {
+                goto tryFetch;
+            } else {
+                $this->valid = false;
+            }
+        }
+    }
 
-		return $options;
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function valid()
+    {
+        return $this->valid;
+    }
 }

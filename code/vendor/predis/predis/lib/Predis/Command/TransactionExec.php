@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/exec
+ * @link http://redis.io/commands/exec
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class TransactionExec extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'EXEC';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'EXEC';
+    }
 }

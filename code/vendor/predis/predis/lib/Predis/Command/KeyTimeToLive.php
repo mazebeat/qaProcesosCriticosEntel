@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/ttl
+ * @link http://redis.io/commands/ttl
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeyTimeToLive extends PrefixableCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'TTL';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'TTL';
+    }
 }

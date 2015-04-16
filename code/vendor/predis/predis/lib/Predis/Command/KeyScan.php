@@ -12,66 +12,65 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/scan
+ * @link http://redis.io/commands/scan
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class KeyScan extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'SCAN';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'SCAN';
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function parseResponse($data)
-	{
-		if (is_array($data)) {
-			$data[0] = (int)$data[0];
-		}
+    /**
+     * {@inheritdoc}
+     */
+    protected function filterArguments(Array $arguments)
+    {
+        if (count($arguments) === 2 && is_array($arguments[1])) {
+            $options = $this->prepareOptions(array_pop($arguments));
+            $arguments = array_merge($arguments, $options);
+        }
 
-		return $data;
-	}
+        return $arguments;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function filterArguments(Array $arguments)
-	{
-		if (count($arguments) === 2 && is_array($arguments[1])) {
-			$options   = $this->prepareOptions(array_pop($arguments));
-			$arguments = array_merge($arguments, $options);
-		}
+    /**
+     * Returns a list of options and modifiers compatible with Redis.
+     *
+     * @param  array $options List of options.
+     * @return array
+     */
+    protected function prepareOptions($options)
+    {
+        $options = array_change_key_case($options, CASE_UPPER);
+        $normalized = array();
 
-		return $arguments;
-	}
+        if (!empty($options['MATCH'])) {
+            $normalized[] = 'MATCH';
+            $normalized[] = $options['MATCH'];
+        }
 
-	/**
-	 * Returns a list of options and modifiers compatible with Redis.
-	 *
-	 * @param  array $options List of options.
-	 *
-	 * @return array
-	 */
-	protected function prepareOptions($options)
-	{
-		$options    = array_change_key_case($options, CASE_UPPER);
-		$normalized = array();
+        if (!empty($options['COUNT'])) {
+            $normalized[] = 'COUNT';
+            $normalized[] = $options['COUNT'];
+        }
 
-		if (!empty($options['MATCH'])) {
-			$normalized[] = 'MATCH';
-			$normalized[] = $options['MATCH'];
-		}
+        return $normalized;
+    }
 
-		if (!empty($options['COUNT'])) {
-			$normalized[] = 'COUNT';
-			$normalized[] = $options['COUNT'];
-		}
+    /**
+     * {@inheritdoc}
+     */
+    public function parseResponse($data)
+    {
+        if (is_array($data)) {
+            $data[0] = (int) $data[0];
+        }
 
-		return $normalized;
-	}
+        return $data;
+    }
 }

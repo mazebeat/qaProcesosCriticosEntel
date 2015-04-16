@@ -12,16 +12,16 @@
 namespace Predis\Command;
 
 /**
- * @link   http://redis.io/commands/object
+ * @link http://redis.io/commands/object
  * @author Daniele Alessandri <suppakilla@gmail.com>
  */
 class ServerObject extends AbstractCommand
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getId()
-	{
-		return 'OBJECT';
-	}
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return 'OBJECT';
+    }
 }

@@ -19,25 +19,25 @@ use Predis\ClientInterface;
  * fully-rewindable PHP iterator.
  *
  * @author Daniele Alessandri <suppakilla@gmail.com>
- * @link   http://redis.io/commands/scan
+ * @link http://redis.io/commands/scan
  */
 class Keyspace extends CursorBasedIterator
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function __construct(ClientInterface $client, $match = null, $count = null)
-	{
-		$this->requiredCommand($client, 'SCAN');
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct(ClientInterface $client, $match = null, $count = null)
+    {
+        $this->requiredCommand($client, 'SCAN');
 
-		parent::__construct($client, $match, $count);
-	}
+        parent::__construct($client, $match, $count);
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	protected function executeCommand()
-	{
-		return $this->client->scan($this->cursor, $this->getScanOptions());
-	}
+    /**
+     * {@inheritdoc}
+     */
+    protected function executeCommand()
+    {
+        return $this->client->scan($this->cursor, $this->getScanOptions());
+    }
 }

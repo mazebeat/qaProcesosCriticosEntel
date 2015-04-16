@@ -100,7 +100,7 @@ class ClosureParser
         if (!$this->abstractSyntaxTree) {
             try {
                 // Parse the code from the file containing the closure and create an AST with FQCN resolved
-                $fileAst       = $this->getFileAbstractSyntaxTree();
+                $fileAst = $this->getFileAbstractSyntaxTree();
                 $closureFinder = new ClosureFinderVisitor($this->reflection);
                 $fileTraverser = new \PHPParser_NodeTraverser();
                 $fileTraverser->addVisitor(new \PHPParser_NodeVisitor_NameResolver);
@@ -123,7 +123,7 @@ class ClosureParser
             // Resolve additional nodes by making a second pass through just the closure's nodes
             $closureTraverser = new \PHPParser_NodeTraverser();
             $closureTraverser->addVisitor(new MagicConstantVisitor($closureFinder->getLocation()));
-            $closureAst               = $closureTraverser->traverse(array($closureAst));
+            $closureAst = $closureTraverser->traverse(array($closureAst));
             $this->abstractSyntaxTree = $closureAst[0];
         }
 
@@ -168,7 +168,7 @@ class ClosureParser
     {
         if (!$this->code) {
             // Use the pretty printer to print the closure code from the AST
-            $printer    = new \PHPParser_PrettyPrinter_Default();
+            $printer = new \PHPParser_PrettyPrinter_Default();
             $this->code = $printer->prettyPrint(array($this->getClosureAbstractSyntaxTree()));
         }
 
@@ -186,7 +186,7 @@ class ClosureParser
         $filename = $this->reflection->getFileName();
 
         if (!isset(self::$cache[$filename])) {
-            $parser                 = new \PHPParser_Parser(new \PHPParser_Lexer_Emulative);
+            $parser = new \PHPParser_Parser(new \PHPParser_Lexer_Emulative);
             self::$cache[$filename] = $parser->parse(file_get_contents($filename));
         }
 
