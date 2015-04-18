@@ -9,7 +9,6 @@
 })(this, function (Spinner) {
     "use strict";
     var ALL_INSTANCES = [];
-
     function create(button) {
         if (typeof button === "undefined") {
             console.warn("Ladda button target must be defined.");
@@ -89,7 +88,6 @@
         ALL_INSTANCES.push(instance);
         return instance;
     }
-
     function bind(target, options) {
         options = options || {};
         var targets = [];
@@ -118,13 +116,11 @@
             })();
         }
     }
-
     function stopAll() {
         for (var i = 0, len = ALL_INSTANCES.length; i < len; i++) {
             ALL_INSTANCES[i].stop();
         }
     }
-
     function createSpinner(button) {
         var height = button.offsetHeight, spinnerColor;
         if (height > 32) {
@@ -149,7 +145,6 @@
             className: ""
         });
     }
-
     function toArray(nodes) {
         var a = [];
         for (var i = 0; i < nodes.length; i++) {
@@ -157,7 +152,6 @@
         }
         return a;
     }
-
     return {
         bind: bind,
         create: create,

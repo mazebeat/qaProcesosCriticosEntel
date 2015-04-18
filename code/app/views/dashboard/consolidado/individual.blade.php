@@ -7,13 +7,13 @@
 @section('content')
 	<div ng-controller="consolidadoIndividualController">
 		<code ng-if="debug">
-			<p>Filtros: @{{ filters }}</p>
+			<p>Filtros: [[ filters ]]</p>
 
-			<p>Table: @{{ table }}</p>
+			<p>Table: [[ table ]]</p>
 
-			<p>Datos: @{{ datas }}</p>
+			<p>Datos: [[ datas ]]</p>
 
-			<p>Errores: @{{ errors }}</p>
+			<p>Errores: [[ errors ]]</p>
 		</code>
 
 		<div class="panel panel-default">
@@ -56,17 +56,17 @@
 							<tr>
 								<td>1</td>
 								<td>Buenos</td>
-								<td class="text-right">@{{ table.qBuenos }}</td>
+								<td class="text-right">[[ table.qBuenos ]]</td>
 							</tr>
 							<tr>
 								<td>2</td>
 								<td>Errores</td>
-								<td class="text-right">@{{ table.qErrores }}</td>
+								<td class="text-right">[[ table.qErrores ]]</td>
 							</tr>
 							<tr>
 								<td>3</td>
 								<td>Observaciones</td>
-								<td class="text-right">@{{ table.qObservaciones }}</td>
+								<td class="text-right">[[ table.qObservaciones ]]</td>
 							</tr>
 							</tbody>
 						</table>
@@ -114,187 +114,11 @@
 @endsection
 
 @section('file-script')
-
 @endsection
 
 @section('text-script')
 	<script type="text/javascript">
 		var actualSerialChart2 = new AmCharts.AmSerialChart();
 		var detallePieChart2 = new AmCharts.AmPieChart();
-		{{--AmCharts.makeChart("actual", {--}}
-		{{--"type": "serial",--}}
-		{{--"categoryField": "category",--}}
-		{{--"colors": [--}}
-		{{--"#374152",--}}
-		{{--"#12DC49",--}}
-		{{--"#C5AE70",--}}
-		{{--"#E70D2F",--}}
-		{{--"#86A6C2",--}}
-		{{--],--}}
-		{{--"startDuration": 1,--}}
-		{{--"categoryAxis": {--}}
-		{{--"gridPosition": "start",--}}
-		{{--"titleFontSize": 2--}}
-		{{--},--}}
-		{{--"trendLines": [],--}}
-		{{--"graphs": [--}}
-		{{--{--}}
-		{{--"balloonText": "<strong>[[title]]</strong> en [[category]]: [[value]]",--}}
-		{{--"fillAlphas": 1,--}}
-		{{--"stackable": false,--}}
-		{{--"id": "AmGraph-1",--}}
-		{{--"title": "Correctos",--}}
-		{{--"type": "column",--}}
-		{{--"valueField": "column-1"--}}
-		{{--},--}}
-		{{--{--}}
-		{{--"balloonText": "<strong>[[title]]</strong> en [[category]]: [[value]]",--}}
-		{{--"fillAlphas": 1,--}}
-		{{--"stackable": false,--}}
-		{{--"id": "AmGraph-2",--}}
-		{{--"title": "Incorrectos",--}}
-		{{--"type": "column",--}}
-		{{--"valueField": "column-2"--}}
-		{{--}--}}
-		{{--],--}}
-		{{--"guides": [],--}}
-		{{--"valueAxes": [--}}
-		{{--{--}}
-		{{--"id": "ValueAxis-1",--}}
-		{{--"maximum": 0,--}}
-		{{--//					"radarCategoriesEnabled": false,--}}
-		{{--"stackType": "100%",--}}
-		{{--"unit": "%",--}}
-		{{--//					"autoGridCount": false,--}}
-		{{--"title": "Porcentaje"--}}
-		{{--}--}}
-		{{--],--}}
-		{{--"allLabels": [],--}}
-		{{--"balloon": {},--}}
-		{{--"legend": {--}}
-		{{--"useGraphSettings": true--}}
-		{{--},--}}
-		{{--"titles": [--}}
-		{{--{--}}
-		{{--"id": "Title-1",--}}
-		{{--"size": 15,--}}
-		{{--"text": "Abril 2015"--}}
-		{{--}--}}
-		{{--],--}}
-		{{--"dataProvider": [--}}
-		{{--{--}}
-		{{--"category": "Abril",--}}
-		{{--"column-2": "775",--}}
-		{{--"column-1": "165"--}}
-		{{--}--}}
-		{{--],--}}
-		{{--"pathToImages": "http://www.amcharts.com/lib/3/images/",--}}
-		{{--"amExport": {--}}
-		{{--"buttonTitle": "Guardar",--}}
-		{{--"imageFileName": "amCharts",--}}
-		{{--"buttonAlpha": 1,--}}
-		{{--"exportJPG": true,--}}
-		{{--"exportPNG": true,--}}
-		{{--"exportSVG": true,--}}
-		{{--"exportPDF": true,--}}
-		{{--"userCFG": {--}}
-		{{--menuItems: [{--}}
-		{{--textAlign: 'center',--}}
-		{{--icon: 'http://www.amcharts.com/lib/3/images/export.png',--}}
-		{{--iconTitle: 'Save chart as an image',--}}
-		{{--onclick: function () {--}}
-		{{--},--}}
-		{{--items: [{--}}
-		{{--title: 'JPG',--}}
-		{{--format: 'jpg'--}}
-		{{--}, {--}}
-		{{--title: 'PNG',--}}
-		{{--format: 'png'--}}
-		{{--}, {--}}
-		{{--title: 'XLS',--}}
-		{{--format: 'svg'--}}
-		{{--}]--}}
-		{{--}],--}}
-		{{--removeImagery: true--}}
-		{{--}--}}
-		{{--}--}}
-		{{--});--}}
-		{{--AmCharts.makeChart("detalle", {--}}
-		{{--"type": "pie",--}}
-		{{--"pathToImages": "http://cdn.amcharts.com/lib/3/images/",--}}
-		{{--"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]] registros</b> ([[percents]]%)</span>",--}}
-		{{--"labelText": "[[percents]]% ",--}}
-		{{--"innerRadius": "40%",--}}
-		{{--"minRadius": 100,--}}
-		{{--"colors": [--}}
-		{{--"#374152",--}}
-		{{--"#E70D2F",--}}
-		{{--"#12DC49",--}}
-		{{--"#86A6C2",--}}
-		{{--"#C5AE70"--}}
-		{{--],--}}
-		{{--"titleField": "category",--}}
-		{{--"valueField": "column-1",--}}
-		{{--"allLabels": [],--}}
-		{{--"balloon": {},--}}
-		{{--"legend": {--}}
-		{{--"align": "center",--}}
-		{{--"equalWidths": false,--}}
-		{{--"markerType": "circle"--}}
-		{{--},--}}
-		{{--"titles": [],--}}
-		{{--"dataProvider": [--}}
-		{{--{--}}
-		{{--"category": "OK",--}}
-		{{--"column-1": "10"--}}
-		{{--},--}}
-		{{--{--}}
-		{{--"category": "Pendientes",--}}
-		{{--"column-1": "40"--}}
-		{{--},--}}
-		{{--{--}}
-		{{--"category": "On Hold",--}}
-		{{--"column-1": "19"--}}
-		{{--},--}}
-		{{--{--}}
-		{{--"category": "Bug",--}}
-		{{--"column-1": "28"--}}
-		{{--},--}}
-		{{--{--}}
-		{{--"category": "Cerrado",--}}
-		{{--"column-1": "3"--}}
-		{{--}--}}
-		{{--],--}}
-		{{--"pathToImages": "http://www.amcharts.com/lib/3/images/",--}}
-		{{--"amExport": {--}}
-		{{--"buttonTitle": "Guardar",--}}
-		{{--"imageFileName": "amCharts",--}}
-		{{--"buttonAlpha": 1,--}}
-		{{--"exportJPG": true,--}}
-		{{--"exportPNG": true,--}}
-		{{--"exportSVG": true,--}}
-		{{--"exportPDF": true,--}}
-		{{--"userCFG": {--}}
-		{{--menuItems: [{--}}
-		{{--textAlign: 'center',--}}
-		{{--icon: 'http://www.amcharts.com/lib/3/images/export.png',--}}
-		{{--iconTitle: 'Save chart as an image',--}}
-		{{--onclick: function () {--}}
-		{{--},--}}
-		{{--items: [{--}}
-		{{--title: 'JPG',--}}
-		{{--format: 'jpg'--}}
-		{{--}, {--}}
-		{{--title: 'PNG',--}}
-		{{--format: 'png'--}}
-		{{--}, {--}}
-		{{--title: 'XLS',--}}
-		{{--format: 'svg'--}}
-		{{--}]--}}
-		{{--}],--}}
-		{{--removeImagery: true--}}
-		{{--}--}}
-		{{--}--}}
-		{{--});--}}
 	</script>
 @endsection

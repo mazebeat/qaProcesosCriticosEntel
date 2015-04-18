@@ -8,20 +8,25 @@
 	<div ng-controller="consolidadoIndexController">
 		<code ng-if="debug">
 			<h3>FILTROS</h3>
-			<p>@{{ filters }}</p>
+
+			<p>[[ filters ]]</p>
 
 			<h3>DATOS</h3>
 			<h4>Detalle</h4>
-			<p>@{{ datas.detalle }}</p>
+
+			<p>[[ datas.detalle ]]</p>
 
 			<h4>Actual</h4>
-			<p>@{{ datas.actual }}</p>
+
+			<p>[[ datas.actual ]]</p>
 
 			<h4>Historico</h4>
-			<p>@{{ datas.historico }}</p>
+
+			<p>[[ datas.historico ]]</p>
 
 			<h3>ERRORES</h3>
-			<p> @{{ errors }}</p>
+
+			<p>[[ errors ]]</p>
 		</code>
 
 		<div class="panel panel-default">
@@ -51,8 +56,8 @@
 
 					{{-- BEGIN TITLE --}}
 					<div class="col-md-6 text-center">
-						<h3 ng-show="isLoadingActual == false">@{{ filters.titleActual }}</h3>
-						<!--<h3 ng-show="errors.actual == '' && isLoadingActual == false && datas.actual.length > 1">@{{ filters.titleActual }}</h3>-->
+						<h3 ng-if="isLoadingActual == false">[[ filters.titleActual ]]</h3>
+						<!--<h3 ng-if="errors.actual == '' && isLoadingActual == false && datas.actual.length > 1">[[ filters.titleActual ]]</h3>-->
 					</div>
 					{{--END TITLE --}}
 				</div>
@@ -114,8 +119,8 @@
 
 					{{-- BEGIN TITLE --}}
 					{{--<div class="col-md-10 text-center">--}}
-					<!--<h3 ng-show="isLoadingActual == false">@{{ filters.titleActual }}</h3>-->
-					{{--<!--<h3 ng-show="errors.actual == '' && isLoadingActual == false && datas.actual.length > 1">@{{ filters.titleActual }}</h3>-->--}}
+					<!--<h3 ng-if="isLoadingActual == false">[[ filters.titleActual ]]</h3>-->
+					{{--<!--<h3 ng-if="errors.actual == '' && isLoadingActual == false && datas.actual.length > 1">[[ filters.titleActual ]]</h3>-->--}}
 					{{--</div>--}}
 					{{--END TITLE --}}
 
@@ -123,8 +128,8 @@
 					<div class="col-md-5">
 						<h3 ng-if="isLoadingActual"><em>Loading{{ HTML::image('images/loaders/loader28.gif') }}</em></h3>
 
-						<div ng-if="errors.actual!= '' && isLoadingActual == false" class="alert alert-warning" role="alert">
-							<strong>Warning!</strong> @{{ errors.actual }}.
+						<div ng-if="errors.actual != '' && isLoadingActual == false" class="alert alert-warning" role="alert">
+							<strong>Warning!</strong> [[ errors.actual ]].
 						</div>
 
 						<div ng-if="errors.actual === ''">
@@ -138,10 +143,10 @@
 						<h3 ng-if="isLoadingDetalle"><em>Loading{{ HTML::image('images/loaders/loader28.gif') }}</em></h3>
 
 						<div ng-if="errors.detalle != '' && isLoadingDetalle == false" class="alert alert-warning" role="alert">
-							<strong>Warning!</strong> @{{ errors.detalle }}.
+							<strong>Warning!</strong> [[ errors.detalle ]].
 						</div>
 
-						<div id="detalle" style="width: 100%; height: 400px; background-color: #FFFFFF;" ng-show="errors.detalle == ''"></div>
+						<div id="detalle" style="width: 100%; height: 400px; background-color: #FFFFFF;" ng-if="errors.detalle == ''"></div>
 					</div>
 					{{-- END GRÁFICO DETALLE --}}
 				</div>
@@ -162,10 +167,10 @@
 						<h3 ng-if="isLoadingHistorico"><em>Loading{{ HTML::image('images/loaders/loader28.gif') }}</em></h3>
 
 						<div ng-if="errors.historico != '' && isLoadingHistorico == false" class="alert alert-warning" role="alert">
-							<strong>Warning!</strong> @{{ errors.historico }}.
+							<strong>Warning!</strong> [[ errors.historico ]].
 						</div>
 
-						<div id="historico" style="width: 100%; height: 400px; background-color: #FFFFFF;" ng-show="errors.historico == ''"></div>
+						<div id="historico" style="width: 100%; height: 400px; background-color: #FFFFFF;" ng-if="errors.historico == ''"></div>
 					</div>
 				</div>
 			</div>

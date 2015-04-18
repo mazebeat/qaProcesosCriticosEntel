@@ -124,15 +124,7 @@
         if (Object.prototype.toString.call(e) == "[object Array]")return e.map(function (t) {
             return n.stringify(t, r, e)
         }).join("");
-        var s = {
-            type: e.type,
-            content: n.stringify(e.content, r, i),
-            tag: "span",
-            classes: ["token", e.type],
-            attributes: {},
-            language: r,
-            parent: i
-        };
+        var s = {type: e.type, content: n.stringify(e.content, r, i), tag: "span", classes: ["token", e.type], attributes: {}, language: r, parent: i};
         s.type == "comment" && (s.attributes.spellcheck = "true");
         t.hooks.run("wrap", s);
         var o = "";
@@ -189,23 +181,14 @@ Prism.languages.css = {
 Prism.languages.markup && Prism.languages.insertBefore("markup", "tag", {
     style: {
         pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
-        inside: {
-            tag: {
-                pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
-                inside: Prism.languages.markup.tag.inside
-            }, rest: Prism.languages.css
-        }
+        inside: {tag: {pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig, inside: Prism.languages.markup.tag.inside}, rest: Prism.languages.css}
     }
 });
 ;
 Prism.languages.clike = {
     comment: {pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g, lookbehind: !0},
     string: /("|')(\\?.)*?\1/g,
-    "class-name": {
-        pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig,
-        lookbehind: !0,
-        inside: {punctuation: /(\.|\\)/}
-    },
+    "class-name": {pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig, lookbehind: !0, inside: {punctuation: /(\.|\\)/}},
     keyword: /\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/g,
     "boolean": /\b(true|false)\b/g,
     "function": {pattern: /[a-z0-9_]+\(/ig, inside: {punctuation: /\(/}},
@@ -219,21 +202,11 @@ Prism.languages.javascript = Prism.languages.extend("clike", {
     keyword: /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|throw|catch|finally|null|break|continue)\b/g,
     number: /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?|NaN|-?Infinity)\b/g
 });
-Prism.languages.insertBefore("javascript", "keyword", {
-    regex: {
-        pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
-        lookbehind: !0
-    }
-});
+Prism.languages.insertBefore("javascript", "keyword", {regex: {pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g, lookbehind: !0}});
 Prism.languages.markup && Prism.languages.insertBefore("markup", "tag", {
     script: {
         pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
-        inside: {
-            tag: {
-                pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-                inside: Prism.languages.markup.tag.inside
-            }, rest: Prism.languages.javascript
-        }
+        inside: {tag: {pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig, inside: Prism.languages.markup.tag.inside}, rest: Prism.languages.javascript}
     }
 });
 ;

@@ -91,11 +91,9 @@
 .ladda-button[data-style=expand-right] .ladda-spinner {
     right: 14px;
 }
-
 .ladda-button[data-style=expand-right][data-size="s"] .ladda-spinner, .ladda-button[data-style=expand-right][data-size="xs"] .ladda-spinner {
     right: 4px;
 }
-
 .ladda-button[data-style=expand-right][data-loading] {
     padding-right: 56px;
 }
@@ -114,11 +112,9 @@
 .ladda-button[data-style=expand-left] .ladda-spinner {
     left: 14px;
 }
-
 .ladda-button[data-style=expand-left][data-size="s"] .ladda-spinner, .ladda-button[data-style=expand-left][data-size="xs"] .ladda-spinner {
     left: 4px;
 }
-
 .ladda-button[data-style=expand-left][data-loading] {
     padding-left: 56px;
 }

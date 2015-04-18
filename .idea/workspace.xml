@@ -2,436 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="2e8b902c-d24b-4a2e-873f-db4dadfc22a0" name="Default" comment="0.0.5">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/.gitkeep" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1250.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1251.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1252.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1253.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1254.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1255.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1256.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1257.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit1258.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit874.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit932.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit936.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit949.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/data/to.bestfit950.ser" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/.gitmodules" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/monolog/monolog/.php_cs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/.scrutinizer.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/database/migrations/2015_04_14_160750_create_posts_table.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Logger/AbstractLogger.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/da_DK/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_AT/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_DE/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/el_GR/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_AU/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_CA/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_GB/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_PH/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_US/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_ZA/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_AR/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_ES/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_PE/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fi_FI/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_BE/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/hy_AM/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/is_IS/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/it_IT/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ja_JP/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/lv_LV/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_BE/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_NL/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pl_PL/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pt_BR/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ro_MD/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ro_RO/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ru_RU/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sk_SK/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_Cyrl_RS/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_Latn_RS/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_RS/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/tr_TR/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/uk_UA/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/zh_CN/Address.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/Alias.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Caster/AmqpCaster.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/ApcClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Loader/ArrayLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/AuthorTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Autoloader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Base.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/BaseGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/BaseTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/BestFit.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/CHANGELOG.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/CHANGELOG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Cache.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Loader/CascadingLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Caster/Caster.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Tests/Caster/CasterTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/ClassCollectionLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/ClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/ClassMapGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Type/Collection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Color.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ru_RU/Color.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/uk_UA/Color.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/ColorTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Doctrine/ColumnTypeGuesser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Mandango/ColumnTypeGuesser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Propel/ColumnTypeGuesser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/da_DK/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_DE/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_US/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_AR/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_ES/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_PE/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fi_FI/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_BE/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/hy_AM/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/is_IS/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/it_IT/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ja_JP/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_BE/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_NL/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pl_PL/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pt_BR/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sk_SK/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/uk_UA/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/zh_CN/Company.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/fr_FR/CompanyTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Compiler.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Context.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Context.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/ControllerGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/ControllerGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/commands/ControllerGeneratorCommandTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/ControllerGeneratorTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/CoversTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/DateTime.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/DebugClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/DebugUniversalClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/DeprecatedTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Description.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Documentor.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Engine.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Doctrine/EntityPopulator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Mandango/EntityPopulator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Propel/EntityPopulator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ExampleTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Factory.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/File.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Loader/FilesystemLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/FormDumperCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/FormDumperGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/FormDumperGeneratorTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/Generator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/Generator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Generator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/Console/GeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/GeneratorTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/GeneratorsServiceProvider.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/HelperCollection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/IdeHelperServiceProvider.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Image.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/ImageTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Loader/InlineLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/bg_BG/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/cs_CZ/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/da_DK/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_DE/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_AU/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_GB/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_ZA/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_ES/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fi_FI/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_BE/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/hy_AM/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/is_IS/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/it_IT/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ja_JP/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/lv_LV/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_BE/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_NL/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pl_PL/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pt_BR/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ru_RU/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sk_SK/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/tr_TR/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/uk_UA/Internet.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception/InvalidArgumentException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/PHPUnit/Framework/Constraint/IsValidSiren.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/PHPUnit/Framework/Constraint/IsValidSirenSiret.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/PHPUnit/Framework/Constraint/IsValidSiret.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/LambdaHelper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/LinkTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Loader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/LocalizationTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Location.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Logger.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception/LogicException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Lorem.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/LoremTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/MapClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/Console/MetaCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/Method.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/MethodTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/MigrationGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/MigrationGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Miscellaneous.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/ModelGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/ModelGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/commands/ModelGeneratorCommandTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/ModelGeneratorTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/Console/ModelsCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Caster/MongoCaster.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Loader/MutableLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Guesser/Name.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/NullGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ParamTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Parser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/bg_BG/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/cs_CZ/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/da_DK/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_AT/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_DE/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/el_GR/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_GB/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_ES/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_BE/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/is_IS/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/it_IT/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/lv_LV/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_BE/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_NL/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pl_PL/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pt_BR/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sk_SK/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_Cyrl_RS/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_Latn_RS/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_RS/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/tr_TR/Payment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/PaymentTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/bg_BG/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/cs_CZ/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/da_DK/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_AT/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_DE/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/el_GR/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_US/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_ZA/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_AR/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_ES/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_PE/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fi_FI/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_BE/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/hy_AM/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/is_IS/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/it_IT/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ja_JP/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/lv_LV/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_BE/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_NL/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pl_PL/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pt_BR/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ro_MD/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ro_RO/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ru_RU/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sk_SK/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_Cyrl_RS/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_Latn_RS/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sr_RS/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/tr_TR/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/uk_UA/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/zh_CN/Person.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/PersonTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/bg_BG/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/cs_CZ/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/da_DK/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/de_DE/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/el_GR/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_AU/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_CA/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_GB/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_US/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/en_ZA/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_AR/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_ES/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/es_PE/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fi_FI/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_BE/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/fr_FR/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/hy_AM/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/is_IS/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/it_IT/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ja_JP/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/lv_LV/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_BE/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/nl_NL/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pl_PL/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/pt_BR/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ro_MD/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/ru_RU/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/sk_SK/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/tr_TR/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/uk_UA/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/zh_CN/PhoneNumber.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/PivotGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Doctrine/Populator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Mandango/Populator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/ORM/Propel/Populator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/models/Post.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/controllers/PostsController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/database/seeds/PostsTableSeeder.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/PropertyReadTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/PropertyTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/PropertyWriteTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/ProviderOverrideTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/Psr4ClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/twbs/bootstrap/js/tests/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Tests/Caster/ReflectionCasterTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/ResourceGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/ResourceGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ReturnTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception/RuntimeException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/ScaffoldGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/ScaffoldGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/commands/ScafoldGeneratorCommandTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/SeeTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/SeedGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/SeedGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Serializer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/SinceTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/SourceTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Logger/StreamLogger.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Loader/StringLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception/SyntaxException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Template.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/TestGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/TestGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/ThrowsTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Tokenizer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/UniqueGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/UniversalClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception/UnknownFilterException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception/UnknownHelperException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/src/Mustache/Exception/UnknownTemplateException.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/UserAgent.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/UserAgentTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/UsesTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Provider/Uuid.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/Faker/Provider/UuidTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Tests/VarClonerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Test/VarDumperTestCase.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Test/VarDumperTestTrait.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/VarTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/VersionTag.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/ViewGenerator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Commands/ViewGeneratorCommand.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/commands/ViewGeneratorCommandTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/doctrine/cache/lib/Doctrine/Common/Cache/VoidCache.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/WinCacheClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/patchwork/utf8/class/Patchwork/Utf8/WindowsStreamWrapper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/XcacheClassLoader.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/var-dumper/Symfony/Component/VarDumper/Caster/XmlResourceCaster.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/autoload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/mustache/mustache/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/symfony/class-loader/Symfony/Component/ClassLoader/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/config/config.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/controller-test.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/controller.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/controller.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/controller.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/scaffold/controller.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/views/posts/create.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/create.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/single/create.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/documentor.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/views/posts/edit.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/edit.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/single/edit.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/dump/form-create-div.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/dump/form-create.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/dump/form-update.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/dump/generic-block.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/dump/generic.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/views/ide-helper.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/views/posts/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/index.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/single/index.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/dump/list-block.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/dump/list.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/src/views/meta.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration-down-create.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration-down-drop.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration-down.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration-up-create.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration-up-drop.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration-up-pivot.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration-up.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/migration/migration.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/scaffold/model-no-fields.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/model.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/model.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/model.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/tests/generators/stubs/scaffold/model.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/twbs/bootstrap/package.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/phpdocumentor/reflection-docblock/phpmd.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/phpunit.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/provides.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/barryvdh/laravel-ide-helper/readme.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/readme.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/readme.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/twbs/bootstrap/less/mixins/reset-text.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/views/layouts/scaffold.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/scaffold.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/seed.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/app/views/posts/show.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/show.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/scaffold/views/single/show.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/fzaninotto/faker/test/test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/test.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/vendor/dollar/generators/src/Dollar/Generators/Generators/templates/view.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.phpintel/301d09882e734d49ecf8d2f98194f510" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/public/js/FileSaver.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.phpintel/9b45687b6333875721f4b256414c83a8" afterPath="$PROJECT_DIR$/.phpintel/9b45687b6333875721f4b256414c83a8" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.phpintel/index" afterPath="$PROJECT_DIR$/.phpintel/index" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/utils/Functions.php" afterPath="$PROJECT_DIR$/code/app/utils/Functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/utils/Macros.php" afterPath="$PROJECT_DIR$/code/app/utils/Macros.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/app.js" afterPath="$PROJECT_DIR$/code/public/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-debugbar/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-debugbar/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-ide-helper/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-ide-helper/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/fitztrev/laravel-html-minify/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/fitztrev/laravel-html-minify/config.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/way/generators/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/way/generators/config.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/controllers.js" afterPath="$PROJECT_DIR$/code/public/js/controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/directives.js" afterPath="$PROJECT_DIR$/code/public/js/directives.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/factories.js" afterPath="$PROJECT_DIR$/code/public/js/factories.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/filters.php" afterPath="$PROJECT_DIR$/code/app/filters.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/index.blade.php" afterPath="$PROJECT_DIR$/code/app/views/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/index.html" afterPath="$PROJECT_DIR$/code/public/js/ladda/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/css/ladda-theme.scss" afterPath="$PROJECT_DIR$/code/public/js/ladda/css/ladda-theme.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.min.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.jquery.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.jquery.min.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.jquery.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/layouts/login.blade.php" afterPath="$PROJECT_DIR$/code/app/views/layouts/login.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/layouts/master.blade.php" afterPath="$PROJECT_DIR$/code/app/views/layouts/master.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/css/prism.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/css/prism.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/js/prism.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/js/prism.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/routes.php" afterPath="$PROJECT_DIR$/code/app/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/scripts.js" afterPath="$PROJECT_DIR$/code/public/js/scripts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/spin.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/spin.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tracking_correos.iws" />
@@ -468,157 +76,144 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/routes.php">
+      <file leaf-file-name="directives.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/public/js/directives.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="688" max-vertical-offset="1557">
-              <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
-              <folding>
-                <element signature="e#2373#2560#1#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/controllers/HomeController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="512" max-vertical-offset="1713">
-              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-              <folding>
-                <element signature="e#7#43#0#PHP" expanded="true" />
-                <element signature="n#logout#0;n#HomeController#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="master.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/views/layouts/master.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-35.47826" vertical-offset="368" max-vertical-offset="2053">
-              <caret line="74" column="68" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1174">
+              <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/views/layouts/master_modules/menu.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="352" max-vertical-offset="1445">
-              <caret line="22" column="104" selection-start-line="22" selection-start-column="104" selection-end-line="22" selection-end-column="104" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="api.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/config/api.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="192" max-vertical-offset="738">
-              <caret line="12" column="37" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8608696" vertical-offset="7162" max-vertical-offset="9382">
-              <caret line="673" column="80" selection-start-line="673" selection-start-column="80" selection-end-line="673" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="3110">
+              <caret line="273" column="41" selection-start-line="273" selection-start-column="41" selection-end-line="273" selection-end-column="41" />
               <folding>
-                <element signature="e#1472#1696#0" expanded="false" />
-                <element signature="e#1558#1666#0" expanded="false" />
-                <element signature="e#3737#3823#0" expanded="false" />
-                <element signature="e#3850#4179#0" expanded="false" />
-                <element signature="e#4205#4291#0" expanded="false" />
-                <element signature="e#4389#4782#0" expanded="false" />
-                <element signature="e#6096#6405#0" expanded="false" />
-                <element signature="e#6500#6651#0" expanded="false" />
-                <element signature="e#6757#8043#0" expanded="false" />
-                <element signature="e#13665#13724#0" expanded="false" />
-                <element signature="e#13866#14103#0" expanded="false" />
-                <element signature="e#14129#14191#0" expanded="false" />
-                <element signature="e#14289#14682#0" expanded="false" />
-                <element signature="e#14303#14672#0" expanded="false" />
-                <element signature="e#16378#16423#0" expanded="false" />
-                <element signature="e#17217#17341#0" expanded="false" />
-                <element signature="e#17424#18699#0" expanded="false" />
-                <element signature="e#17658#18315#0" expanded="false" />
-                <element signature="e#21285#21329#0" expanded="false" />
-                <element signature="e#21356#21616#0" expanded="false" />
-                <element signature="e#21642#21701#0" expanded="false" />
-                <element signature="e#21809#22048#0" expanded="false" />
-                <element signature="e#21854#22038#0" expanded="false" />
-                <element signature="e#22424#23201#0" expanded="false" />
-                <element signature="e#22438#23191#0" expanded="false" />
-                <element signature="e#24489#25562#0" expanded="false" />
-                <element signature="e#25278#25446#0" expanded="false" />
-                <element signature="e#26636#26852#0" expanded="false" />
-                <element signature="e#26878#26939#0" expanded="false" />
-                <element signature="e#27047#27215#0" expanded="false" />
-                <element signature="e#27303#28280#0" expanded="false" />
-                <element signature="e#27996#28164#0" expanded="false" />
-                <element signature="e#28203#28268#0" expanded="false" />
-                <element signature="e#28363#28447#0" expanded="false" />
-                <element signature="e#28661#29694#0" expanded="false" />
-                <element signature="e#29760#30387#0" expanded="false" />
-                <element signature="e#33637#34412#0" expanded="false" />
-                <element signature="e#33806#34404#0" expanded="false" />
+                <element signature="e#230#3052#0" expanded="false" />
+                <element signature="e#4394#4787#0" expanded="false" />
+                <element signature="e#4871#5994#0" expanded="false" />
+                <element signature="e#6101#6410#0" expanded="false" />
+                <element signature="e#6505#6656#0" expanded="false" />
+                <element signature="e#6762#8048#0" expanded="false" />
+                <element signature="e#8121#9536#0" expanded="false" />
+                <element signature="e#10998#12461#0" expanded="false" />
+                <element signature="e#12520#13220#0" expanded="false" />
+                <element signature="e#13548#20906#0" expanded="false" />
+                <element signature="e#20558#20739#0" expanded="false" />
+                <element signature="e#20798#20850#0" expanded="false" />
+                <element signature="e#21258#21302#0" expanded="false" />
+                <element signature="e#21329#21589#0" expanded="false" />
+                <element signature="e#21615#21674#0" expanded="false" />
+                <element signature="e#21792#22031#0" expanded="false" />
+                <element signature="e#21837#22021#0" expanded="false" />
+                <element signature="e#22118#22329#0" expanded="false" />
+                <element signature="e#22427#23204#0" expanded="false" />
+                <element signature="e#23362#23618#0" expanded="false" />
+                <element signature="e#24770#25841#0" expanded="false" />
+                <element signature="e#26230#26296#0" expanded="false" />
+                <element signature="e#26316#26483#0" expanded="false" />
+                <element signature="e#26726#30942#0" expanded="false" />
+                <element signature="e#26849#27065#0" expanded="false" />
+                <element signature="e#27091#27152#0" expanded="false" />
+                <element signature="e#27241#27487#0" expanded="false" />
+                <element signature="e#27604#27772#0" expanded="false" />
+                <element signature="e#27870#29500#0" expanded="false" />
+                <element signature="e#28145#29084#0" expanded="false" />
+                <element signature="e#29126#29343#0" expanded="false" />
+                <element signature="e#29382#29488#0" expanded="false" />
+                <element signature="e#29593#29677#0" expanded="false" />
+                <element signature="e#29786#30936#0" expanded="false" />
+                <element signature="e#30092#30567#0" expanded="false" />
+                <element signature="e#30609#30777#0" expanded="false" />
+                <element signature="e#30816#30924#0" expanded="false" />
+                <element signature="e#31280#32055#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="angularjs.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/views/layouts/angularjs.blade.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/app/storage/logs/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.130435" vertical-offset="0" max-vertical-offset="932">
-              <caret line="16" column="72" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="339">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomAuthenticate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/utils/CustomAuthenticate.php">
+      <file leaf-file-name="FileSaver.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/code/public/js/FileSaver.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="1536" max-vertical-offset="2162">
-              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4291">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#27#59#0#PHP" expanded="true" />
-                <element signature="e#426#743#0#PHP" expanded="true" />
-                <element signature="e#830#906#0#PHP" expanded="true" />
-                <element signature="e#1001#1103#0#PHP" expanded="true" />
-                <element signature="e#1240#1354#0#PHP" expanded="true" />
-                <element signature="e#1491#1588#0#PHP" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="individual.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php">
+      <file leaf-file-name="services.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/app/storage/meta/services.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="1088" max-vertical-offset="5333">
-              <caret line="68" column="59" selection-start-line="68" selection-start-column="59" selection-end-line="68" selection-end-column="59" />
-              <folding>
-                <element signature="e#2159#2221#0#HTML" expanded="true" />
-                <element signature="e#2293#2355#0#HTML" expanded="true" />
-                <marker date="1429196492874" expanded="true" signature="1131:1349" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="75.13043" vertical-offset="1728" max-vertical-offset="2668">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/admin/users.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="1648" max-vertical-offset="6095">
+              <caret line="103" column="1" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php">
+        <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="1632" max-vertical-offset="3173">
-              <caret line="102" column="124" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
+            <state vertical-scroll-proportion="-4.869565" vertical-offset="1888" max-vertical-offset="4271">
+              <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="individual.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.6956522" vertical-offset="320" max-vertical-offset="3391">
+              <caret line="21" column="82" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+              <folding>
+                <marker date="1429318358862" expanded="true" signature="909:1150" placeholder="..." />
+                <marker date="1429318358862" expanded="true" signature="1778:2050" placeholder="..." />
+                <marker date="1429318358862" expanded="true" signature="2294:2486" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Macros.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/code/app/utils/Macros.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.3913044" vertical-offset="832" max-vertical-offset="1532">
+              <caret line="140" column="33" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
+              <folding>
+                <element signature="e#27#63#0#PHP" expanded="true" />
+                <element signature="e#164#434#1#PHP" expanded="true" />
+                <marker date="1429318377068" expanded="true" signature="4862:4892" placeholder="..." />
+                <marker date="1429318377068" expanded="true" signature="6073:6092" placeholder="..." />
+                <marker date="1429318377068" expanded="true" signature="6150:6169" placeholder="..." />
+                <marker date="1429318377068" expanded="true" signature="6170:6441" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -642,30 +237,20 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/code/app/views/dashboard/tracking/index.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/controllers/TrackingController.php" />
-        <option value="$PROJECT_DIR$/code/app/start/global.php" />
-        <option value="$PROJECT_DIR$/code/app/controllers/ApiController.php" />
-        <option value="$PROJECT_DIR$/code/app/controllers/BaseController.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/ConsolidadoController.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/InformeController.php" />
         <option value="$PROJECT_DIR$/code/app/views/dashboard/admin/usuarios.blade.php" />
         <option value="$PROJECT_DIR$/code/public/js/icheck-init.js" />
-        <option value="$PROJECT_DIR$/code/public/js/scripts.js" />
-        <option value="$PROJECT_DIR$/code/app/views/dashboard/admin/loaddata.blade.php" />
         <option value="$PROJECT_DIR$/scripts/homestead.rb" />
         <option value="$PROJECT_DIR$/Homestead.yaml" />
         <option value="$PROJECT_DIR$/code/app/views/dashboard/index.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/filters.php" />
-        <option value="$PROJECT_DIR$/code/app/views/layouts/login.blade.php" />
         <option value="$PROJECT_DIR$/code/app/views/layouts/simple.blade.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/ConsultaController.php" />
         <option value="$PROJECT_DIR$/code/public/js/underscore}.js" />
         <option value="$PROJECT_DIR$/code/public/js/underscore.js" />
         <option value="$PROJECT_DIR$/code/app/utils/Functions.php" />
         <option value="$PROJECT_DIR$/code/public/js/angular-1.3.2/angular.min.js" />
-        <option value="$PROJECT_DIR$/code/app/utils/Macros.php" />
         <option value="$PROJECT_DIR$/code/app/config/webservice.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/PostController.php" />
         <option value="$PROJECT_DIR$/code/app/models/Post.php" />
@@ -676,23 +261,33 @@
         <option value="$PROJECT_DIR$/code/app/database/seeds/DatabaseSeeder.php" />
         <option value="$PROJECT_DIR$/code/app/database/seeds/PostsTableSeeder.php" />
         <option value="$PROJECT_DIR$/code/app/config/dev/database.php" />
-        <option value="$PROJECT_DIR$/code/public/js/directives.js" />
-        <option value="$PROJECT_DIR$/code/public/js/app.js" />
         <option value="$PROJECT_DIR$/code/app/views/dashboard/admin/users.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/views/layouts/master.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/views/index.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php" />
-        <option value="$PROJECT_DIR$/code/public/js/factories.js" />
-        <option value="$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php" />
-        <option value="$PROJECT_DIR$/code/app/routes.php" />
         <option value="$PROJECT_DIR$/code/app/utils/CustomAuthenticate.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/code/app/views/layouts/master_modules/menu.blade.php" />
         <option value="$PROJECT_DIR$/code/app/config/api.php" />
         <option value="$PROJECT_DIR$/code/app/views/layouts/angularjs.blade.php" />
+        <option value="$PROJECT_DIR$/code/app/views/dashboard/admin/loaddata.blade.php" />
+        <option value="$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php" />
+        <option value="$PROJECT_DIR$/code/app/views/index.blade.php" />
+        <option value="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-ide-helper/config.php" />
+        <option value="$PROJECT_DIR$/code/app/config/packages/way/generators/config.php" />
+        <option value="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-debugbar/config.php" />
+        <option value="$PROJECT_DIR$/code/public/js/scripts.js" />
+        <option value="$PROJECT_DIR$/code/app/views/layouts/login.blade.php" />
+        <option value="$PROJECT_DIR$/code/app/views/layouts/master.blade.php" />
+        <option value="$PROJECT_DIR$/code/app/config/packages/fitztrev/laravel-html-minify/config.php" />
+        <option value="$PROJECT_DIR$/code/app/filters.php" />
+        <option value="$PROJECT_DIR$/code/public/js/app.js" />
+        <option value="$PROJECT_DIR$/code/app/routes.php" />
+        <option value="$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php" />
+        <option value="$PROJECT_DIR$/code/public/js/directives.js" />
+        <option value="$PROJECT_DIR$/code/public/js/factories.js" />
+        <option value="$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php" />
+        <option value="$PROJECT_DIR$/code/app/utils/Macros.php" />
+        <option value="$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php" />
         <option value="$PROJECT_DIR$/code/public/js/controllers.js" />
+        <option value="$PROJECT_DIR$/code/app/storage/sessions/9d2b730f49c2358d65914e1eca57a972f6501297" />
       </list>
     </option>
   </component>
@@ -801,7 +396,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -820,40 +414,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qaProcesosCriticosEntel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qaProcesosCriticosEntel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qaProcesosCriticosEntel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qaProcesosCriticosEntel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="code" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -922,9 +485,6 @@
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -934,9 +494,15 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",HTML5_OUTLINE_MODE" />
+  </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\Maze\AppData\Roaming\Subversion</configuration>
     <supportedVersion>125</supportedVersion>
@@ -996,35 +562,41 @@
       <option name="project" value="LOCAL" />
       <updated>1429201264955</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="0.0.5">
+      <created>1429202007562</created>
+      <option name="number" value="00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1429202007562</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.50980395" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33768353" sideWeight="0.74886537" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27243066" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40130505" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1680261" sideWeight="0.74886537" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34910277" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7614379" sideWeight="0.25113463" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24962178" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18154311" sideWeight="0.50246304" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="SvgViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32789558" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25037822" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18154311" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18154311" sideWeight="0.49753696" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27243066" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32789558" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24583964" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24583964" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1053,7 +625,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="54" />
+      <option name="time" value="55" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1070,132 +642,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/code/app/filters.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="29.615385" vertical-offset="792" max-vertical-offset="1537">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/login.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13701923" vertical-offset="845" max-vertical-offset="1494">
-          <caret line="41" column="48" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/preloader.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="507">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/simple.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29567307" vertical-offset="713" max-vertical-offset="1362">
-          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/admin/loaddata.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="3036">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/controllers/ConsultaController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7117438" vertical-offset="0" max-vertical-offset="946">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/public/js/underscore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.027350428" vertical-offset="0" max-vertical-offset="25305">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74358976" vertical-offset="7469" max-vertical-offset="10233">
-          <caret line="494" column="22" selection-start-line="494" selection-start-column="22" selection-end-line="494" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/vendor/laravel/framework/src/Illuminate/Support/Facades/HTML.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4782608" vertical-offset="0" max-vertical-offset="786">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/vendor/laravel/framework/src/Illuminate/Http/Request.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.683274" vertical-offset="4944" max-vertical-offset="6450">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/vendor/laravel/framework/src/Illuminate/Html/HtmlServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="1218">
-          <caret line="0" column="82" selection-start-line="0" selection-start-column="32" selection-end-line="0" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/vendor/laravel/framework/src/Illuminate/Html/HtmlBuilder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="129.39131" vertical-offset="3072" max-vertical-offset="4162">
-          <caret line="7" column="23" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/utils/Functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4544" max-vertical-offset="4960">
-          <caret line="284" column="63" selection-start-line="284" selection-start-column="52" selection-end-line="284" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/public/js/angular-1.3.2/angular.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="98340" max-vertical-offset="99436">
-          <caret line="6180" column="0" selection-start-line="6180" selection-start-column="0" selection-end-line="6180" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/config/cache.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.173913" vertical-offset="0" max-vertical-offset="1621">
-          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/config/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-29.956522" vertical-offset="1167" max-vertical-offset="3517">
-          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/posts.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="400" max-vertical-offset="528">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="720" max-vertical-offset="1008">
-          <caret line="45" column="10" selection-start-line="45" selection-start-column="10" selection-end-line="45" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/app/database/seeds/PostsTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.0869565" vertical-offset="112" max-vertical-offset="906">
@@ -1245,14 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/public/js/directives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33566433" vertical-offset="0" max-vertical-offset="812">
-          <caret line="12" column="80" selection-start-line="12" selection-start-column="62" selection-end-line="12" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/code/app/views/users/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.0869565" vertical-offset="48" max-vertical-offset="1461">
@@ -1271,41 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.69945353" vertical-offset="384" max-vertical-offset="1749">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/admin/users.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55191255" vertical-offset="1169" max-vertical-offset="6309">
-          <caret line="92" column="61" selection-start-line="92" selection-start-column="44" selection-end-line="92" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/utils/Macros.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="32" max-vertical-offset="320">
-          <caret line="4" column="63" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/config/webservice.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="96">
-          <caret line="3" column="56" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12698413" vertical-offset="0" max-vertical-offset="906">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/public/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1417">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1330,211 +733,366 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/utils/CustomAuthenticate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="1536" max-vertical-offset="2162">
+          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/config/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="192" max-vertical-offset="224">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/angularjs.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="256" max-vertical-offset="432">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.0869565" vertical-offset="464" max-vertical-offset="1507">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="576">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/public/js/angular-1.3.2/docs/examples/example-example6/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="617">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/vendor/fzaninotto/faker/src/Faker/Factory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="874">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/posts.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6956522" vertical-offset="128" max-vertical-offset="835">
+          <caret line="9" column="53" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/config/packages/way/generators/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.173913" vertical-offset="0" max-vertical-offset="994">
+          <caret line="6" column="40" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/config/packages/itsgoingd/clockwork/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.113879" vertical-offset="0" max-vertical-offset="1810">
+          <caret line="4" column="80" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-ide-helper/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="400" max-vertical-offset="1312">
+          <caret line="25" column="27" selection-start-line="25" selection-start-column="25" selection-end-line="25" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/master_modules/footer.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="16" max-vertical-offset="64">
+          <caret line="1" column="46" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/app/views/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26229507" vertical-offset="96" max-vertical-offset="1973">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding />
+        <state vertical-scroll-proportion="-17.304348" vertical-offset="978" max-vertical-offset="2005">
+          <caret line="86" column="80" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-debugbar/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-34.782608" vertical-offset="2880" max-vertical-offset="4421">
-          <caret line="230" column="79" selection-start-line="230" selection-start-column="23" selection-end-line="230" selection-end-column="23" />
+        <state vertical-scroll-proportion="-11.826087" vertical-offset="0" max-vertical-offset="3154">
+          <caret line="17" column="52" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/config/packages/fitztrev/laravel-html-minify/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.085409254" vertical-offset="0" max-vertical-offset="706">
+          <caret line="3" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/login.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40801457" vertical-offset="0" max-vertical-offset="1093">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/master.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9908925" vertical-offset="768" max-vertical-offset="1893">
+          <caret line="14" column="62" selection-start-line="14" selection-start-column="62" selection-end-line="14" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/master_modules/menu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2586521" vertical-offset="562" max-vertical-offset="1445">
+          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/public/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4821" max-vertical-offset="5532">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/config/webservice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6956522" vertical-offset="32" max-vertical-offset="505">
+          <caret line="3" column="56" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/filters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.043478" vertical-offset="384" max-vertical-offset="1561">
+          <caret line="70" column="45" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="592">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="e#4942#5004#0#HTML" expanded="true" />
-            <marker date="1429200684517" expanded="true" signature="-1:-1" placeholder="..." />
+            <element signature="e#188#414#0#PHP" expanded="false" />
+            <element signature="e#368#414#0#PHP" expanded="false" />
+            <element signature="e#426#737#0#PHP" expanded="false" />
+            <element signature="e#1055#1776#1#PHP" expanded="false" />
+            <element signature="e#1804#2068#1#PHP" expanded="false" />
+            <element signature="e#2101#3150#1#PHP" expanded="false" />
+            <element signature="e#2192#3009#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php">
+    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/admin/loaddata.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.9565215" vertical-offset="816" max-vertical-offset="3285">
-          <caret line="61" column="175" selection-start-line="61" selection-start-column="36" selection-end-line="61" selection-end-column="175" />
-          <folding>
-            <marker date="1429158458780" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429158458780" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/public/js/factories.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6478" max-vertical-offset="7660">
-          <caret line="917" column="36" selection-start-line="917" selection-start-column="0" selection-end-line="917" selection-end-column="0" />
-          <folding>
-            <element signature="e#902#1069#0" expanded="false" />
-            <element signature="e#4575#5719#0" expanded="false" />
-            <element signature="e#5775#7502#0" expanded="false" />
-            <element signature="e#7549#7989#0" expanded="false" />
-            <element signature="e#8032#8186#0" expanded="false" />
-            <element signature="e#8242#8489#0" expanded="false" />
-            <element signature="e#8555#9427#0" expanded="false" />
-            <element signature="e#9481#10901#0" expanded="false" />
-            <element signature="e#10964#11153#0" expanded="false" />
-            <element signature="e#11204#13179#0" expanded="false" />
-            <element signature="e#13229#14790#0" expanded="false" />
-            <element signature="e#14830#14959#0" expanded="false" />
-            <element signature="e#15000#15226#0" expanded="false" />
-            <element signature="e#15304#15678#0" expanded="false" />
-            <element signature="e#15722#16262#0" expanded="false" />
-            <element signature="e#16313#16381#0" expanded="false" />
-            <element signature="e#16433#16519#0" expanded="false" />
-            <element signature="e#17743#18787#0" expanded="false" />
-            <element signature="e#18847#20503#0" expanded="false" />
-            <element signature="e#21267#22216#0" expanded="false" />
-            <element signature="e#22076#22136#0" expanded="false" />
-            <element signature="e#22591#22918#0" expanded="false" />
-            <element signature="e#22615#22758#0" expanded="false" />
-            <element signature="e#22964#23245#0" expanded="false" />
-            <element signature="e#23282#24102#0" expanded="false" />
-            <element signature="e#24162#24880#0" expanded="false" />
-            <element signature="e#24923#25115#0" expanded="false" />
-            <element signature="e#25159#25326#0" expanded="false" />
-            <element signature="e#25382#25925#0" expanded="false" />
-            <element signature="e#25999#26295#0" expanded="false" />
-            <element signature="e#26620#26776#0" expanded="false" />
-            <element signature="e#32995#34014#0" expanded="false" />
-            <marker date="1429200684492" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429200684492" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429200684492" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.26168224" vertical-offset="0" max-vertical-offset="2588">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="1088" max-vertical-offset="5333">
-          <caret line="68" column="59" selection-start-line="68" selection-start-column="59" selection-end-line="68" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.3325301" vertical-offset="214" max-vertical-offset="2383">
+          <caret line="22" column="50" selection-start-line="22" selection-start-column="48" selection-end-line="22" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/public/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="608" max-vertical-offset="1504">
+          <caret line="17" column="79" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/public/js/factories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3117" max-vertical-offset="5715">
+          <caret line="494" column="45" selection-start-line="494" selection-start-column="21" selection-end-line="494" selection-end-column="21" />
           <folding>
-            <element signature="e#2159#2221#0#HTML" expanded="true" />
-            <element signature="e#2293#2355#0#HTML" expanded="true" />
-            <marker date="1429196492874" expanded="true" signature="1131:1349" placeholder="..." />
+            <element signature="e#4595#5739#0" expanded="false" />
+            <element signature="e#5795#7522#0" expanded="false" />
+            <element signature="e#7569#8009#0" expanded="false" />
+            <element signature="e#8168#8322#0" expanded="false" />
+            <element signature="e#8378#8625#0" expanded="false" />
+            <element signature="e#8691#9563#0" expanded="false" />
+            <element signature="e#9617#11037#0" expanded="false" />
+            <element signature="e#11100#11289#0" expanded="false" />
+            <element signature="e#11340#13315#0" expanded="false" />
+            <element signature="e#13365#14926#0" expanded="false" />
+            <element signature="e#14966#15095#0" expanded="false" />
+            <element signature="e#15136#15362#0" expanded="false" />
+            <element signature="e#15440#15814#0" expanded="false" />
+            <element signature="e#15858#16398#0" expanded="false" />
+            <element signature="e#16449#16517#0" expanded="false" />
+            <element signature="e#16569#16655#0" expanded="false" />
+            <element signature="e#16789#16890#0" expanded="false" />
+            <element signature="e#18386#19430#0" expanded="false" />
+            <element signature="e#19490#21146#0" expanded="false" />
+            <element signature="e#21910#22859#0" expanded="false" />
+            <element signature="e#22719#22779#0" expanded="false" />
+            <element signature="e#23234#23561#0" expanded="false" />
+            <element signature="e#23258#23401#0" expanded="false" />
+            <element signature="e#23607#23888#0" expanded="false" />
+            <element signature="e#23925#24745#0" expanded="false" />
+            <element signature="e#24805#25523#0" expanded="false" />
+            <element signature="e#25566#25758#0" expanded="false" />
+            <element signature="e#27001#33523#0" expanded="false" />
+            <element signature="e#27152#27743#0" expanded="false" />
+            <element signature="e#27263#27419#0" expanded="false" />
+            <element signature="e#27796#29178#0" expanded="false" />
+            <element signature="e#29234#30610#0" expanded="false" />
+            <element signature="e#30665#31631#0" expanded="false" />
+            <element signature="e#31685#33514#0" expanded="false" />
+            <element signature="e#33638#34657#0" expanded="false" />
+            <marker date="1429317030507" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429317030507" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1429317030507" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="1632" max-vertical-offset="3173">
-          <caret line="102" column="124" selection-start-line="102" selection-start-column="45" selection-end-line="102" selection-end-column="45" />
+        <state vertical-scroll-proportion="53.565216" vertical-offset="1440" max-vertical-offset="3436">
+          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/utils/CustomAuthenticate.php">
+    <entry file="file://$PROJECT_DIR$/code/public/js/directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="1536" max-vertical-offset="2162">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="589" max-vertical-offset="1283">
+          <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6956522" vertical-offset="320" max-vertical-offset="3391">
+          <caret line="21" column="82" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
           <folding>
-            <element signature="e#27#59#0#PHP" expanded="true" />
-            <element signature="e#426#743#0#PHP" expanded="true" />
-            <element signature="e#830#906#0#PHP" expanded="true" />
-            <element signature="e#1001#1103#0#PHP" expanded="true" />
-            <element signature="e#1240#1354#0#PHP" expanded="true" />
-            <element signature="e#1491#1588#0#PHP" expanded="true" />
+            <marker date="1429318358862" expanded="true" signature="909:1150" placeholder="..." />
+            <marker date="1429318358862" expanded="true" signature="1778:2050" placeholder="..." />
+            <marker date="1429318358862" expanded="true" signature="2294:2486" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/master_modules/menu.blade.php">
+    <entry file="file://$PROJECT_DIR$/code/app/utils/Macros.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="352" max-vertical-offset="1445">
-          <caret line="22" column="104" selection-start-line="22" selection-start-column="104" selection-end-line="22" selection-end-column="104" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/config/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="192" max-vertical-offset="738">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="2" selection-end-line="12" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="688" max-vertical-offset="1557">
-          <caret line="43" column="19" selection-start-line="43" selection-start-column="19" selection-end-line="43" selection-end-column="19" />
+        <state vertical-scroll-proportion="-1.3913044" vertical-offset="832" max-vertical-offset="1532">
+          <caret line="140" column="33" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
           <folding>
-            <element signature="e#2373#2560#1#PHP" expanded="true" />
+            <element signature="e#27#63#0#PHP" expanded="true" />
+            <element signature="e#164#434#1#PHP" expanded="true" />
+            <marker date="1429318377068" expanded="true" signature="4862:4892" placeholder="..." />
+            <marker date="1429318377068" expanded="true" signature="6073:6092" placeholder="..." />
+            <marker date="1429318377068" expanded="true" signature="6150:6169" placeholder="..." />
+            <marker date="1429318377068" expanded="true" signature="6170:6441" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/master.blade.php">
+    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-35.47826" vertical-offset="368" max-vertical-offset="2053">
-          <caret line="74" column="68" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
+        <state vertical-scroll-proportion="-4.869565" vertical-offset="1888" max-vertical-offset="4271">
+          <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/views/layouts/angularjs.blade.php">
+    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/admin/users.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.130435" vertical-offset="0" max-vertical-offset="932">
-          <caret line="16" column="72" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1648" max-vertical-offset="5808">
+          <caret line="103" column="1" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="1" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/code/app/controllers/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0" vertical-offset="512" max-vertical-offset="1714">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-          <folding>
-            <element signature="e#7#43#0#PHP" expanded="true" />
-            <element signature="n#logout#0;n#HomeController#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/public/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8608696" vertical-offset="7162" max-vertical-offset="9382">
-          <caret line="673" column="80" selection-start-line="673" selection-start-column="80" selection-end-line="673" selection-end-column="80" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="3110">
+          <caret line="273" column="41" selection-start-line="273" selection-start-column="41" selection-end-line="273" selection-end-column="41" />
           <folding>
-            <element signature="e#1472#1696#0" expanded="false" />
-            <element signature="e#1558#1666#0" expanded="false" />
-            <element signature="e#3737#3823#0" expanded="false" />
-            <element signature="e#3850#4179#0" expanded="false" />
-            <element signature="e#4205#4291#0" expanded="false" />
-            <element signature="e#4389#4782#0" expanded="false" />
-            <element signature="e#6096#6405#0" expanded="false" />
-            <element signature="e#6500#6651#0" expanded="false" />
-            <element signature="e#6757#8043#0" expanded="false" />
-            <element signature="e#13665#13724#0" expanded="false" />
-            <element signature="e#13866#14103#0" expanded="false" />
-            <element signature="e#14129#14191#0" expanded="false" />
-            <element signature="e#14289#14682#0" expanded="false" />
-            <element signature="e#14303#14672#0" expanded="false" />
-            <element signature="e#16378#16423#0" expanded="false" />
-            <element signature="e#17217#17341#0" expanded="false" />
-            <element signature="e#17424#18699#0" expanded="false" />
-            <element signature="e#17658#18315#0" expanded="false" />
-            <element signature="e#21285#21329#0" expanded="false" />
-            <element signature="e#21356#21616#0" expanded="false" />
-            <element signature="e#21642#21701#0" expanded="false" />
-            <element signature="e#21809#22048#0" expanded="false" />
-            <element signature="e#21854#22038#0" expanded="false" />
-            <element signature="e#22424#23201#0" expanded="false" />
-            <element signature="e#22438#23191#0" expanded="false" />
-            <element signature="e#24489#25562#0" expanded="false" />
-            <element signature="e#25278#25446#0" expanded="false" />
-            <element signature="e#26636#26852#0" expanded="false" />
-            <element signature="e#26878#26939#0" expanded="false" />
-            <element signature="e#27047#27215#0" expanded="false" />
-            <element signature="e#27303#28280#0" expanded="false" />
-            <element signature="e#27996#28164#0" expanded="false" />
-            <element signature="e#28203#28268#0" expanded="false" />
-            <element signature="e#28363#28447#0" expanded="false" />
-            <element signature="e#28661#29694#0" expanded="false" />
-            <element signature="e#29760#30387#0" expanded="false" />
-            <element signature="e#33637#34412#0" expanded="false" />
-            <element signature="e#33806#34404#0" expanded="false" />
+            <element signature="e#230#3052#0" expanded="false" />
+            <element signature="e#4394#4787#0" expanded="false" />
+            <element signature="e#4871#5994#0" expanded="false" />
+            <element signature="e#6101#6410#0" expanded="false" />
+            <element signature="e#6505#6656#0" expanded="false" />
+            <element signature="e#6762#8048#0" expanded="false" />
+            <element signature="e#8121#9536#0" expanded="false" />
+            <element signature="e#10998#12461#0" expanded="false" />
+            <element signature="e#12520#13220#0" expanded="false" />
+            <element signature="e#13548#20906#0" expanded="false" />
+            <element signature="e#20558#20739#0" expanded="false" />
+            <element signature="e#20798#20850#0" expanded="false" />
+            <element signature="e#21258#21302#0" expanded="false" />
+            <element signature="e#21329#21589#0" expanded="false" />
+            <element signature="e#21615#21674#0" expanded="false" />
+            <element signature="e#21792#22031#0" expanded="false" />
+            <element signature="e#21837#22021#0" expanded="false" />
+            <element signature="e#22118#22329#0" expanded="false" />
+            <element signature="e#22427#23204#0" expanded="false" />
+            <element signature="e#23362#23618#0" expanded="false" />
+            <element signature="e#24770#25841#0" expanded="false" />
+            <element signature="e#26230#26296#0" expanded="false" />
+            <element signature="e#26316#26483#0" expanded="false" />
+            <element signature="e#26726#30942#0" expanded="false" />
+            <element signature="e#26849#27065#0" expanded="false" />
+            <element signature="e#27091#27152#0" expanded="false" />
+            <element signature="e#27241#27487#0" expanded="false" />
+            <element signature="e#27604#27772#0" expanded="false" />
+            <element signature="e#27870#29500#0" expanded="false" />
+            <element signature="e#28145#29084#0" expanded="false" />
+            <element signature="e#29126#29343#0" expanded="false" />
+            <element signature="e#29382#29488#0" expanded="false" />
+            <element signature="e#29593#29677#0" expanded="false" />
+            <element signature="e#29786#30936#0" expanded="false" />
+            <element signature="e#30092#30567#0" expanded="false" />
+            <element signature="e#30609#30777#0" expanded="false" />
+            <element signature="e#30816#30924#0" expanded="false" />
+            <element signature="e#31280#32055#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/storage/logs/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="339">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/storage/meta/services.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="75.13043" vertical-offset="1728" max-vertical-offset="2668">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/public/js/FileSaver.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4291">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

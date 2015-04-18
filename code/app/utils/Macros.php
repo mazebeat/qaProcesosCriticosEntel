@@ -137,7 +137,8 @@ Form::macro('selectYear2', function ($name, $startYear = null, $endYear = null, 
 	}
 
 	$html   = array();
-	$html[] = '<option value="">Seleccione una fecha</option>';
+	//	$html[] = '<option value="">Seleccione una fecha</option>';
+	$html[] = '<option value=""> </option>';
 
 	for ($i = 0; $i < 13; $i++) {
 		$month      = date("n", mktime(0, 0, 0, date("n") - $i, date("d"), date("Y")));
@@ -189,22 +190,22 @@ Form::macro('selectYear2', function ($name, $startYear = null, $endYear = null, 
 
 		$options = \HTML::attributes($options);
 
-		$result = '<table ' . $options . '>';
-		$result .= '<thead>';
-		$result .= '<tr>';
+		echo '<table ' . $options . '>';
+		echo '<thead>';
+		echo '<tr>';
 
 		$head = array_flatten(array_flatten($head));
 		foreach ($head as $h) {
-			$result .= '<th style="width: 10%; text-align: center">' . ($h) . '</th>';
+			echo '<th style="width: 10%; text-align: center">' . ($h) . '</th>';
 		}
 
-		$result .= '<th>Observaciones</th>';
+		echo '<th>Observaciones</th>';
 
 		$list = ($list);
 
-		$result .= '</tr>';
-		$result .= '</thead>';
-		$result .= '<tbody>';
+		echo '</tr>';
+		echo '</thead>';
+		echo '<tbody>';
 
 		if ($isSort) {
 			if (is_array($sort) && count($sort) == 4) {
@@ -219,31 +220,32 @@ Form::macro('selectYear2', function ($name, $startYear = null, $endYear = null, 
 		}
 
 		foreach ($list as $key => $value) {
-			$result .= '<tr>';
+			echo '<tr>';
 
 			if (is_array($value)) {
 				foreach ($value as $k => $v) {
-					if (\Str::lower($v) == 'error') {
-						$result .= '<td style="text-align: center;"><h4><span class="label label-danger">' . \Str::upper(($v)) . '</span></h4></td>';
-					}
-					elseif (\Str::lower($v) == 'ok') {
-						$result .= '<td style="text-align: center;"><h4><span class="label label-success">' . \Str::upper(($v)) . '</span></h4></td>';
-					}
-					elseif (\Str::lower($v) == 'observacion') {
-						$result .= '<td style="text-align: center;"><h4><span class="label label-warning">' . \Str::upper(($v)) . '</span></h4></td>';
-					}
-					else {
-						$result .= '<td style="text-align: center;">' . ($v) . '</td>';
-					}
+					//					if (\Str::lower($v) == 'error') {
+					//						echo '<td style="text-align: center;"><h4><span class="label label-danger">' . \Str::upper(($v)) . '</span></h4></td>';
+					//					}
+					//					elseif (\Str::lower($v) == 'ok') {
+					//						echo '<td style="text-align: center;"><h4><span class="label label-success">' . \Str::upper(($v)) . '</span></h4></td>';
+					//					}
+					//					elseif (\Str::lower($v) == 'observacion') {
+					//						echo '<td style="text-align: center;"><h4><span class="label label-warning">' . \Str::upper(($v)) . '</span></h4></td>';
+					//					}
+					//					else {
+					echo '<td style="text-align: center;">' . ($v) . '</td>';
+					//					}
 				}
-				$result .= '<td style="text-align: center;"><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalComment"><i class="fa fa-comment-o"></i></button></td>';
+				echo '<td style="text-align: center;">
+					  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalComment"><i class="fa fa-comment-o"></i></button>
+				      <button type="button" class="btn btn-info btn-sm"><i class="fa fa-arrow-circle-down"></i></button>
+					  </td>';
 			}
 
-			$result .= '</tr>';
+			echo '</tr>';
 		}
-		$result .= '</tbody></table>';
-
-		return $result;
+		echo '</tbody></table>';
 	} catch (\Exception $e) {
 		return 'ERROR: ' . ' ' . $e->getMessage() . ' <br>';
 	}

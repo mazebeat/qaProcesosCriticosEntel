@@ -3,13 +3,11 @@
 })(this, function () {
     "use strict";
     var prefixes = ["webkit", "Moz", "ms", "O"], animations = {}, useCssAnimations;
-
     function createEl(tag, prop) {
         var el = document.createElement(tag || "div"), n;
         for (n in prop) el[n] = prop[n];
         return el;
     }
-
     function ins(parent) {
         for (var i = 1, n = arguments.length; i < n; i++) parent.appendChild(arguments[i]);
         return parent;
@@ -22,7 +20,6 @@
         ins(document.getElementsByTagName("head")[0], el);
         return el.sheet || el.styleSheet;
     }();
-
     function addAnimation(alpha, trail, i, lines) {
         var name = ["opacity", trail, ~~(alpha * 100), i, lines].join("-"), start = .01 + i / lines * 100, z = Math.max(1 - (1 - alpha) / trail * (100 - start), alpha), prefix = useCssAnimations.substring(0, useCssAnimations.indexOf("Animation")).toLowerCase(), pre = prefix && "-" + prefix + "-" || "";
         if (!animations[name]) {
@@ -31,7 +28,6 @@
         }
         return name;
     }
-
     function vendor(el, prop) {
         var s = el.style, pp, i;
         prop = prop.charAt(0).toUpperCase() + prop.slice(1);
@@ -41,12 +37,10 @@
         }
         if (s[prop] !== undefined) return prop;
     }
-
     function css(el, prop) {
         for (var n in prop) el.style[vendor(el, n) || n] = prop[n];
         return el;
     }
-
     function merge(obj) {
         for (var i = 1; i < arguments.length; i++) {
             var def = arguments[i];
@@ -54,7 +48,6 @@
         }
         return obj;
     }
-
     function pos(el) {
         var o = {
             x: el.offsetLeft,
@@ -63,11 +56,9 @@
         while (el = el.offsetParent) o.x += el.offsetLeft, o.y += el.offsetTop;
         return o;
     }
-
     function getColor(color, idx) {
         return typeof color == "string" ? color : color[idx % color.length];
     }
-
     var defaults = {
         lines: 12,
         length: 7,
@@ -87,11 +78,9 @@
         left: "50%",
         position: "absolute"
     };
-
     function Spinner(o) {
         this.opts = merge(o || {}, Spinner.defaults, defaults);
     }
-
     Spinner.defaults = {};
     merge(Spinner.prototype, {
         spin: function (target) {
@@ -136,7 +125,6 @@
         },
         lines: function (el, o) {
             var i = 0, start = (o.lines - 1) * (1 - o.direction) / 2, seg;
-
             function fill(color, shadow) {
                 return css(createEl(), {
                     position: "absolute",
@@ -173,11 +161,9 @@
         function vml(tag, attr) {
             return createEl("<" + tag + ' xmlns="urn:schemas-microsoft.com:vml" class="spin-vml">', attr);
         }
-
         sheet.addRule(".spin-vml", "behavior:url(#default#VML)");
         Spinner.prototype.lines = function (el, o) {
             var r = o.length + o.width, s = 2 * r;
-
             function grp() {
                 return css(vml("group", {
                     coordsize: s + " " + s,
@@ -187,13 +173,11 @@
                     height: s
                 });
             }
-
             var margin = -(o.width + o.length) * 2 + "px", g = css(grp(), {
                 position: "absolute",
                 top: margin,
                 left: margin
             }), i;
-
             function seg(i, dx, filter) {
                 ins(g, ins(css(grp(), {
                     rotation: 360 / o.lines * i + "deg",
@@ -213,7 +197,6 @@
                     opacity: 0
                 }))));
             }
-
             if (o.shadow) for (i = 1; i <= o.lines; i++) seg(i, -2, "progid:DXImageTransform.Microsoft.Blur(pixelradius=2,makeshadow=1,shadowopacity=.3)");
             for (i = 1; i <= o.lines; i++) seg(i);
             return ins(el, g);
@@ -229,7 +212,6 @@
             }
         };
     }
-
     var probe = css(createEl("group"), {
         behavior: "url(#default#VML)"
     });

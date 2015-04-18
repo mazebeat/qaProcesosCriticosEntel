@@ -5,11 +5,11 @@ var qaProcesosCriticos = angular.module('qaProcesosCriticos', [
         'LocalStorageModule',
         'ngCookies',
         'ngResource'
-    ]
-    //,function ($interpolateProvider) {
-    //    $interpolateProvider.startSymbol('[[');
-    //    $interpolateProvider.endSymbol(']]');
-    //}
+    ],
+    function ($interpolateProvider) {
+        $interpolateProvider.startSymbol('[[');
+        $interpolateProvider.endSymbol(']]');
+    }
 );
 
 qaProcesosCriticos
@@ -38,7 +38,7 @@ qaProcesosCriticos
             .setNotify(true, true);
     }])
 
-    // FILTER
+    // FILTERS
     .filter('mayorCero', function () {
         return function (item) {
             if (item <= 0) {
@@ -49,5 +49,18 @@ qaProcesosCriticos
             } else {
                 return 'NO';
             }
+        };
+    })
+    .filter('formatDate', function () {
+        return function (item) {
+            return new Date(item)
+        };
+    })
+    .filter('typeDocument', function () {
+        return function (item) {
+            if (item === 'CG_NORMAL_BOLETA') {
+                return 'Boleta'
+            }
+            return 'Factura'
         };
     })

@@ -16,11 +16,11 @@
 		<code ng-if="debug">
 			<h3>USER</h3>
 
-			<p>@{{ user }}</p>
+			<p>[[ user ]]</p>
 
 			<h3>ERRORES</h3>
 
-			<p> @{{ errors }}</p>
+			<p>{[ errors ]]</p>
 		</code>
 
 		<form class="form-signin" name="loginForm" ng-submit="validUser()">
@@ -29,7 +29,7 @@
 				<button type="button" class="close" data-dismiss="alert">
 					<span aria-hidden="true">&times;</span> <span class="sr-only">Close</span>
 				</button>
-				<span class="text-uppercase"><strong>Atención!</strong> @{{ errors.message }}</span>
+				<span class="text-uppercase"><strong>Atención!</strong>[[ errors.message ]]</span>
 			</div>
 
 			<div class="form-signin-heading text-center">

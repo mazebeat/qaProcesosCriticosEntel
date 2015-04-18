@@ -45,18 +45,26 @@ return array(
 	|
 	*/
 
-	'extra'           => array('Artisan'  => array('Illuminate\Foundation\Artisan'),
-	                           'Eloquent' => array('Illuminate\Database\Eloquent\Builder',
-		                           'Illuminate\Database\Query\Builder'),
-	                           'Session'  => array('Illuminate\Session\Store'),),
-	'magic'           => array('Log' => array('debug'     => 'Monolog\Logger::addDebug',
-	                                          'info'      => 'Monolog\Logger::addInfo',
-	                                          'notice'    => 'Monolog\Logger::addNotice',
-	                                          'warning'   => 'Monolog\Logger::addWarning',
-	                                          'error'     => 'Monolog\Logger::addError',
-	                                          'critical'  => 'Monolog\Logger::addCritical',
-	                                          'alert'     => 'Monolog\Logger::addAlert',
-	                                          'emergency' => 'Monolog\Logger::addEmergency',)),
+	'extra' => array(
+		'Artisan'  => array('Illuminate\Foundation\Artisan'),
+		'Eloquent' => array(
+			'Illuminate\Database\Eloquent\Builder',
+			'Illuminate\Database\Query\Builder'
+		),
+		'Session'  => array('Illuminate\Session\Store'),
+	),
+	'magic' => array(
+		'Log' => array(
+			'debug'     => 'Monolog\Logger::addDebug',
+			'info'      => 'Monolog\Logger::addInfo',
+			'notice'    => 'Monolog\Logger::addNotice',
+			'warning'   => 'Monolog\Logger::addWarning',
+			'error'     => 'Monolog\Logger::addError',
+			'critical'  => 'Monolog\Logger::addCritical',
+			'alert'     => 'Monolog\Logger::addAlert',
+			'emergency' => 'Monolog\Logger::addEmergency',
+		)
+	),
 	/*
 	|--------------------------------------------------------------------------
 	| Interface implementations

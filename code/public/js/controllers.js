@@ -76,7 +76,8 @@ qaProcesosCriticos
                 });
         };
 
-    }])
+    }
+    ])
 
     // adminController
     .controller('adminController', ['$scope', '$http', '$window', 'rootFactory', 'apiFactory', 'chartService', 'storageService', function ($scope, $http, $window, rootFactory, apiFactory, chartService, storageService) {
@@ -246,7 +247,7 @@ qaProcesosCriticos
 
         // BEGIN GRÁFICO ACTUAL
         $scope.actual = function () {
-            $scope.isLoadingActual = false;
+            $scope.isLoadingActual = true;
             apiFactory.post('Grafico/postGraficoBarra', {ano: $scope.filters.ano, mes: $scope.filters.mes, tipoDetalle: $scope.filters.tipoDetalle, documento: $scope.filters.typeDocument})
                 .then(function (data) {
                     //console.info('ACTUAL', data, data.length);
@@ -538,8 +539,8 @@ qaProcesosCriticos
     }])
 
     // consultaIndividualController
-    .controller('consultaIndividualController', ['$scope', '$http', '$q', 'storageService', 'rootFactory', 'apiFactory', 'chartService', function ($scope, $http, $q, storageService, rootFactory, apiFactory, chartService) {
-        $scope.debug = false;
+    .controller('consultaIndividualController', ['$scope', '$http', '$q', 'storageService', 'rootFactory', 'apiFactory', function ($scope, $http, $q, storageService, rootFactory, apiFactory) {
+        $scope.debug = true;
 
         var date = new Date();
 
@@ -562,7 +563,7 @@ qaProcesosCriticos
             message: ''
         };
 
-        // BEGIN UPDATE DATE, WHEN SELECT DATE FROM SELECT INPUT
+        // BEGIN UPDATE DATE, WHEN SELECT DATE FROM SELECT INPUT --> LISTO
         $scope.updateDate = function () {
             if ($scope.filters.date != '') {
                 var date = apiFactory.splitString($scope.filters.date, '-');
@@ -571,7 +572,7 @@ qaProcesosCriticos
             }
         }
 
-        // BEGIN PROCESS DATA
+        // BEGIN PROCESS DATA --> LISTO
         $scope.processData = function (data) {
             var array = apiFactory.createDataForTable(data);
             $.post('/gentable', $.param(array), function (data) {
@@ -579,7 +580,7 @@ qaProcesosCriticos
             });
         }
 
-        // BEGIN CHANGE TIPO DETALLE
+        // BEGIN CHANGE TIPO DETALLE --> LISTO
         $scope.changeTipoDetalle = function (id) {
             switch (parseInt(id)) {
                 case 1:
@@ -604,7 +605,7 @@ qaProcesosCriticos
             }
         }
 
-        // BEGIN GRÁFICO DETALLE
+        // BEGIN GRÁFICO DETALLE --> LISTO
         $scope.clientePorEstado = function () {
             apiFactory.post('DatoCliente/postClientesPorEstado', {
                 mes: $scope.filters.mes,
@@ -615,6 +616,7 @@ qaProcesosCriticos
             })
                 .then(function (data) {
                     console.info('CLIENTE POR ESTADO', data);
+
                     $scope.errors.estado = false;
                     $scope.errors.detalle = '';
                     $scope.datas.clientePorEstado = data;
@@ -622,6 +624,10 @@ qaProcesosCriticos
                     if (data.length > 1) {
                         $scope.processData(data);
                     } else {
+                        if (data.length === 1 && data[0].hasOwnProperty('estado') && !data[0].estado) {
+                            $scope.errors.estado = false;
+                            $scope.errors.message = data[0].message;
+                        }
                         $('#tableresponse').html('');
                     }
                 })
@@ -635,12 +641,12 @@ qaProcesosCriticos
                 });
         };
 
-        // BEGIN GRÁFICO DETALLE
+        // BEGIN GRÁFICO DETALLE --> LISTO
         $scope.clientePorCuenta = function () {
             apiFactory.post('DatoCliente/postClientesPorCuenta', {
                 ano: $scope.filters.ano,
                 mes: $scope.filters.mes,
-                //documento: $scope.filters.typeDocument,
+                documento: $scope.filters.typeDocument,
                 tipoDetalle: $scope.filters.tipoDetalle,
                 estado: $scope.filters.estado,
                 cuenta: $scope.filters.cuenta,
@@ -664,10 +670,10 @@ qaProcesosCriticos
                 });
         };
 
-        // BEGIN SUBMIT FORM - ON CLICK EVENT
+        // BEGIN SUBMIT FORM - ON CLICK EVENT --> LISTO
         $scope.submitForm = function (isValid) {
             $scope.isLoading = true;
-            // check to make sure the form is completely valid
+
             if (isValid) {
                 $scope.changeTipoDetalle($scope.filters.td);
 
@@ -686,7 +692,7 @@ qaProcesosCriticos
     }])
 
     // informeController
-    .controller('informeController', ['$scope', '$http', '$q', 'storageService', 'rootFactory', 'apiFactory', 'chartService', function ($scope, $http, $q, storageService, rootFactory, apiFactory, chartService) {
+    .controller('informeController', ['$scope', '$http', '$q', 'storageService', 'rootFactory', 'apiFactory', 'chartService', function ($scope, $http, $q, storageService, rootFactory, apiFactory) {
         $scope.debug = false;
 
         var date = new Date();
@@ -702,132 +708,83 @@ qaProcesosCriticos
             message: ''
         };
 
-        // BEGIN UPDATE DATE, WHEN SELECT DATE FROM SELECT INPUT
+        // FORMAT DATES --> LISTO
+        $scope.fomatDates = function (date, format) {
+            var d = apiFactory.formatDates(date);
+            console.log(d)
+            date = new Date(date);
+            var result = apiFactory.formatDates2(date, format);
+            console.log(result)
+            return result;
+        }
+
+        // BEGIN UPDATE DATE, WHEN SELECT DATE FROM SELECT INPUT --> LISTO
         $scope.updateDate = function () {
             var date = apiFactory.splitString($scope.filters.date, '-');
             $scope.filters.ano = date[1];
             $scope.filters.mes = date[0];
         }
 
-        // BEGIN SEARCH ALL FROM WS METHOD
+        // BEGIN SEARCH ALL FROM WS METHOD --> LISTO
         $scope.searchInforms = function () {
+            var searchButton = Ladda.create(document.querySelector('#searchInforms'));
+            searchButton.start();
+
             apiFactory.post('Documento/postListaDocumentos', {ano: $scope.filters.ano, mes: $scope.filters.mes})
                 .then(function (data) {
-                    console.info('INFORMES', data);
-
+                    //console.info('INFORMES', data);
                     if (data.length <= 0) {
                         $scope.errors.estado = false;
                         $scope.errors.message = 'No se han encontrado informes para la fecha ' + $scope.filters.date;
+                        $scope.filters.informs = {};
                     } else {
-                        $scope.filters.informs = data
-                        $scope.errors.estado = true;
-                        $scope.errors.message = '';
+                        if (data.length === 1 && data[0].hasOwnProperty('estado') && !data[0].estado) {
+                            $scope.errors.estado = false;
+                            $scope.errors.message = data[0].message + ' ' + $scope.filters.date;
+                            $scope.filters.informs = {};
+                        } else {
+                            $scope.errors.estado = true;
+                            $scope.errors.message = '';
+                            $scope.filters.informs = data
+                        }
                     }
                 })
                 .catch(function (error) {
                     console.warn(error)
                     $scope.errors.estado = false;
                     $scope.errors.message = error.message;
+                    $scope.filters.informs = {};
                 })
                 .finally(function () {
                     $scope.isLoading = false;
+                    searchButton.stop();
                 });
         };
 
-        // BEGIN UPDATE INFORMS LIST
+        // BEGIN UPDATE INFORMS LIST --> LISTO
         $scope.updateInforms = function () {
             $scope.isLoading = true;
             $scope.searchInforms();
         }
 
-        if (!window.atob) {
-            var tableStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-            var table = tableStr.split("");
+        // BEGIN DOWNLOAD ONE INFORM --> LISTO
+        $scope.downloadInform = function (id, name, $event) {
+            var idButton = $event.currentTarget.attributes.id.value;
 
-            window.atob = function (base64) {
-                if (/(=[^=]+|={3,})$/.test(base64)) throw new Error("String contains an invalid character");
-                base64 = base64.replace(/=/g, "");
-                var n = base64.length & 3;
-                if (n === 1) throw new Error("String contains an invalid character");
-                for (var i = 0, j = 0, len = base64.length / 4, bin = []; i < len; ++i) {
-                    var a = tableStr.indexOf(base64[j++] || "A"), b = tableStr.indexOf(base64[j++] || "A");
-                    var c = tableStr.indexOf(base64[j++] || "A"), d = tableStr.indexOf(base64[j++] || "A");
-                    if ((a | b | c | d) < 0) throw new Error("String contains an invalid character");
-                    bin[bin.length] = ((a << 2) | (b >> 4)) & 255;
-                    bin[bin.length] = ((b << 4) | (c >> 2)) & 255;
-                    bin[bin.length] = ((c << 6) | d) & 255;
-                }
-                ;
-                return String.fromCharCode.apply(null, bin).substr(0, bin.length + n - 4);
-            };
+            var downloadButton = Ladda.create(document.querySelector('#' + idButton));
+            downloadButton.start();
 
-            try {
-                window.btoa = function (bin) {
-                    for (var i = 0, j = 0, len = bin.length / 3, base64 = []; i < len; ++i) {
-                        var a = bin.charCodeAt(j++), b = bin.charCodeAt(j++), c = bin.charCodeAt(j++);
-                        if ((a | b | c) > 255) throw new Error("String contains an invalid character");
-                        base64[base64.length] = table[a >> 2] + table[((a << 4) & 63) | (b >> 4)] +
-                        (isNaN(b) ? "=" : table[((b << 2) & 63) | (c >> 6)]) +
-                        (isNaN(b + c) ? "=" : table[c & 63]);
-                    }
-                    return base64.join("");
-                };
-            } catch (err) {
-                window.btoa = function (bin) {
-                    for (var i = 0, j = 0, len = bin.length / 3, base64 = []; i < len; ++i) {
-                        var a = bin.charCodeAt(j++), b = bin.charCodeAt(j++), c = bin.charCodeAt(j++);
-                        if ((a | b | c) > 255) throw new Error("String contains an invalid character");
-                        base64[base64.length] = table[a >> 2] + table[((a << 4) & 63) | (b >> 4)] +
-                        (isNaN(b) ? "=" : table[((b << 2) & 63) | (c >> 6)]) +
-                        (isNaN(b + c) ? "=" : table[c & 63]);
-                    }
-                    return base64.join("");
-                };
-            }
-
-        }
-
-        $scope.hexToBase64 = function (str) {
-            try {
-                return btoa(String.fromCharCode.apply(null,
-                        str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" "))
-                );
-            } catch (erro) {
-                return btoa(String.fromCharCode.apply(null,
-                        str.replace(/\r|\n/g, "").replace(/([\da-fA-F]{2}) ?/g, "0x$1 ").replace(/ +$/, "").split(" "))
-                );
-            }
-        }
-
-        // BEGIN DOWNLOAD ONE INFORM
-        $scope.downloadInform = function (id, name) {
-            var idInform = id;
-
-            apiFactory.post('Documento/postDocumento', {id: idInform})
+            $http.post('/processBase64', $.param({id: id, name: name}))
                 .then(function (data) {
-                    if (data.estado) {
+                    if (data.status === 200) {
                         $scope.errors.estado = true;
                         $scope.errors.message = '';
 
-                        var pom = document.createElement('a');
-                        try {
-                            var base = $scope.hexToBase64(data.data.value);
-                            pom.setAttribute('href', 'data:text/csv;charset=utf-8;base64,' + base);
-                        } catch (err) {
-                            var base = $scope.hexToBase64(data.data.value);
-                            pom.setAttribute('href', 'data:text/csv;charset=utf-8;base64,' + base);
-                        }
-                        pom.setAttribute('download', name);
-
-                        pom.style.display = 'none';
-                        document.body.appendChild(pom);
-
-                        pom.click();
-
-                        document.body.removeChild(pom);
+                        var blob = new Blob([data.data], {type: "text/csv;charset=utf-8"});
+                        saveAs(blob, name);
                     } else {
                         $scope.errors.estado = false;
-                        $scope.errors.message = error.message;
+                        $scope.errors.message = data.message;
                     }
                 })
                 .catch(function (error) {
@@ -837,9 +794,11 @@ qaProcesosCriticos
                 })
                 .finally(function () {
                     $scope.isLoading = false;
+                    downloadButton.stop();
                 });
         }
-    }])
+    }
+    ])
 
     // cargadataController
     .controller('cargadataController', ['$scope', '$http', '$q', 'storageService', 'rootFactory', 'apiFactory', 'chartService', function ($scope, $http, $q, storageService, rootFactory, apiFactory, chartService) {

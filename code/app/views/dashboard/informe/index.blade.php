@@ -7,11 +7,11 @@
 @section('content')
 	<div ng-controller="informeController">
 		<code ng-if="debug">
-			<p>Filtros: @{{ filters }}</p>
+			<p>Filtros: [[ ::filters ]]</p>
 
-			<p>Datos: @{{ datas }}</p>
+			<p>Datos: [[ ::datas ]]</p>
 
-			<p>Errores: @{{ errors }}</p>
+			<p>Errores: [[ ::errors ]]</p>
 		</code>
 
 		<div class="row">
@@ -56,7 +56,9 @@
 										</label><br>
 
 										<div class="btn-group" role="group" aria-label="...">
-											<button type="button" class="btn btn-info" ng-click="updateInforms()"><i class="fa fa-search fa-lg"></i></button>
+											<button id="searchInforms" type="button" class="btn btn-info ladda-button" data-size="s" data-style="zoom-in" ng-click="updateInforms()">
+												<span class="ladda-label"><i class="fa fa-search fa-lg"></i></span>
+											</button>
 											<button type="button" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
 											<button type="button" class="btn btn-default"><i class="fa fa-ellipsis-h fa-lg"></i></button>
 										</div>
@@ -65,39 +67,41 @@
 							</div>
 							<div class="col-md-5">
 								<div ng-if="errors.message != '' && !isLoadingActual" class="alert alert-warning" role="alert">
-									<strong>Warning!</strong> @{{ errors.message }}.
+									<strong>Warning!</strong> [[ ::errors.message ]].
 								</div>
 								<h3 ng-if="isLoadingActual"><em>Loading{{ HTML::image('images/loaders/loader28.gif') }}</em></h3>
 							</div>
-							<div class="col-md-12">
+							<div class="col-md-12" ng-if="filters.informs.length > 0">
 								<div class="table-responsive">
 									<table class="table table-hover table-list-search">
 										<thead>
 										<tr>
-											<th class="text-center" style="width: 35px;">
+											<th class="text-center" style="width: 3%;">
 												<i class="fa fa-check fa-lg"></i>
 											</th>
-											<th class="" style="width: 30px;"></th>
-											<th class="filename" style="width: 80%;">Nombre</th>
+											<th class="text-center" style="width: 2%"></th>
+											<th class="filename" style="width: 70%;">Nombre</th>
+											<th class="text-center" style="width: 15%;">Fecha Documento</th>
 											<th class="text-center" style="width: 15%;">Tipo Documento</th>
-											<th class="text-center" style="width: 50px;"></th>
+											<th class="text-center" style="width: 5%;"></th>
 										</tr>
 										</thead>
 										<tbody>
-										<tr ng-repeat="inf in filters.informs">
+										<tr ng-repeat="inf in filters.informs" post-repeat-directive>
 											<td class="icheck">
 												<div class="square-blue single-row">
 													<div class="checkbox">
-														<input type="checkbox" id="check@{{ inf.data.id }}">
+														<input type="checkbox" id="check[[ ::inf.data.id ]]">
 													</div>
 												</div>
 											</td>
 											<td class=""><i class="fa fa-file-excel-o fa-lg"></i></td>
-											<td class="filename">@{{ inf.data.nombre  }}</td>
-											<td class="">@{{ inf.data.documento }}</td>
-											<td class="">
-												<button type="button" class="btn btn-info btn-sm" ng-click="downloadInform(inf.data.id, inf.data.nombre)">
-													<i class="fa fa-download"></i>
+											<td class="filename">[[ ::inf.data.nombre ]]</td>
+											<td class="text-center">[[ ::inf.data.ano + '-' + ::inf.data.mes + '-01' | formatDate | date: 'MMMM yyyy' | uppercase ]]</td>
+											<td class="text-center">[[ ::inf.data.documento | typeDocument ]]</td>
+											<td class="text-center">
+												<button id="btnDownload[[ ::inf.data.id ]]" class="btn btn-info btn-sm ladda-button" data-size="s" data-style="zoom-in" ng-click="downloadInform(::inf.data.id, ::inf.data.nombre, ::$event)">
+													<span class="ladda-label"><i class="fa fa-download"></i></span>
 												</button>
 											</td>
 										</tr>
@@ -161,5 +165,24 @@
 @endsection
 
 @section('text-script')
-	<script type="text/javascript"></script>
+	<script type="text/javascript">
+		//		var downloadButton = Ladda.create(document.querySelector('.ladda-button'));
+		//		//
+		//		$(function () {
+		//			$('.ladda-button').click(function (e) {
+		//				console.info('INTRO')
+		//				e.preventDefault();
+		//				var l = Ladda.create(this);
+		//				l.start();
+		//				$.post("/test", {data: data}, function (response) {
+		//					console.log(response);
+		//				}, "json").always(function () {
+		//					l.stop();
+		//				});
+		//				return false;
+		//			});
+		//		});
+
+
+	</script>
 @endsection

@@ -11,40 +11,25 @@
 	<title>@yield('title')</title>
 	{{ HTML::style('css/style.css') }}
 	{{ HTML::style('css/style_responsive.css') }}
-	{{ HTML::style('js/ladda/dist/ladda.min.css') }}
-	{{ HTML::style('js/pNotify/css/pnotify.custom.min.css') }}
-
+	{{--	{{ HTML::style('js/ladda/dist/ladda.min.css') }}--}}
+	{{ HTML::style('js/ladda/dist/ladda-themeless.min.css') }}
 	{{ HTML::script('js/modernizr.min.js') }}
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	{{ HTML::script('js/html5shiv.js') }}
-	{{ HTML::script('js/respond.min.js') }}
-	<![endif]-->
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->    <!--[if lt IE 9]>    {{ HTML::script('js/html5shiv.js') }}    {{ HTML::script('js/respond.min.js') }}    <![endif]-->
 </head>
 <body id="{{ \App\Util\SiteHelpers::bodyId() }}" class="login-body" ng-app="qaProcesosCriticos">
-	{{--@include('layouts.preloader')--}}
-	<div class="container">
-		@yield('content')
-	</div>
-	{{ HTML::script('js/jquery-1.10.2.min.js') }}
-	{{ HTML::script('js/jquery-ui-1.10.3.min.js') }}
-	{{ HTML::script('js/jquery-migrate-1.2.1.min.js') }}
-	{{ HTML::script('js/bootstrap.min.js') }}
-	{{ HTML::script('js/ladda/dist/spin.min.js') }}
-	{{ HTML::script('js/ladda/dist/ladda.min.js') }}
-	{{ HTML::script('js/pNotify/js/pnotify.custom.min.js') }}
-
-	{{-- AmCharts JS --}}
-	{{ HTML::script('js/amcharts/amcharts.js') }}
-	{{ HTML::script('js/amcharts/pie.js') }}
-	{{ HTML::script('js/amcharts/serial.js') }}
-	{{ HTML::script('js/amcharts/exporting/amexport_combined.js') }}
-	{{ HTML::script('js/amcharts/lang/es.js') }}
-	@yield('file-script')
-	@include('layouts.angularjs')
-	<script>
-		PNotify.desktop.permission();
-	</script>
-	@yield('text-script')
+@include('layouts.preloader')
+<div class="container">
+	@yield('content')
+</div>
+{{ HTML::script('js/jquery-1.10.2.min.js') }}
+{{ HTML::script('js/jquery-ui-1.10.3.min.js') }}
+{{ HTML::script('js/jquery-migrate-1.2.1.min.js') }}
+{{ HTML::script('js/bootstrap.min.js') }}
+{{ HTML::script('js/ladda/dist/spin.min.js') }}
+{{ HTML::script('js/ladda/dist/ladda.min.js') }}
+@yield('file-script')
+@include('layouts.angularjs')
+{{ HTML::script('js/scripts.js') }}
+@yield('text-script')
 </body>
 </html>
