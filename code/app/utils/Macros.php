@@ -17,7 +17,7 @@ HTML::macro('button', function ($type = 'button', $name, $options = array()) {
 });
 
 HTML::macro('activeLink', function ($url) {
-	return Request::is($url) ? 'active current' : '';
+	return Request::is($url) ? 'active' : '';
 });
 
 HTML::macro('activeState', function ($urls = array()) {
@@ -250,4 +250,4 @@ Form::macro('selectYear2', function ($name, $startYear = null, $endYear = null, 
 		return 'ERROR: ' . ' ' . $e->getMessage() . ' <br>';
 	}
 
-});
+});	

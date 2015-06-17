@@ -2,15 +2,15 @@
 
 // INIT APP
 var qaProcesosCriticos = angular.module('qaProcesosCriticos', [
-        'LocalStorageModule',
-        'ngCookies',
-        'ngResource'
+    'LocalStorageModule',
+    'ngCookies',
+    'ngResource'
     ],
     function ($interpolateProvider) {
         $interpolateProvider.startSymbol('[[');
         $interpolateProvider.endSymbol(']]');
     }
-);
+    );
 
 qaProcesosCriticos
     // RUN
@@ -33,9 +33,9 @@ qaProcesosCriticos
         $httpProvider.defaults.timeout = 10000;
 
         localStorageServiceProvider
-            .setPrefix('__trkC')
-            .setStorageType('sessionStorage')
-            .setNotify(true, true);
+        .setPrefix('__trkC')
+        .setStorageType('sessionStorage')
+        .setNotify(true, true);
     }])
 
     // FILTERS

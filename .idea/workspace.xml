@@ -1,45 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="2e8b902c-d24b-4a2e-873f-db4dadfc22a0" name="Default" comment="0.0.5">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.phpintel/301d09882e734d49ecf8d2f98194f510" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/code/public/js/FileSaver.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.phpintel/9b45687b6333875721f4b256414c83a8" afterPath="$PROJECT_DIR$/.phpintel/9b45687b6333875721f4b256414c83a8" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.phpintel/index" afterPath="$PROJECT_DIR$/.phpintel/index" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/utils/Functions.php" afterPath="$PROJECT_DIR$/code/app/utils/Functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/utils/Macros.php" afterPath="$PROJECT_DIR$/code/app/utils/Macros.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/app.js" afterPath="$PROJECT_DIR$/code/public/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-debugbar/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-debugbar/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-ide-helper/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/barryvdh/laravel-ide-helper/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/fitztrev/laravel-html-minify/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/fitztrev/laravel-html-minify/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/config/packages/way/generators/config.php" afterPath="$PROJECT_DIR$/code/app/config/packages/way/generators/config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/controllers.js" afterPath="$PROJECT_DIR$/code/public/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/directives.js" afterPath="$PROJECT_DIR$/code/public/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/factories.js" afterPath="$PROJECT_DIR$/code/public/js/factories.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/filters.php" afterPath="$PROJECT_DIR$/code/app/filters.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/index.blade.php" afterPath="$PROJECT_DIR$/code/app/views/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/informe/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/index.html" afterPath="$PROJECT_DIR$/code/public/js/ladda/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/consolidado/individual.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php" afterPath="$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/css/ladda-theme.scss" afterPath="$PROJECT_DIR$/code/public/js/ladda/css/ladda-theme.scss" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.min.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda-themeless.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.jquery.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.jquery.min.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/js/ladda.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/ladda.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/layouts/login.blade.php" afterPath="$PROJECT_DIR$/code/app/views/layouts/login.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/views/layouts/master.blade.php" afterPath="$PROJECT_DIR$/code/app/views/layouts/master.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/css/prism.css" afterPath="$PROJECT_DIR$/code/public/js/ladda/css/prism.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/js/prism.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/js/prism.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/app/routes.php" afterPath="$PROJECT_DIR$/code/app/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/scripts.js" afterPath="$PROJECT_DIR$/code/public/js/scripts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/code/public/js/ladda/dist/spin.js" afterPath="$PROJECT_DIR$/code/public/js/ladda/dist/spin.js" />
+    <list default="true" readonly="true" id="2e8b902c-d24b-4a2e-873f-db4dadfc22a0" name="Default" comment="0.0.6">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="tracking_correos.iws" />
@@ -79,7 +41,7 @@
       <file leaf-file-name="directives.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/public/js/directives.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1174">
+            <state vertical-scroll-proportion="0.0" vertical-offset="832" max-vertical-offset="864">
               <caret line="52" column="6" selection-start-line="52" selection-start-column="6" selection-end-line="52" selection-end-column="6" />
               <folding />
             </state>
@@ -89,7 +51,7 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/public/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="986" max-vertical-offset="3110">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1296" max-vertical-offset="2832">
               <caret line="273" column="41" selection-start-line="273" selection-start-column="41" selection-end-line="273" selection-end-column="41" />
               <folding>
                 <element signature="e#230#3052#0" expanded="false" />
@@ -138,7 +100,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/app/storage/logs/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="339">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="48">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -160,7 +122,7 @@
       <file leaf-file-name="services.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/app/storage/meta/services.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="75.13043" vertical-offset="1728" max-vertical-offset="2668">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2400">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
@@ -170,7 +132,7 @@
       <file leaf-file-name="users.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/admin/users.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="1648" max-vertical-offset="6095">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1648" max-vertical-offset="5808">
               <caret line="103" column="1" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="1" />
               <folding />
             </state>
@@ -180,8 +142,8 @@
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.869565" vertical-offset="1888" max-vertical-offset="4271">
-              <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2080" max-vertical-offset="4064">
+              <caret line="130" column="50" selection-start-line="130" selection-start-column="50" selection-end-line="130" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -190,8 +152,8 @@
       <file leaf-file-name="individual.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6956522" vertical-offset="320" max-vertical-offset="3391">
-              <caret line="21" column="82" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="3104">
+              <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
               <folding>
                 <marker date="1429318358862" expanded="true" signature="909:1150" placeholder="..." />
                 <marker date="1429318358862" expanded="true" signature="1778:2050" placeholder="..." />
@@ -204,15 +166,15 @@
       <file leaf-file-name="Macros.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/code/app/utils/Macros.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3913044" vertical-offset="832" max-vertical-offset="1532">
+            <state vertical-scroll-proportion="0.0" vertical-offset="832" max-vertical-offset="1200">
               <caret line="140" column="33" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
               <folding>
-                <element signature="e#27#63#0#PHP" expanded="true" />
                 <element signature="e#164#434#1#PHP" expanded="true" />
-                <marker date="1429318377068" expanded="true" signature="4862:4892" placeholder="..." />
-                <marker date="1429318377068" expanded="true" signature="6073:6092" placeholder="..." />
-                <marker date="1429318377068" expanded="true" signature="6150:6169" placeholder="..." />
-                <marker date="1429318377068" expanded="true" signature="6170:6441" placeholder="..." />
+                <marker date="1429323756238" expanded="true" signature="27:140" placeholder="..." />
+                <marker date="1429323756238" expanded="true" signature="4863:4893" placeholder="..." />
+                <marker date="1429323756238" expanded="true" signature="6123:6142" placeholder="..." />
+                <marker date="1429323756238" expanded="true" signature="6205:6224" placeholder="..." />
+                <marker date="1429323756238" expanded="true" signature="6225:6496" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -237,7 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/code/app/controllers/ConsolidadoController.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/AdminController.php" />
         <option value="$PROJECT_DIR$/code/app/controllers/InformeController.php" />
         <option value="$PROJECT_DIR$/code/app/views/dashboard/admin/usuarios.blade.php" />
@@ -288,6 +249,7 @@
         <option value="$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php" />
         <option value="$PROJECT_DIR$/code/public/js/controllers.js" />
         <option value="$PROJECT_DIR$/code/app/storage/sessions/9d2b730f49c2358d65914e1eca57a972f6501297" />
+        <option value="$PROJECT_DIR$/code/public/js/FileSaver.js" />
       </list>
     </option>
   </component>
@@ -396,6 +358,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -416,7 +379,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -485,6 +447,9 @@
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
       <method />
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method />
+    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -492,9 +457,6 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <list size="0" />
@@ -568,7 +530,13 @@
       <option name="project" value="LOCAL" />
       <updated>1429202007562</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="0.0.6">
+      <created>1429323791915</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1429323791915</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -577,26 +545,26 @@
     <layout>
       <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.40130505" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1680261" sideWeight="0.74886537" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34910277" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7614379" sideWeight="0.25113463" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18154311" sideWeight="0.50246304" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="SvgViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25037822" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Symfony2" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18154311" sideWeight="0.49753696" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18154311" sideWeight="0.50246304" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7614379" sideWeight="0.25113463" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="SvgViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32980332" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27243066" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27243066" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34910277" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32789558" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24583964" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -620,7 +588,9 @@
     <MESSAGE value="0.0.2" />
     <MESSAGE value="0.0.3" />
     <MESSAGE value="0.0.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="0.0.5" />
+    <MESSAGE value="0.0.6" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.0.6" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -642,6 +612,33 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="3104">
+          <caret line="21" column="82" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+          <folding>
+            <marker date="1429318358862" expanded="true" signature="909:1150" placeholder="..." />
+            <marker date="1429318358862" expanded="true" signature="1778:2050" placeholder="..." />
+            <marker date="1429318358862" expanded="true" signature="2294:2486" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/code/app/utils/Macros.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="832" max-vertical-offset="1200">
+          <caret line="140" column="33" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
+          <folding>
+            <element signature="e#164#434#1#PHP" expanded="true" />
+            <marker date="1429323756238" expanded="true" signature="27:140" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="4863:4893" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="6123:6142" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="6205:6224" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="6225:6496" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/code/app/database/seeds/PostsTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.0869565" vertical-offset="112" max-vertical-offset="906">
@@ -884,15 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="592">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="e#188#414#0#PHP" expanded="false" />
-            <element signature="e#368#414#0#PHP" expanded="false" />
-            <element signature="e#426#737#0#PHP" expanded="false" />
-            <element signature="e#1055#1776#1#PHP" expanded="false" />
-            <element signature="e#1804#2068#1#PHP" expanded="false" />
-            <element signature="e#2101#3150#1#PHP" expanded="false" />
-            <element signature="e#2192#3009#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -914,7 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="608" max-vertical-offset="1504">
           <caret line="17" column="79" selection-start-line="17" selection-start-column="72" selection-end-line="17" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,46 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3117" max-vertical-offset="5715">
           <caret line="494" column="45" selection-start-line="494" selection-start-column="21" selection-end-line="494" selection-end-column="21" />
-          <folding>
-            <element signature="e#4595#5739#0" expanded="false" />
-            <element signature="e#5795#7522#0" expanded="false" />
-            <element signature="e#7569#8009#0" expanded="false" />
-            <element signature="e#8168#8322#0" expanded="false" />
-            <element signature="e#8378#8625#0" expanded="false" />
-            <element signature="e#8691#9563#0" expanded="false" />
-            <element signature="e#9617#11037#0" expanded="false" />
-            <element signature="e#11100#11289#0" expanded="false" />
-            <element signature="e#11340#13315#0" expanded="false" />
-            <element signature="e#13365#14926#0" expanded="false" />
-            <element signature="e#14966#15095#0" expanded="false" />
-            <element signature="e#15136#15362#0" expanded="false" />
-            <element signature="e#15440#15814#0" expanded="false" />
-            <element signature="e#15858#16398#0" expanded="false" />
-            <element signature="e#16449#16517#0" expanded="false" />
-            <element signature="e#16569#16655#0" expanded="false" />
-            <element signature="e#16789#16890#0" expanded="false" />
-            <element signature="e#18386#19430#0" expanded="false" />
-            <element signature="e#19490#21146#0" expanded="false" />
-            <element signature="e#21910#22859#0" expanded="false" />
-            <element signature="e#22719#22779#0" expanded="false" />
-            <element signature="e#23234#23561#0" expanded="false" />
-            <element signature="e#23258#23401#0" expanded="false" />
-            <element signature="e#23607#23888#0" expanded="false" />
-            <element signature="e#23925#24745#0" expanded="false" />
-            <element signature="e#24805#25523#0" expanded="false" />
-            <element signature="e#25566#25758#0" expanded="false" />
-            <element signature="e#27001#33523#0" expanded="false" />
-            <element signature="e#27152#27743#0" expanded="false" />
-            <element signature="e#27263#27419#0" expanded="false" />
-            <element signature="e#27796#29178#0" expanded="false" />
-            <element signature="e#29234#30610#0" expanded="false" />
-            <element signature="e#30665#31631#0" expanded="false" />
-            <element signature="e#31685#33514#0" expanded="false" />
-            <element signature="e#33638#34657#0" expanded="false" />
-            <marker date="1429317030507" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429317030507" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1429317030507" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -969,7 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="53.565216" vertical-offset="1440" max-vertical-offset="3436">
           <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -983,8 +929,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consulta/individual.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6956522" vertical-offset="320" max-vertical-offset="3391">
-          <caret line="21" column="82" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="3104">
+          <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
           <folding>
             <marker date="1429318358862" expanded="true" signature="909:1150" placeholder="..." />
             <marker date="1429318358862" expanded="true" signature="1778:2050" placeholder="..." />
@@ -995,23 +941,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/app/utils/Macros.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3913044" vertical-offset="832" max-vertical-offset="1532">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="864" max-vertical-offset="1532">
           <caret line="140" column="33" selection-start-line="140" selection-start-column="33" selection-end-line="140" selection-end-column="33" />
           <folding>
-            <element signature="e#27#63#0#PHP" expanded="true" />
             <element signature="e#164#434#1#PHP" expanded="true" />
-            <marker date="1429318377068" expanded="true" signature="4862:4892" placeholder="..." />
-            <marker date="1429318377068" expanded="true" signature="6073:6092" placeholder="..." />
-            <marker date="1429318377068" expanded="true" signature="6150:6169" placeholder="..." />
-            <marker date="1429318377068" expanded="true" signature="6170:6441" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="27:140" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="4863:4893" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="6123:6142" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="6205:6224" placeholder="..." />
+            <marker date="1429323756238" expanded="true" signature="6225:6496" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/code/app/views/dashboard/consolidado/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.869565" vertical-offset="1888" max-vertical-offset="4271">
-          <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2080" max-vertical-offset="4064">
+          <caret line="130" column="50" selection-start-line="130" selection-start-column="50" selection-end-line="130" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -1081,7 +1027,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/code/app/storage/meta/services.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="75.13043" vertical-offset="1728" max-vertical-offset="2668">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2400">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
